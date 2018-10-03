@@ -11,12 +11,13 @@ import javax.swing.ImageIcon;
  *
  * @author Usuario
  */
-public class Caso_de_uso_25_Error extends javax.swing.JFrame {
+public class Caso_de_uso_25_Error extends javax.swing.JDialog {
 
     /**
-     * Creates new form Caso_de_uso_25_Error
+     * Creates new form Caso_de_uso_25Error
      */
-    public Caso_de_uso_25_Error() {
+    public Caso_de_uso_25_Error(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
@@ -31,25 +32,23 @@ public class Caso_de_uso_25_Error extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelIcono = new javax.swing.JLabel();
-        jLabeltitulo = new javax.swing.JLabel();
-        jButtonOk = new javax.swing.JButton();
         jLabelTexto = new javax.swing.JLabel();
+        jLabeltitulo = new javax.swing.JLabel();
+        jLabelIcono = new javax.swing.JLabel();
+        jButtonOk = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("¡ERROR!");
-        setMinimumSize(new java.awt.Dimension(450, 220));
-        setPreferredSize(new java.awt.Dimension(450, 220));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/warning.png"))); // NOI18N
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 70));
+        jLabelTexto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTexto.setText("La clasificacion ya ha sido utilizada");
 
         jLabeltitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabeltitulo.setForeground(new java.awt.Color(255, 0, 0));
         jLabeltitulo.setText("¡ERROR!");
-        getContentPane().add(jLabeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+
+        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/warning.png"))); // NOI18N
 
         jButtonOk.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonOk.setText("Ok");
@@ -58,11 +57,47 @@ public class Caso_de_uso_25_Error extends javax.swing.JFrame {
                 jButtonOkActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 60, 40));
 
-        jLabelTexto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelTexto.setText("La clasificacion ya ha sido utilizada");
-        getContentPane().add(jLabelTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabelIcono)
+                            .addGap(20, 20, 20)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(80, 80, 80)
+                                    .addComponent(jLabeltitulo))
+                                .addComponent(jLabelTexto)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(340, 340, 340)
+                            .addComponent(jButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 180, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabelIcono))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabeltitulo)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabelTexto)))
+                    .addGap(20, 20, 20)
+                    .addComponent(jButtonOk, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -97,11 +132,19 @@ public class Caso_de_uso_25_Error extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Caso_de_uso_25_Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Caso_de_uso_25_Error().setVisible(true);
+                Caso_de_uso_25_Error dialog = new Caso_de_uso_25_Error(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
