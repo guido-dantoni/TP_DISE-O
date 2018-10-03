@@ -11,12 +11,12 @@ import javax.swing.ImageIcon;
  *
  * @author Usuario
  */
-public class Caso_de_uso_25_Error extends javax.swing.JDialog {
+public class Casu_de_uso_3EmergenteConfirmar extends javax.swing.JDialog {
 
     /**
-     * Creates new form Caso_de_uso_25Error
+     * Creates new form Casu_de_uso_3EmergenteConfirmar
      */
-    public Caso_de_uso_25_Error(java.awt.Frame parent, boolean modal) {
+    public Casu_de_uso_3EmergenteConfirmar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,43 +32,49 @@ public class Caso_de_uso_25_Error extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonCancelar = new javax.swing.JButton();
+        jButtonConfirmar = new javax.swing.JButton();
         jLabelTexto = new javax.swing.JLabel();
-        jLabeltitulo = new javax.swing.JLabel();
         jLabelIcono = new javax.swing.JLabel();
-        jButtonOk = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("¡ERROR!");
+        setTitle("Advertencia");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 120, 40));
+
+        jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonConfirmar.setText("Confirmar");
+        getContentPane().add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 120, 40));
+
         jLabelTexto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelTexto.setText("La clasificacion ya ha sido utilizada");
-        getContentPane().add(jLabelTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 55, -1, -1));
+        jLabelTexto.setText("¿Seguro que desea  confirmar el cierre del ticket?");
+        getContentPane().add(jLabelTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, 20));
 
-        jLabeltitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabeltitulo.setForeground(new java.awt.Color(255, 0, 0));
-        jLabeltitulo.setText("¡ERROR!");
-        getContentPane().add(jLabeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 15, -1, -1));
+        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/advertencia-icon.png"))); // NOI18N
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, -1));
 
-        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/warning.png"))); // NOI18N
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 35, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        jButtonOk.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonOk.setText("Ok");
-        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOkActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 125, 60, 40));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,21 +93,20 @@ public class Caso_de_uso_25_Error extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_25_Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Casu_de_uso_3EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_25_Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Casu_de_uso_3EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_25_Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Casu_de_uso_3EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_25_Error.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Casu_de_uso_3EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Caso_de_uso_25_Error dialog = new Caso_de_uso_25_Error(new javax.swing.JFrame(), true);
+                Casu_de_uso_3EmergenteConfirmar dialog = new Casu_de_uso_3EmergenteConfirmar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -114,9 +119,10 @@ public class Caso_de_uso_25_Error extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonOk;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelTexto;
-    private javax.swing.JLabel jLabeltitulo;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

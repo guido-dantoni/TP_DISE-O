@@ -11,12 +11,13 @@ import javax.swing.ImageIcon;
  *
  * @author Usuario
  */
-public class Caso_de_uso_12_EmergenteCancelar extends javax.swing.JFrame {
+public class Caso_de_uso_12_EmergenteCancelar extends javax.swing.JDialog {
 
     /**
-     * Creates new form Caso_de_uso_12_EmergenteCancelar
+     * Creates new form Caso_de_uso_12EmergenteCancelar
      */
-    public Caso_de_uso_12_EmergenteCancelar() {
+    public Caso_de_uso_12_EmergenteCancelar(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
@@ -31,28 +32,18 @@ public class Caso_de_uso_12_EmergenteCancelar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelIcono = new javax.swing.JLabel();
-        jLabelTexto1 = new javax.swing.JLabel();
-        jLabelTexto2 = new javax.swing.JLabel();
         jButtonCancelar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
-        jPanelfondo = new javax.swing.JPanel();
+        jLabelTexto2 = new javax.swing.JLabel();
+        jLabelTexto1 = new javax.swing.JLabel();
+        jLabelIcono = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Advertencia!");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Advertencia");
+        setPreferredSize(new java.awt.Dimension(450, 220));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/advertencia-icon.png"))); // NOI18N
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 70));
-
-        jLabelTexto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelTexto1.setText("¿Seguro desea salir?");
-        getContentPane().add(jLabelTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
-
-        jLabelTexto2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelTexto2.setText("Los cambios realizados se perderán");
-        getContentPane().add(jLabelTexto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
@@ -62,20 +53,32 @@ public class Caso_de_uso_12_EmergenteCancelar extends javax.swing.JFrame {
         jButtonAceptar.setText("Aceptar");
         getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 120, 40));
 
-        jPanelfondo.setBackground(new java.awt.Color(255, 255, 204));
+        jLabelTexto2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTexto2.setText("Los cambios realizados se perderán");
+        getContentPane().add(jLabelTexto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
-        javax.swing.GroupLayout jPanelfondoLayout = new javax.swing.GroupLayout(jPanelfondo);
-        jPanelfondo.setLayout(jPanelfondoLayout);
-        jPanelfondoLayout.setHorizontalGroup(
-            jPanelfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLabelTexto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTexto1.setText("¿Seguro desea salir?");
+        getContentPane().add(jLabelTexto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
+
+        jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/advertencia-icon.png"))); // NOI18N
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 70));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel1.setPreferredSize(new java.awt.Dimension(450, 220));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 450, Short.MAX_VALUE)
         );
-        jPanelfondoLayout.setVerticalGroup(
-            jPanelfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 220, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 220));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -106,11 +109,19 @@ public class Caso_de_uso_12_EmergenteCancelar extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Caso_de_uso_12_EmergenteCancelar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Caso_de_uso_12_EmergenteCancelar().setVisible(true);
+                Caso_de_uso_12_EmergenteCancelar dialog = new Caso_de_uso_12_EmergenteCancelar(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -121,6 +132,6 @@ public class Caso_de_uso_12_EmergenteCancelar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelTexto1;
     private javax.swing.JLabel jLabelTexto2;
-    private javax.swing.JPanel jPanelfondo;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
