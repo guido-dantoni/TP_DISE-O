@@ -25,7 +25,7 @@ public class Ticket  implements java.io.Serializable {
      private String descripcion;
      private Set observacions = new HashSet(0);
      private Set hitorialtickets = new HashSet(0);
-     private Ticket ticket;
+     //private Ticket ticket;
 
     public Ticket() {
     }
@@ -149,17 +149,9 @@ public class Ticket  implements java.io.Serializable {
     public void setHitorialtickets(Set hitorialtickets) {
         this.hitorialtickets = hitorialtickets;
     }
-    public Ticket getTicket() {
-        return this.ticket;
-    }
+   
     
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
-
-
-
-
+ 
 }
 
 
