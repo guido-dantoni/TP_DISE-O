@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.postgres.db.Historialintervencion" table="historialintervencion" schema="public" optimistic-lock="version">
+        <id name="idHistorialIntervencion" type="int">
+            <column name="id_historial_intervencion" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="intervencion" class="com.postgres.db.Intervencion" fetch="select">
+            <column name="idintervencion" not-null="true" />
+        </many-to-one>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
+        </property>
+        <property name="fechainicio" type="date">
+            <column name="fechainicio" length="13" not-null="true" />
+        </property>
+        <property name="fechafin" type="date">
+            <column name="fechafin" length="13" not-null="true" />
+        </property>
+        <property name="horainicio" type="time">
+            <column name="horainicio" length="15" not-null="true" />
+        </property>
+        <property name="horafin" type="time">
+            <column name="horafin" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

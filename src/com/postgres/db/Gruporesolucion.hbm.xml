@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.postgres.db.Gruporesolucion" table="gruporesolucion" schema="public" optimistic-lock="version">
+        <id name="codigoGrupoResolucion" type="int">
+            <column name="codigo_grupo_resolucion" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="30" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="30" not-null="true" />
+        </property>
+        <property name="nombregrupo" type="string">
+            <column name="nombregrupo" length="100" not-null="true" />
+        </property>
+        <set name="intervencions" table="intervencion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigogruporesolucion" not-null="true" />
+            </key>
+            <one-to-many class="com.postgres.db.Intervencion" />
+        </set>
+        <set name="tickets" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigogruporesolucion" not-null="true" />
+            </key>
+            <one-to-many class="com.postgres.db.Ticket" />
+        </set>
+        <set name="clasificacions" table="clasificaciongrupo" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_grupo_resolucion" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.postgres.db.Clasificacion">
+                <column name="codigo_clasificacion" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

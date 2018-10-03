@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.postgres.db.Ticket" table="ticket" schema="public" optimistic-lock="version">
+        <id name="nroTicket" type="int">
+            <column name="nro_ticket" />
+            <generator class="foreign">
+                <param name="property">ticket</param>
+            </generator>
+        </id>
+        <many-to-one name="empleado" class="com.postgres.db.Empleado" fetch="select">
+            <column name="legajoempleado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="gruporesolucion" class="com.postgres.db.Gruporesolucion" fetch="select">
+            <column name="codigogruporesolucion" not-null="true" />
+        </many-to-one>
+        <one-to-one name="ticket" class="com.postgres.db.Ticket" constrained="true"></one-to-one>
+        <property name="fecahapertura" type="date">
+            <column name="fecahapertura" length="13" not-null="true" />
+        </property>
+        <property name="nombreoperador" type="string">
+            <column name="nombreoperador" length="30" not-null="true" />
+        </property>
+        <property name="estadoactual" type="string">
+            <column name="estadoactual" length="15" not-null="true" />
+        </property>
+        <property name="horaapertura" type="time">
+            <column name="horaapertura" length="15" not-null="true" />
+        </property>
+        <property name="clasificacionactual" type="string">
+            <column name="clasificacionactual" length="100" not-null="true" />
+        </property>
+        <property name="grupointerventor" type="string">
+            <column name="grupointerventor" length="100" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="500" />
+        </property>
+        <set name="observacions" table="observacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="nroticket" not-null="true" />
+            </key>
+            <one-to-many class="com.postgres.db.Observacion" />
+        </set>
+        <set name="hitorialtickets" table="hitorialticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="nroticket" not-null="true" />
+            </key>
+            <one-to-many class="com.postgres.db.Hitorialticket" />
+        </set>
+        <one-to-one name="ticket" class="com.postgres.db.Ticket"></one-to-one>
+    </class>
+</hibernate-mapping>

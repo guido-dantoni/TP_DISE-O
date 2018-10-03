@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.postgres.db.Historialclasificacion" table="historialclasificacion" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="com.postgres.db.HistorialclasificacionId">
+            <key-property name="nroTicket" type="int">
+                <column name="nro_ticket" />
+            </key-property>
+            <key-property name="codigoClasificacion" type="int">
+                <column name="codigo_clasificacion" />
+            </key-property>
+            <key-property name="legajoEmpleado" type="int">
+                <column name="legajo_empleado" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="clasificacion" class="com.postgres.db.Clasificacion" update="false" insert="false" fetch="select">
+            <column name="codigo_clasificacion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleado" class="com.postgres.db.Empleado" update="false" insert="false" fetch="select">
+            <column name="legajo_empleado" not-null="true" />
+        </many-to-one>
+        <property name="fechainicio" type="date">
+            <column name="fechainicio" length="13" not-null="true" />
+        </property>
+        <property name="fechafin" type="date">
+            <column name="fechafin" length="13" not-null="true" />
+        </property>
+        <property name="horainicio" type="time">
+            <column name="horainicio" length="15" not-null="true" />
+        </property>
+        <property name="horafin" type="time">
+            <column name="horafin" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
