@@ -25,7 +25,7 @@ public class Ticket  implements java.io.Serializable {
      private String descripcion;
      private Set observacions = new HashSet(0);
      private Set hitorialtickets = new HashSet(0);
-     //private Ticket ticket;
+    
 
     public Ticket() {
     }
@@ -42,7 +42,7 @@ public class Ticket  implements java.io.Serializable {
         this.clasificacionactual = clasificacionactual;
         this.grupointerventor = grupointerventor;
     }
-    public Ticket(Empleado empleado, Gruporesolucion gruporesolucion, Ticket ticket, Date fecahapertura, String nombreoperador, String estadoactual, Date horaapertura, String clasificacionactual, String grupointerventor, String descripcion, Set observacions, Set hitorialtickets, Ticket ticket) {
+    public Ticket(Empleado empleado, Gruporesolucion gruporesolucion, Ticket ticket, Date fecahapertura, String nombreoperador, String estadoactual, Date horaapertura, String clasificacionactual, String grupointerventor, String descripcion, Set observacions, Set hitorialtickets){
        this.empleado = empleado;
        this.gruporesolucion = gruporesolucion;
        this.ticket = ticket;
@@ -55,7 +55,7 @@ public class Ticket  implements java.io.Serializable {
        this.descripcion = descripcion;
        this.observacions = observacions;
        this.hitorialtickets = hitorialtickets;
-       this.ticket = ticket;
+    
     }
    
     public int getNroTicket() {
