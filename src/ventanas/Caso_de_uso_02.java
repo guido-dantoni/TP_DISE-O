@@ -328,7 +328,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
 
     private void jButtonConfReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfReporteActionPerformed
         // TODO add your handling code here:
-        CasoDeUso05 a = new CasoDeUso05();
+        Caso_de_uso_05 a = new Caso_de_uso_05();
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonConfReporteActionPerformed
