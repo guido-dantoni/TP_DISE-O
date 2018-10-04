@@ -91,7 +91,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
 
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed
         // TODO add your handling code here:
-        CasoDeUso01 a = new CasoDeUso01();
+        Caso_de_uso_01 a = new Caso_de_uso_01();
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRegistrarTicketActionPerformed

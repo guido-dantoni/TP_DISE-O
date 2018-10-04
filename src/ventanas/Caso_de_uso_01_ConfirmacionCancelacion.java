@@ -10,10 +10,10 @@ package Ventanas;
  *
  * @author Marcos
  */
-public class ConfirmacionCancelacionCU01 extends javax.swing.JFrame {
+public class Caso_de_uso_01_ConfirmacionCancelacion extends javax.swing.JFrame {
 
     /** Creates new form ConfirmacionCancelacionCU01 */
-    public ConfirmacionCancelacionCU01() {
+    public Caso_de_uso_01_ConfirmacionCancelacion() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -71,7 +71,7 @@ public class ConfirmacionCancelacionCU01 extends javax.swing.JFrame {
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
          PantallaMesaDeAyuda a = new PantallaMesaDeAyuda();
-         CasoDeUso01 b = new CasoDeUso01();
+         Caso_de_uso_01 b = new Caso_de_uso_01();
          this.setVisible(false);
          b.setVisible(false);
          a.setVisible(true);
@@ -101,20 +101,21 @@ public class ConfirmacionCancelacionCU01 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionCancelacionCU01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01_ConfirmacionCancelacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionCancelacionCU01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01_ConfirmacionCancelacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionCancelacionCU01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01_ConfirmacionCancelacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConfirmacionCancelacionCU01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01_ConfirmacionCancelacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConfirmacionCancelacionCU01().setVisible(true);
+                new Caso_de_uso_01_ConfirmacionCancelacion().setVisible(true);
             }
         });
     }

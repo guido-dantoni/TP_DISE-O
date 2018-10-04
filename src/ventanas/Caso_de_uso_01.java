@@ -11,12 +11,12 @@ import javax.swing.ImageIcon;
  *
  * @author Marcos
  */
-public class CasoDeUso01 extends javax.swing.JFrame {
+public class Caso_de_uso_01 extends javax.swing.JFrame {
 
     /**
      * Creates new form CasoDeUso01
      */
-    public CasoDeUso01() {
+    public Caso_de_uso_01() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
@@ -177,7 +177,7 @@ public class CasoDeUso01 extends javax.swing.JFrame {
 
     private void jBottonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBottonCancelarActionPerformed
         // TODO add your handling code here:
-        ConfirmacionCancelacionCU01 a = new ConfirmacionCancelacionCU01();
+        Caso_de_uso_01_ConfirmacionCancelacion a = new Caso_de_uso_01_ConfirmacionCancelacion();
         a.setVisible(true);
     }//GEN-LAST:event_jBottonCancelarActionPerformed
 
@@ -206,20 +206,21 @@ public class CasoDeUso01 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CasoDeUso01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CasoDeUso01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CasoDeUso01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CasoDeUso01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CasoDeUso01().setVisible(true);
+                new Caso_de_uso_01().setVisible(true);
             }
         });
     }

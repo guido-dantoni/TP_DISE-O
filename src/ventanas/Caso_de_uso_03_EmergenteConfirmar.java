@@ -11,12 +11,13 @@ import javax.swing.ImageIcon;
  *
  * @author Usuario
  */
-public class Casu_de_uso_3_EmergenteConfirmar extends javax.swing.JFrame {
+public class Caso_de_uso_03_EmergenteConfirmar extends javax.swing.JDialog {
 
     /**
-     * Creates new form Casu_de_uso_3_EmergenteConfirmar
+     * Creates new form Casu_de_uso_3EmergenteConfirmar
      */
-    public Casu_de_uso_3_EmergenteConfirmar() {
+    public Caso_de_uso_03_EmergenteConfirmar(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
@@ -31,48 +32,46 @@ public class Casu_de_uso_3_EmergenteConfirmar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonConfirmar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButtonConfirmar = new javax.swing.JButton();
         jLabelTexto = new javax.swing.JLabel();
         jLabelIcono = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Advertencia!");
-        setMinimumSize(new java.awt.Dimension(560, 220));
-        setPreferredSize(new java.awt.Dimension(560, 220));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Advertencia");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonConfirmar.setText("Confirmar");
-        getContentPane().add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 120, 40));
 
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
         getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 120, 40));
 
+        jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonConfirmar.setText("Confirmar");
+        getContentPane().add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 120, 40));
+
         jLabelTexto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelTexto.setText("¿Seguro que desea  confirmar el cierre del ticket?");
-        getContentPane().add(jLabelTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, 20));
+        getContentPane().add(jLabelTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, 20));
 
         jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/advertencia-icon.png"))); // NOI18N
         getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, -1));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 560, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 220, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 220));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 220));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -94,20 +93,30 @@ public class Casu_de_uso_3_EmergenteConfirmar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Casu_de_uso_3_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_03_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Casu_de_uso_3_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_03_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Casu_de_uso_3_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_03_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Casu_de_uso_3_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_03_EmergenteConfirmar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Casu_de_uso_3_EmergenteConfirmar().setVisible(true);
+                Caso_de_uso_03_EmergenteConfirmar dialog = new Caso_de_uso_03_EmergenteConfirmar(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -117,6 +126,6 @@ public class Casu_de_uso_3_EmergenteConfirmar extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelTexto;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
