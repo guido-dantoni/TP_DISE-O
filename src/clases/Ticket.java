@@ -23,7 +23,7 @@ public class Ticket  implements java.io.Serializable {
      private Set observacions = new HashSet(0);
      private Set historialtickets = new HashSet(0);
      private Set intervencions = new HashSet(0);
-//   private Ticket ticket;
+//    private Ticket ticket;
 
     public Ticket() {
     }
