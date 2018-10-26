@@ -1,5 +1,5 @@
-package com.postgres.db;
-// Generated 03/10/2018 11:33:40 by Hibernate Tools 4.3.1
+package clases;
+// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,6 +12,7 @@ public class Historialintervencion  implements java.io.Serializable {
 
      private int idHistorialIntervencion;
      private Intervencion intervencion;
+     private Usuario usuario;
      private String estado;
      private Date fechainicio;
      private Date fechafin;
@@ -21,9 +22,10 @@ public class Historialintervencion  implements java.io.Serializable {
     public Historialintervencion() {
     }
 
-    public Historialintervencion(int idHistorialIntervencion, Intervencion intervencion, String estado, Date fechainicio, Date fechafin, Date horainicio, Date horafin) {
+    public Historialintervencion(int idHistorialIntervencion, Intervencion intervencion, Usuario usuario, String estado, Date fechainicio, Date fechafin, Date horainicio, Date horafin) {
        this.idHistorialIntervencion = idHistorialIntervencion;
        this.intervencion = intervencion;
+       this.usuario = usuario;
        this.estado = estado;
        this.fechainicio = fechainicio;
        this.fechafin = fechafin;
@@ -44,6 +46,13 @@ public class Historialintervencion  implements java.io.Serializable {
     
     public void setIntervencion(Intervencion intervencion) {
         this.intervencion = intervencion;
+    }
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     public String getEstado() {
         return this.estado;

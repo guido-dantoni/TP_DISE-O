@@ -1,5 +1,5 @@
-package com.postgres.db;
-// Generated 03/10/2018 11:33:40 by Hibernate Tools 4.3.1
+package clases;
+// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,9 +12,9 @@ public class Clasificacion  implements java.io.Serializable {
 
 
      private int codigo;
-     private String grupo;
      private String descripcion;
      private String nombreclasificacion;
+     private Set tickets = new HashSet(0);
      private Set historialclasificacions = new HashSet(0);
      private Set gruporesolucions = new HashSet(0);
 
@@ -22,17 +22,16 @@ public class Clasificacion  implements java.io.Serializable {
     }
 
 	
-    public Clasificacion(int codigo, String grupo, String descripcion, String nombreclasificacion) {
+    public Clasificacion(int codigo, String descripcion, String nombreclasificacion) {
         this.codigo = codigo;
-        this.grupo = grupo;
         this.descripcion = descripcion;
         this.nombreclasificacion = nombreclasificacion;
     }
-    public Clasificacion(int codigo, String grupo, String descripcion, String nombreclasificacion, Set historialclasificacions, Set gruporesolucions) {
+    public Clasificacion(int codigo, String descripcion, String nombreclasificacion, Set tickets, Set historialclasificacions, Set gruporesolucions) {
        this.codigo = codigo;
-       this.grupo = grupo;
        this.descripcion = descripcion;
        this.nombreclasificacion = nombreclasificacion;
+       this.tickets = tickets;
        this.historialclasificacions = historialclasificacions;
        this.gruporesolucions = gruporesolucions;
     }
@@ -43,13 +42,6 @@ public class Clasificacion  implements java.io.Serializable {
     
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-    public String getGrupo() {
-        return this.grupo;
-    }
-    
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
     }
     public String getDescripcion() {
         return this.descripcion;
@@ -64,6 +56,13 @@ public class Clasificacion  implements java.io.Serializable {
     
     public void setNombreclasificacion(String nombreclasificacion) {
         this.nombreclasificacion = nombreclasificacion;
+    }
+    public Set getTickets() {
+        return this.tickets;
+    }
+    
+    public void setTickets(Set tickets) {
+        this.tickets = tickets;
     }
     public Set getHistorialclasificacions() {
         return this.historialclasificacions;

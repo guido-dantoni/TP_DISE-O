@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/10/2018 19:27:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.postgres.db.Historialintervencion" table="historialintervencion" schema="public" optimistic-lock="version">
-        <id name="idHistorialIntervencion" type="int">
-            <column name="id_historial_intervencion" />
+    <class name="clases.Historialticket" table="historialticket" schema="public" optimistic-lock="version">
+        <id name="idHistorialTicket" type="int">
+            <column name="id_historial_ticket" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="intervencion" class="com.postgres.db.Intervencion" fetch="select">
-            <column name="idintervencion" not-null="true" />
+        <many-to-one name="ticket" class="clases.Ticket" fetch="select">
+            <column name="nroticket" not-null="true" />
         </many-to-one>
-        <property name="estado" type="string">
-            <column name="estado" length="15" not-null="true" />
-        </property>
+        <many-to-one name="usuario" class="clases.Usuario" fetch="select">
+            <column name="legajousuario" not-null="true" />
+        </many-to-one>
         <property name="fechainicio" type="date">
             <column name="fechainicio" length="13" not-null="true" />
         </property>
@@ -25,6 +25,9 @@
         </property>
         <property name="horafin" type="time">
             <column name="horafin" length="15" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

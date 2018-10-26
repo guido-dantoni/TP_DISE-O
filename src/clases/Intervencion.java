@@ -1,5 +1,5 @@
-package com.postgres.db;
-// Generated 03/10/2018 11:33:40 by Hibernate Tools 4.3.1
+package clases;
+// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,6 +13,7 @@ public class Intervencion  implements java.io.Serializable {
 
      private int idIntervencion;
      private Gruporesolucion gruporesolucion;
+     private Ticket ticket;
      private String observacion;
      private String estadoactual;
      private Set historialintervencions = new HashSet(0);
@@ -21,15 +22,17 @@ public class Intervencion  implements java.io.Serializable {
     }
 
 	
-    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, String observacion, String estadoactual) {
+    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String observacion, String estadoactual) {
         this.idIntervencion = idIntervencion;
         this.gruporesolucion = gruporesolucion;
+        this.ticket = ticket;
         this.observacion = observacion;
         this.estadoactual = estadoactual;
     }
-    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, String observacion, String estadoactual, Set historialintervencions) {
+    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String observacion, String estadoactual, Set historialintervencions) {
        this.idIntervencion = idIntervencion;
        this.gruporesolucion = gruporesolucion;
+       this.ticket = ticket;
        this.observacion = observacion;
        this.estadoactual = estadoactual;
        this.historialintervencions = historialintervencions;
@@ -48,6 +51,13 @@ public class Intervencion  implements java.io.Serializable {
     
     public void setGruporesolucion(Gruporesolucion gruporesolucion) {
         this.gruporesolucion = gruporesolucion;
+    }
+    public Ticket getTicket() {
+        return this.ticket;
+    }
+    
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
     public String getObservacion() {
         return this.observacion;

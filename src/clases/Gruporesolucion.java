@@ -1,5 +1,5 @@
-package com.postgres.db;
-// Generated 03/10/2018 11:33:40 by Hibernate Tools 4.3.1
+package clases;
+// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,30 +12,22 @@ public class Gruporesolucion  implements java.io.Serializable {
 
 
      private int codigoGrupoResolucion;
-     private String nombre;
-     private String apellido;
      private String nombregrupo;
      private Set intervencions = new HashSet(0);
-     private Set tickets = new HashSet(0);
      private Set clasificacions = new HashSet(0);
 
     public Gruporesolucion() {
     }
 
 	
-    public Gruporesolucion(int codigoGrupoResolucion, String nombre, String apellido, String nombregrupo) {
+    public Gruporesolucion(int codigoGrupoResolucion, String nombregrupo) {
         this.codigoGrupoResolucion = codigoGrupoResolucion;
-        this.nombre = nombre;
-        this.apellido = apellido;
         this.nombregrupo = nombregrupo;
     }
-    public Gruporesolucion(int codigoGrupoResolucion, String nombre, String apellido, String nombregrupo, Set intervencions, Set tickets, Set clasificacions) {
+    public Gruporesolucion(int codigoGrupoResolucion, String nombregrupo, Set intervencions, Set clasificacions) {
        this.codigoGrupoResolucion = codigoGrupoResolucion;
-       this.nombre = nombre;
-       this.apellido = apellido;
        this.nombregrupo = nombregrupo;
        this.intervencions = intervencions;
-       this.tickets = tickets;
        this.clasificacions = clasificacions;
     }
    
@@ -45,20 +37,6 @@ public class Gruporesolucion  implements java.io.Serializable {
     
     public void setCodigoGrupoResolucion(int codigoGrupoResolucion) {
         this.codigoGrupoResolucion = codigoGrupoResolucion;
-    }
-    public String getNombre() {
-        return this.nombre;
-    }
-    
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getApellido() {
-        return this.apellido;
-    }
-    
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
     public String getNombregrupo() {
         return this.nombregrupo;
@@ -73,13 +51,6 @@ public class Gruporesolucion  implements java.io.Serializable {
     
     public void setIntervencions(Set intervencions) {
         this.intervencions = intervencions;
-    }
-    public Set getTickets() {
-        return this.tickets;
-    }
-    
-    public void setTickets(Set tickets) {
-        this.tickets = tickets;
     }
     public Set getClasificacions() {
         return this.clasificacions;

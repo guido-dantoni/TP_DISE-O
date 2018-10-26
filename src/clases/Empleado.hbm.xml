@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/10/2018 19:27:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.postgres.db.Empleado" table="empleado" schema="public" optimistic-lock="version">
+    <class name="clases.Empleado" table="empleado" schema="public" optimistic-lock="version">
         <id name="legajoEmpleado" type="int">
             <column name="legajo_empleado" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="usuario" class="com.postgres.db.Usuario" fetch="select">
+        <many-to-one name="usuario" class="clases.Usuario" fetch="select">
             <column name="legajousuario" not-null="true" />
         </many-to-one>
         <property name="email" type="string">
@@ -24,13 +24,13 @@
             <key>
                 <column name="legajoempleado" not-null="true" />
             </key>
-            <one-to-many class="com.postgres.db.Ticket" />
+            <one-to-many class="clases.Ticket" />
         </set>
         <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="legajo_empleado" not-null="true" />
             </key>
-            <one-to-many class="com.postgres.db.Historialclasificacion" />
+            <one-to-many class="clases.Historialclasificacion" />
         </set>
     </class>
 </hibernate-mapping>

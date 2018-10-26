@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/10/2018 19:27:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.postgres.db.Historialclasificacion" table="historialclasificacion" schema="public" optimistic-lock="version">
-        <composite-id name="id" class="com.postgres.db.HistorialclasificacionId">
+    <class name="clases.Historialclasificacion" table="historialclasificacion" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="clases.HistorialclasificacionId">
             <key-property name="nroTicket" type="int">
                 <column name="nro_ticket" />
             </key-property>
@@ -15,10 +15,10 @@
                 <column name="legajo_empleado" />
             </key-property>
         </composite-id>
-        <many-to-one name="clasificacion" class="com.postgres.db.Clasificacion" update="false" insert="false" fetch="select">
+        <many-to-one name="clasificacion" class="clases.Clasificacion" update="false" insert="false" fetch="select">
             <column name="codigo_clasificacion" not-null="true" />
         </many-to-one>
-        <many-to-one name="empleado" class="com.postgres.db.Empleado" update="false" insert="false" fetch="select">
+        <many-to-one name="empleado" class="clases.Empleado" update="false" insert="false" fetch="select">
             <column name="legajo_empleado" not-null="true" />
         </many-to-one>
         <property name="fechainicio" type="date">

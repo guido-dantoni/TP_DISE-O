@@ -1,5 +1,5 @@
-package com.postgres.db;
-// Generated 03/10/2018 11:33:40 by Hibernate Tools 4.3.1
+package clases;
+// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,25 +13,23 @@ public class Usuario  implements java.io.Serializable {
 
      private int legajoUsuario;
      private String tipo;
-     private String nombre;
-     private String apellido;
+     private Set historialtickets = new HashSet(0);
+     private Set historialintervencions = new HashSet(0);
      private Set empleados = new HashSet(0);
 
     public Usuario() {
     }
 
 	
-    public Usuario(int legajoUsuario, String tipo, String nombre, String apellido) {
+    public Usuario(int legajoUsuario, String tipo) {
         this.legajoUsuario = legajoUsuario;
         this.tipo = tipo;
-        this.nombre = nombre;
-        this.apellido = apellido;
     }
-    public Usuario(int legajoUsuario, String tipo, String nombre, String apellido, Set empleados) {
+    public Usuario(int legajoUsuario, String tipo, Set historialtickets, Set historialintervencions, Set empleados) {
        this.legajoUsuario = legajoUsuario;
        this.tipo = tipo;
-       this.nombre = nombre;
-       this.apellido = apellido;
+       this.historialtickets = historialtickets;
+       this.historialintervencions = historialintervencions;
        this.empleados = empleados;
     }
    
@@ -49,19 +47,19 @@ public class Usuario  implements java.io.Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    public String getNombre() {
-        return this.nombre;
+    public Set getHistorialtickets() {
+        return this.historialtickets;
     }
     
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setHistorialtickets(Set historialtickets) {
+        this.historialtickets = historialtickets;
     }
-    public String getApellido() {
-        return this.apellido;
+    public Set getHistorialintervencions() {
+        return this.historialintervencions;
     }
     
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setHistorialintervencions(Set historialintervencions) {
+        this.historialintervencions = historialintervencions;
     }
     public Set getEmpleados() {
         return this.empleados;

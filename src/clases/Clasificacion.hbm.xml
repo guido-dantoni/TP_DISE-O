@@ -1,33 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/10/2018 19:27:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.postgres.db.Clasificacion" table="clasificacion" schema="public" optimistic-lock="version">
+    <class name="clases.Clasificacion" table="clasificacion" schema="public" optimistic-lock="version">
         <id name="codigo" type="int">
             <column name="codigo" />
             <generator class="assigned" />
         </id>
-        <property name="grupo" type="string">
-            <column name="grupo" length="40" not-null="true" />
-        </property>
         <property name="descripcion" type="string">
             <column name="descripcion" length="500" not-null="true" />
         </property>
         <property name="nombreclasificacion" type="string">
             <column name="nombreclasificacion" length="100" not-null="true" />
         </property>
+        <set name="tickets" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigoclasificacion" not-null="true" />
+            </key>
+            <one-to-many class="clases.Ticket" />
+        </set>
         <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="codigo_clasificacion" not-null="true" />
             </key>
-            <one-to-many class="com.postgres.db.Historialclasificacion" />
+            <one-to-many class="clases.Historialclasificacion" />
         </set>
         <set name="gruporesolucions" table="clasificaciongrupo" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="codigo_clasificacion" not-null="true" />
             </key>
-            <many-to-many entity-name="com.postgres.db.Gruporesolucion">
+            <many-to-many entity-name="clases.Gruporesolucion">
                 <column name="codigo_grupo_resolucion" not-null="true" />
             </many-to-many>
         </set>

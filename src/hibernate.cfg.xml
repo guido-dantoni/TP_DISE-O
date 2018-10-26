@@ -46,15 +46,15 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">postgres</property>
-    <mapping resource="com/postgres/db/Hitorialticket.hbm.xml"/>
-    <mapping resource="com/postgres/db/Ticket.hbm.xml"/>
-    <mapping resource="com/postgres/db/Intervencion.hbm.xml"/>
-    <mapping resource="com/postgres/db/Observacion.hbm.xml"/>
-    <mapping resource="com/postgres/db/Clasificacion.hbm.xml"/>
-    <mapping resource="com/postgres/db/Gruporesolucion.hbm.xml"/>
-    <mapping resource="com/postgres/db/Empleado.hbm.xml"/>
-    <mapping resource="com/postgres/db/Historialclasificacion.hbm.xml"/>
-    <mapping resource="com/postgres/db/Historialintervencion.hbm.xml"/>
-    <mapping resource="com/postgres/db/Usuario.hbm.xml"/>
+    <mapping resource="clases/Usuario.hbm.xml"/>
+    <mapping resource="clases/Historialticket.hbm.xml"/>
+    <mapping resource="clases/Historialintervencion.hbm.xml"/>
+    <mapping resource="clases/Clasificacion.hbm.xml"/>
+    <mapping resource="clases/Empleado.hbm.xml"/>
+    <mapping resource="clases/Gruporesolucion.hbm.xml"/>
+    <mapping resource="clases/Observacion.hbm.xml"/>
+    <mapping resource="clases/Intervencion.hbm.xml"/>
+    <mapping resource="clases/Historialclasificacion.hbm.xml"/>
+    <mapping resource="clases/Ticket.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

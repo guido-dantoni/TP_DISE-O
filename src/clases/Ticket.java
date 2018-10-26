@@ -1,5 +1,5 @@
-package com.postgres.db;
-// Generated 03/10/2018 11:33:40 by Hibernate Tools 4.3.1
+package clases;
+// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,49 +13,42 @@ public class Ticket  implements java.io.Serializable {
 
 
      private int nroTicket;
+     private Clasificacion clasificacion;
      private Empleado empleado;
-     private Gruporesolucion gruporesolucion;
      private Ticket ticket;
      private Date fecahapertura;
-     private String nombreoperador;
      private String estadoactual;
      private Date horaapertura;
-     private String clasificacionactual;
-     private String grupointerventor;
      private String descripcion;
      private Set observacions = new HashSet(0);
-     private Set hitorialtickets = new HashSet(0);
-    
+     private Set historialtickets = new HashSet(0);
+     private Set intervencions = new HashSet(0);
+//   private Ticket ticket;
 
     public Ticket() {
     }
 
 	
-    public Ticket(Empleado empleado, Gruporesolucion gruporesolucion, Ticket ticket, Date fecahapertura, String nombreoperador, String estadoactual, Date horaapertura, String clasificacionactual, String grupointerventor) {
+    public Ticket(Clasificacion clasificacion, Empleado empleado, Ticket ticket, Date fecahapertura, String estadoactual, Date horaapertura) {
+        this.clasificacion = clasificacion;
         this.empleado = empleado;
-        this.gruporesolucion = gruporesolucion;
         this.ticket = ticket;
         this.fecahapertura = fecahapertura;
-        this.nombreoperador = nombreoperador;
         this.estadoactual = estadoactual;
         this.horaapertura = horaapertura;
-        this.clasificacionactual = clasificacionactual;
-        this.grupointerventor = grupointerventor;
     }
-    public Ticket(Empleado empleado, Gruporesolucion gruporesolucion, Ticket ticket, Date fecahapertura, String nombreoperador, String estadoactual, Date horaapertura, String clasificacionactual, String grupointerventor, String descripcion, Set observacions, Set hitorialtickets){
+    public Ticket(Clasificacion clasificacion, Empleado empleado, Ticket ticket, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Set observacions, Set historialtickets, Set intervencions) {
+       this.clasificacion = clasificacion;
        this.empleado = empleado;
-       this.gruporesolucion = gruporesolucion;
        this.ticket = ticket;
        this.fecahapertura = fecahapertura;
-       this.nombreoperador = nombreoperador;
        this.estadoactual = estadoactual;
        this.horaapertura = horaapertura;
-       this.clasificacionactual = clasificacionactual;
-       this.grupointerventor = grupointerventor;
        this.descripcion = descripcion;
        this.observacions = observacions;
-       this.hitorialtickets = hitorialtickets;
-    
+       this.historialtickets = historialtickets;
+       this.intervencions = intervencions;
+       //this.ticket = ticket;
     }
    
     public int getNroTicket() {
@@ -65,19 +58,19 @@ public class Ticket  implements java.io.Serializable {
     public void setNroTicket(int nroTicket) {
         this.nroTicket = nroTicket;
     }
+    public Clasificacion getClasificacion() {
+        return this.clasificacion;
+    }
+    
+    public void setClasificacion(Clasificacion clasificacion) {
+        this.clasificacion = clasificacion;
+    }
     public Empleado getEmpleado() {
         return this.empleado;
     }
     
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-    public Gruporesolucion getGruporesolucion() {
-        return this.gruporesolucion;
-    }
-    
-    public void setGruporesolucion(Gruporesolucion gruporesolucion) {
-        this.gruporesolucion = gruporesolucion;
     }
     public Ticket getTicket() {
         return this.ticket;
@@ -93,13 +86,6 @@ public class Ticket  implements java.io.Serializable {
     public void setFecahapertura(Date fecahapertura) {
         this.fecahapertura = fecahapertura;
     }
-    public String getNombreoperador() {
-        return this.nombreoperador;
-    }
-    
-    public void setNombreoperador(String nombreoperador) {
-        this.nombreoperador = nombreoperador;
-    }
     public String getEstadoactual() {
         return this.estadoactual;
     }
@@ -113,20 +99,6 @@ public class Ticket  implements java.io.Serializable {
     
     public void setHoraapertura(Date horaapertura) {
         this.horaapertura = horaapertura;
-    }
-    public String getClasificacionactual() {
-        return this.clasificacionactual;
-    }
-    
-    public void setClasificacionactual(String clasificacionactual) {
-        this.clasificacionactual = clasificacionactual;
-    }
-    public String getGrupointerventor() {
-        return this.grupointerventor;
-    }
-    
-    public void setGrupointerventor(String grupointerventor) {
-        this.grupointerventor = grupointerventor;
     }
     public String getDescripcion() {
         return this.descripcion;
@@ -142,16 +114,31 @@ public class Ticket  implements java.io.Serializable {
     public void setObservacions(Set observacions) {
         this.observacions = observacions;
     }
-    public Set getHitorialtickets() {
-        return this.hitorialtickets;
+    public Set getHistorialtickets() {
+        return this.historialtickets;
     }
     
-    public void setHitorialtickets(Set hitorialtickets) {
-        this.hitorialtickets = hitorialtickets;
+    public void setHistorialtickets(Set historialtickets) {
+        this.historialtickets = historialtickets;
     }
-   
+    public Set getIntervencions() {
+        return this.intervencions;
+    }
     
- 
+    public void setIntervencions(Set intervencions) {
+        this.intervencions = intervencions;
+    }
+/*    public Ticket getTicket() {
+        return this.ticket;
+    }
+    
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+
+*/
+
+
 }
 
 

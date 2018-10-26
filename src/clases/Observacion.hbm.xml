@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 03/10/2018 11:33:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26/10/2018 19:27:45 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.postgres.db.Observacion" table="observacion" schema="public" optimistic-lock="version">
+    <class name="clases.Observacion" table="observacion" schema="public" optimistic-lock="version">
         <id name="idObservacion" type="int">
             <column name="id_observacion" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="ticket" class="com.postgres.db.Ticket" fetch="select">
+        <many-to-one name="ticket" class="clases.Ticket" fetch="select">
             <column name="nroticket" not-null="true" />
         </many-to-one>
         <property name="observacion" type="string">
