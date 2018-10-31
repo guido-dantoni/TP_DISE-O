@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
 
 import javax.swing.ImageIcon;
 
 /**
  *
- * @author Marcos
+ * @author Guido D'Antoni
  */
 public class Caso_de_uso_01 extends javax.swing.JFrame {
 
@@ -40,7 +36,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jButtonAceptar = new javax.swing.JButton();
         jBottonCancelar = new javax.swing.JButton();
         jScrollPaneDescrip = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaDescripcion = new javax.swing.JTextArea();
         jLabelNroTicket = new javax.swing.JLabel();
         jLabelLegajo = new javax.swing.JLabel();
         jLabelNombreApellido = new javax.swing.JLabel();
@@ -62,6 +58,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldLegajoKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 160, 30));
 
         jTextFieldNombreApellido.setEditable(false);
@@ -115,11 +116,16 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         });
         getContentPane().add(jBottonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 40));
 
-        jTextArea1.setBackground(new java.awt.Color(245, 245, 245));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPaneDescrip.setViewportView(jTextArea1);
+        jTextAreaDescripcion.setBackground(new java.awt.Color(245, 245, 245));
+        jTextAreaDescripcion.setColumns(20);
+        jTextAreaDescripcion.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaDescripcionKeyTyped(evt);
+            }
+        });
+        jScrollPaneDescrip.setViewportView(jTextAreaDescripcion);
 
         getContentPane().add(jScrollPaneDescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 630, 150));
 
@@ -189,6 +195,19 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldHoraActionPerformed
 
+    private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
+            
+       char legajo=evt.getKeyChar();
+       if(legajo<'0' || legajo>'9')
+           evt.consume();
+    }//GEN-LAST:event_jTextFieldLegajoKeyTyped
+
+    private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
+
+        if(jTextAreaDescripcion.getText().length()>500)
+            evt.consume();
+    }//GEN-LAST:event_jTextAreaDescripcionKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -238,7 +257,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNombreApellido;
     private javax.swing.JLabel jLabelNroTicket;
     private javax.swing.JScrollPane jScrollPaneDescrip;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaDescripcion;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldHora;
     private javax.swing.JTextField jTextFieldLegajo;

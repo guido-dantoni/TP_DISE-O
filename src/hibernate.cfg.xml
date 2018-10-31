@@ -52,7 +52,6 @@ Contributor(s):
     <mapping resource="clases/Clasificacion.hbm.xml"/>
     <mapping resource="clases/Empleado.hbm.xml"/>
     <mapping resource="clases/Gruporesolucion.hbm.xml"/>
-    <mapping resource="clases/Observacion.hbm.xml"/>
     <mapping resource="clases/Intervencion.hbm.xml"/>
     <mapping resource="clases/Historialclasificacion.hbm.xml"/>
     <mapping resource="clases/Ticket.hbm.xml"/>

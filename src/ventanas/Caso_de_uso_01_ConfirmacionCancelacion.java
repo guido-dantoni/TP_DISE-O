@@ -44,7 +44,7 @@ public class Caso_de_uso_01_ConfirmacionCancelacion extends javax.swing.JFrame {
 
         jButtonConfirmar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonConfirmar.setText("Confirmar");
+        jButtonConfirmar.setText("Si");
         jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfirmarActionPerformed(evt);
@@ -54,7 +54,7 @@ public class Caso_de_uso_01_ConfirmacionCancelacion extends javax.swing.JFrame {
 
         jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setText("No");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);

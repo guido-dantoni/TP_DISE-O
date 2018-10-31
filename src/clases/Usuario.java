@@ -1,5 +1,5 @@
 package clases;
-// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
+// Generated 31/10/2018 16:09:15 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,9 +13,9 @@ public class Usuario  implements java.io.Serializable {
 
      private int legajoUsuario;
      private String tipo;
-     private Set historialtickets = new HashSet(0);
-     private Set historialintervencions = new HashSet(0);
-     private Set empleados = new HashSet(0);
+     private Set<Historialticket> historialtickets = new HashSet<Historialticket>(0);
+     private Set<Historialintervencion> historialintervencions = new HashSet<Historialintervencion>(0);
+     private Set<Empleado> empleados = new HashSet<Empleado>(0);
 
     public Usuario() {
     }
@@ -25,7 +25,7 @@ public class Usuario  implements java.io.Serializable {
         this.legajoUsuario = legajoUsuario;
         this.tipo = tipo;
     }
-    public Usuario(int legajoUsuario, String tipo, Set historialtickets, Set historialintervencions, Set empleados) {
+    public Usuario(int legajoUsuario, String tipo, Set<Historialticket> historialtickets, Set<Historialintervencion> historialintervencions, Set<Empleado> empleados) {
        this.legajoUsuario = legajoUsuario;
        this.tipo = tipo;
        this.historialtickets = historialtickets;
@@ -47,25 +47,25 @@ public class Usuario  implements java.io.Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    public Set getHistorialtickets() {
+    public Set<Historialticket> getHistorialtickets() {
         return this.historialtickets;
     }
     
-    public void setHistorialtickets(Set historialtickets) {
+    public void setHistorialtickets(Set<Historialticket> historialtickets) {
         this.historialtickets = historialtickets;
     }
-    public Set getHistorialintervencions() {
+    public Set<Historialintervencion> getHistorialintervencions() {
         return this.historialintervencions;
     }
     
-    public void setHistorialintervencions(Set historialintervencions) {
+    public void setHistorialintervencions(Set<Historialintervencion> historialintervencions) {
         this.historialintervencions = historialintervencions;
     }
-    public Set getEmpleados() {
+    public Set<Empleado> getEmpleados() {
         return this.empleados;
     }
     
-    public void setEmpleados(Set empleados) {
+    public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
     }
 

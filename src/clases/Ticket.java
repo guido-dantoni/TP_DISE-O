@@ -1,5 +1,5 @@
 package clases;
-// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
+// Generated 31/10/2018 16:09:15 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,10 +20,9 @@ public class Ticket  implements java.io.Serializable {
      private String estadoactual;
      private Date horaapertura;
      private String descripcion;
-     private Set observacions = new HashSet(0);
-     private Set historialtickets = new HashSet(0);
-     private Set intervencions = new HashSet(0);
-//    private Ticket ticket;
+     private Set<Historialticket> historialtickets = new HashSet<Historialticket>(0);
+     private Set<Intervencion> intervencions = new HashSet<Intervencion>(0);
+     //private Ticket ticket;
 
     public Ticket() {
     }
@@ -37,7 +36,7 @@ public class Ticket  implements java.io.Serializable {
         this.estadoactual = estadoactual;
         this.horaapertura = horaapertura;
     }
-    public Ticket(Clasificacion clasificacion, Empleado empleado, Ticket ticket, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Set observacions, Set historialtickets, Set intervencions) {
+    public Ticket(Clasificacion clasificacion, Empleado empleado, Ticket ticket, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Set<Historialticket> historialtickets, Set<Intervencion> intervencions) {
        this.clasificacion = clasificacion;
        this.empleado = empleado;
        this.ticket = ticket;
@@ -45,7 +44,6 @@ public class Ticket  implements java.io.Serializable {
        this.estadoactual = estadoactual;
        this.horaapertura = horaapertura;
        this.descripcion = descripcion;
-       this.observacions = observacions;
        this.historialtickets = historialtickets;
        this.intervencions = intervencions;
        //this.ticket = ticket;
@@ -107,36 +105,29 @@ public class Ticket  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set getObservacions() {
-        return this.observacions;
-    }
-    
-    public void setObservacions(Set observacions) {
-        this.observacions = observacions;
-    }
-    public Set getHistorialtickets() {
+    public Set<Historialticket> getHistorialtickets() {
         return this.historialtickets;
     }
     
-    public void setHistorialtickets(Set historialtickets) {
+    public void setHistorialtickets(Set<Historialticket> historialtickets) {
         this.historialtickets = historialtickets;
     }
-    public Set getIntervencions() {
+    public Set<Intervencion> getIntervencions() {
         return this.intervencions;
     }
     
-    public void setIntervencions(Set intervencions) {
+    public void setIntervencions(Set<Intervencion> intervencions) {
         this.intervencions = intervencions;
     }
-/*    public Ticket getTicket() {
+ /*   public Ticket getTicket() {
         return this.ticket;
     }
     
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
-
 */
+
 
 
 }

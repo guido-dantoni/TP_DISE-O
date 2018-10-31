@@ -1,5 +1,5 @@
 package clases;
-// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
+// Generated 31/10/2018 16:09:15 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,8 +16,8 @@ public class Empleado  implements java.io.Serializable {
      private String email;
      private String nombre;
      private String apellido;
-     private Set tickets = new HashSet(0);
-     private Set historialclasificacions = new HashSet(0);
+     private Set<Ticket> tickets = new HashSet<Ticket>(0);
+     private Set<Historialclasificacion> historialclasificacions = new HashSet<Historialclasificacion>(0);
 
     public Empleado() {
     }
@@ -30,7 +30,7 @@ public class Empleado  implements java.io.Serializable {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido, Set tickets, Set historialclasificacions) {
+    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido, Set<Ticket> tickets, Set<Historialclasificacion> historialclasificacions) {
        this.legajoEmpleado = legajoEmpleado;
        this.usuario = usuario;
        this.email = email;
@@ -75,18 +75,18 @@ public class Empleado  implements java.io.Serializable {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    public Set getTickets() {
+    public Set<Ticket> getTickets() {
         return this.tickets;
     }
     
-    public void setTickets(Set tickets) {
+    public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
     }
-    public Set getHistorialclasificacions() {
+    public Set<Historialclasificacion> getHistorialclasificacions() {
         return this.historialclasificacions;
     }
     
-    public void setHistorialclasificacions(Set historialclasificacions) {
+    public void setHistorialclasificacions(Set<Historialclasificacion> historialclasificacions) {
         this.historialclasificacions = historialclasificacions;
     }
 

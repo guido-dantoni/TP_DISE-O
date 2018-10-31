@@ -1,5 +1,5 @@
 package clases;
-// Generated 26/10/2018 19:27:43 by Hibernate Tools 4.3.1
+// Generated 31/10/2018 16:09:15 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,9 +14,9 @@ public class Clasificacion  implements java.io.Serializable {
      private int codigo;
      private String descripcion;
      private String nombreclasificacion;
-     private Set tickets = new HashSet(0);
-     private Set historialclasificacions = new HashSet(0);
-     private Set gruporesolucions = new HashSet(0);
+     private Set<Ticket> tickets = new HashSet<Ticket>(0);
+     private Set<Historialclasificacion> historialclasificacions = new HashSet<Historialclasificacion>(0);
+     private Set<Gruporesolucion> gruporesolucions = new HashSet<Gruporesolucion>(0);
 
     public Clasificacion() {
     }
@@ -27,7 +27,7 @@ public class Clasificacion  implements java.io.Serializable {
         this.descripcion = descripcion;
         this.nombreclasificacion = nombreclasificacion;
     }
-    public Clasificacion(int codigo, String descripcion, String nombreclasificacion, Set tickets, Set historialclasificacions, Set gruporesolucions) {
+    public Clasificacion(int codigo, String descripcion, String nombreclasificacion, Set<Ticket> tickets, Set<Historialclasificacion> historialclasificacions, Set<Gruporesolucion> gruporesolucions) {
        this.codigo = codigo;
        this.descripcion = descripcion;
        this.nombreclasificacion = nombreclasificacion;
@@ -57,25 +57,25 @@ public class Clasificacion  implements java.io.Serializable {
     public void setNombreclasificacion(String nombreclasificacion) {
         this.nombreclasificacion = nombreclasificacion;
     }
-    public Set getTickets() {
+    public Set<Ticket> getTickets() {
         return this.tickets;
     }
     
-    public void setTickets(Set tickets) {
+    public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
     }
-    public Set getHistorialclasificacions() {
+    public Set<Historialclasificacion> getHistorialclasificacions() {
         return this.historialclasificacions;
     }
     
-    public void setHistorialclasificacions(Set historialclasificacions) {
+    public void setHistorialclasificacions(Set<Historialclasificacion> historialclasificacions) {
         this.historialclasificacions = historialclasificacions;
     }
-    public Set getGruporesolucions() {
+    public Set<Gruporesolucion> getGruporesolucions() {
         return this.gruporesolucions;
     }
     
-    public void setGruporesolucions(Set gruporesolucions) {
+    public void setGruporesolucions(Set<Gruporesolucion> gruporesolucions) {
         this.gruporesolucions = gruporesolucions;
     }
 
