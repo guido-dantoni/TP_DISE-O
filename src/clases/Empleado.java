@@ -1,5 +1,5 @@
 package clases;
-// Generated 31/10/2018 20:58:36 by Hibernate Tools 4.3.1
+// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Empleado  implements java.io.Serializable {
 
 
      private int legajoEmpleado;
+     private Usuario usuario;
      private String email;
      private String nombre;
      private String apellido;
@@ -27,8 +28,9 @@ public class Empleado  implements java.io.Serializable {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    public Empleado(int legajoEmpleado, String email, String nombre, String apellido, Set<Ticket> tickets) {
+    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido, Set<Ticket> tickets) {
        this.legajoEmpleado = legajoEmpleado;
+       this.usuario = usuario;
        this.email = email;
        this.nombre = nombre;
        this.apellido = apellido;
@@ -41,6 +43,13 @@ public class Empleado  implements java.io.Serializable {
     
     public void setLegajoEmpleado(int legajoEmpleado) {
         this.legajoEmpleado = legajoEmpleado;
+    }
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     public String getEmail() {
         return this.email;

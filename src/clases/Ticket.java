@@ -1,5 +1,5 @@
 package clases;
-// Generated 31/10/2018 20:58:36 by Hibernate Tools 4.3.1
+// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -46,7 +46,7 @@ public class Ticket  implements java.io.Serializable {
        this.descripcion = descripcion;
        this.historialtickets = historialtickets;
        this.intervencions = intervencions;
-      // this.ticket = ticket;
+       //this.ticket = ticket;
     }
    
     public int getNroTicket() {
@@ -119,15 +119,15 @@ public class Ticket  implements java.io.Serializable {
     public void setIntervencions(Set<Intervencion> intervencions) {
         this.intervencions = intervencions;
     }
-   /* public Ticket getTicket() {
+/*    public Ticket getTicket() {
         return this.ticket;
     }
     
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
     }
-*/
 
+*/
 
 
 }

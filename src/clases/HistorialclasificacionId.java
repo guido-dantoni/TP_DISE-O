@@ -1,5 +1,5 @@
 package clases;
-// Generated 31/10/2018 20:58:36 by Hibernate Tools 4.3.1
+// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
 
 
 
