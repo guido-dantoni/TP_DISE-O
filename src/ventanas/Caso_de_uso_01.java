@@ -105,6 +105,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jButtonAceptar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonAceptar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButtonAceptar.setLabel("Aceptar");
+        jButtonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonAceptarMouseClicked(evt);
+            }
+        });
         getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 560, 120, 40));
 
         jBottonCancelar.setBackground(new java.awt.Color(191, 185, 185));
@@ -213,6 +218,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                 evt.consume();
             }
     }//GEN-LAST:event_jTextAreaDescripcionKeyTyped
+
+    private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
+        
+    }//GEN-LAST:event_jButtonAceptarMouseClicked
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
  */
 package Ventanas;
 
+import Dao.ClasificacionDao;
+
 /**
  *
  * @author Marcos
@@ -370,7 +372,7 @@ public class Caso_de_uso_20 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Caso_de_uso_20().setVisible(true);
+              new Caso_de_uso_20().setVisible(true);
             }
         });
     }
