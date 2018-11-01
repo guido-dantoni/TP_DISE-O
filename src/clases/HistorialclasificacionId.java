@@ -1,5 +1,5 @@
 package clases;
-// Generated 31/10/2018 16:09:15 by Hibernate Tools 4.3.1
+// Generated 31/10/2018 20:58:36 by Hibernate Tools 4.3.1
 
 
 
@@ -11,15 +11,15 @@ public class HistorialclasificacionId  implements java.io.Serializable {
 
      private int nroTicket;
      private int codigoClasificacion;
-     private int legajoEmpleado;
+     private int legajoUsuario;
 
     public HistorialclasificacionId() {
     }
 
-    public HistorialclasificacionId(int nroTicket, int codigoClasificacion, int legajoEmpleado) {
+    public HistorialclasificacionId(int nroTicket, int codigoClasificacion, int legajoUsuario) {
        this.nroTicket = nroTicket;
        this.codigoClasificacion = codigoClasificacion;
-       this.legajoEmpleado = legajoEmpleado;
+       this.legajoUsuario = legajoUsuario;
     }
    
     public int getNroTicket() {
@@ -36,12 +36,12 @@ public class HistorialclasificacionId  implements java.io.Serializable {
     public void setCodigoClasificacion(int codigoClasificacion) {
         this.codigoClasificacion = codigoClasificacion;
     }
-    public int getLegajoEmpleado() {
-        return this.legajoEmpleado;
+    public int getLegajoUsuario() {
+        return this.legajoUsuario;
     }
     
-    public void setLegajoEmpleado(int legajoEmpleado) {
-        this.legajoEmpleado = legajoEmpleado;
+    public void setLegajoUsuario(int legajoUsuario) {
+        this.legajoUsuario = legajoUsuario;
     }
 
 
@@ -53,7 +53,7 @@ public class HistorialclasificacionId  implements java.io.Serializable {
          
 		 return (this.getNroTicket()==castOther.getNroTicket())
  && (this.getCodigoClasificacion()==castOther.getCodigoClasificacion())
- && (this.getLegajoEmpleado()==castOther.getLegajoEmpleado());
+ && (this.getLegajoUsuario()==castOther.getLegajoUsuario());
    }
    
    public int hashCode() {
@@ -61,7 +61,7 @@ public class HistorialclasificacionId  implements java.io.Serializable {
          
          result = 37 * result + this.getNroTicket();
          result = 37 * result + this.getCodigoClasificacion();
-         result = 37 * result + this.getLegajoEmpleado();
+         result = 37 * result + this.getLegajoUsuario();
          return result;
    }   
 

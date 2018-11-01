@@ -16,6 +16,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
     }
 
     /**
@@ -116,10 +117,13 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         });
         getContentPane().add(jBottonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 40));
 
+        jScrollPaneDescrip.setMaximumSize(new java.awt.Dimension(60, 10));
+
         jTextAreaDescripcion.setBackground(new java.awt.Color(245, 245, 245));
         jTextAreaDescripcion.setColumns(20);
         jTextAreaDescripcion.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.setMaximumSize(new java.awt.Dimension(10, 61));
         jTextAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextAreaDescripcionKeyTyped(evt);
@@ -204,8 +208,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
 
-        if(jTextAreaDescripcion.getText().length()>500)
-            evt.consume();
+          //hasta 500 caracteres en el textArea
+            if(jTextAreaDescripcion.getText().length()>=500){
+                evt.consume();
+            }
     }//GEN-LAST:event_jTextAreaDescripcionKeyTyped
 
     /**

@@ -1,5 +1,5 @@
 package clases;
-// Generated 31/10/2018 16:09:15 by Hibernate Tools 4.3.1
+// Generated 31/10/2018 20:58:36 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,32 +12,27 @@ public class Empleado  implements java.io.Serializable {
 
 
      private int legajoEmpleado;
-     private Usuario usuario;
      private String email;
      private String nombre;
      private String apellido;
      private Set<Ticket> tickets = new HashSet<Ticket>(0);
-     private Set<Historialclasificacion> historialclasificacions = new HashSet<Historialclasificacion>(0);
 
     public Empleado() {
     }
 
 	
-    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido) {
+    public Empleado(int legajoEmpleado, String email, String nombre, String apellido) {
         this.legajoEmpleado = legajoEmpleado;
-        this.usuario = usuario;
         this.email = email;
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido, Set<Ticket> tickets, Set<Historialclasificacion> historialclasificacions) {
+    public Empleado(int legajoEmpleado, String email, String nombre, String apellido, Set<Ticket> tickets) {
        this.legajoEmpleado = legajoEmpleado;
-       this.usuario = usuario;
        this.email = email;
        this.nombre = nombre;
        this.apellido = apellido;
        this.tickets = tickets;
-       this.historialclasificacions = historialclasificacions;
     }
    
     public int getLegajoEmpleado() {
@@ -46,13 +41,6 @@ public class Empleado  implements java.io.Serializable {
     
     public void setLegajoEmpleado(int legajoEmpleado) {
         this.legajoEmpleado = legajoEmpleado;
-    }
-    public Usuario getUsuario() {
-        return this.usuario;
-    }
-    
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
     public String getEmail() {
         return this.email;
@@ -81,13 +69,6 @@ public class Empleado  implements java.io.Serializable {
     
     public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
-    }
-    public Set<Historialclasificacion> getHistorialclasificacions() {
-        return this.historialclasificacions;
-    }
-    
-    public void setHistorialclasificacions(Set<Historialclasificacion> historialclasificacions) {
-        this.historialclasificacions = historialclasificacions;
     }
 
 
