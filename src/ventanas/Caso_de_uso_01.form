@@ -89,23 +89,7 @@
           <Font name="Tahoma" size="16" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="15">
-            <StringItem index="0" value="Cambios de configuraci&#xf3;n de SO"/>
-            <StringItem index="1" value="Problemas en el funcionamiento del SO"/>
-            <StringItem index="2" value="Mal funcionamiento de HW"/>
-            <StringItem index="3" value="Problemas en la autenticaci&#xf3;n en los distintos sistemas"/>
-            <StringItem index="4" value="Problemas de acceso a la red"/>
-            <StringItem index="5" value="Solicitud de usuarios de red"/>
-            <StringItem index="6" value="Solicitud de usuarios para sistemas inform&#xe1;ticos"/>
-            <StringItem index="7" value="Modificaci&#xf3;n en los perfiles de usuarios"/>
-            <StringItem index="8" value="Solicitud de cambio de contrase&#xf1;as"/>
-            <StringItem index="9" value="Problemas en los sistemas"/>
-            <StringItem index="10" value="Problemas con el correo electr&#xf3;nico"/>
-            <StringItem index="11" value="Solicitud de cuentas de correo electr&#xf3;nico"/>
-            <StringItem index="12" value="Solicitud de nuevos puestos de trabajo"/>
-            <StringItem index="13" value="Solicitud soporte en el uso de App"/>
-            <StringItem index="14" value="Otros"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
@@ -121,7 +105,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jTextFieldFechaApertura">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -168,6 +152,7 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonAceptarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAceptarActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

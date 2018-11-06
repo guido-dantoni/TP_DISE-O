@@ -1,7 +1,15 @@
 
 package Ventanas;
 
+import controllers.GestorClasificacion;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -9,14 +17,23 @@ import javax.swing.ImageIcon;
  */
 public class Caso_de_uso_01 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CasoDeUso01
-     */
+
+      
     public Caso_de_uso_01() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
+        GestorClasificacion gestorClasificacion = new GestorClasificacion();
+        List<String> clasificaciones =new ArrayList<String>();
+        clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
+        
+        DefaultComboBoxModel combo= new DefaultComboBoxModel();
+       for(int i=0; i<clasificaciones.size(); i++){
+        
+            combo.addElement(clasificaciones.get(i));
+        }
+       jComboBoxClasificacion.setModel(combo);
     }
 
     /**
@@ -32,7 +49,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldLegajo = new javax.swing.JTextField();
         jTextFieldNombreApellido = new javax.swing.JTextField();
         jComboBoxClasificacion = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldFechaApertura = new javax.swing.JTextField();
         jTextFieldHora = new javax.swing.JTextField();
         jButtonAceptar = new javax.swing.JButton();
         jBottonCancelar = new javax.swing.JButton();
@@ -78,7 +95,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBoxClasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cambios de configuración de SO", "Problemas en el funcionamiento del SO", "Mal funcionamiento de HW", "Problemas en la autenticación en los distintos sistemas", "Problemas de acceso a la red", "Solicitud de usuarios de red", "Solicitud de usuarios para sistemas informáticos", "Modificación en los perfiles de usuarios", "Solicitud de cambio de contraseñas", "Problemas en los sistemas", "Problemas con el correo electrónico", "Solicitud de cuentas de correo electrónico", "Solicitud de nuevos puestos de trabajo", "Solicitud soporte en el uso de App", "Otros" }));
         jComboBoxClasificacion.setToolTipText("");
         jComboBoxClasificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,10 +103,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 480, 30));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(191, 185, 185));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 220, 30));
+        jTextFieldFechaApertura.setEditable(false);
+        jTextFieldFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
+        jTextFieldFechaApertura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jTextFieldFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 220, 30));
 
         jTextFieldHora.setEditable(false);
         jTextFieldHora.setBackground(new java.awt.Color(191, 185, 185));
@@ -108,6 +124,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jButtonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonAceptarMouseClicked(evt);
+            }
+        });
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 560, 120, 40));
@@ -192,7 +213,8 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
     private void jBottonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBottonCancelarActionPerformed
         // TODO add your handling code here:
-        Caso_de_uso_01_ConfirmacionCancelacion a = new Caso_de_uso_01_ConfirmacionCancelacion();
+        Caso_de_uso_01_ConfirmacionCancelacion a = new Caso_de_uso_01_ConfirmacionCancelacion(this);
+        
         a.setVisible(true);
     }//GEN-LAST:event_jBottonCancelarActionPerformed
 
@@ -209,6 +231,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        char legajo=evt.getKeyChar();
        if(legajo<'0' || legajo>'9')
            evt.consume();
+       
     }//GEN-LAST:event_jTextFieldLegajoKeyTyped
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
@@ -220,9 +243,44 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextAreaDescripcionKeyTyped
 
     private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
+       
+        //HACER TODO LO OTRO
+
+        Date d = new Date();
+        Calendar c = new GregorianCalendar(); 
+        c.setTime(d);
+
+        String dia, mes, anio, hora, minutos, segundos;
+
+        dia = Integer.toString(c.get(Calendar.DATE));
+        mes = Integer.toString(c.get(Calendar.MONTH)+1);
+        anio = Integer.toString(c.get(Calendar.YEAR));
+        hora = Integer.toString(c.get(Calendar.HOUR_OF_DAY));
+        minutos = Integer.toString(c.get(Calendar.MINUTE));
+        segundos = Integer.toString(c.get(Calendar.SECOND));
         
+             
+        if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
+        
+            JOptionPane.showMessageDialog(null, "Los campos legajo y descripcion no puden ser nulos");
+        }else{
+        
+        jTextFieldFechaApertura.setText(dia + "/" + mes + "/" + anio);
+        jTextFieldHora.setText(hora + ":" + minutos + ":" + segundos);
+        }
+            //HACER TODO LO OTRO
+ 
+        
+       
     }//GEN-LAST:event_jButtonAceptarMouseClicked
 
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        // TODO add your handling code here:
+   
+        
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -256,6 +314,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
             public void run() {
                 new Caso_de_uso_01().setVisible(true);
             }
+              
         });
     }
 
@@ -273,7 +332,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelNroTicket;
     private javax.swing.JScrollPane jScrollPaneDescrip;
     private javax.swing.JTextArea jTextAreaDescripcion;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldFechaApertura;
     private javax.swing.JTextField jTextFieldHora;
     private javax.swing.JTextField jTextFieldLegajo;
     private javax.swing.JTextField jTextFieldNombreApellido;

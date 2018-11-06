@@ -18,7 +18,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
      */
     public Caso_de_uso_01_Observaciones() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
     }
 
