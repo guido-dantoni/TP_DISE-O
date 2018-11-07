@@ -25,15 +25,19 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
-        List<String> clasificaciones =new ArrayList<String>();
+        List<String> clasificaciones = new ArrayList<String>();
         clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
         
         DefaultComboBoxModel combo= new DefaultComboBoxModel();
+        
        for(int i=0; i<clasificaciones.size(); i++){
         
             combo.addElement(clasificaciones.get(i));
         }
        jComboBoxClasificacion.setModel(combo);
+       
+       
+       
     }
 
     /**
@@ -275,9 +279,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAceptarMouseClicked
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        // TODO add your handling code here:
-   
-        
+       
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     

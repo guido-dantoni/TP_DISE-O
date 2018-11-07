@@ -37,6 +37,7 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         LabelFondoPantalla = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -86,11 +87,9 @@ public class PantallaInicioTP extends javax.swing.JFrame {
 
     
     private void MesaDeAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MesaDeAyudaActionPerformed
-        // TODO add your handling code here:
-        
-        PantallaMesaDeAyuda a = new PantallaMesaDeAyuda();
-        a.setVisible(true);
-        
+               
+       Login log= new Login();
+       log.setTipoUsuario("Mesa de Ayuda");
     }//GEN-LAST:event_MesaDeAyudaActionPerformed
 
     /**

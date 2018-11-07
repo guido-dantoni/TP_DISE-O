@@ -5,6 +5,8 @@
  */
 package Ventanas;
 
+import controllers.GestorSesion;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Interfaz
-     */
+  
+    private String tipoDeUsuario;
     
      
     public Login() {
@@ -34,13 +35,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabelIcono = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextFieldUsuario = new javax.swing.JTextField();
-        jPasswordFieldPass = new javax.swing.JPasswordField();
+        jTextFieldLegajo = new javax.swing.JTextField();
         jButtonSesion = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -49,38 +48,23 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usuario: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
+        jLabel1.setText("Legajo: ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Contraseña: ");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, -1));
-
-        jTextFieldUsuario.setBackground(new java.awt.Color(0, 51, 102));
-        jTextFieldUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextFieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLegajo.setBackground(new java.awt.Color(0, 51, 102));
+        jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldLegajo.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUsuarioActionPerformed(evt);
+                jTextFieldLegajoActionPerformed(evt);
             }
         });
-        jTextFieldUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldUsuarioKeyTyped(evt);
+                jTextFieldLegajoKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 180, 30));
-
-        jPasswordFieldPass.setBackground(new java.awt.Color(0, 51, 102));
-        jPasswordFieldPass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPasswordFieldPass.setForeground(new java.awt.Color(255, 255, 255));
-        jPasswordFieldPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordFieldPassActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jPasswordFieldPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 180, 30));
+        getContentPane().add(jTextFieldLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 180, 30));
 
         jButtonSesion.setBackground(new java.awt.Color(0, 0, 51));
         jButtonSesion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -99,40 +83,60 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
+    private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
         
                
-    }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
+    }//GEN-LAST:event_jTextFieldLegajoActionPerformed
 
     private void jButtonSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSesionActionPerformed
         //Lo que hago es crear un objeto de tipo iniciaSesion para que muestre esa ventana
         //Y voy a validar usuario y contraseña aca.
         
-        String usuario;
-        usuario = this.jTextFieldUsuario.getText();
-        //System.out.println(usuario);
+        int legajoUsuario;
+        Boolean existeUsuario;
         
-        String pass = new String(jPasswordFieldPass.getPassword());
-        //System.out.println(Pass);
+        legajoUsuario = Integer.parseInt(jTextFieldLegajo.getText());
+        
+        GestorSesion gestorSesion = new GestorSesion();
+        existeUsuario = gestorSesion.validarUsuario(legajoUsuario, tipoDeUsuario);
+      
+        if(existeUsuario){
+           
+            this.setVisible(false);
+            PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
+            pantallaMesaAyuda.setVisible(true);
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "No existe este usuario como Mesa de Ayuda");
+        }
+       
+        
         
     }//GEN-LAST:event_jButtonSesionActionPerformed
 
-    private void jPasswordFieldPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldPassActionPerformed
-        
-        
-        
-    }//GEN-LAST:event_jPasswordFieldPassActionPerformed
-
-    private void jTextFieldUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioKeyTyped
+    private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
         // TODO add your handling code here:
-        
-        int caracteres=12;
-        if(jTextFieldUsuario.getText().length()>caracteres){
+       char legajo=evt.getKeyChar();
+       int caracteres=9;
+       
+       if(legajo<'0' || legajo>'9'){
+           
+           evt.consume();
+       }
+                 
+        if(jTextFieldLegajo.getText().length()>caracteres){
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Solo 12 caracteres permitidos");
+            JOptionPane.showMessageDialog(rootPane, "Solo 9 caracteres permitidos");
         }
         
-    }//GEN-LAST:event_jTextFieldUsuarioKeyTyped
+        if (legajo==KeyEvent.VK_ENTER){
+            
+            jButtonSesion.doClick();
+        }
+        
+            
+    }//GEN-LAST:event_jTextFieldLegajoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -172,10 +176,16 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSesion;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcono;
-    private javax.swing.JPasswordField jPasswordFieldPass;
-    private javax.swing.JTextField jTextFieldUsuario;
+    private javax.swing.JTextField jTextFieldLegajo;
     // End of variables declaration//GEN-END:variables
+
+    void setTipoUsuario(String tipo) {
+        
+        
+        this.setVisible(true);
+        this.tipoDeUsuario=tipo;
+        
+    }
 }

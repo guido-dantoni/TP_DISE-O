@@ -1,32 +1,45 @@
 
 package Dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import java.util.*;
-import static javafx.scene.text.Font.font;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import clases.Clasificacion;
+import java.util.List;
+import org.hibernate.Criteria;
+
 /**
  *
  * @author Guido D'Antoni guidodantoni2335@gmail.com
  */
 public class ClasificacionDao {
     
+    /*
      private int codigo;
      private String descripcion;
      private String nombreclasificacion;
+     */
+     private SessionFactory sesion;
+     private Session session;
+     private Transaction tx;
      
-     private static StandardServiceRegistry serviceRegistry;
-     private static SessionFactory sessionFactory;
+     public List<Clasificacion> getClasificacion(){
+         sesion = NewHibernateUtil.getSessionFactory();
+         session = sesion.openSession();
+         tx = session.beginTransaction();
+         
+         Criteria cr = session.createCriteria(Clasificacion.class);
+         List<Clasificacion> c = cr.list();
+         
+         tx.commit();
+         session.close();
+         return c;
+     }
      
-     /*public List<String> getClasificacion(){
+     
+     
+     /*
+     public List<String> getClasificacion(){
          
          Configuration configuration = new Configuration().configure();
          serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
@@ -37,15 +50,14 @@ public class ClasificacionDao {
          session.beginTransaction();
          
          List<String>  clasificaciones = new ArrayList();
-         clasificaciones = session.createSQLQuery("SELECT c.nombreClasificacion FROM Clasificacion c").addEntity(nombreclasificacion).setParameter("nombreclasificacion", this.nombreclasificacion).list();
+         //clasificaciones = session.createSQLQuery("SELECT c.nombreClasificacion FROM Clasificacion c").addEntity(nombreclasificacion).setParameter("nombreclasificacion", this.nombreclasificacion).list();
          
          session.getTransaction().commit();
          session.close();
          
          return clasificaciones;
      }
-     
-    public static void main(String[] args) {
+     public static void main(String[] args) {
     
         String url = "jdbc:postgresql://localhost:5432/postgres";
         String usuario = "postgres";
@@ -71,7 +83,7 @@ public class ClasificacionDao {
             System.out.println("Error de coneccion " + e.getMessage());
         } 
     
-   }*/
+   }
      
      public List<String> getClasificacion(){
          
@@ -92,6 +104,8 @@ public class ClasificacionDao {
                     clasificaciones.add(resultado.getString("nombreclasificacion"));
                     //System.out.println("nombreClasificacion: " + " " + nombreClasif);
                 }
+                
+            c.commit();
             resultado.close();
             st.close();
             c.close();
@@ -101,5 +115,5 @@ public class ClasificacionDao {
          
          return clasificaciones;
      }
-     
+   */  
 }

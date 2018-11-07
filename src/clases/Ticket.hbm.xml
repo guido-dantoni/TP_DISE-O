@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01/11/2018 17:49:25 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06/11/2018 18:09:34 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="clases.Ticket" table="ticket" schema="public" optimistic-lock="version">
         <id name="nroTicket" type="int">
             <column name="nro_ticket" />
-            <generator class="foreign">
-                <param name="property">ticket</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <many-to-one name="clasificacion" class="clases.Clasificacion" fetch="select">
             <column name="codigoclasificacion" not-null="true" />
@@ -16,7 +14,6 @@
         <many-to-one name="empleado" class="clases.Empleado" fetch="select">
             <column name="legajoempleado" not-null="true" />
         </many-to-one>
-        <one-to-one name="ticket" class="clases.Ticket" constrained="true"></one-to-one>
         <property name="fecahapertura" type="date">
             <column name="fecahapertura" length="13" not-null="true" />
         </property>
@@ -29,6 +26,12 @@
         <property name="descripcion" type="string">
             <column name="descripcion" length="500" />
         </property>
+        <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="nro_ticket" not-null="true" />
+            </key>
+            <one-to-many class="clases.Historialclasificacion" />
+        </set>
         <set name="historialtickets" table="historialticket" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="nroticket" not-null="true" />
@@ -41,6 +44,5 @@
             </key>
             <one-to-many class="clases.Intervencion" />
         </set>
-        <one-to-one name="ticket" class="clases.Ticket"></one-to-one>
     </class>
 </hibernate-mapping>

@@ -46,10 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">postgres</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.bytecode.use_reflection_optimizer">true</property>
-    <property name="show_sql">true</property>
-    <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="clases/Usuario.hbm.xml"/>
     <mapping resource="clases/Historialticket.hbm.xml"/>
     <mapping resource="clases/Historialintervencion.hbm.xml"/>
@@ -59,13 +55,5 @@ Contributor(s):
     <mapping resource="clases/Intervencion.hbm.xml"/>
     <mapping resource="clases/Historialclasificacion.hbm.xml"/>
     <mapping resource="clases/Ticket.hbm.xml"/>
-    <mapping resource="conexionPostgres/Empleado.hbm.xml"/>
-    <mapping resource="conexionPostgres/Ticket.hbm.xml"/>
-    <mapping resource="conexionPostgres/Gruporesolucion.hbm.xml"/>
-    <mapping resource="conexionPostgres/Historialclasificacion.hbm.xml"/>
-    <mapping resource="conexionPostgres/Clasificacion.hbm.xml"/>
-    <mapping resource="conexionPostgres/Intervencion.hbm.xml"/>
-    <mapping resource="conexionPostgres/Usuario.hbm.xml"/>
-    <mapping resource="conexionPostgres/HistorialIntervencion.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

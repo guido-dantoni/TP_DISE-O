@@ -1,5 +1,5 @@
 package clases;
-// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
+// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -15,38 +15,37 @@ public class Ticket  implements java.io.Serializable {
      private int nroTicket;
      private Clasificacion clasificacion;
      private Empleado empleado;
-     private Ticket ticket;
      private Date fecahapertura;
      private String estadoactual;
      private Date horaapertura;
      private String descripcion;
-     private Set<Historialticket> historialtickets = new HashSet<Historialticket>(0);
-     private Set<Intervencion> intervencions = new HashSet<Intervencion>(0);
-     //private Ticket ticket;
+     private Set historialclasificacions = new HashSet(0);
+     private Set historialtickets = new HashSet(0);
+     private Set intervencions = new HashSet(0);
 
     public Ticket() {
     }
 
 	
-    public Ticket(Clasificacion clasificacion, Empleado empleado, Ticket ticket, Date fecahapertura, String estadoactual, Date horaapertura) {
+    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura) {
+        this.nroTicket = nroTicket;
         this.clasificacion = clasificacion;
         this.empleado = empleado;
-        this.ticket = ticket;
         this.fecahapertura = fecahapertura;
         this.estadoactual = estadoactual;
         this.horaapertura = horaapertura;
     }
-    public Ticket(Clasificacion clasificacion, Empleado empleado, Ticket ticket, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Set<Historialticket> historialtickets, Set<Intervencion> intervencions) {
+    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Set historialclasificacions, Set historialtickets, Set intervencions) {
+       this.nroTicket = nroTicket;
        this.clasificacion = clasificacion;
        this.empleado = empleado;
-       this.ticket = ticket;
        this.fecahapertura = fecahapertura;
        this.estadoactual = estadoactual;
        this.horaapertura = horaapertura;
        this.descripcion = descripcion;
+       this.historialclasificacions = historialclasificacions;
        this.historialtickets = historialtickets;
        this.intervencions = intervencions;
-       //this.ticket = ticket;
     }
    
     public int getNroTicket() {
@@ -69,13 +68,6 @@ public class Ticket  implements java.io.Serializable {
     
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-    public Ticket getTicket() {
-        return this.ticket;
-    }
-    
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
     }
     public Date getFecahapertura() {
         return this.fecahapertura;
@@ -105,29 +97,29 @@ public class Ticket  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Set<Historialticket> getHistorialtickets() {
+    public Set getHistorialclasificacions() {
+        return this.historialclasificacions;
+    }
+    
+    public void setHistorialclasificacions(Set historialclasificacions) {
+        this.historialclasificacions = historialclasificacions;
+    }
+    public Set getHistorialtickets() {
         return this.historialtickets;
     }
     
-    public void setHistorialtickets(Set<Historialticket> historialtickets) {
+    public void setHistorialtickets(Set historialtickets) {
         this.historialtickets = historialtickets;
     }
-    public Set<Intervencion> getIntervencions() {
+    public Set getIntervencions() {
         return this.intervencions;
     }
     
-    public void setIntervencions(Set<Intervencion> intervencions) {
+    public void setIntervencions(Set intervencions) {
         this.intervencions = intervencions;
     }
-/*    public Ticket getTicket() {
-        return this.ticket;
-    }
-    
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
 
-*/
+
 
 
 }

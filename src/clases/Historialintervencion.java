@@ -1,5 +1,5 @@
 package clases;
-// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
+// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

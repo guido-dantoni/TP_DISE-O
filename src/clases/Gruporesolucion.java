@@ -1,5 +1,5 @@
 package clases;
-// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
+// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,8 +13,8 @@ public class Gruporesolucion  implements java.io.Serializable {
 
      private int codigoGrupoResolucion;
      private String nombregrupo;
-     private Set<Intervencion> intervencions = new HashSet<Intervencion>(0);
-     private Set<Clasificacion> clasificacions = new HashSet<Clasificacion>(0);
+     private Set intervencions = new HashSet(0);
+     private Set clasificacions = new HashSet(0);
 
     public Gruporesolucion() {
     }
@@ -24,7 +24,7 @@ public class Gruporesolucion  implements java.io.Serializable {
         this.codigoGrupoResolucion = codigoGrupoResolucion;
         this.nombregrupo = nombregrupo;
     }
-    public Gruporesolucion(int codigoGrupoResolucion, String nombregrupo, Set<Intervencion> intervencions, Set<Clasificacion> clasificacions) {
+    public Gruporesolucion(int codigoGrupoResolucion, String nombregrupo, Set intervencions, Set clasificacions) {
        this.codigoGrupoResolucion = codigoGrupoResolucion;
        this.nombregrupo = nombregrupo;
        this.intervencions = intervencions;
@@ -45,18 +45,18 @@ public class Gruporesolucion  implements java.io.Serializable {
     public void setNombregrupo(String nombregrupo) {
         this.nombregrupo = nombregrupo;
     }
-    public Set<Intervencion> getIntervencions() {
+    public Set getIntervencions() {
         return this.intervencions;
     }
     
-    public void setIntervencions(Set<Intervencion> intervencions) {
+    public void setIntervencions(Set intervencions) {
         this.intervencions = intervencions;
     }
-    public Set<Clasificacion> getClasificacions() {
+    public Set getClasificacions() {
         return this.clasificacions;
     }
     
-    public void setClasificacions(Set<Clasificacion> clasificacions) {
+    public void setClasificacions(Set clasificacions) {
         this.clasificacions = clasificacions;
     }
 

@@ -1,5 +1,5 @@
 package clases;
-// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
+// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,10 +13,10 @@ public class Usuario  implements java.io.Serializable {
 
      private int legajoUsuario;
      private String tipo;
-     private Set<Historialclasificacion> historialclasificacions = new HashSet<Historialclasificacion>(0);
-     private Set<Empleado> empleados = new HashSet<Empleado>(0);
-     private Set<Historialticket> historialtickets = new HashSet<Historialticket>(0);
-     private Set<Historialintervencion> historialintervencions = new HashSet<Historialintervencion>(0);
+     private Set historialclasificacions = new HashSet(0);
+     private Set empleados = new HashSet(0);
+     private Set historialtickets = new HashSet(0);
+     private Set historialintervencions = new HashSet(0);
 
     public Usuario() {
     }
@@ -26,7 +26,7 @@ public class Usuario  implements java.io.Serializable {
         this.legajoUsuario = legajoUsuario;
         this.tipo = tipo;
     }
-    public Usuario(int legajoUsuario, String tipo, Set<Historialclasificacion> historialclasificacions, Set<Empleado> empleados, Set<Historialticket> historialtickets, Set<Historialintervencion> historialintervencions) {
+    public Usuario(int legajoUsuario, String tipo, Set historialclasificacions, Set empleados, Set historialtickets, Set historialintervencions) {
        this.legajoUsuario = legajoUsuario;
        this.tipo = tipo;
        this.historialclasificacions = historialclasificacions;
@@ -49,32 +49,32 @@ public class Usuario  implements java.io.Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    public Set<Historialclasificacion> getHistorialclasificacions() {
+    public Set getHistorialclasificacions() {
         return this.historialclasificacions;
     }
     
-    public void setHistorialclasificacions(Set<Historialclasificacion> historialclasificacions) {
+    public void setHistorialclasificacions(Set historialclasificacions) {
         this.historialclasificacions = historialclasificacions;
     }
-    public Set<Empleado> getEmpleados() {
+    public Set getEmpleados() {
         return this.empleados;
     }
     
-    public void setEmpleados(Set<Empleado> empleados) {
+    public void setEmpleados(Set empleados) {
         this.empleados = empleados;
     }
-    public Set<Historialticket> getHistorialtickets() {
+    public Set getHistorialtickets() {
         return this.historialtickets;
     }
     
-    public void setHistorialtickets(Set<Historialticket> historialtickets) {
+    public void setHistorialtickets(Set historialtickets) {
         this.historialtickets = historialtickets;
     }
-    public Set<Historialintervencion> getHistorialintervencions() {
+    public Set getHistorialintervencions() {
         return this.historialintervencions;
     }
     
-    public void setHistorialintervencions(Set<Historialintervencion> historialintervencions) {
+    public void setHistorialintervencions(Set historialintervencions) {
         this.historialintervencions = historialintervencions;
     }
 

@@ -41,14 +41,14 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="postgres" match-schema="public"/>
-  <table-filter match-name="intervencion"/>
-  <table-filter match-name="empleado"/>
-  <table-filter match-name="historialclasificacion"/>
-  <table-filter match-name="gruporesolucion"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="clasificaciongrupo"/>
-  <table-filter match-name="ticket"/>
-  <table-filter match-name="historialintervencion"/>
   <table-filter match-name="clasificacion"/>
   <table-filter match-name="historialticket"/>
+  <table-filter match-name="historialintervencion"/>
+  <table-filter match-name="historialclasificacion"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="intervencion"/>
+  <table-filter match-name="ticket"/>
+  <table-filter match-name="gruporesolucion"/>
+  <table-filter match-name="clasificaciongrupo"/>
+  <table-filter match-name="empleado"/>
 </hibernate-reverse-engineering>

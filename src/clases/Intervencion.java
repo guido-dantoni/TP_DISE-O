@@ -1,5 +1,5 @@
 package clases;
-// Generated 01/11/2018 17:49:23 by Hibernate Tools 4.3.1
+// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class Intervencion  implements java.io.Serializable {
      private Ticket ticket;
      private String observacion;
      private String estadoactual;
-     private Set<Historialintervencion> historialintervencions = new HashSet<Historialintervencion>(0);
+     private Set historialintervencions = new HashSet(0);
 
     public Intervencion() {
     }
@@ -29,7 +29,7 @@ public class Intervencion  implements java.io.Serializable {
         this.observacion = observacion;
         this.estadoactual = estadoactual;
     }
-    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String observacion, String estadoactual, Set<Historialintervencion> historialintervencions) {
+    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String observacion, String estadoactual, Set historialintervencions) {
        this.idIntervencion = idIntervencion;
        this.gruporesolucion = gruporesolucion;
        this.ticket = ticket;
@@ -73,11 +73,11 @@ public class Intervencion  implements java.io.Serializable {
     public void setEstadoactual(String estadoactual) {
         this.estadoactual = estadoactual;
     }
-    public Set<Historialintervencion> getHistorialintervencions() {
+    public Set getHistorialintervencions() {
         return this.historialintervencions;
     }
     
-    public void setHistorialintervencions(Set<Historialintervencion> historialintervencions) {
+    public void setHistorialintervencions(Set historialintervencions) {
         this.historialintervencions = historialintervencions;
     }
 
