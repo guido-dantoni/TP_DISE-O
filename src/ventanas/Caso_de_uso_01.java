@@ -250,7 +250,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
            evt.consume();
        }
        
-       
+       //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado
        if((legajo==KeyEvent.VK_ENTER || legajo==KeyEvent.VK_TAB)){
         
            jTextAreaDescripcion.requestFocus();
@@ -290,8 +290,8 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         Clasificacion clasificacion;
         Date d = new Date();
         Calendar c = new GregorianCalendar(); 
-        c.setTime(d);
-
+        //c.setTime(d);
+        
         String dia, mes, anio, hora, minutos, segundos, nombreClasificacion;
 
         dia = Integer.toString(c.get(Calendar.DATE));
@@ -317,6 +317,9 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         
         GestorTicket gestorTicket = new GestorTicket();
         gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
+        
+        gestorTicket.obtenerNroUltimoTiket();
+        
     
       
        

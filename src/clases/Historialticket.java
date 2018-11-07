@@ -10,14 +10,14 @@ import java.util.Date;
 public class Historialticket  implements java.io.Serializable {
 
 
-     private int idHistorialTicket;
-     private Ticket ticket;
-     private Usuario usuario;
-     private Date fechainicio;
-     private Date fechafin;
-     private Date horainicio;
-     private Date horafin;
-     private String estado;
+     private static int idHistorialTicket;
+     private static Ticket ticket;
+     private static Usuario usuario;
+     private static Date fechainicio;
+     private static Date fechafin;
+     private static Date horainicio;
+     private static Date horafin;
+     private static String estado;
 
     public Historialticket() {
     }

@@ -14,7 +14,7 @@ import clases.Usuario;
  */
 public class GestorSesion {
 
-    private Usuario usuarioLogueado;
+    private static Usuario usuarioLogueado;
     
     
     public Boolean validarUsuario(int legajoUsuario, String tipoDeUsuario) {
@@ -30,7 +30,7 @@ public class GestorSesion {
             
             }else if( existeUsuario.getTipo().equals(tipoDeUsuario)) {
                 
-                usuarioLogueado = existeUsuario;
+                this.setUsuarioLogueado(existeUsuario);
                 retorno = true;
             
         }

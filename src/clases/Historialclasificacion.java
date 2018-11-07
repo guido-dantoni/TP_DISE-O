@@ -10,14 +10,14 @@ import java.util.Date;
 public class Historialclasificacion  implements java.io.Serializable {
 
 
-     private int idHistorialclasificacion;
-     private Clasificacion clasificacion;
-     private Ticket ticket;
-     private Usuario usuario;
-     private Date fechainicio;
-     private Date fechafin;
-     private Date horainicio;
-     private Date horafin;
+     private static int idHistorialclasificacion;
+     private static Clasificacion clasificacion;
+     private static Ticket ticket;
+     private static Usuario usuario;
+     private static Date fechainicio;
+     private static Date fechafin;
+     private static Date horainicio;
+     private static Date horafin;
 
     public Historialclasificacion() {
     }

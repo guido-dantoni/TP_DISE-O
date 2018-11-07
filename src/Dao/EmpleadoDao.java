@@ -21,7 +21,7 @@ public class EmpleadoDao {
      private Session session;
      private Transaction tx;
      
-     public Empleado getNombre(Integer legajo){
+     public Empleado getEmpleado(Integer legajo){
          sesionFactory = NewHibernateUtil.getSessionFactory();
          session = sesionFactory.openSession();
          tx = session.beginTransaction();

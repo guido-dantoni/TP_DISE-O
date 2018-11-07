@@ -16,11 +16,18 @@ public class GestorEmpleado {
         Empleado e;
         
         EmpleadoDao empleadoDao = new EmpleadoDao();
-        e = empleadoDao.getNombre(numeroLegajo);
+        e = empleadoDao.getEmpleado(numeroLegajo);
         nombreEmpleado = e.getNombre();
         apellidoEmpleado = e.getApellido();
         
         return (nombreEmpleado + " " + apellidoEmpleado);
+    }
+
+    Empleado obtenerEmpleado(Integer numeroLegajo) {
+        
+        EmpleadoDao empleadoDao = new EmpleadoDao();
+        
+        return empleadoDao.getEmpleado(numeroLegajo);
     }
     
 }

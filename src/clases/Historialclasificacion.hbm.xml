@@ -6,7 +6,7 @@
     <class name="clases.Historialclasificacion" table="historialclasificacion" schema="public" optimistic-lock="version">
         <id name="idHistorialclasificacion" type="int">
             <column name="id_historialclasificacion" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="clasificacion" class="clases.Clasificacion" fetch="select">
             <column name="codigo_clasificacion" not-null="true" />
@@ -21,13 +21,13 @@
             <column name="fechainicio" length="13" not-null="true" />
         </property>
         <property name="fechafin" type="date">
-            <column name="fechafin" length="13" not-null="true" />
+            <column name="fechafin" length="13" not-null="false" />
         </property>
         <property name="horainicio" type="time">
             <column name="horainicio" length="15" not-null="true" />
         </property>
         <property name="horafin" type="time">
-            <column name="horafin" length="15" not-null="true" />
+            <column name="horafin" length="15" not-null="false" />
         </property>
     </class>
 </hibernate-mapping>

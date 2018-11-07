@@ -6,7 +6,7 @@
     <class name="clases.Historialticket" table="historialticket" schema="public" optimistic-lock="version">
         <id name="idHistorialTicket" type="int">
             <column name="id_historial_ticket" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="ticket" class="clases.Ticket" fetch="select">
             <column name="nroticket" not-null="true" />
@@ -18,16 +18,16 @@
             <column name="fechainicio" length="13" not-null="true" />
         </property>
         <property name="fechafin" type="date">
-            <column name="fechafin" length="13" not-null="true" />
+            <column name="fechafin" length="13" not-null="false" />
         </property>
         <property name="horainicio" type="time">
             <column name="horainicio" length="15" not-null="true" />
         </property>
         <property name="horafin" type="time">
-            <column name="horafin" length="15" not-null="true" />
+            <column name="horafin" length="15" not-null="false" />
         </property>
         <property name="estado" type="string">
-            <column name="estado" length="15" not-null="true" />
+            <column name="estado" length="30" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

@@ -25,6 +25,7 @@ public class ClasificacionDao {
      private Transaction tx;
      
      public List<Clasificacion> getClasificacion(){
+         
          sesionFactory = NewHibernateUtil.getSessionFactory();
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
