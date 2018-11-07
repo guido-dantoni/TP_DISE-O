@@ -41,5 +41,10 @@ public class GestorSesion {
     public void setUsuarioLogueado(Usuario user) {
         this.usuarioLogueado=user;
     }
+
+    public Usuario getUsuarioLogueado() {
+        return this.usuarioLogueado;
+    }
+    
     
 }

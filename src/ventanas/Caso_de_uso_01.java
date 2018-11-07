@@ -1,7 +1,11 @@
 
 package Ventanas;
 
+import clases.Clasificacion;
 import controllers.GestorClasificacion;
+import controllers.GestorEmpleado;
+import controllers.GestorTicket;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +27,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+       
         jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
         List<String> clasificaciones = new ArrayList<String>();
@@ -66,6 +71,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jLabelFechaApertura = new javax.swing.JLabel();
         jLabelHora = new javax.swing.JLabel();
         jLabelDescripcion = new javax.swing.JLabel();
+        jLabelMsjErrorNombre = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -205,6 +211,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jLabelDescripcion.setText("Descripción: ");
         getContentPane().add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 110, 40));
 
+        jLabelMsjErrorNombre.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabelMsjErrorNombre.setForeground(new java.awt.Color(255, 0, 0));
+        getContentPane().add(jLabelMsjErrorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 190, 20));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1025, 635));
 
@@ -233,9 +243,37 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
             
        char legajo=evt.getKeyChar();
-       if(legajo<'0' || legajo>'9')
-           evt.consume();
+       Integer numeroLegajo;
        
+       
+       if(legajo<'0' || legajo>'9'){
+           evt.consume();
+       }
+       
+       
+       if((legajo==KeyEvent.VK_ENTER || legajo==KeyEvent.VK_TAB)){
+        
+           jTextAreaDescripcion.requestFocus();
+           numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+                
+                    if(jTextFieldLegajo.getText().length()>0){
+                 
+                       
+                     String nombreApellido;
+                     
+                     
+                     GestorEmpleado gestorEmpleado=new GestorEmpleado();
+                     nombreApellido = gestorEmpleado.obtenerNombre(numeroLegajo);
+                     
+                     if(nombreApellido.isEmpty()){
+                         
+                         jLabelMsjErrorNombre.setText("*Legajo inexistente");
+                     }else{
+                         jTextFieldNombreApellido.setText(nombreApellido);
+                     }
+                     
+                }
+       }    
     }//GEN-LAST:event_jTextFieldLegajoKeyTyped
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
@@ -248,13 +286,13 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
     private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
        
-        //HACER TODO LO OTRO
-
+        
+        Clasificacion clasificacion;
         Date d = new Date();
         Calendar c = new GregorianCalendar(); 
         c.setTime(d);
 
-        String dia, mes, anio, hora, minutos, segundos;
+        String dia, mes, anio, hora, minutos, segundos, nombreClasificacion;
 
         dia = Integer.toString(c.get(Calendar.DATE));
         mes = Integer.toString(c.get(Calendar.MONTH)+1);
@@ -272,9 +310,15 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldFechaApertura.setText(dia + "/" + mes + "/" + anio);
         jTextFieldHora.setText(hora + ":" + minutos + ":" + segundos);
         }
-            //HACER TODO LO OTRO
- 
+           
+        nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
+        Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+        String descripcion = jTextAreaDescripcion.getText();
         
+        GestorTicket gestorTicket = new GestorTicket();
+        gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
+    
+      
        
     }//GEN-LAST:event_jButtonAceptarMouseClicked
 
@@ -330,6 +374,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelHora;
     private javax.swing.JLabel jLabelLegajo;
+    private javax.swing.JLabel jLabelMsjErrorNombre;
     private javax.swing.JLabel jLabelNombreApellido;
     private javax.swing.JLabel jLabelNroTicket;
     private javax.swing.JScrollPane jScrollPaneDescrip;

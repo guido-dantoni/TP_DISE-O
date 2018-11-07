@@ -5,6 +5,7 @@ import Dao.ClasificacionDao;
 import java.util.List;
 import clases.Clasificacion;
 import java.util.ArrayList;
+import org.hibernate.Criteria;
 
 /**
  *
@@ -25,6 +26,16 @@ public class GestorClasificacion {
         }
         
         return lista;
+    }
+
+    public Clasificacion obtenerClasificacion(String nombreClasificacion) {
+        
+        Clasificacion c;
+       
+        ClasificacionDao clasificacionDao = new ClasificacionDao();
+        c=clasificacionDao.getClasificacion(nombreClasificacion);
+        
+         return c;
     }
     
 }
