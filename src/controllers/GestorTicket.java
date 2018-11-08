@@ -48,11 +48,11 @@ public class GestorTicket {
         
        
         Ticket ticket = new Ticket(); 
-    
+        String estado;
         //Todo esto es para setear la fecha y hora de apertura
-        Date fechaApertura = new Date();
+       /* Date fechaApertura = new Date();
         Date horaApertura = new Date();
-        String estado; 
+       
         Calendar c = new GregorianCalendar(); 
         //c.setTime(fechaApertura);
 
@@ -71,6 +71,13 @@ public class GestorTicket {
         horaApertura.setHours(hora);
         horaApertura.setMinutes(minutos);
         horaApertura.setSeconds(segundos);
+        */
+        GestorFecha gestorFecha = new GestorFecha();
+        Date fechaApertura = new Date();
+        Date horaApertura = new Date();
+        
+        fechaApertura = gestorFecha.obtenerFecha();
+        horaApertura = gestorFecha.obtenerHora();
         
         estado = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
         
@@ -138,9 +145,14 @@ public class GestorTicket {
         TicketDao ticketDao = new TicketDao();
         ticketParaCerrar = ticketDao.getTicket(nroTicket);
               
+        GestorFecha gestorFecha = new GestorFecha();
+        
         Date fechaCierre = new Date();
         Date horaCierre = new Date();
          
+        fechaCierre = gestorFecha.obtenerFecha();
+        horaCierre = gestorFecha.obtenerHora();
+        /*
         Calendar c = new GregorianCalendar(); 
         
         int dia, mes, anio, hora, minutos, segundos;
@@ -158,7 +170,7 @@ public class GestorTicket {
         horaCierre.setHours(hora);
         horaCierre.setMinutes(minutos);
         horaCierre.setSeconds(segundos);
-        
+        */
         //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
         //Ver maquina de estadoTicket
         if( ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
@@ -179,6 +191,9 @@ public class GestorTicket {
                 Historialticket historialTicket2 = new Historialticket();
                 Usuario user = new GestorSesion().getUsuarioLogueado();
 
+                //en horaInicio, FechaInicio, horaFin, fechaFin se utilizan fechaCierre y horaCierre
+                //porque es la misma fecha y hora
+                
                 historialTicket2.setTicket(ticketParaCerrar);
                 historialTicket2.setHorainicio(horaCierre);
                 historialTicket2.setFechainicio(fechaCierre);

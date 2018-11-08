@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
 import javax.swing.ImageIcon;
 import clases.Ticket;
 import controllers.GestorTicket;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -17,9 +14,8 @@ import controllers.GestorTicket;
 public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
 
     private static int nroTicket; //Este nroTicket lo usamos en el metodo cerrarTicket()
-    /**
-     * Creates new form CasoDeUso1_Observaciones
-     */
+    
+   
     public Caso_de_uso_01_Observaciones() {
         
         initComponents();
@@ -39,7 +35,6 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonDerivarTicket = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonCerrarTicket = new javax.swing.JButton();
@@ -50,6 +45,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle del reclamo");
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,17 +57,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
                 jButtonDerivarTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonDerivarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 130, 40));
-
-        jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
-        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButtonCancelar.setText("Cancelar");
-        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, 130, 40));
+        getContentPane().add(jButtonDerivarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 530, 130, 40));
 
         jLabel1.setBackground(new java.awt.Color(191, 185, 185));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -98,7 +84,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
                 jButtonCerrarTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCerrarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 530, 130, 40));
+        getContentPane().add(jButtonCerrarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 130, 40));
 
         jTextFieldTicket.setEditable(false);
         jTextFieldTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -131,16 +117,14 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDerivarTicketActionPerformed
-        // TODO add your handling code here:
+        
+        // CARTEL DEL BOTON DERIVAR; NO EN ESTA ETAPA
+        JOptionPane.showMessageDialog(null, "funcionalidad en desarrollo");
     }//GEN-LAST:event_jButtonDerivarTicketActionPerformed
 
     private void jTextFieldTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextFieldTicketActionPerformed
-
-    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonCerrarTicketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCerrarTicketMouseClicked
         // TODO add your handling code here:
@@ -158,10 +142,23 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     private void jButtonCerrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarTicketActionPerformed
         
         String observacion = jTextAreaObservaciones.getText();
-
-        GestorTicket gestorTicket = new GestorTicket();
-        gestorTicket.cerrarTicket(observacion, nroTicket);
+        //verifico que me cargue las observaciones
         
+        if(observacion.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "El campo observaciones no puede ser nulo");
+            
+        }else{
+            
+            GestorTicket gestorTicket = new GestorTicket();
+            gestorTicket.cerrarTicket(observacion, nroTicket);
+            
+            JOptionPane.showMessageDialog(null, "EL ticket: " + nroTicket + " se cerró correctamente");
+            this.setVisible(false);          
+            Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
+            pantallaMesaAyuda.setVisible(true);
+        }
+         
     }//GEN-LAST:event_jButtonCerrarTicketActionPerformed
 
     /**
@@ -208,7 +205,6 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonCerrarTicket;
     private javax.swing.JButton jButtonDerivarTicket;
     private javax.swing.JLabel jLabel1;
@@ -221,6 +217,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
 
     public void cargarObservaciones(int nroTicket){
         //this.setVisible(true);
+        
         jTextFieldTicket.setText(String.valueOf(nroTicket));
         this.nroTicket = nroTicket;
     }

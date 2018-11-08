@@ -38,7 +38,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
                 }
     }
     public void confirmarSalida(){
-        int valor=JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir? Se cerrara la sesion actual","Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int valor=JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir? Se cerrará la sesion actual","Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         if(valor==JOptionPane.YES_OPTION){
             GestorSesion gestorSesion=new GestorSesion();
             gestorSesion.setUsuarioLogueado(null);
