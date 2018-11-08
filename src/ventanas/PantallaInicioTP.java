@@ -2,6 +2,7 @@
 package Ventanas;
 
 import controllers.Enum_EstadoTicket;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,12 +49,22 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         GrupoDeResolucion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         GrupoDeResolucion.setForeground(new java.awt.Color(191, 185, 185));
         GrupoDeResolucion.setText("GRUPO DE RESOLUCIÓN");
+        GrupoDeResolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GrupoDeResolucionActionPerformed(evt);
+            }
+        });
         getContentPane().add(GrupoDeResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 210, 70));
 
         Gerencia.setBackground(new java.awt.Color(0, 51, 204));
         Gerencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Gerencia.setForeground(new java.awt.Color(191, 185, 185));
         Gerencia.setText("GERENCIA");
+        Gerencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GerenciaActionPerformed(evt);
+            }
+        });
         getContentPane().add(Gerencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 210, 70));
 
         jLabelLlamita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Llamita2.png"))); // NOI18N
@@ -83,6 +94,18 @@ public class PantallaInicioTP extends javax.swing.JFrame {
        Login log= new Login();
        log.setTipoUsuario("Mesa de Ayuda");
     }//GEN-LAST:event_MesaDeAyudaActionPerformed
+
+    private void GrupoDeResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrupoDeResolucionActionPerformed
+       
+        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
+        
+    }//GEN-LAST:event_GrupoDeResolucionActionPerformed
+
+    private void GerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciaActionPerformed
+       
+         JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
+        
+    }//GEN-LAST:event_GerenciaActionPerformed
 
     /**
      * @param args the command line arguments

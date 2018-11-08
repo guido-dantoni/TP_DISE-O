@@ -119,7 +119,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     private void jButtonDerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDerivarTicketActionPerformed
         
         // CARTEL DEL BOTON DERIVAR; NO EN ESTA ETAPA
-        JOptionPane.showMessageDialog(null, "funcionalidad en desarrollo");
+        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
     }//GEN-LAST:event_jButtonDerivarTicketActionPerformed
 
     private void jTextFieldTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketActionPerformed
