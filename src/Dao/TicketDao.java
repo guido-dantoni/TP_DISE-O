@@ -33,8 +33,11 @@ public class TicketDao {
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
          
+         //insert into Ticket ticket
          session.save(ticket);
+         //insert into historialTicket historialTicket         
          session.save(historialTicket);
+         //insert into historialClasificacion historialClasificacion
          session.save(historialClasificacion);
                  
          tx.commit();
@@ -92,7 +95,7 @@ public class TicketDao {
         return ticket;  
     }
     
-        public Historialticket getHistorialTicket(int nroTicket, String estado) {
+        public Historialticket getHistorialTicket(Ticket ticket, String estado) {
         
         Historialticket historialticket = new Historialticket();   
         
@@ -102,9 +105,9 @@ public class TicketDao {
          tx = session.beginTransaction();
          
          //select * from historialTicket ht where (ht.nroticket=nroTicket AND  ht.horaFin='null' AND ht.fechaFin='null')
-         Criteria cr = session.createCriteria(Historialclasificacion.class);
-         cr.add(Restrictions.eq("nroticket", nroTicket)).add(Restrictions.eq("estado", estado))
-            .add(Restrictions.eq("fechafin", null)).add(Restrictions.eq("horafin", null));
+         Criteria cr = session.createCriteria(Historialticket.class);
+         cr.add(Restrictions.eq("ticket", ticket)).add(Restrictions.eq("estado", estado))
+            .add(Restrictions.isNull("fechafin")).add(Restrictions.isNull("horafin"));
        
          historialticket = (Historialticket) cr.uniqueResult();
                           
@@ -135,7 +138,27 @@ public class TicketDao {
         System.out.println(e);
         }
         
-    }
+    }   
+        
+        public void insertHistorialTicket(Historialticket ht) {
+        
+        
+          try {    
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+             
+        //insert into HistorialTicket ht;
+         session.save(ht);
+                          
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+        System.out.println(e);
+        }
+       
+      }
        
     
 }

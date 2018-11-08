@@ -305,7 +305,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         Clasificacion clasificacion;
         Date d = new Date();
         Calendar c = new GregorianCalendar(); 
-        //c.setTime(d);
+        c.setTime(d);
         
         String dia, mes, anio, hora, minutos, segundos, nombreClasificacion;
 

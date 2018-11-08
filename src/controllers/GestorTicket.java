@@ -137,10 +137,10 @@ public class GestorTicket {
         Ticket ticketParaCerrar = new Ticket(); 
         TicketDao ticketDao = new TicketDao();
         ticketParaCerrar = ticketDao.getTicket(nroTicket);
-        
-         Date fechaCierre = new Date();
+              
+        Date fechaCierre = new Date();
         Date horaCierre = new Date();
-        String estado; 
+         
         Calendar c = new GregorianCalendar(); 
         
         int dia, mes, anio, hora, minutos, segundos;
@@ -166,8 +166,9 @@ public class GestorTicket {
           {
                 Historialticket historialTicket = new Historialticket();
                 //Actualizamos los valores del historial de ticket recupreado para hacer un update
-                
-                historialTicket = ticketDao.getHistorialTicket(ticketParaCerrar.getNroTicket(), ticketParaCerrar.getEstadoactual());
+              
+                historialTicket = ticketDao.getHistorialTicket(ticketParaCerrar, ticketParaCerrar.getEstadoactual());
+             
                 historialTicket.setFechafin(fechaCierre);
                 historialTicket.setHorafin(horaCierre);
                 historialTicket.setObservarciones(observacion);
@@ -177,7 +178,8 @@ public class GestorTicket {
                 //Aca creo un nuevo historialTicket para setearlo como el historial del ticket cerrado
                 Historialticket historialTicket2 = new Historialticket();
                 Usuario user = new GestorSesion().getUsuarioLogueado();
-                
+
+                historialTicket2.setTicket(ticketParaCerrar);
                 historialTicket2.setHorainicio(horaCierre);
                 historialTicket2.setFechainicio(fechaCierre);
                 historialTicket2.setHorafin(horaCierre);
@@ -186,7 +188,7 @@ public class GestorTicket {
                 historialTicket2.setEstado(Enum_EstadoTicket.CERRADO.toString());
                 historialTicket2.setUsuario(user);
                 
-                ticketDao.setHistorialTicket(historialTicket2);
+                ticketDao.insertHistorialTicket(historialTicket2);
                 
                 
                 
