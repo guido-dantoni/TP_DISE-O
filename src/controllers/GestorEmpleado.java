@@ -23,7 +23,7 @@ public class GestorEmpleado {
         return (nombreEmpleado + " " + apellidoEmpleado);
     }
 
-    Empleado obtenerEmpleado(Integer numeroLegajo) {
+    public Empleado obtenerEmpleado(Integer numeroLegajo) {
         
         EmpleadoDao empleadoDao = new EmpleadoDao();
         

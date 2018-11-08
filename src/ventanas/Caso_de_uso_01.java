@@ -2,6 +2,8 @@
 package Ventanas;
 
 import clases.Clasificacion;
+import clases.Empleado;
+import clases.Ticket;
 import controllers.GestorClasificacion;
 import controllers.GestorEmpleado;
 import controllers.GestorTicket;
@@ -14,6 +16,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
+import ventanas.Caso_de_uso_01_Observaciones;
 
 /**
  *
@@ -21,7 +24,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class Caso_de_uso_01 extends javax.swing.JFrame {
 
-
+        private static Empleado empleado;
       
     public Caso_de_uso_01() {
         initComponents();
@@ -82,6 +85,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldTicketDefecto.setEditable(false);
         jTextFieldTicketDefecto.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTicketDefecto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldTicketDefecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTicketDefectoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextFieldTicketDefecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 160, 30));
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
@@ -253,23 +261,30 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado
        if((legajo==KeyEvent.VK_ENTER || legajo==KeyEvent.VK_TAB)){
         
-           jTextAreaDescripcion.requestFocus();
-           numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+                    
                 
-                    if(jTextFieldLegajo.getText().length()>0){
+                if(jTextFieldLegajo.getText().length()>0){
                  
-                       
-                     String nombreApellido;
+                       jTextAreaDescripcion.requestFocus();
+                       numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+                     
+                       String nombreApellido;
                      
                      
                      GestorEmpleado gestorEmpleado=new GestorEmpleado();
-                     nombreApellido = gestorEmpleado.obtenerNombre(numeroLegajo);
+                     empleado = gestorEmpleado.obtenerEmpleado(numeroLegajo);
                      
-                     if(nombreApellido.isEmpty()){
+                     if(empleado==null){
                          
                          jLabelMsjErrorNombre.setText("*Legajo inexistente");
+                         
+                                                  
                      }else{
+                         nombreApellido= gestorEmpleado.obtenerNombre(numeroLegajo);
                          jTextFieldNombreApellido.setText(nombreApellido);
+                         jLabelMsjErrorNombre.setText("");
+                         
+                         
                      }
                      
                 }
@@ -305,11 +320,13 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
         
             JOptionPane.showMessageDialog(null, "Los campos legajo y descripcion no puden ser nulos");
+        }else if(empleado==null){
+            JOptionPane.showMessageDialog(null, "El legajo es inexistente");
         }else{
         
         jTextFieldFechaApertura.setText(dia + "/" + mes + "/" + anio);
         jTextFieldHora.setText(hora + ":" + minutos + ":" + segundos);
-        }
+        
            
         nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
         Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
@@ -318,16 +335,30 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         GestorTicket gestorTicket = new GestorTicket();
         gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
         
-        gestorTicket.obtenerNroUltimoTiket();
+        Ticket ticket = gestorTicket.obtenerNroUltimoTiket();
         
-    
-      
+        jTextFieldTicketDefecto.setText( String.valueOf((ticket.getNroTicket())) );
+        JOptionPane.showMessageDialog(null, ("Se creo exitosamente el ticket con NroTicket: " + ticket.getNroTicket()));
+        
+                   
+            Caso_de_uso_01_Observaciones  cu1 = new Caso_de_uso_01_Observaciones();
+            cu1.setVisible(true);
+            cu1.cargarObservaciones(ticket.getNroTicket());
+            this.setVisible(false);
+        
+      }  
+        
        
+        
     }//GEN-LAST:event_jButtonAceptarMouseClicked
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jTextFieldTicketDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketDefectoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTicketDefectoActionPerformed
 
     
     /**

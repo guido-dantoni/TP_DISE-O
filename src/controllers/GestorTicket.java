@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+import ventanas.Caso_de_uso_01_Observaciones;
 
 /**
  *
@@ -116,15 +117,16 @@ public class GestorTicket {
         
     }
 
-    public void obtenerNroUltimoTiket() {
+    public Ticket obtenerNroUltimoTiket() {
         
             TicketDao ticketDao = new TicketDao();
-            //CREAR UN TICKET E IGUALARLO AL RETORNO DE ticketDao.getUltimoTicket()
-           //MOSTRAR PANTALLA EMMERGENTE Y CARGAR EL JTEXTFIELD DE LA PANTALLA DE CU1
+            Ticket ticket = new Ticket();
+            ticket = ticketDao.getUltimoTicket();
+            
+         
            
-           // System.out.println(ticketDao.getUltimoTicket().getNroTicket());
+       return ticket ;
     }
-    
-    
-    
+
+      
 }
