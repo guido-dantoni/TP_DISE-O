@@ -1,5 +1,5 @@
 package clases;
-// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
+// Generated 08/11/2018 10:55:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,18 +10,27 @@ import java.util.Date;
 public class Historialclasificacion  implements java.io.Serializable {
 
 
-     private static int idHistorialclasificacion;
-     private static Clasificacion clasificacion;
-     private static Ticket ticket;
-     private static Usuario usuario;
-     private static Date fechainicio;
-     private static Date fechafin;
-     private static Date horainicio;
-     private static Date horafin;
+     private int idHistorialclasificacion;
+     private Clasificacion clasificacion;
+     private Ticket ticket;
+     private Usuario usuario;
+     private Date fechainicio;
+     private Date fechafin;
+     private Date horainicio;
+     private Date horafin;
 
     public Historialclasificacion() {
     }
 
+	
+    public Historialclasificacion(int idHistorialclasificacion, Clasificacion clasificacion, Ticket ticket, Usuario usuario, Date fechainicio, Date horainicio) {
+        this.idHistorialclasificacion = idHistorialclasificacion;
+        this.clasificacion = clasificacion;
+        this.ticket = ticket;
+        this.usuario = usuario;
+        this.fechainicio = fechainicio;
+        this.horainicio = horainicio;
+    }
     public Historialclasificacion(int idHistorialclasificacion, Clasificacion clasificacion, Ticket ticket, Usuario usuario, Date fechainicio, Date fechafin, Date horainicio, Date horafin) {
        this.idHistorialclasificacion = idHistorialclasificacion;
        this.clasificacion = clasificacion;

@@ -1,12 +1,9 @@
 package clases;
-// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
+// Generated 08/11/2018 10:55:19 by Hibernate Tools 4.3.1
 
 
-import controllers.Enum_EstadoTicket;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,7 +19,7 @@ public class Ticket  implements java.io.Serializable {
      private String estadoactual;
      private Date horaapertura;
      private String descripcion;
-     private Set historialclasificacions = new HashSet(0);//me los creo como hashSet, los cambiamos porque no sabemos manejarlo
+     private Set historialclasificacions = new HashSet(0);
      private Set historialtickets = new HashSet(0);
      private Set intervencions = new HashSet(0);
 
@@ -121,7 +118,6 @@ public class Ticket  implements java.io.Serializable {
     public void setIntervencions(Set intervencions) {
         this.intervencions = intervencions;
     }
-
 
 
 

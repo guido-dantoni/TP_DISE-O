@@ -7,6 +7,7 @@ package ventanas;
 
 import javax.swing.ImageIcon;
 import clases.Ticket;
+import controllers.GestorTicket;
 
 
 /**
@@ -15,6 +16,7 @@ import clases.Ticket;
  */
 public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
 
+    private static int nroTicket; //Este nroTicket lo usamos en el metodo cerrarTicket()
     /**
      * Creates new form CasoDeUso1_Observaciones
      */
@@ -23,7 +25,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
-        
+        jTextAreaObservaciones.setLineWrap(true); // evita expansion en ancho del textArea
        
     }
 
@@ -36,11 +38,11 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonDerivarTicket = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButtonCerrarTicket = new javax.swing.JButton();
         jTextFieldTicket = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaObservaciones = new javax.swing.JTextArea();
@@ -51,25 +53,25 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(191, 185, 185));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton1.setText("Derivar ticket");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDerivarTicket.setBackground(new java.awt.Color(191, 185, 185));
+        jButtonDerivarTicket.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonDerivarTicket.setText("Derivar ticket");
+        jButtonDerivarTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonDerivarTicketActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 130, 40));
+        getContentPane().add(jButtonDerivarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 130, 40));
 
-        jButton2.setBackground(new java.awt.Color(191, 185, 185));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
+        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, 130, 40));
+        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, 130, 40));
 
         jLabel1.setBackground(new java.awt.Color(191, 185, 185));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -83,10 +85,20 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         jLabel2.setText("Observaciones:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(191, 185, 185));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton3.setText("Cerrar ticket");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 530, 130, 40));
+        jButtonCerrarTicket.setBackground(new java.awt.Color(191, 185, 185));
+        jButtonCerrarTicket.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonCerrarTicket.setText("Cerrar ticket");
+        jButtonCerrarTicket.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCerrarTicketMouseClicked(evt);
+            }
+        });
+        jButtonCerrarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarTicketActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCerrarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 530, 130, 40));
 
         jTextFieldTicket.setEditable(false);
         jTextFieldTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -102,6 +114,11 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         jTextAreaObservaciones.setColumns(20);
         jTextAreaObservaciones.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         jTextAreaObservaciones.setRows(5);
+        jTextAreaObservaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaObservacionesKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextAreaObservaciones);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 600, 200));
@@ -113,17 +130,39 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonDerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDerivarTicketActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonDerivarTicketActionPerformed
 
     private void jTextFieldTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTicketActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonCerrarTicketMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCerrarTicketMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonCerrarTicketMouseClicked
+
+    private void jTextAreaObservacionesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaObservacionesKeyTyped
+        // TODO add your handling code here:
+                  //hasta 500 caracteres en el textArea
+            if(jTextAreaObservaciones.getText().length()>=500){
+                evt.consume();
+          }
+    }//GEN-LAST:event_jTextAreaObservacionesKeyTyped
+
+    private void jButtonCerrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarTicketActionPerformed
+        
+        String observacion = jTextAreaObservaciones.getText();
+
+        GestorTicket gestorTicket = new GestorTicket();
+        gestorTicket.cerrarTicket(observacion, nroTicket);
+        
+    }//GEN-LAST:event_jButtonCerrarTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,9 +208,9 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonCerrarTicket;
+    private javax.swing.JButton jButtonDerivarTicket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelFondo;
@@ -181,9 +220,9 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void cargarObservaciones(int nroTicket){
-        this.setVisible(true);
-       jTextFieldTicket.setText(String.valueOf(nroTicket));
-        
+        //this.setVisible(true);
+        jTextFieldTicket.setText(String.valueOf(nroTicket));
+        this.nroTicket = nroTicket;
     }
 
 }

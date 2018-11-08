@@ -5,6 +5,8 @@
  */
 package Ventanas;
 
+import controllers.Enum_EstadoTicket;
+
 /**
  *
  * @author Marcos
@@ -123,6 +125,7 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PantallaInicioTP().setVisible(true);
+                
             }
         });
     }

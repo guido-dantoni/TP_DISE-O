@@ -1,5 +1,5 @@
 package clases;
-// Generated 06/11/2018 18:09:33 by Hibernate Tools 4.3.1
+// Generated 08/11/2018 10:55:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,19 +10,29 @@ import java.util.Date;
 public class Historialticket  implements java.io.Serializable {
 
 
-     private static int idHistorialTicket;
-     private static Ticket ticket;
-     private static Usuario usuario;
-     private static Date fechainicio;
-     private static Date fechafin;
-     private static Date horainicio;
-     private static Date horafin;
-     private static String estado;
+     private int idHistorialTicket;
+     private Ticket ticket;
+     private Usuario usuario;
+     private Date fechainicio;
+     private Date fechafin;
+     private Date horainicio;
+     private Date horafin;
+     private String estado;
+     private String observarciones;
 
     public Historialticket() {
     }
 
-    public Historialticket(int idHistorialTicket, Ticket ticket, Usuario usuario, Date fechainicio, Date fechafin, Date horainicio, Date horafin, String estado) {
+	
+    public Historialticket(int idHistorialTicket, Ticket ticket, Usuario usuario, Date fechainicio, Date horainicio, String estado) {
+        this.idHistorialTicket = idHistorialTicket;
+        this.ticket = ticket;
+        this.usuario = usuario;
+        this.fechainicio = fechainicio;
+        this.horainicio = horainicio;
+        this.estado = estado;
+    }
+    public Historialticket(int idHistorialTicket, Ticket ticket, Usuario usuario, Date fechainicio, Date fechafin, Date horainicio, Date horafin, String estado, String observarciones) {
        this.idHistorialTicket = idHistorialTicket;
        this.ticket = ticket;
        this.usuario = usuario;
@@ -31,6 +41,7 @@ public class Historialticket  implements java.io.Serializable {
        this.horainicio = horainicio;
        this.horafin = horafin;
        this.estado = estado;
+       this.observarciones = observarciones;
     }
    
     public int getIdHistorialTicket() {
@@ -88,6 +99,13 @@ public class Historialticket  implements java.io.Serializable {
     
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    public String getObservarciones() {
+        return this.observarciones;
+    }
+    
+    public void setObservarciones(String observarciones) {
+        this.observarciones = observarciones;
     }
 
 
