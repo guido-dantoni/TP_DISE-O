@@ -4,6 +4,7 @@ package ventanas;
 import javax.swing.ImageIcon;
 import clases.Ticket;
 import controllers.GestorTicket;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 
@@ -57,6 +58,11 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
                 jButtonDerivarTicketActionPerformed(evt);
             }
         });
+        jButtonDerivarTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonDerivarTicketKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonDerivarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 530, 130, 40));
 
         jLabel1.setBackground(new java.awt.Color(191, 185, 185));
@@ -84,11 +90,17 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
                 jButtonCerrarTicketActionPerformed(evt);
             }
         });
+        jButtonCerrarTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonCerrarTicketKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonCerrarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 130, 40));
 
         jTextFieldTicket.setEditable(false);
         jTextFieldTicket.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTicket.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldTicket.setFocusable(false);
         jTextFieldTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldTicketActionPerformed(evt);
@@ -160,6 +172,18 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         }
          
     }//GEN-LAST:event_jButtonCerrarTicketActionPerformed
+
+    private void jButtonCerrarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCerrarTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonCerrarTicket.doClick();
+        }        
+    }//GEN-LAST:event_jButtonCerrarTicketKeyPressed
+
+    private void jButtonDerivarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonDerivarTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonDerivarTicket.doClick();
+        }       
+    }//GEN-LAST:event_jButtonDerivarTicketKeyPressed
 
     /**
      * @param args the command line arguments

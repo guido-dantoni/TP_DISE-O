@@ -2,6 +2,7 @@
 package Ventanas;
 
 import controllers.Enum_EstadoTicket;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,9 +22,9 @@ public class PantallaInicioTP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        MesaDeAyuda = new javax.swing.JButton();
-        GrupoDeResolucion = new javax.swing.JButton();
-        Gerencia = new javax.swing.JButton();
+        JButtonMesaDeAyuda = new javax.swing.JButton();
+        JButtonGrupoDeResolucion = new javax.swing.JButton();
+        JButtonGerencia = new javax.swing.JButton();
         jLabelLlamita = new javax.swing.JLabel();
         jLabelTitulo2 = new javax.swing.JLabel();
         jLabelTituloSecundario = new javax.swing.JLabel();
@@ -34,38 +35,53 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        MesaDeAyuda.setBackground(new java.awt.Color(0, 51, 204));
-        MesaDeAyuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        MesaDeAyuda.setForeground(new java.awt.Color(191, 185, 185));
-        MesaDeAyuda.setText("MESA DE AYUDA");
-        MesaDeAyuda.addActionListener(new java.awt.event.ActionListener() {
+        JButtonMesaDeAyuda.setBackground(new java.awt.Color(0, 51, 204));
+        JButtonMesaDeAyuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        JButtonMesaDeAyuda.setForeground(new java.awt.Color(191, 185, 185));
+        JButtonMesaDeAyuda.setText("MESA DE AYUDA");
+        JButtonMesaDeAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MesaDeAyudaActionPerformed(evt);
+                JButtonMesaDeAyudaActionPerformed(evt);
             }
         });
-        getContentPane().add(MesaDeAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, 210, 70));
+        JButtonMesaDeAyuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JButtonMesaDeAyudaKeyPressed(evt);
+            }
+        });
+        getContentPane().add(JButtonMesaDeAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, 210, 70));
 
-        GrupoDeResolucion.setBackground(new java.awt.Color(0, 51, 204));
-        GrupoDeResolucion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        GrupoDeResolucion.setForeground(new java.awt.Color(191, 185, 185));
-        GrupoDeResolucion.setText("GRUPO DE RESOLUCIÓN");
-        GrupoDeResolucion.addActionListener(new java.awt.event.ActionListener() {
+        JButtonGrupoDeResolucion.setBackground(new java.awt.Color(0, 51, 204));
+        JButtonGrupoDeResolucion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        JButtonGrupoDeResolucion.setForeground(new java.awt.Color(191, 185, 185));
+        JButtonGrupoDeResolucion.setText("GRUPO DE RESOLUCIÓN");
+        JButtonGrupoDeResolucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GrupoDeResolucionActionPerformed(evt);
+                JButtonGrupoDeResolucionActionPerformed(evt);
             }
         });
-        getContentPane().add(GrupoDeResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 210, 70));
+        JButtonGrupoDeResolucion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JButtonGrupoDeResolucionKeyPressed(evt);
+            }
+        });
+        getContentPane().add(JButtonGrupoDeResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 210, 70));
 
-        Gerencia.setBackground(new java.awt.Color(0, 51, 204));
-        Gerencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        Gerencia.setForeground(new java.awt.Color(191, 185, 185));
-        Gerencia.setText("GERENCIA");
-        Gerencia.addActionListener(new java.awt.event.ActionListener() {
+        JButtonGerencia.setBackground(new java.awt.Color(0, 51, 204));
+        JButtonGerencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        JButtonGerencia.setForeground(new java.awt.Color(191, 185, 185));
+        JButtonGerencia.setText("GERENCIA");
+        JButtonGerencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GerenciaActionPerformed(evt);
+                JButtonGerenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(Gerencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 210, 70));
+        JButtonGerencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JButtonGerenciaKeyPressed(evt);
+            }
+        });
+        getContentPane().add(JButtonGerencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 210, 70));
 
         jLabelLlamita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Llamita2.png"))); // NOI18N
         getContentPane().add(jLabelLlamita, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 360, 420));
@@ -89,23 +105,43 @@ public class PantallaInicioTP extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void MesaDeAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MesaDeAyudaActionPerformed
+    private void JButtonMesaDeAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonMesaDeAyudaActionPerformed
                
        Login log= new Login();
        log.setTipoUsuario("Mesa de Ayuda");
-    }//GEN-LAST:event_MesaDeAyudaActionPerformed
+    }//GEN-LAST:event_JButtonMesaDeAyudaActionPerformed
 
-    private void GrupoDeResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GrupoDeResolucionActionPerformed
+    private void JButtonGrupoDeResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonGrupoDeResolucionActionPerformed
        
         JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
         
-    }//GEN-LAST:event_GrupoDeResolucionActionPerformed
+    }//GEN-LAST:event_JButtonGrupoDeResolucionActionPerformed
 
-    private void GerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerenciaActionPerformed
+    private void JButtonGerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonGerenciaActionPerformed
        
          JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
         
-    }//GEN-LAST:event_GerenciaActionPerformed
+    }//GEN-LAST:event_JButtonGerenciaActionPerformed
+
+    private void JButtonMesaDeAyudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JButtonMesaDeAyudaKeyPressed
+      
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            JButtonMesaDeAyuda.doClick();
+        }
+            
+    }//GEN-LAST:event_JButtonMesaDeAyudaKeyPressed
+
+    private void JButtonGrupoDeResolucionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JButtonGrupoDeResolucionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            JButtonGrupoDeResolucion.doClick();
+        }
+    }//GEN-LAST:event_JButtonGrupoDeResolucionKeyPressed
+
+    private void JButtonGerenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JButtonGerenciaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            JButtonGerencia.doClick();
+        }
+    }//GEN-LAST:event_JButtonGerenciaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -144,10 +180,10 @@ public class PantallaInicioTP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Gerencia;
-    private javax.swing.JButton GrupoDeResolucion;
+    private javax.swing.JButton JButtonGerencia;
+    private javax.swing.JButton JButtonGrupoDeResolucion;
+    private javax.swing.JButton JButtonMesaDeAyuda;
     private javax.swing.JLabel LabelFondoPantalla;
-    private javax.swing.JButton MesaDeAyuda;
     private javax.swing.JLabel jLabelLlamita;
     private javax.swing.JLabel jLabelTitulo2;
     private javax.swing.JLabel jLabelTituloSecundario;

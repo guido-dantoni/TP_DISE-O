@@ -77,6 +77,11 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
                 jButtonRegistrarTicketActionPerformed(evt);
             }
         });
+        jButtonRegistrarTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonRegistrarTicketKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonRegistrarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 180, 50));
 
         jButtonConsultarTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -85,6 +90,11 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
         jButtonConsultarTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsultarTicketActionPerformed(evt);
+            }
+        });
+        jButtonConsultarTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonConsultarTicketKeyPressed(evt);
             }
         });
         getContentPane().add(jButtonConsultarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 180, 50));
@@ -100,6 +110,11 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
+            }
+        });
+        jButtonSalir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonSalirKeyPressed(evt);
             }
         });
         getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, 180, 50));
@@ -134,6 +149,24 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
     private void jButtonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalirMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonSalirMouseClicked
+
+    private void jButtonRegistrarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonRegistrarTicket.doClick();
+        }
+    }//GEN-LAST:event_jButtonRegistrarTicketKeyPressed
+
+    private void jButtonConsultarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConsultarTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonConsultarTicket.doClick();
+        }
+    }//GEN-LAST:event_jButtonConsultarTicketKeyPressed
+
+    private void jButtonSalirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonSalirKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonSalir.doClick();
+        }        
+    }//GEN-LAST:event_jButtonSalirKeyPressed
 
   
     public static void main(String args[]) {

@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.WindowConstants;
+import org.hibernate.mapping.Collection;
 import ventanas.Caso_de_uso_01_Observaciones;
 
 /**
@@ -35,11 +36,12 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         cerrar();
-       
+        
         jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
         List<String> clasificaciones = new ArrayList<String>();
         clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
+        
         
         DefaultComboBoxModel combo= new DefaultComboBoxModel();
         
@@ -61,13 +63,13 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldTicketDefecto = new javax.swing.JTextField();
         jTextFieldLegajo = new javax.swing.JTextField();
         jTextFieldNombreApellido = new javax.swing.JTextField();
+        jScrollPaneDescrip = new javax.swing.JScrollPane();
+        jTextAreaDescripcion = new javax.swing.JTextArea();
         jComboBoxClasificacion = new javax.swing.JComboBox<>();
         jTextFieldFechaApertura = new javax.swing.JTextField();
         jTextFieldHora = new javax.swing.JTextField();
         jButtonAceptar = new javax.swing.JButton();
-        jBottonCancelar = new javax.swing.JButton();
-        jScrollPaneDescrip = new javax.swing.JScrollPane();
-        jTextAreaDescripcion = new javax.swing.JTextArea();
+        jButtonCancelar = new javax.swing.JButton();
         jLabelNroTicket = new javax.swing.JLabel();
         jLabelLegajo = new javax.swing.JLabel();
         jLabelNombreApellido = new javax.swing.JLabel();
@@ -86,6 +88,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldTicketDefecto.setEditable(false);
         jTextFieldTicketDefecto.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTicketDefecto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldTicketDefecto.setFocusable(false);
         jTextFieldTicketDefecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldTicketDefectoActionPerformed(evt);
@@ -95,6 +98,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldLegajo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldLegajoFocusGained(evt);
+            }
+        });
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyTyped(evt);
@@ -105,12 +113,29 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldNombreApellido.setEditable(false);
         jTextFieldNombreApellido.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNombreApellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldNombreApellido.setFocusable(false);
         jTextFieldNombreApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNombreApellidoActionPerformed(evt);
             }
         });
         getContentPane().add(jTextFieldNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 460, 30));
+
+        jScrollPaneDescrip.setMaximumSize(new java.awt.Dimension(60, 10));
+
+        jTextAreaDescripcion.setBackground(new java.awt.Color(245, 245, 245));
+        jTextAreaDescripcion.setColumns(20);
+        jTextAreaDescripcion.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
+        jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.setMaximumSize(new java.awt.Dimension(10, 61));
+        jTextAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaDescripcionKeyTyped(evt);
+            }
+        });
+        jScrollPaneDescrip.setViewportView(jTextAreaDescripcion);
+
+        getContentPane().add(jScrollPaneDescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 630, 150));
 
         jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -125,11 +150,13 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldFechaApertura.setEditable(false);
         jTextFieldFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldFechaApertura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldFechaApertura.setFocusable(false);
         getContentPane().add(jTextFieldFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 220, 30));
 
         jTextFieldHora.setEditable(false);
         jTextFieldHora.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldHora.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldHora.setFocusable(false);
         jTextFieldHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldHoraActionPerformed(evt);
@@ -150,33 +177,27 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                 jButtonAceptarActionPerformed(evt);
             }
         });
+        jButtonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAceptarKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 560, 120, 40));
 
-        jBottonCancelar.setBackground(new java.awt.Color(191, 185, 185));
-        jBottonCancelar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jBottonCancelar.setText("Cancelar");
-        jBottonCancelar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
+        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBottonCancelarActionPerformed(evt);
+                jButtonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBottonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 40));
-
-        jScrollPaneDescrip.setMaximumSize(new java.awt.Dimension(60, 10));
-
-        jTextAreaDescripcion.setBackground(new java.awt.Color(245, 245, 245));
-        jTextAreaDescripcion.setColumns(20);
-        jTextAreaDescripcion.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
-        jTextAreaDescripcion.setRows(5);
-        jTextAreaDescripcion.setMaximumSize(new java.awt.Dimension(10, 61));
-        jTextAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextAreaDescripcionKeyTyped(evt);
+        jButtonCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonCancelarKeyPressed(evt);
             }
         });
-        jScrollPaneDescrip.setViewportView(jTextAreaDescripcion);
-
-        getContentPane().add(jScrollPaneDescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 630, 150));
+        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 560, 120, 40));
 
         jLabelNroTicket.setBackground(new java.awt.Color(191, 185, 185));
         jLabelNroTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -234,23 +255,34 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxClasificacionActionPerformed
 
-    private void jBottonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBottonCancelarActionPerformed
-        // TODO add your handling code here:
-        Caso_de_uso_01_ConfirmacionCancelacion a = new Caso_de_uso_01_ConfirmacionCancelacion(this);
-        
-        a.setVisible(true);
-    }//GEN-LAST:event_jBottonCancelarActionPerformed
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+      
+        //Caso_de_uso_01_ConfirmacionCancelacion a = new Caso_de_uso_01_ConfirmacionCancelacion(this);
+        //a.setVisible(true);
+       
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el registro del ticket?", "Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+       
+       if(opcion==JOptionPane.YES_OPTION){
+           
+            PantallaMesaDeAyuda a = new PantallaMesaDeAyuda();
+         
+            this.setVisible(false);
+            a.setVisible(true);
+                
+       }
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextFieldNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreApellidoActionPerformed
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_jTextFieldNombreApellidoActionPerformed
 
     private void jTextFieldHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextFieldHoraActionPerformed
 
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
-            
+       
+       jTextFieldNombreApellido.setText("");
        char legajo=evt.getKeyChar();
        Integer numeroLegajo;
        
@@ -260,20 +292,17 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        }
        
        //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado
-       if((legajo==KeyEvent.VK_ENTER || legajo==KeyEvent.VK_TAB)){
-        
-                    
-                
-                if(jTextFieldLegajo.getText().length()>0){
-                 
-                       jTextAreaDescripcion.requestFocus();
-                       numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+       if(legajo == KeyEvent.VK_ENTER){
+         
+                      
+                    jTextAreaDescripcion.requestFocus();
+                    numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
                      
-                       String nombreApellido;
+                    String nombreApellido;
                      
                      
-                     GestorEmpleado gestorEmpleado=new GestorEmpleado();
-                     empleado = gestorEmpleado.obtenerEmpleado(numeroLegajo);
+                    GestorEmpleado gestorEmpleado=new GestorEmpleado();
+                    empleado = gestorEmpleado.obtenerEmpleado(numeroLegajo);
                      
                      if(empleado==null){
                          
@@ -288,16 +317,24 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                          
                      }
                      
-                }
+            
        }    
     }//GEN-LAST:event_jTextFieldLegajoKeyTyped
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
 
+     /*   if(empleado==null){
+            jLabelMsjErrorNombre.setText("*Legajo inexistente");
+        }
+       */     
           //hasta 500 caracteres en el textArea
             if(jTextAreaDescripcion.getText().length()>=500){
                 evt.consume();
             }
+            
+            if(evt.getKeyCode() == KeyEvent.VK_TAB){
+                jComboBoxClasificacion.requestFocus();
+            }  
     }//GEN-LAST:event_jTextAreaDescripcionKeyTyped
 
     private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
@@ -361,6 +398,24 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTicketDefectoActionPerformed
 
+    private void jButtonAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAceptarKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonAceptar.doClick();
+        }  
+        
+    }//GEN-LAST:event_jButtonAceptarKeyPressed
+
+    private void jButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCancelarKeyPressed
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonCancelar.doClick();
+        }           
+    }//GEN-LAST:event_jButtonCancelarKeyPressed
+
+    private void jTextFieldLegajoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLegajoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLegajoFocusGained
+
     
     /**
      * @param args the command line arguments
@@ -401,8 +456,8 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBottonCancelar;
     private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox<String> jComboBoxClasificacion;
     private javax.swing.JLabel jLabelClasificacion;
     private javax.swing.JLabel jLabelDescripcion;

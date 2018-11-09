@@ -67,6 +67,11 @@ public class Login extends javax.swing.JFrame {
                 jButtonSesionActionPerformed(evt);
             }
         });
+        jButtonSesion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonSesionKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 40));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo4.jpg"))); // NOI18N
@@ -129,6 +134,12 @@ public class Login extends javax.swing.JFrame {
         
             
     }//GEN-LAST:event_jTextFieldLegajoKeyTyped
+
+    private void jButtonSesionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonSesionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonSesion.doClick();
+        }
+    }//GEN-LAST:event_jButtonSesionKeyPressed
 
     /**
      * @param args the command line arguments
