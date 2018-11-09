@@ -20,7 +20,7 @@ public class GestorFecha {
         int dia, mes, anio;
 
         dia = c.get(Calendar.DATE);
-        mes = c.get(Calendar.MONTH)+1;//porque arranca con mes enero=0
+        mes = c.get(Calendar.MONTH);//+1;//porque arranca con mes enero=0
         anio = c.get(Calendar.YEAR);
         
                 

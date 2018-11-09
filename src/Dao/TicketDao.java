@@ -32,7 +32,7 @@ public class TicketDao {
          sesionFactory = NewHibernateUtil.getSessionFactory();
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
-         
+         // ver tema de cascade para hacer el insert solo con ticket
          //insert into Ticket ticket
          session.save(ticket);
          //insert into historialTicket historialTicket         
@@ -159,7 +159,29 @@ public class TicketDao {
         }
        
       }
+
+    public void updateTicket(Ticket ticketParaCerrar) {
+ 
+                
+        try {    
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+        
+         //update de historialTicket
+         session.merge(ticketParaCerrar);
+                         
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+        System.out.println(e);
+        }
+        
+     }   
+        
+}
        
     
-}
+
    

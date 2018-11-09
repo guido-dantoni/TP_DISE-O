@@ -345,7 +345,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
        
         
-        Clasificacion clasificacion;
+        //Clasificacion clasificacion;
         Date d = new Date();
         Calendar c = new GregorianCalendar(); 
         c.setTime(d);

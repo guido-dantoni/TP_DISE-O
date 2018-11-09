@@ -146,6 +146,8 @@ public class GestorTicket {
                 historialTicket.setHorafin(horaCierre);
                 historialTicket.setObservarciones(observacion);
                 
+                ticketParaCerrar.setEstadoactual(Enum_EstadoTicket.CERRADO.toString());
+                ticketDao.updateTicket(ticketParaCerrar);
                 ticketDao.updateHistorialTicket(historialTicket);
                 
                 //Aca creo un nuevo historialTicket para setearlo como el historial del ticket cerrado
@@ -163,6 +165,7 @@ public class GestorTicket {
                 historialTicket2.setObservarciones(observacion);
                 historialTicket2.setEstado(Enum_EstadoTicket.CERRADO.toString());
                 historialTicket2.setUsuario(user);
+                
                 
                 ticketDao.insertHistorialTicket(historialTicket2);
                 
