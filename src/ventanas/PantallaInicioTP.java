@@ -2,7 +2,11 @@
 package Ventanas;
 
 import controllers.Enum_EstadoTicket;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +19,8 @@ public class PantallaInicioTP extends javax.swing.JFrame {
     public PantallaInicioTP() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        
     }
 
 
@@ -39,6 +45,14 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         JButtonMesaDeAyuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         JButtonMesaDeAyuda.setForeground(new java.awt.Color(191, 185, 185));
         JButtonMesaDeAyuda.setText("MESA DE AYUDA");
+        JButtonMesaDeAyuda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                JButtonMesaDeAyudaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JButtonMesaDeAyudaFocusLost(evt);
+            }
+        });
         JButtonMesaDeAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonMesaDeAyudaActionPerformed(evt);
@@ -55,6 +69,14 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         JButtonGrupoDeResolucion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         JButtonGrupoDeResolucion.setForeground(new java.awt.Color(191, 185, 185));
         JButtonGrupoDeResolucion.setText("GRUPO DE RESOLUCIÓN");
+        JButtonGrupoDeResolucion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                JButtonGrupoDeResolucionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JButtonGrupoDeResolucionFocusLost(evt);
+            }
+        });
         JButtonGrupoDeResolucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonGrupoDeResolucionActionPerformed(evt);
@@ -71,6 +93,14 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         JButtonGerencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         JButtonGerencia.setForeground(new java.awt.Color(191, 185, 185));
         JButtonGerencia.setText("GERENCIA");
+        JButtonGerencia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                JButtonGerenciaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JButtonGerenciaFocusLost(evt);
+            }
+        });
         JButtonGerencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JButtonGerenciaActionPerformed(evt);
@@ -143,6 +173,36 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JButtonGerenciaKeyPressed
 
+    private void JButtonMesaDeAyudaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JButtonMesaDeAyudaFocusGained
+       JButtonMesaDeAyuda.setBackground(new java.awt.Color(0,153,204));
+       JButtonMesaDeAyuda.setForeground(Color.black);
+    }//GEN-LAST:event_JButtonMesaDeAyudaFocusGained
+
+    private void JButtonMesaDeAyudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JButtonMesaDeAyudaFocusLost
+        JButtonMesaDeAyuda.setBackground(new java.awt.Color(0,51,204));
+        JButtonMesaDeAyuda.setForeground(new java.awt.Color(191, 185, 185));
+    }//GEN-LAST:event_JButtonMesaDeAyudaFocusLost
+
+    private void JButtonGrupoDeResolucionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JButtonGrupoDeResolucionFocusGained
+                 JButtonGrupoDeResolucion.setBackground(new java.awt.Color(0,153,204));
+           JButtonGrupoDeResolucion.setForeground(Color.black);
+    }//GEN-LAST:event_JButtonGrupoDeResolucionFocusGained
+
+    private void JButtonGrupoDeResolucionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JButtonGrupoDeResolucionFocusLost
+                JButtonGrupoDeResolucion.setBackground(new java.awt.Color(0,51,204));
+                JButtonGrupoDeResolucion.setForeground(new java.awt.Color(191, 185, 185));
+    }//GEN-LAST:event_JButtonGrupoDeResolucionFocusLost
+
+    private void JButtonGerenciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JButtonGerenciaFocusGained
+          JButtonGerencia.setBackground(new java.awt.Color(0,153,204));
+          JButtonGerencia.setForeground(Color.black);
+    }//GEN-LAST:event_JButtonGerenciaFocusGained
+
+    private void JButtonGerenciaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JButtonGerenciaFocusLost
+                JButtonGerencia.setBackground(new java.awt.Color(0,51,204));
+                JButtonGerencia.setForeground(new java.awt.Color(191, 185, 185));       
+    }//GEN-LAST:event_JButtonGerenciaFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -174,7 +234,7 @@ public class PantallaInicioTP extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PantallaInicioTP().setVisible(true);
-                
+                               
             }
         });
     }

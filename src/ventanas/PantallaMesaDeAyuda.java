@@ -5,6 +5,7 @@ import controllers.GestorSesion;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -18,6 +19,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
     public PantallaMesaDeAyuda() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         cerrar();
     }
     
@@ -60,6 +62,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mesa de ayuda");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

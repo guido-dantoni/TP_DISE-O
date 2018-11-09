@@ -49,33 +49,12 @@ public class GestorTicket {
        
         Ticket ticket = new Ticket(); 
         String estado;
-        //Todo esto es para setear la fecha y hora de apertura
-       /* Date fechaApertura = new Date();
-        Date horaApertura = new Date();
-       
-        Calendar c = new GregorianCalendar(); 
-        //c.setTime(fechaApertura);
-
-        int dia, mes, anio, hora, minutos, segundos;
-
-        dia = c.get(Calendar.DATE);
-        mes = c.get((Calendar.MONTH)+1);
-        anio = c.get(Calendar.YEAR);
-        hora = c.get(Calendar.HOUR_OF_DAY);
-        minutos = c.get(Calendar.MINUTE);
-        segundos = c.get(Calendar.SECOND);
-                
-        fechaApertura.setYear(anio);
-        fechaApertura.setMonth(mes);
-        fechaApertura.setDate(dia);
-        horaApertura.setHours(hora);
-        horaApertura.setMinutes(minutos);
-        horaApertura.setSeconds(segundos);
-        */
+        
         GestorFecha gestorFecha = new GestorFecha();
         Date fechaApertura = new Date();
         Date horaApertura = new Date();
         
+        //recupero la fecha y la hora
         fechaApertura = gestorFecha.obtenerFecha();
         horaApertura = gestorFecha.obtenerHora();
         
@@ -91,7 +70,7 @@ public class GestorTicket {
         ticket.setClasificacion(clasificacion);
         ticket.setDescripcion(descripcion);
         
-        
+        //seteo los valores de historialClasificacion
         Historialticket historialTicket= new Historialticket();
         
         historialTicket.setFechainicio(fechaApertura);
@@ -152,25 +131,7 @@ public class GestorTicket {
          
         fechaCierre = gestorFecha.obtenerFecha();
         horaCierre = gestorFecha.obtenerHora();
-        /*
-        Calendar c = new GregorianCalendar(); 
-        
-        int dia, mes, anio, hora, minutos, segundos;
-
-        dia = c.get(Calendar.DATE);
-        mes = c.get((Calendar.MONTH)+1);
-        anio = c.get(Calendar.YEAR);
-        hora = c.get(Calendar.HOUR_OF_DAY);
-        minutos = c.get(Calendar.MINUTE);
-        segundos = c.get(Calendar.SECOND);
-                
-        fechaCierre.setYear(anio);
-        fechaCierre.setMonth(mes);
-        fechaCierre.setDate(dia);
-        horaCierre.setHours(hora);
-        horaCierre.setMinutes(minutos);
-        horaCierre.setSeconds(segundos);
-        */
+       
         //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
         //Ver maquina de estadoTicket
         if( ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||

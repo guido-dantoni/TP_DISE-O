@@ -3,6 +3,7 @@ package Ventanas;
 
 import controllers.GestorSesion;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null); //para que me muestre en el centro de la pantalla los menues
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
     }
 
 
@@ -32,6 +34,7 @@ public class Login extends javax.swing.JFrame {
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

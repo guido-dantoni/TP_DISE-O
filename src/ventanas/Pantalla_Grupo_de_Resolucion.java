@@ -5,6 +5,7 @@
  */
 package ventanas;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
 
 /**
@@ -48,6 +49,14 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton1.setText("Consultar intervenciones asignadas");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 280, 60));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -77,6 +86,16 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setBackground(Color.RED);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setBackground(Color.yellow);
+    }//GEN-LAST:event_jButton1MouseEntered
 
     /**
      * @param args the command line arguments
