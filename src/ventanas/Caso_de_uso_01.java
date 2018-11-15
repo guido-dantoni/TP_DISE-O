@@ -8,6 +8,7 @@ import controllers.GestorClasificacion;
 import controllers.GestorEmpleado;
 import controllers.GestorSesion;
 import controllers.GestorTicket;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -334,6 +335,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        */     
           //hasta 500 caracteres en el textArea
             if(jTextAreaDescripcion.getText().length()>=500){
+                Toolkit.getDefaultToolkit().beep(); //ruidito beep
                 evt.consume();
             }
             

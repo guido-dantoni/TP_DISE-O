@@ -144,7 +144,7 @@ public class GestorTicket {
              
                 historialTicket.setFechafin(fechaCierre);
                 historialTicket.setHorafin(horaCierre);
-                historialTicket.setObservarciones(observacion);
+                historialTicket.setObservaciones(observacion);
                 
                 ticketParaCerrar.setEstadoactual(Enum_EstadoTicket.CERRADO.toString());
                 ticketDao.updateTicket(ticketParaCerrar);
@@ -162,7 +162,7 @@ public class GestorTicket {
                 historialTicket2.setFechainicio(fechaCierre);
                 historialTicket2.setHorafin(horaCierre);
                 historialTicket2.setFechafin(fechaCierre);
-                historialTicket2.setObservarciones(observacion);
+                historialTicket2.setObservaciones(observacion);
                 historialTicket2.setEstado(Enum_EstadoTicket.CERRADO.toString());
                 historialTicket2.setUsuario(user);
                 

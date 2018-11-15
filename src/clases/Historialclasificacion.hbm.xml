@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/11/2018 10:55:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/11/2018 14:32:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="clases.Historialclasificacion" table="historialclasificacion" schema="public" optimistic-lock="version">
         <id name="idHistorialclasificacion" type="int">
             <column name="id_historialclasificacion" />
-            <generator class="increment" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="clasificacion" class="clases.Clasificacion" fetch="select">
             <column name="codigo_clasificacion" not-null="true" />

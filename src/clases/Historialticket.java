@@ -1,5 +1,5 @@
 package clases;
-// Generated 08/11/2018 10:55:19 by Hibernate Tools 4.3.1
+// Generated 14/11/2018 14:32:51 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,7 +18,7 @@ public class Historialticket  implements java.io.Serializable {
      private Date horainicio;
      private Date horafin;
      private String estado;
-     private String observarciones;
+     private String observaciones;
 
     public Historialticket() {
     }
@@ -32,7 +32,7 @@ public class Historialticket  implements java.io.Serializable {
         this.horainicio = horainicio;
         this.estado = estado;
     }
-    public Historialticket(int idHistorialTicket, Ticket ticket, Usuario usuario, Date fechainicio, Date fechafin, Date horainicio, Date horafin, String estado, String observarciones) {
+    public Historialticket(int idHistorialTicket, Ticket ticket, Usuario usuario, Date fechainicio, Date fechafin, Date horainicio, Date horafin, String estado, String observaciones) {
        this.idHistorialTicket = idHistorialTicket;
        this.ticket = ticket;
        this.usuario = usuario;
@@ -41,7 +41,7 @@ public class Historialticket  implements java.io.Serializable {
        this.horainicio = horainicio;
        this.horafin = horafin;
        this.estado = estado;
-       this.observarciones = observarciones;
+       this.observaciones = observaciones;
     }
    
     public int getIdHistorialTicket() {
@@ -100,12 +100,12 @@ public class Historialticket  implements java.io.Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    public String getObservarciones() {
-        return this.observarciones;
+    public String getObservaciones() {
+        return this.observaciones;
     }
     
-    public void setObservarciones(String observarciones) {
-        this.observarciones = observarciones;
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
 
