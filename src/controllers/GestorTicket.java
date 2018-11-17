@@ -87,8 +87,8 @@ public class GestorTicket {
         historialClasificacion.setClasificacion(clasificacion);
         historialClasificacion.setTicket(ticket);
         historialClasificacion.setUsuario(this.userLogueado);
-        historialClasificacion.setFechafin(fechaApertura);
-        historialClasificacion.setHorafin(horaApertura);
+        //historialClasificacion.setFechafin(fechaApertura);
+        //historialClasificacion.setHorafin(horaApertura);
         
         
         HashSet<Historialticket> hashHistorialTicket = new HashSet<>();
@@ -146,9 +146,18 @@ public class GestorTicket {
                 historialTicket.setHorafin(horaCierre);
                 historialTicket.setObservaciones(observacion);
                 
+                //Actualizamos los valores del historial de clasificacion
+                Historialclasificacion historialClasificacion = new Historialclasificacion();
+                
+                historialClasificacion = ticketDao.getHistorialClasificacion(ticketParaCerrar, ticketParaCerrar.getClasificacion().getCodigo());
+                
+                historialClasificacion.setFechafin(fechaCierre);
+                historialClasificacion.setHorafin(horaCierre);
+                
                 ticketParaCerrar.setEstadoactual(Enum_EstadoTicket.CERRADO.toString());
                 ticketDao.updateTicket(ticketParaCerrar);
                 ticketDao.updateHistorialTicket(historialTicket);
+                ticketDao.updateHistorialClasificacion(historialClasificacion);
                 
                 //Aca creo un nuevo historialTicket para setearlo como el historial del ticket cerrado
                 Historialticket historialTicket2 = new Historialticket();

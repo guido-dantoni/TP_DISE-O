@@ -53,22 +53,22 @@ public class TicketDao {
      
         Ticket ultimoTicket = new Ticket();
         
-   try {    
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+        try {    
+             sesionFactory = NewHibernateUtil.getSessionFactory();
+             session = sesionFactory.openSession();
+             tx = session.beginTransaction();
          
-        Criteria c = session.createCriteria(Ticket.class);
-        c.addOrder(Order.desc("id"));
-        c.setMaxResults(1);
-        ultimoTicket = (Ticket) c.uniqueResult();
+            Criteria c = session.createCriteria(Ticket.class);
+            c.addOrder(Order.desc("id"));
+            c.setMaxResults(1);
+            ultimoTicket = (Ticket) c.uniqueResult();
                
-         tx.commit();
-         session.close();
+            tx.commit();
+            session.close();
 
-    } catch (HibernateException e) {
-        System.out.println(e);
-        }
+        } catch (HibernateException e) {
+            System.out.println(e);
+            }
        
         return ultimoTicket;
     }
@@ -95,7 +95,7 @@ public class TicketDao {
         return ticket;  
     }
     
-        public Historialticket getHistorialTicket(Ticket ticket, String estado) {
+    public Historialticket getHistorialTicket(Ticket ticket, String estado) {
         
         Historialticket historialticket = new Historialticket();   
         
@@ -117,8 +117,9 @@ public class TicketDao {
     } catch (HibernateException e) {
         System.out.println(e);
         }
-       
-        return historialticket;  
+          
+        return historialticket; 
+        
     }
 
     public void updateHistorialTicket(Historialticket historialTicket) {
@@ -179,6 +180,50 @@ public class TicketDao {
         }
         
      }   
+
+    public Historialclasificacion getHistorialClasificacion(Ticket ticket, int codigo) {
+            
+                Historialclasificacion historialClasificacion = new Historialclasificacion();   
+        
+       try {    
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+         
+             //select * from historialTicket ht where (ht.nroticket=nroTicket AND  ht.horaFin='null' AND ht.fechaFin='null')
+            Criteria cr = session.createCriteria(Historialclasificacion.class);
+            cr.add(Restrictions.eq("ticket", ticket)).add(Restrictions.eq("codigo_clasificacion", codigo))
+            .add(Restrictions.isNull("fechafin")).add(Restrictions.isNull("horafin"));
+       
+            historialClasificacion = (Historialclasificacion) cr.uniqueResult();
+                          
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+            System.out.println(e);
+        }
+          
+        return historialClasificacion; 
+    }
+
+    public void updateHistorialClasificacion(Historialclasificacion historialClasificacion) {
+                
+        try {    
+                sesionFactory = NewHibernateUtil.getSessionFactory();
+                session = sesionFactory.openSession();
+                tx = session.beginTransaction();
+        
+                    //update de historialClasificacion
+                session.merge(historialClasificacion);
+                         
+                tx.commit();
+                session.close();
+
+        } catch (HibernateException e) {
+            System.out.println(e);
+            }
+    }
         
 }
        
