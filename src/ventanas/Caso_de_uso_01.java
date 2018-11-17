@@ -6,6 +6,7 @@ import clases.Empleado;
 import clases.Ticket;
 import controllers.GestorClasificacion;
 import controllers.GestorEmpleado;
+import controllers.GestorFecha;
 import controllers.GestorSesion;
 import controllers.GestorTicket;
 import java.awt.Toolkit;
@@ -90,25 +91,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldTicketDefecto.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTicketDefecto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldTicketDefecto.setFocusable(false);
-        jTextFieldTicketDefecto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTicketDefectoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldTicketDefecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 160, 30));
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextFieldLegajo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldLegajoFocusGained(evt);
-            }
-        });
-        jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLegajoActionPerformed(evt);
-            }
-        });
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyTyped(evt);
@@ -134,6 +120,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextAreaDescripcion.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         jTextAreaDescripcion.setRows(5);
         jTextAreaDescripcion.setMaximumSize(new java.awt.Dimension(10, 61));
+        jTextAreaDescripcion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextAreaDescripcionFocusGained(evt);
+            }
+        });
         jTextAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextAreaDescripcionKeyTyped(evt);
@@ -300,30 +291,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado
        if(legajo == KeyEvent.VK_ENTER){
          
-                      
-                    jTextAreaDescripcion.requestFocus();
-                    numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
-                     
-                    String nombreApellido;
-                     
-                     
-                    GestorEmpleado gestorEmpleado=new GestorEmpleado();
-                    empleado = gestorEmpleado.obtenerEmpleado(numeroLegajo);
-                     
-                     if(empleado==null){
-                         
-                         jLabelMsjErrorNombre.setText("*Legajo inexistente");
-                         
-                                                  
-                     }else{
-                         nombreApellido= gestorEmpleado.obtenerNombre(numeroLegajo);
-                         jTextFieldNombreApellido.setText(nombreApellido);
-                         jLabelMsjErrorNombre.setText("");
-                         
-                         
-                     }
-                     
-            
+                jTextAreaDescripcion.requestFocus();                                     
        }    
     }//GEN-LAST:event_jTextFieldLegajoKeyTyped
 
@@ -347,20 +315,15 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
        
         
-        //Clasificacion clasificacion;
-        Date d = new Date();
-        Calendar c = new GregorianCalendar(); 
-        c.setTime(d);
+        GestorFecha gestorFecha = new GestorFecha();
         
-        String dia, mes, anio, hora, minutos, segundos, nombreClasificacion;
-
-        dia = Integer.toString(c.get(Calendar.DATE));
-        mes = Integer.toString(c.get(Calendar.MONTH)+1);
-        anio = Integer.toString(c.get(Calendar.YEAR));
-        hora = Integer.toString(c.get(Calendar.HOUR_OF_DAY));
-        minutos = Integer.toString(c.get(Calendar.MINUTE));
-        segundos = Integer.toString(c.get(Calendar.SECOND));
+        Date fecha = new Date();
+        Date hora = new Date();
         
+        fecha = gestorFecha.obtenerFecha();
+        hora = gestorFecha.obtenerHora();        
+        
+        String nombreClasificacion;       
              
         if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
         
@@ -369,8 +332,8 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El legajo es inexistente");
         }else{
         
-        jTextFieldFechaApertura.setText(dia + "/" + mes + "/" + anio);
-        jTextFieldHora.setText(hora + ":" + minutos + ":" + segundos);
+        jTextFieldFechaApertura.setText(fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getYear());
+        jTextFieldHora.setText(hora.getHours() + ":" + hora.getMinutes() + ":" + hora.getSeconds());
         
            
         nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
@@ -397,14 +360,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonAceptarMouseClicked
 
-    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-       
-    }//GEN-LAST:event_jButtonAceptarActionPerformed
-
-    private void jTextFieldTicketDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketDefectoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTicketDefectoActionPerformed
-
     private void jButtonAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAceptarKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             jButtonAceptar.doClick();
@@ -419,13 +374,36 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         }           
     }//GEN-LAST:event_jButtonCancelarKeyPressed
 
-    private void jTextFieldLegajoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLegajoFocusGained
+    private void jTextAreaDescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLegajoFocusGained
+        Integer numeroLegajo;
+        
+        numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+                     
+                    String nombreApellido;
+                     
+                     
+                    GestorEmpleado gestorEmpleado=new GestorEmpleado();
+                    empleado = gestorEmpleado.obtenerEmpleado(numeroLegajo);
+                     
+                     if(empleado==null){
+                         
+                         jLabelMsjErrorNombre.setText("*Legajo inexistente");
+                         
+                                                  
+                     }else{
+                         nombreApellido= gestorEmpleado.obtenerNombre(numeroLegajo);
+                         jTextFieldNombreApellido.setText(nombreApellido);
+                         jLabelMsjErrorNombre.setText("");
+                         
+                         
+                     }
+        
+    }//GEN-LAST:event_jTextAreaDescripcionFocusGained
 
-    private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLegajoActionPerformed
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     
     /**

@@ -6,7 +6,7 @@
     <class name="clases.Historialintervencion" table="historialintervencion" schema="public" optimistic-lock="version">
         <id name="idHistorialIntervencion" type="int">
             <column name="id_historial_intervencion" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="intervencion" class="clases.Intervencion" fetch="select">
             <column name="idintervencion" not-null="true" />

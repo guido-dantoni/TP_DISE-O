@@ -6,7 +6,7 @@
     <class name="clases.Historialticket" table="historialticket" schema="public" optimistic-lock="version">
         <id name="idHistorialTicket" type="int">
             <column name="id_historial_ticket" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="ticket" class="clases.Ticket" fetch="select">
             <column name="nroticket" not-null="true" />

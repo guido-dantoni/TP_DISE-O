@@ -6,7 +6,7 @@
     <class name="clases.Intervencion" table="intervencion" schema="public" optimistic-lock="version">
         <id name="idIntervencion" type="int">
             <column name="id_intervencion" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="gruporesolucion" class="clases.Gruporesolucion" fetch="select">
             <column name="codigogruporesolucion" not-null="true" />

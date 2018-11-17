@@ -2,6 +2,7 @@
 package Ventanas;
 
 import controllers.GestorSesion;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -75,6 +76,14 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
         jButtonRegistrarTicket.setBackground(new java.awt.Color(191, 185, 185));
         jButtonRegistrarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonRegistrarTicket.setText("Registrar Ticket");
+        jButtonRegistrarTicket.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonRegistrarTicketFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonRegistrarTicketFocusLost(evt);
+            }
+        });
         jButtonRegistrarTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarTicketActionPerformed(evt);
@@ -90,6 +99,14 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
         jButtonConsultarTicket.setBackground(new java.awt.Color(191, 185, 185));
         jButtonConsultarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConsultarTicket.setText("Consultar Ticket");
+        jButtonConsultarTicket.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonConsultarTicketFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonConsultarTicketFocusLost(evt);
+            }
+        });
         jButtonConsultarTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsultarTicketActionPerformed(evt);
@@ -105,6 +122,14 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
         jButtonSalir.setBackground(new java.awt.Color(191, 185, 185));
         jButtonSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSalir.setText("Salir");
+        jButtonSalir.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonSalirFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonSalirFocusLost(evt);
+            }
+        });
         jButtonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonSalirMouseClicked(evt);
@@ -170,6 +195,36 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
             jButtonSalir.doClick();
         }        
     }//GEN-LAST:event_jButtonSalirKeyPressed
+
+    private void jButtonRegistrarTicketFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketFocusGained
+                   jButtonRegistrarTicket.setBackground(new java.awt.Color(153,153,255));
+                   jButtonRegistrarTicket.setForeground(Color.blue);
+    }//GEN-LAST:event_jButtonRegistrarTicketFocusGained
+
+    private void jButtonRegistrarTicketFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketFocusLost
+                   jButtonRegistrarTicket.setBackground(new java.awt.Color(191,185,185));
+                   jButtonRegistrarTicket.setForeground(Color.black);
+    }//GEN-LAST:event_jButtonRegistrarTicketFocusLost
+
+    private void jButtonConsultarTicketFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonConsultarTicketFocusGained
+                   jButtonConsultarTicket.setBackground(new java.awt.Color(153,153,255));
+                   jButtonConsultarTicket.setForeground(Color.blue);        
+    }//GEN-LAST:event_jButtonConsultarTicketFocusGained
+
+    private void jButtonSalirFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonSalirFocusGained
+                   jButtonSalir.setBackground(new java.awt.Color(153,153,255));
+                   jButtonSalir.setForeground(Color.blue);      
+    }//GEN-LAST:event_jButtonSalirFocusGained
+
+    private void jButtonConsultarTicketFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonConsultarTicketFocusLost
+                   jButtonConsultarTicket.setBackground(new java.awt.Color(191,185,185));
+                   jButtonConsultarTicket.setForeground(Color.black);        
+    }//GEN-LAST:event_jButtonConsultarTicketFocusLost
+
+    private void jButtonSalirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonSalirFocusLost
+                   jButtonSalir.setBackground(new java.awt.Color(191,185,185));
+                   jButtonSalir.setForeground(Color.black);
+    }//GEN-LAST:event_jButtonSalirFocusLost
 
   
     public static void main(String args[]) {

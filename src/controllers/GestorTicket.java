@@ -35,9 +35,10 @@ public class GestorTicket {
     
     public void RegistrarTicket(Integer numeroLegajo, String nombreClasificacion, String descripcion) {
         
-             
+        // obtengo la clasificacion cuyo nombre es el que paso como parametro que es el del combobox     
        GestorClasificacion gestorClasificacion = new GestorClasificacion();
        clasificacion = gestorClasificacion.obtenerClasificacion(nombreClasificacion);
+       
        
        GestorSesion gestorSesion = new GestorSesion();
        this.userLogueado = gestorSesion.getUsuarioLogueado();
@@ -148,6 +149,9 @@ public class GestorTicket {
                 
                 //Actualizamos los valores del historial de clasificacion
                 Historialclasificacion historialClasificacion = new Historialclasificacion();
+                
+                
+                //System.out.println(ticketParaCerrar.getClasificacion().getCodigo());
                 
                 historialClasificacion = ticketDao.getHistorialClasificacion(ticketParaCerrar, ticketParaCerrar.getClasificacion().getCodigo());
                 

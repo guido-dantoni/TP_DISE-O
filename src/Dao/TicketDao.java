@@ -141,23 +141,23 @@ public class TicketDao {
         
     }   
         
-        public void insertHistorialTicket(Historialticket ht) {
+    public void insertHistorialTicket(Historialticket ht) {
         
         
           try {    
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+                     sesionFactory = NewHibernateUtil.getSessionFactory();
+                     session = sesionFactory.openSession();
+                     tx = session.beginTransaction();
              
-        //insert into HistorialTicket ht;
-         session.save(ht);
+                    //insert into HistorialTicket ht;
+                    session.save(ht);
                           
-         tx.commit();
-         session.close();
+                    tx.commit();
+                    session.close();
 
-    } catch (HibernateException e) {
-        System.out.println(e);
-        }
+         } catch (HibernateException e) {
+                    System.out.println(e);
+            }
        
       }
 
@@ -192,7 +192,7 @@ public class TicketDao {
          
              //select * from historialTicket ht where (ht.nroticket=nroTicket AND  ht.horaFin='null' AND ht.fechaFin='null')
             Criteria cr = session.createCriteria(Historialclasificacion.class);
-            cr.add(Restrictions.eq("ticket", ticket)).add(Restrictions.eq("codigo_clasificacion", codigo))
+            cr.add(Restrictions.eq("ticket", ticket))//.add(Restrictions.eq("codigo_clasificacion", codigo))
             .add(Restrictions.isNull("fechafin")).add(Restrictions.isNull("horafin"));
        
             historialClasificacion = (Historialclasificacion) cr.uniqueResult();
