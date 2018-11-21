@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import clases.Clasificacion;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -48,7 +49,7 @@ public class ClasificacionDao {
          
          Criteria cr = session.createCriteria(Clasificacion.class);
          cr.add(Restrictions.eq("nombreclasificacion", nombreClasificacion));
-         
+                 
          c= (Clasificacion) cr.uniqueResult();
          tx.commit();
          session.close();

@@ -3,7 +3,7 @@ package controllers;
 
 /**
  *
- * @author Usuario
+ * @author Guido D'Antoni guidodantoni2335@gmail.com
  */
 public class GestorGrupoResolucion {
     

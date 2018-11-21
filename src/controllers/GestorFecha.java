@@ -1,9 +1,12 @@
 
 package controllers;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 /**
  *
@@ -13,39 +16,26 @@ public class GestorFecha {
     
     public Date obtenerFecha(){
         
-        Date f = new Date();
-        Calendar c = new GregorianCalendar(); 
-        //c.setTime(fechaApertura);
+      Date f = new Date();
 
-        int dia, mes, anio;
+        int dia, mes, anio, hora, minutos, segundos;
 
-        dia = c.get(Calendar.DATE);
-        mes = c.get(Calendar.MONTH);//+1;//porque arranca con mes enero=0
-        anio = c.get(Calendar.YEAR);
+        dia = f.getDate();
+        mes = f.getMonth();
+        anio = f.getYear();
+        hora = f.getHours();
+        minutos = f.getMinutes();
+        segundos = f.getSeconds();
         
-                
+      
         f.setYear(anio);
         f.setMonth(mes);
         f.setDate(dia);
-
+        f.setHours(hora);
+        f.setMinutes(minutos);
+        f.setSeconds(segundos);
         
         return f;
-    }
-    
-    public Date obtenerHora(){
-        
-        Date h = new Date();
-        Calendar c = new GregorianCalendar();
-        int hora, minutos, segundos;
-        
-        hora = c.get(Calendar.HOUR_OF_DAY);
-        minutos = c.get(Calendar.MINUTE);
-        segundos = c.get(Calendar.SECOND);
-        
-        h.setHours(hora);
-        h.setMinutes(minutos);
-        h.setSeconds(segundos);
-        return h;
     }
     
 }

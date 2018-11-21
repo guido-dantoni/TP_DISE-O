@@ -1,28 +1,25 @@
 
 package Ventanas;
 
-import clases.Clasificacion;
+
 import clases.Empleado;
 import clases.Ticket;
 import controllers.GestorClasificacion;
 import controllers.GestorEmpleado;
 import controllers.GestorFecha;
-import controllers.GestorSesion;
 import controllers.GestorTicket;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.WindowConstants;
-import org.hibernate.mapping.Collection;
 import ventanas.Caso_de_uso_01_Observaciones;
 
 /**
@@ -106,11 +103,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldNombreApellido.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNombreApellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldNombreApellido.setFocusable(false);
-        jTextFieldNombreApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreApellidoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldNombreApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 460, 30));
 
         jScrollPaneDescrip.setMaximumSize(new java.awt.Dimension(60, 10));
@@ -154,11 +146,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jTextFieldHora.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldHora.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldHora.setFocusable(false);
-        jTextFieldHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHoraActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 470, 80, 30));
 
         jButtonAceptar.setBackground(new java.awt.Color(191, 185, 185));
@@ -269,14 +256,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTextFieldNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreApellidoActionPerformed
-  
-    }//GEN-LAST:event_jTextFieldNombreApellidoActionPerformed
-
-    private void jTextFieldHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHoraActionPerformed
-        
-    }//GEN-LAST:event_jTextFieldHoraActionPerformed
-
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
        
        jTextFieldNombreApellido.setText("");
@@ -297,10 +276,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
 
-     /*   if(empleado==null){
-            jLabelMsjErrorNombre.setText("*Legajo inexistente");
-        }
-       */     
+    
           //hasta 500 caracteres en el textArea
             if(jTextAreaDescripcion.getText().length()>=500){
                 Toolkit.getDefaultToolkit().beep(); //ruidito beep
@@ -316,12 +292,8 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        
         
         GestorFecha gestorFecha = new GestorFecha();
-        
-        Date fecha = new Date();
-        Date hora = new Date();
-        
-        fecha = gestorFecha.obtenerFecha();
-        hora = gestorFecha.obtenerHora();        
+         
+        Date fecha = gestorFecha.obtenerFecha();   
         
         String nombreClasificacion;       
              
@@ -332,9 +304,14 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El legajo es inexistente");
         }else{
         
-        jTextFieldFechaApertura.setText(fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getYear());
-        jTextFieldHora.setText(hora.getHours() + ":" + hora.getMinutes() + ":" + hora.getSeconds());
+     //el SimpleDateFormat me returna el string de un Date, dentro de los parentesis le digo como retornamelo
+     //Ej: "dd/MM/YYYY"
+       
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat h = new SimpleDateFormat ("HH:mm:ss");
         
+        jTextFieldFechaApertura.setText(f.format(fecha));
+        jTextFieldHora.setText(h.format(fecha));
            
         nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
         Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
@@ -375,7 +352,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarKeyPressed
 
     private void jTextAreaDescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionFocusGained
-        // TODO add your handling code here:
+       
         Integer numeroLegajo;
         
         numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
@@ -402,7 +379,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextAreaDescripcionFocusGained
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     

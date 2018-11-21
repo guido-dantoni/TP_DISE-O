@@ -35,7 +35,7 @@ public class TicketDao {
          // ver tema de cascade para hacer el insert solo con ticket
          //insert into Ticket ticket
          session.save(ticket);
-         //insert into historialTicket historialTicket         
+         //insert into historialTicket historialTicket   
          session.save(historialTicket);
          //insert into historialClasificacion historialClasificacion
          session.save(historialClasificacion);
