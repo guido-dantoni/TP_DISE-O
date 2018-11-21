@@ -15,6 +15,7 @@ public class GestorClasificacion {
 
     public List<String> obtenerNombresClasificaciones() {
         
+        
         List<String> lista = new ArrayList();
         List<Clasificacion> clasificaciones;
         ClasificacionDao clasificacionDao= new ClasificacionDao();
