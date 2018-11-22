@@ -5,7 +5,9 @@ import Dao.ClasificacionDao;
 import java.util.List;
 import clases.Clasificacion;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.hibernate.Criteria;
+import org.hibernate.mapping.Collection;
 
 /**
  *
@@ -25,7 +27,7 @@ public class GestorClasificacion {
             
             lista.add(clasificaciones.get(i).getNombreclasificacion());
         }
-        
+        lista.sort((o1, o2) -> o1.compareTo(o2)); // ordena alfabeticamente la lista ascendentemente
         return lista;
     }
 

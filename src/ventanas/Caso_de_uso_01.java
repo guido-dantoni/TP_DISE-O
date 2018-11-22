@@ -38,7 +38,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         
         jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
-        List<String> clasificaciones = new ArrayList<String>();
+        List<String> clasificaciones = new ArrayList();
         clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
         
         
