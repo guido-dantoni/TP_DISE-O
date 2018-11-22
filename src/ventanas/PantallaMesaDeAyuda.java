@@ -130,11 +130,6 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
                 jButtonSalirFocusLost(evt);
             }
         });
-        jButtonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonSalirMouseClicked(evt);
-            }
-        });
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
@@ -162,7 +157,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed
-        // TODO add your handling code here:
+       
         Caso_de_uso_01 a = new Caso_de_uso_01();
         a.setVisible(true);
         this.setVisible(false);
@@ -171,12 +166,12 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
 
     private void jButtonConsultarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTicketActionPerformed
         // TODO add your handling code here:
+        Caso_de_uso_02 c = new Caso_de_uso_02();
+        c.setVisible(true);
+        this.setVisible(false);
+        
        
     }//GEN-LAST:event_jButtonConsultarTicketActionPerformed
-
-    private void jButtonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalirMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSalirMouseClicked
 
     private void jButtonRegistrarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){

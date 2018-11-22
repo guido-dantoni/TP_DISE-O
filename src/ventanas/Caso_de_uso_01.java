@@ -92,6 +92,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLegajoActionPerformed(evt);
+            }
+        });
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyTyped(evt);
@@ -259,9 +264,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
        
        jTextFieldNombreApellido.setText("");
-       char legajo=evt.getKeyChar();
-       Integer numeroLegajo;
-       
+       char legajo=evt.getKeyChar();     
        
        if(legajo<'0' || legajo>'9'){
            evt.consume();
@@ -381,6 +384,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
        
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLegajoActionPerformed
 
     
     /**
