@@ -27,6 +27,7 @@ public class GestorClasificacion {
             
             lista.add(clasificaciones.get(i).getNombreclasificacion());
         }
+        
         lista.sort((o1, o2) -> o1.compareTo(o2)); // ordena alfabeticamente la lista ascendentemente
         return lista;
     }
