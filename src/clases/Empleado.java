@@ -1,5 +1,5 @@
 package clases;
-// Generated 14/11/2018 14:32:51 by Hibernate Tools 4.3.1
+// Generated 23/11/2018 20:16:33 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,24 +16,36 @@ public class Empleado  implements java.io.Serializable {
      private String email;
      private String nombre;
      private String apellido;
+     private int telefonointerno;
+     private int telefonodirecto;
+     private String descripcioncargo;
+     private String ubicacion;
      private Set tickets = new HashSet(0);
 
     public Empleado() {
     }
 
 	
-    public Empleado(int legajoEmpleado, String email, String nombre, String apellido) {
+    public Empleado(int legajoEmpleado, String email, String nombre, String apellido, int telefonointerno, int telefonodirecto, String descripcioncargo, String ubicacion) {
         this.legajoEmpleado = legajoEmpleado;
         this.email = email;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.telefonointerno = telefonointerno;
+        this.telefonodirecto = telefonodirecto;
+        this.descripcioncargo = descripcioncargo;
+        this.ubicacion = ubicacion;
     }
-    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido, Set tickets) {
+    public Empleado(int legajoEmpleado, Usuario usuario, String email, String nombre, String apellido, int telefonointerno, int telefonodirecto, String descripcioncargo, String ubicacion, Set tickets) {
        this.legajoEmpleado = legajoEmpleado;
        this.usuario = usuario;
        this.email = email;
        this.nombre = nombre;
        this.apellido = apellido;
+       this.telefonointerno = telefonointerno;
+       this.telefonodirecto = telefonodirecto;
+       this.descripcioncargo = descripcioncargo;
+       this.ubicacion = ubicacion;
        this.tickets = tickets;
     }
    
@@ -71,6 +83,34 @@ public class Empleado  implements java.io.Serializable {
     
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    public int getTelefonointerno() {
+        return this.telefonointerno;
+    }
+    
+    public void setTelefonointerno(int telefonointerno) {
+        this.telefonointerno = telefonointerno;
+    }
+    public int getTelefonodirecto() {
+        return this.telefonodirecto;
+    }
+    
+    public void setTelefonodirecto(int telefonodirecto) {
+        this.telefonodirecto = telefonodirecto;
+    }
+    public String getDescripcioncargo() {
+        return this.descripcioncargo;
+    }
+    
+    public void setDescripcioncargo(String descripcioncargo) {
+        this.descripcioncargo = descripcioncargo;
+    }
+    public String getUbicacion() {
+        return this.ubicacion;
+    }
+    
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
     public Set getTickets() {
         return this.tickets;
