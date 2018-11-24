@@ -6,9 +6,12 @@
 package Ventanas;
 
 import controllers.GestorClasificacion;
+import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -53,9 +56,17 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
        
        jComboBox1ClasificacionActual.setModel(comboClasificacion);
        jComboBox1UltimoGpoResolucion.setModel(comboGrupo);
-        
+       
+       //Esto es para anular las fechas mayores a la de hoy 
+       GestorFecha gestorfecha = new GestorFecha();
+               
+       jXDatePickerFechaApertura.getMonthView().setUpperBound(gestorfecha.obtenerFecha());
+       jXDatePickerFechaAcualizacion.getMonthView().setUpperBound(gestorfecha.obtenerFecha());
+       
+        //jXDatePickerFechaApertura.setFormats("dd/MM/YYYY");
+      //jXDatePickerFechaAcualizacion.setFormats("dd/MM/YYYY");
     }
-
+        
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
