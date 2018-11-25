@@ -72,6 +72,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
        jButtonConfReporte.setEnabled(false);
        
        
+       
     }
         
     
