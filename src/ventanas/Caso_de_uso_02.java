@@ -8,13 +8,16 @@ package Ventanas;
 import controllers.GestorClasificacion;
 import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
+import java.awt.Event;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import org.jdesktop.swingx.JXMonthView;
 
 /**
  *
@@ -58,13 +61,17 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
        jComboBox1UltimoGpoResolucion.setModel(comboGrupo);
        
        //Esto es para anular las fechas mayores a la de hoy 
-       GestorFecha gestorfecha = new GestorFecha();
-               
+       GestorFecha gestorfecha = new GestorFecha();     
        jXDatePickerFechaApertura.getMonthView().setUpperBound(gestorfecha.obtenerFecha());
        jXDatePickerFechaAcualizacion.getMonthView().setUpperBound(gestorfecha.obtenerFecha());
        
-        //jXDatePickerFechaApertura.setFormats("dd/MM/YYYY");
-      //jXDatePickerFechaAcualizacion.setFormats("dd/MM/YYYY");
+       //apago los botones, cuando haga click o enter en busscar, los prendo
+       jButtonAnterior.setEnabled(false);
+       jButtonSiguiente.setEnabled(false);
+       jButtonVerDetalle.setEnabled(false);
+       jButtonConfReporte.setEnabled(false);
+       
+       
     }
         
     
@@ -342,11 +349,21 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
 
         jTextFieldNroLegajo1.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldNroLegajo1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldNroLegajo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNroLegajo1KeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldNroLegajo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, 190, 30));
 
         jComboBox1ClasificacionActual.setBackground(new java.awt.Color(191, 185, 185));
         jComboBox1ClasificacionActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBox1ClasificacionActual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
+        jComboBox1ClasificacionActual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBox1ClasificacionActualKeyPressed(evt);
+            }
+        });
         getContentPane().add(jComboBox1ClasificacionActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 550, 30));
 
         jComboBox1EstadoActual.setBackground(new java.awt.Color(191, 185, 185));
@@ -355,6 +372,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jComboBox1EstadoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1EstadoActualActionPerformed(evt);
+            }
+        });
+        jComboBox1EstadoActual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBox1EstadoActualKeyPressed(evt);
             }
         });
         getContentPane().add(jComboBox1EstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 260, 30));
@@ -435,7 +457,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
            evt.consume();
        }
        
-       //si presiona enter busca lo tickes
+       //si presiona enter busca lo tickets
        if(ticket == KeyEvent.VK_ENTER){
                 
                 jButton1Buscar.requestFocus();
@@ -444,8 +466,41 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1NroTicketKeyTyped
 
     private void jTextFieldLegajo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajo2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextFieldLegajo2ActionPerformed
+
+    private void jTextFieldNroLegajo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyTyped
+        char ticket=evt.getKeyChar();       
+       
+       if(ticket<'0' || ticket>'9'){
+           evt.consume();
+       }
+       
+       //si presiona enter busca lo tickets
+       if(ticket == KeyEvent.VK_ENTER){
+                
+                jButton1Buscar.requestFocus();
+                jButton1Buscar.doClick();
+       } 
+    }//GEN-LAST:event_jTextFieldNroLegajo1KeyTyped
+
+    private void jComboBox1ClasificacionActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1ClasificacionActualKeyPressed
+         char ticket=evt.getKeyChar();
+            if(ticket == KeyEvent.VK_ENTER){
+                
+                    jButton1Buscar.requestFocus();
+                    jButton1Buscar.doClick();
+            }       
+    }//GEN-LAST:event_jComboBox1ClasificacionActualKeyPressed
+
+    private void jComboBox1EstadoActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualKeyPressed
+            char ticket=evt.getKeyChar();
+                if(ticket == KeyEvent.VK_ENTER){
+                
+                        jButton1Buscar.requestFocus();
+                    jButton1Buscar.doClick();
+                }
+    }//GEN-LAST:event_jComboBox1EstadoActualKeyPressed
 
     /**
      * @param args the command line arguments
@@ -532,4 +587,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFechaAcualizacion;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFechaApertura;
     // End of variables declaration//GEN-END:variables
+
+    
 }
