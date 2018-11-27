@@ -262,12 +262,13 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
-       
+       //me consume las letras y si el numero tiene mas de 6 carateres
        jTextFieldNombreApellido.setText("");
        char legajo=evt.getKeyChar();     
        
-       if(legajo<'0' || legajo>'9'){
+       if(legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>6){
            evt.consume();
+           Toolkit.getDefaultToolkit().beep();
        }
        
        //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado

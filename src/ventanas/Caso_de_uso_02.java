@@ -9,12 +9,14 @@ import controllers.GestorClasificacion;
 import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
 import java.awt.Event;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javafx.scene.control.DatePicker;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import org.jdesktop.swingx.JXMonthView;
@@ -47,13 +49,16 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         DefaultComboBoxModel comboGrupo= new DefaultComboBoxModel();
         
         //lleno el combo de clasificacion
+        comboClasificacion.addElement("Todas");
        for(int i=0; i<clasificaciones.size(); i++){
         
             comboClasificacion.addElement(clasificaciones.get(i));
         }
+       
        //lleno el combo de ultimo grupo de resolucion
+       comboGrupo.addElement("Todos");
        for(int i=0; i<grupos.size(); i++){
-        
+           
             comboGrupo.addElement(grupos.get(i));
         }
        
@@ -70,7 +75,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
        jButtonSiguiente.setEnabled(false);
        jButtonVerDetalle.setEnabled(false);
        jButtonConfReporte.setEnabled(false);
-       
        
        
     }
@@ -360,6 +364,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jComboBox1ClasificacionActual.setBackground(new java.awt.Color(191, 185, 185));
         jComboBox1ClasificacionActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBox1ClasificacionActual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas" }));
+        jComboBox1ClasificacionActual.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox1ClasificacionActualFocusGained(evt);
+            }
+        });
         jComboBox1ClasificacionActual.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jComboBox1ClasificacionActualKeyPressed(evt);
@@ -370,9 +379,9 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jComboBox1EstadoActual.setBackground(new java.awt.Color(191, 185, 185));
         jComboBox1EstadoActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBox1EstadoActual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto en mesa de ayuda", "Abierto derivado", "Solucionado a la espera de OK", "Cerrado", "Todos" }));
-        jComboBox1EstadoActual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1EstadoActualActionPerformed(evt);
+        jComboBox1EstadoActual.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox1EstadoActualFocusGained(evt);
             }
         });
         jComboBox1EstadoActual.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -384,7 +393,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
 
         jComboBox1UltimoGpoResolucion.setBackground(new java.awt.Color(245, 245, 245));
         jComboBox1UltimoGpoResolucion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox1UltimoGpoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBox1UltimoGpoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
         getContentPane().add(jComboBox1UltimoGpoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 500, 30));
 
         jXDatePickerFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
@@ -417,13 +426,18 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 250, 120, 40));
 
         jTextFieldNroLegajo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
+        jTextFieldNroLegajo2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldNroLegajo2FocusGained(evt);
+            }
+        });
         getContentPane().add(jTextFieldNroLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 635));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfReporteActionPerformed
-        // TODO add your handling code here:
+        
         Caso_de_uso_05 a = new Caso_de_uso_05();
         a.setVisible(true);
         this.setVisible(false);
@@ -445,17 +459,14 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1BuscarActionPerformed
 
-    private void jComboBox1EstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1EstadoActualActionPerformed
-
     private void jTextField1NroTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1NroTicketKeyTyped
                
-       
+       //me consume las letras y si la cadena es > 9
        char ticket=evt.getKeyChar();       
        
-       if(ticket<'0' || ticket>'9'){
+       if(ticket<'0' || ticket>'9' || jTextField1NroTicket.getText().length()>9){
            evt.consume();
+           Toolkit.getDefaultToolkit().beep();//ruido beep
        }
        
        //si presiona enter busca lo tickets
@@ -471,10 +482,12 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLegajo2ActionPerformed
 
     private void jTextFieldNroLegajo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyTyped
+        //no me deja ingresar letras ni numeros con mas de 6 caracteres
         char ticket=evt.getKeyChar();       
        
-       if(ticket<'0' || ticket>'9'){
+       if(ticket<'0' || ticket>'9' || jTextFieldNroLegajo1.getText().length()>6){
            evt.consume();
+           Toolkit.getDefaultToolkit().beep();//ruido beep
        }
        
        //si presiona enter busca lo tickets
@@ -487,11 +500,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
 
     private void jComboBox1ClasificacionActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1ClasificacionActualKeyPressed
          char ticket=evt.getKeyChar();
-            if(ticket == KeyEvent.VK_ENTER){
+            if(ticket == KeyEvent.VK_ENTER ){
                 
                     jButton1Buscar.requestFocus();
                     jButton1Buscar.doClick();
-            }       
+            }      
     }//GEN-LAST:event_jComboBox1ClasificacionActualKeyPressed
 
     private void jComboBox1EstadoActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualKeyPressed
@@ -502,6 +515,18 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                     jButton1Buscar.doClick();
                 }
     }//GEN-LAST:event_jComboBox1EstadoActualKeyPressed
+
+    private void jComboBox1ClasificacionActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1ClasificacionActualFocusGained
+            jComboBox1ClasificacionActual.showPopup();        
+    }//GEN-LAST:event_jComboBox1ClasificacionActualFocusGained
+
+    private void jTextFieldNroLegajo2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo2FocusGained
+                    
+    }//GEN-LAST:event_jTextFieldNroLegajo2FocusGained
+
+    private void jComboBox1EstadoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualFocusGained
+        jComboBox1EstadoActual.showPopup();
+    }//GEN-LAST:event_jComboBox1EstadoActualFocusGained
 
     /**
      * @param args the command line arguments
@@ -589,5 +614,5 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFechaApertura;
     // End of variables declaration//GEN-END:variables
 
-    
+ 
 }
