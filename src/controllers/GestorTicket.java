@@ -187,8 +187,10 @@ public class GestorTicket {
     public void buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual, List<TicketDTO> ticketsFiltrados) {
         
         TicketDao ticketDao = new TicketDao();
-        ticketDao.getTickets(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual, ticketsFiltrados);
+        ticketsFiltrados = ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
         
+            
+        System.out.println(ticketsFiltrados.get(0).getNroTicket());
     }
     
 }

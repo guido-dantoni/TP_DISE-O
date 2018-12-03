@@ -8,18 +8,21 @@ import java.util.Date;
  *
  * @author Guido D'Antoni guidodantoni2335@gmail.com
  */
-public class TicketDTO {
+    public class TicketDTO {
     
-     private int nroTicket;
-     private int NroLegajoempleado;
-     private Date fechaapertura;
-     private String estadoactual;
-     private Date horaapertura;
-     private String clasificacionactual;
-     private String operador;
-     private Date fechaultimocambioestado;
-     private String grupoactual;
+       private int nroTicket;
+       private int NroLegajoempleado;
+       private Date fechaapertura;
+       private String estadoactual;
+       private Date horaapertura;
+       private String clasificacionactual;
+       private String operador;
+       private Date fechaultimocambioestado;
+      //private String grupoactual;
 
+    public TicketDTO(){  
+    }
+     
     public int getNroTicket() {
         return nroTicket;
     }
@@ -83,7 +86,7 @@ public class TicketDTO {
     public void setFechaultimocambioestado(Date fechaultimocambioestado) {
         this.fechaultimocambioestado = fechaultimocambioestado;
     }
-
+/*
     public String getGrupoactual() {
         return grupoactual;
     }
@@ -91,5 +94,5 @@ public class TicketDTO {
     public void setGrupoactual(String grupoactual) {
         this.grupoactual = grupoactual;
     }
-
+*/
 }
