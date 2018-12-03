@@ -7,11 +7,14 @@ import clases.Empleado;
 import clases.Historialclasificacion;
 import clases.Historialticket;
 import clases.Ticket;
+import clases.TicketDTO;
 import clases.Usuario;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import ventanas.Caso_de_uso_01_Observaciones;
@@ -179,6 +182,13 @@ public class GestorTicket {
             JOptionPane.showMessageDialog(null, "Imposibilidad para cerrar éste Ticket, se encuentra en estado: " + ticketParaCerrar.getEstadoactual());
         }
 
+    }
+
+    public void buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual, List<TicketDTO> ticketsFiltrados) {
+        
+        TicketDao ticketDao = new TicketDao();
+        ticketDao.getTickets(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual, ticketsFiltrados);
+        
     }
     
 }

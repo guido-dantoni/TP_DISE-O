@@ -2,6 +2,7 @@
 package Dao;
 
 import clases.Clasificacion;
+import clases.Empleado;
 import clases.Historialticket;
 import clases.Ticket;
 import java.util.List;
@@ -11,6 +12,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import clases.Historialclasificacion;
+import clases.TicketDTO;
+import java.util.Date;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
@@ -21,6 +24,10 @@ import org.hibernate.criterion.Restrictions;
  * @author Guido D'Antoni guidodantoni2335@gmail.com
  */
 public class TicketDao {
+
+    public static void buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
      private SessionFactory sesionFactory;
      private Session session;
@@ -223,6 +230,56 @@ public class TicketDao {
         } catch (HibernateException e) {
             System.out.println(e);
             }
+    }
+
+    public void getTickets(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual, List<TicketDTO> ticketsFiltrados) {
+        
+        try {    
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+         
+            Criteria empleadoCriteria = session.createCriteria(Empleado.class, "e");
+            Criteria ticketCriteria = empleadoCriteria.createCriteria("tickets", "t");
+            Criteria historialTicketCriteria = ticketCriteria.createCriteria("historialtickets", "ht");
+            Criteria historialClasificacionCriteri = ticketCriteria.createCriteria("historialClasificacions","hc");
+            
+            if(nroTicket!=null){
+                ticketCriteria.add(Restrictions.eq("nro_ticket", nroTicket));
+            }
+            
+            if(nroLegajoEmpleado!=null){
+                empleadoCriteria.add(Restrictions.eq("legajo_empleado", nroLegajoEmpleado));
+            }
+            
+             if(fechaApertura!=null){
+                ticketCriteria.add(Restrictions.eq("fecahapertura", fechaApertura));
+            }
+             
+              if(estadoActual!=null){
+                ticketCriteria.add(Restrictions.eq("estadoactual", estadoActual));
+            }
+              //agregar para ultimo grupo, clasificacion actual, fecha ultimo cambio estado, jugar con las fechas ordenarlas de mayor a menor
+              //y tomar el primer elemento
+               if(!=null){
+                
+            }
+               
+                if(!=null){
+                
+            }
+                
+                 if(!=null){
+                
+            }
+            
+                                       
+            tx.commit();
+            session.close();
+
+    } catch (HibernateException e) {
+            System.out.println(e);
+        }
     }
         
 }

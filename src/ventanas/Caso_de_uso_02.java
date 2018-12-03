@@ -5,9 +5,11 @@
  */
 package Ventanas;
 
+import clases.TicketDTO;
 import controllers.GestorClasificacion;
 import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
+import controllers.GestorTicket;
 import java.awt.Event;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -139,66 +141,66 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jLabel1Uno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1Uno.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1Uno.setText("1");
-        getContentPane().add(jLabel1Uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, -1, -1));
+        getContentPane().add(jLabel1Uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
 
         jButtonAnterior.setBackground(new java.awt.Color(191, 185, 185));
         jButtonAnterior.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonAnterior.setText("Anterior");
-        getContentPane().add(jButtonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
+        getContentPane().add(jButtonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, -1, -1));
 
         jLabelDE.setBackground(new java.awt.Color(191, 185, 185));
         jLabelDE.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelDE.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDE.setText("de");
-        getContentPane().add(jLabelDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, 40));
+        getContentPane().add(jLabelDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, 40));
 
         jButtonSiguiente.setBackground(new java.awt.Color(191, 185, 185));
         jButtonSiguiente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonSiguiente.setText("Siguiente");
-        getContentPane().add(jButtonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 310, -1, -1));
+        getContentPane().add(jButtonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
 
         jLabelC.setBackground(new java.awt.Color(191, 185, 185));
         jLabelC.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelC.setForeground(new java.awt.Color(51, 153, 255));
         jLabelC.setText("C");
-        getContentPane().add(jLabelC, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 20, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 1025, 10));
+        getContentPane().add(jLabelC, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 20, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 1025, 10));
 
         jLabelNroTicket.setBackground(new java.awt.Color(191, 185, 185));
         jLabelNroTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNroTicket.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNroTicket.setText("Nro. Ticket");
-        getContentPane().add(jLabelNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        getContentPane().add(jLabelNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
 
         jLabelNroLegajo.setBackground(new java.awt.Color(191, 185, 185));
         jLabelNroLegajo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNroLegajo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNroLegajo.setText("Nro. Legajo");
-        getContentPane().add(jLabelNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, -1, -1));
+        getContentPane().add(jLabelNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, 20));
 
         jLabelFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
         jLabelFechaApertura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFechaApertura.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFechaApertura.setText("Fecha apertura");
-        getContentPane().add(jLabelFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
+        getContentPane().add(jLabelFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         jLabelHoraApertura.setBackground(new java.awt.Color(191, 185, 185));
         jLabelHoraApertura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelHoraApertura.setForeground(new java.awt.Color(255, 255, 255));
         jLabelHoraApertura.setText("Hora apertura");
-        getContentPane().add(jLabelHoraApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 420, -1, -1));
+        getContentPane().add(jLabelHoraApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
 
         jLabelOperadorQueAbrioElTicket.setBackground(new java.awt.Color(191, 185, 185));
         jLabelOperadorQueAbrioElTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelOperadorQueAbrioElTicket.setForeground(new java.awt.Color(255, 255, 255));
         jLabelOperadorQueAbrioElTicket.setText("Operador que abrió el ticket");
-        getContentPane().add(jLabelOperadorQueAbrioElTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
+        getContentPane().add(jLabelOperadorQueAbrioElTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, 40));
 
         jLabelClasificacionActual.setBackground(new java.awt.Color(191, 185, 185));
         jLabelClasificacionActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelClasificacionActual.setForeground(new java.awt.Color(255, 255, 255));
         jLabelClasificacionActual.setText("Clasificación actual del ticket");
-        getContentPane().add(jLabelClasificacionActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, -1, -1));
+        getContentPane().add(jLabelClasificacionActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, -1, -1));
 
         jLabelEstadoActual.setBackground(new java.awt.Color(191, 185, 185));
         jLabelEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -210,7 +212,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jLabelFechaUltimoCambioEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFechaUltimoCambioEstado.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFechaUltimoCambioEstado.setText("Fecha último cambio estado");
-        getContentPane().add(jLabelFechaUltimoCambioEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, -1, -1));
+        getContentPane().add(jLabelFechaUltimoCambioEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, -1, 50));
 
         jLabelGpoResolucionActual.setBackground(new java.awt.Color(191, 185, 185));
         jLabelGpoResolucionActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -222,60 +224,55 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jTextFieldLegajo2.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldLegajo2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldLegajo2.setFocusable(false);
-        jTextFieldLegajo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLegajo2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 260, 30));
+        getContentPane().add(jTextFieldLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, 140, 30));
 
         jTextFieldNroTicket2.setEditable(false);
         jTextFieldNroTicket2.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNroTicket2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldNroTicket2.setFocusable(false);
-        getContentPane().add(jTextFieldNroTicket2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 380, 260, 30));
+        getContentPane().add(jTextFieldNroTicket2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 140, 30));
 
         jTextFieldHoraApertura.setEditable(false);
         jTextFieldHoraApertura.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldHoraApertura.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldHoraApertura.setFocusable(false);
-        getContentPane().add(jTextFieldHoraApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 260, 30));
+        getContentPane().add(jTextFieldHoraApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 140, 30));
 
         jTextFieldOperadorQueAbrio.setEditable(false);
         jTextFieldOperadorQueAbrio.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldOperadorQueAbrio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldOperadorQueAbrio.setFocusable(false);
-        getContentPane().add(jTextFieldOperadorQueAbrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, 260, 30));
+        getContentPane().add(jTextFieldOperadorQueAbrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 450, 30));
 
         jTextFieldClasificacionActual.setEditable(false);
         jTextFieldClasificacionActual.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldClasificacionActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldClasificacionActual.setFocusable(false);
-        getContentPane().add(jTextFieldClasificacionActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, 260, 30));
+        getContentPane().add(jTextFieldClasificacionActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 550, 30));
 
         jTextFieldFechaApertura.setEditable(false);
         jTextFieldFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldFechaApertura.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldFechaApertura.setFocusable(false);
-        getContentPane().add(jTextFieldFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 260, 30));
+        getContentPane().add(jTextFieldFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 140, 30));
 
         jTextFieldEstadoActual.setEditable(false);
         jTextFieldEstadoActual.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldEstadoActual.setFocusable(false);
-        getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 460, 260, 30));
+        getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 460, 450, 30));
 
         jTextFieldFechaUltimoCambioEstado.setEditable(false);
         jTextFieldFechaUltimoCambioEstado.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldFechaUltimoCambioEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldFechaUltimoCambioEstado.setFocusable(false);
-        getContentPane().add(jTextFieldFechaUltimoCambioEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, 260, 30));
+        getContentPane().add(jTextFieldFechaUltimoCambioEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 130, 30));
 
         jTextFieldGpoResolucionAsignado.setEditable(false);
         jTextFieldGpoResolucionAsignado.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldGpoResolucionAsignado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldGpoResolucionAsignado.setFocusable(false);
-        getContentPane().add(jTextFieldGpoResolucionAsignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 540, 260, 30));
+        getContentPane().add(jTextFieldGpoResolucionAsignado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 540, 550, 30));
 
         jButtonConfReporte.setBackground(new java.awt.Color(191, 185, 185));
         jButtonConfReporte.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -296,7 +293,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jLabelInfoDeCadaTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelInfoDeCadaTicket.setForeground(new java.awt.Color(246, 58, 58));
         jLabelInfoDeCadaTicket.setText("Información asociada a cada ticket");
-        getContentPane().add(jLabelInfoDeCadaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
+        getContentPane().add(jLabelInfoDeCadaTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         jButtonVerDetalle.setBackground(new java.awt.Color(191, 185, 185));
         jButtonVerDetalle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -408,7 +405,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jLabel1InfoDeLosTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1InfoDeLosTicket.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1InfoDeLosTicket.setText("Ticket nro: ");
-        getContentPane().add(jLabel1InfoDeLosTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
+        getContentPane().add(jLabel1InfoDeLosTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
         jButton1Buscar.setBackground(new java.awt.Color(191, 185, 185));
         jButton1Buscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -423,7 +420,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButton1BuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 250, 120, 40));
+        getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 120, 40));
 
         jTextFieldNroLegajo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
         jTextFieldNroLegajo2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -455,10 +452,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton1BuscarKeyPressed
 
-    private void jButton1BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1BuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1BuscarActionPerformed
-
     private void jTextField1NroTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1NroTicketKeyTyped
                
        //me consume las letras y si la cadena es > 9
@@ -476,10 +469,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButton1Buscar.doClick();
        } 
     }//GEN-LAST:event_jTextField1NroTicketKeyTyped
-
-    private void jTextFieldLegajo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajo2ActionPerformed
-        
-    }//GEN-LAST:event_jTextFieldLegajo2ActionPerformed
 
     private void jTextFieldNroLegajo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyTyped
         //no me deja ingresar letras ni numeros con mas de 6 caracteres
@@ -527,6 +516,35 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private void jComboBox1EstadoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualFocusGained
         jComboBox1EstadoActual.showPopup();
     }//GEN-LAST:event_jComboBox1EstadoActualFocusGained
+
+    private void jButton1BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1BuscarActionPerformed
+        
+        Integer nroTicket = null ,  nroLegajoEmpleado = null;
+        Date fechaApertura, fechaUltimoCambioEstado;
+        String estadoActual, ultimoGrupo, clasificacionActual;
+      
+        if(!jTextField1NroTicket.getText().isEmpty()){
+            nroTicket = Integer.parseInt(jTextField1NroTicket.getText());
+        }
+        
+        if(!jTextFieldNroLegajo1.getText().isEmpty()){
+            nroLegajoEmpleado = Integer.parseInt(jTextFieldNroLegajo1.getText());
+        }
+        
+        fechaApertura = jXDatePickerFechaApertura.getDate();
+        fechaUltimoCambioEstado = jXDatePickerFechaAcualizacion.getDate();
+        estadoActual = jComboBox1EstadoActual.getSelectedItem().toString();
+        ultimoGrupo = jComboBox1UltimoGpoResolucion.getSelectedItem().toString();
+        clasificacionActual = jComboBox1ClasificacionActual.getSelectedItem().toString();
+    
+    
+        GestorTicket gestorTicket = new GestorTicket();
+        List<TicketDTO> ticketsFiltrados = new ArrayList<>();
+        
+        gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual, ticketsFiltrados); 
+                 
+    
+    }//GEN-LAST:event_jButton1BuscarActionPerformed
 
     /**
      * @param args the command line arguments
