@@ -233,7 +233,11 @@ public class TicketDao {
             System.out.println(e);
             }
     }
-        //ESTA ES LA FUNCION EN LA QUE TENEMOS PROBLEMAS ACA DEBERIA RECUPERAR UNA LISTA DE TIPO TicketDTO Y RETORNARLA
+    //ESTA ES LA FUNCION EN LA QUE TENEMOS PROBLEMAS ACA DEBERIA RECUPERAR UNA LISTA DE TIPO TicketDTO Y RETORNARLA
+    //tenemos problemas con los join, no sabemos si se hacen asi o no
+    //nosotros pudimos retornar una lista (es el codigo que esta comentado casi al final del metodo)
+    //pero no podiamos acceder a los atributos, como que la lista tenia que ser casteada, otro problema que nos tiraba era una 
+    //NULL POINTER EXCEPTION que no sabemos de que es
     public List<TicketDTO> getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
         
