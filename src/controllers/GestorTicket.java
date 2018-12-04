@@ -70,6 +70,7 @@ public class GestorTicket {
         ticket.setEmpleado(empleado);
         ticket.setClasificacion(clasificacion);
         ticket.setDescripcion(descripcion);
+        ticket.setFechaultimoestado(fechaApertura);
         
         //seteo los valores de historialClasificacion
         Historialticket historialTicket= new Historialticket();
@@ -152,6 +153,8 @@ public class GestorTicket {
                 historialClasificacion.setHorafin(fechaCierre);
                 
                 ticketParaCerrar.setEstadoactual(Enum_EstadoTicket.CERRADO.toString());
+                ticketParaCerrar.setFechaultimoestado(fechaCierre);
+                
                 ticketDao.updateTicket(ticketParaCerrar);
                 ticketDao.updateHistorialTicket(historialTicket);
                 ticketDao.updateHistorialClasificacion(historialClasificacion);
@@ -187,10 +190,11 @@ public class GestorTicket {
     public void buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual, List<TicketDTO> ticketsFiltrados) {
         
         TicketDao ticketDao = new TicketDao();
-        ticketsFiltrados = ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
+        List<Ticket> tickets= ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
         
-            
-        System.out.println(ticketsFiltrados.get(0).getNroTicket());
+        System.out.println(tickets.size());    
+        System.out.println(tickets.get(0).getNroTicket());
+        System.out.println(tickets.get(1).getEmpleado().getLegajoEmpleado());
     }
     
 }

@@ -13,7 +13,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import clases.Historialclasificacion;
 import clases.TicketDTO;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import org.hibernate.FetchMode;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
@@ -238,99 +242,71 @@ public class TicketDao {
     //nosotros pudimos retornar una lista (es el codigo que esta comentado casi al final del metodo)
     //pero no podiamos acceder a los atributos, como que la lista tenia que ser casteada, otro problema que nos tiraba era una 
     //NULL POINTER EXCEPTION que no sabemos de que es
-    public List<TicketDTO> getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
+    public List getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
-        
-        List<TicketDTO> results=null;
-                
         try {    
+            
+                List result;
             sesionFactory = NewHibernateUtil.getSessionFactory();
             session = sesionFactory.openSession();
             tx = session.beginTransaction();
-         
-            Criteria empleadoCriteria = session.createCriteria(Empleado.class, "e");       
-            Criteria ticketCriteria = empleadoCriteria.createCriteria("tickets", "t");
-            Criteria historialTicketCriteria = ticketCriteria.createCriteria("historialtickets", "ht");
-            Criteria historialClasificacionCriteria = ticketCriteria.createCriteria("historialclasificacions","hc");
-            Criteria clasificacionCriteria = historialClasificacionCriteria.createCriteria("clasificacion", "cl");
-            //Criteria intervencionCriteria = ticketCriteria.createCriteria()
+            
+            Criteria ticketCriteria = session.createCriteria(Ticket.class, "t");
             
             if(nroTicket!=null){
                 ticketCriteria.add(Restrictions.eq("nroTicket", nroTicket));
             }
-            
-            if(nroLegajoEmpleado!=null){
-                ticketCriteria.add(Restrictions.eq("empleado", nroLegajoEmpleado));
-            }
-            
+
              if(fechaApertura!=null){
                 ticketCriteria.add(Restrictions.eq("fecahapertura", fechaApertura));
             }
-             
+
               if(estadoActual.equals("Todos")){
                 ticketCriteria.add(Restrictions.eq("estadoactual", estadoActual));
             }
-              //agregar para ultimo grupo, clasificacion actual, fecha ultimo cambio estado, jugar con las fechas ordenarlas de mayor a menor
-              //y tomar el primer elemento
-               if(fechaUltimoCambioEstado!=null){
-                   
-                   Criteria c = session.createCriteria(Historialticket.class);
-                   c.addOrder(Order.desc("fechafin"));
-                   c.setMaxResults(1).uniqueResult();
-                   
-                   historialTicketCriteria.add(Restrictions.eq(c.toString(),fechaUltimoCambioEstado));
-                   
+              
+              
+            if(nroLegajoEmpleado!=null){
                 
+                ticketCriteria.createCriteria("empleado").add(Restrictions.eq("legajoEmpleado", nroLegajoEmpleado));  
             }
-               
-                if(clasificacionActual!=null){
-                    
-                   Criteria c = session.createCriteria(Historialclasificacion.class);
-                   c.addOrder(Order.desc("fechafin"));
-                   c.setMaxResults(1).uniqueResult();
-            }
-                
-                
+            
+            if(fechaUltimoCambioEstado!=null){
+                   
+                    ticketCriteria.add(Restrictions.eq("fechaultimoestado" ,fechaUltimoCambioEstado));
              
-              
-              List<Empleado> emp = empleadoCriteria.list();
-              List<Ticket> tickets = ticketCriteria.list();
-              List<Historialticket> historialTicket = historialClasificacionCriteria.list();
-              List<Historialclasificacion> historilClasificacion = historialClasificacionCriteria.list();
-          
-              for(int i=0; i<tickets.size(); i++){
-                  
-                  results.get(i).setNroTicket(tickets.get(i).getNroTicket());
-                  results.get(i).setNroLegajoempleado(emp.get(i).getLegajoEmpleado());
-                  results.get(i).setEstadoactual(tickets.get(i).getEstadoactual());
-                  results.get(i).setFechaapertura(tickets.get(i).getFecahapertura());
-                  results.get(i).setHoraapertura(tickets.get(i).getHoraapertura());
-                  results.get(i).setFechaultimocambioestado(historialTicket.get(i).getFechafin());
-                  results.get(i).setOperador("joinear");
-                  results.get(i).setClasificacionactual(historilClasificacion.get(i).getClasificacion().getNombreclasificacion());
-                  
-              }
-              
-             /*results = ticketCriteria.setProjection(Projections.projectionList()
-            .add(Projections.property("t.nroTicket"))
-            .add(Projections.property("t.empleado"))
-            .add(Projections.property("t.fecahapertura"))
-            .add(Projections.property("t.estadoactual"))         
-            .add(Projections.property("t.horaapertura"))            
-            .add(Projections.property("cl.nombreclasificacion"))
-            .add(Projections.property("ht.usuario"))
-            .add(Projections.property("ht.fechafin"))).list();
-             */
+            }
+            
+            if(!clasificacionActual.equals("Todas")){
+                               
+                ticketCriteria.createCriteria("clasificacion").add(Restrictions.eq("nombreclasificacion", clasificacionActual));
+            }
+            
+            result = ticketCriteria.list();
+            
+//            for (Iterator iter = result.iterator(); iter.hasNext();) {
+//                Ticket ti = (Ticket) iter.next();
+//                Hibernate.initialize(ti.getHistorialtickets());
+//            
+//                for (Iterator iter2 = ti.getHistorialtickets().iterator(); iter2.hasNext();) {
+//                    Historialticket Hti = (Historialticket) iter2.next();
+//                    Hibernate.initialize(Hti.getTicket());
+//                }
+//            }
+            
+ //         List result = session.createSQLQuery("Select t.nro_ticket, t.estadoactual, ")
             
             tx.commit();
             session.close();
-
+            
+            return result;
+            
     } catch (HibernateException e) {
             System.out.println(e);
         }
         
-        return results;
-    }
+        return null;
+   }
         
 }
        

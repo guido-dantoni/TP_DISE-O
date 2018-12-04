@@ -6,6 +6,7 @@
 package Ventanas;
 
 import clases.TicketDTO;
+import controllers.Enum_EstadoTicket;
 import controllers.GestorClasificacion;
 import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
@@ -531,9 +532,20 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
             nroLegajoEmpleado = Integer.parseInt(jTextFieldNroLegajo1.getText());
         }
         
+        if(jComboBox1EstadoActual.getSelectedItem().toString().equals("Abierto en mesa de ayuda")){
+            estadoActual = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
+            }else if (jComboBox1EstadoActual.getSelectedItem().toString().equals("Abierto derivado")){
+                estadoActual = Enum_EstadoTicket.ABIERTO_DERIVADO.toString();
+                 }else if(jComboBox1EstadoActual.getSelectedItem().toString().equals("solucionado a la espera de OK")){
+                    estadoActual = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
+                        }else if(jComboBox1EstadoActual.getSelectedItem().toString().equals("Cerrado")){
+                            estadoActual = Enum_EstadoTicket.CERRADO.toString();
+                                }else {
+                                        estadoActual = "Todos";
+                                 }
+        
         fechaApertura = jXDatePickerFechaApertura.getDate();
         fechaUltimoCambioEstado = jXDatePickerFechaAcualizacion.getDate();
-        estadoActual = jComboBox1EstadoActual.getSelectedItem().toString();
         ultimoGrupo = jComboBox1UltimoGpoResolucion.getSelectedItem().toString();
         clasificacionActual = jComboBox1ClasificacionActual.getSelectedItem().toString();
     

@@ -1,5 +1,5 @@
 package clases;
-// Generated 23/11/2018 20:16:33 by Hibernate Tools 4.3.1
+// Generated 04/12/2018 15:54:45 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,6 +19,7 @@ public class Ticket  implements java.io.Serializable {
      private String estadoactual;
      private Date horaapertura;
      private String descripcion;
+     private Date fechaultimoestado;
      private Set historialclasificacions = new HashSet(0);
      private Set historialtickets = new HashSet(0);
      private Set intervencions = new HashSet(0);
@@ -35,7 +36,7 @@ public class Ticket  implements java.io.Serializable {
         this.estadoactual = estadoactual;
         this.horaapertura = horaapertura;
     }
-    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Set historialclasificacions, Set historialtickets, Set intervencions) {
+    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Date fechaultimoestado, Set historialclasificacions, Set historialtickets, Set intervencions) {
        this.nroTicket = nroTicket;
        this.clasificacion = clasificacion;
        this.empleado = empleado;
@@ -43,6 +44,7 @@ public class Ticket  implements java.io.Serializable {
        this.estadoactual = estadoactual;
        this.horaapertura = horaapertura;
        this.descripcion = descripcion;
+       this.fechaultimoestado = fechaultimoestado;
        this.historialclasificacions = historialclasificacions;
        this.historialtickets = historialtickets;
        this.intervencions = intervencions;
@@ -96,6 +98,13 @@ public class Ticket  implements java.io.Serializable {
     
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    public Date getFechaultimoestado() {
+        return this.fechaultimoestado;
+    }
+    
+    public void setFechaultimoestado(Date fechaultimoestado) {
+        this.fechaultimoestado = fechaultimoestado;
     }
     public Set getHistorialclasificacions() {
         return this.historialclasificacions;
