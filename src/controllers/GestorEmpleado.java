@@ -30,12 +30,12 @@ public class GestorEmpleado {
         return empleadoDao.getEmpleado(numeroLegajo);
     }
 
-    String BuscarEmpleadoAbrioTicket(int nroTicket) {
-         EmpleadoDao eDao = new EmpleadoDao();
-         String nom ;
-
-         nom = eDao.getEmpleadoAbrioTicket(nroTicket).get(0).toString();
-         return nom;
-    }
+//    String BuscarEmpleadoAbrioTicket(int nroTicket) {
+//         EmpleadoDao eDao = new EmpleadoDao();
+//         String nom ;
+//
+//         nom = eDao.getEmpleadoAbrioTicket(nroTicket).get(0).toString();
+//         return nom;
+//    }
      
 }

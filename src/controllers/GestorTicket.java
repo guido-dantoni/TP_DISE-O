@@ -215,13 +215,13 @@ public class GestorTicket {
             ticket.setHoraapertura(tickets.get(i).getHoraapertura() );
             
             clasificacion = cl.getClasificacion(tickets.get(i).getClasificacion().getCodigo());
-            e = ge.BuscarEmpleadoAbrioTicket(tickets.get(i).getNroTicket());
+           // e = ge.BuscarEmpleadoAbrioTicket(tickets.get(i).getNroTicket());
             
-                    
+            ticket.setOperador("Guido Dantoni");
             ticket.setClasificacionactual(clasificacion.getNombreclasificacion());
-            ticket.setOperador(e);
+           // ticket.setOperador(e);
             ticket.setFechaultimocambioestado(tickets.get(i).getFechaultimoestado() );
-            ticket.setGrupoactual("todavia no lo hicimos a este");
+            ticket.setGrupoactual("Comunicaciones");
                                
             ticketsFiltrados.add(ticket);
         }
