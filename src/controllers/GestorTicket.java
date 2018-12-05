@@ -2,6 +2,7 @@
 package controllers;
 
 import Dao.ClasificacionDao;
+import Dao.EmpleadoDao;
 import Dao.TicketDao;
 import clases.Clasificacion;
 import clases.Empleado;
@@ -198,6 +199,10 @@ public class GestorTicket {
         
         ClasificacionDao cl = new ClasificacionDao();
         Clasificacion clasificacion;
+       
+        GestorEmpleado ge = new GestorEmpleado();
+      //  Empleado e = new Empleado();
+            String e;
         
         for (int i=0; i < tickets.size(); i++){
             
@@ -210,9 +215,11 @@ public class GestorTicket {
             ticket.setHoraapertura(tickets.get(i).getHoraapertura() );
             
             clasificacion = cl.getClasificacion(tickets.get(i).getClasificacion().getCodigo());
+            e = ge.BuscarEmpleadoAbrioTicket(tickets.get(i).getNroTicket());
             
+                    
             ticket.setClasificacionactual(clasificacion.getNombreclasificacion());
-            ticket.setOperador("Creo que no habiamos hecho esto todavia");
+            ticket.setOperador(e);
             ticket.setFechaultimocambioestado(tickets.get(i).getFechaultimoestado() );
             ticket.setGrupoactual("todavia no lo hicimos a este");
                                

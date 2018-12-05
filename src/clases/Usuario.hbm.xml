@@ -11,25 +11,25 @@
         <property name="tipo" type="string">
             <column name="tipo" length="100" not-null="true" />
         </property>
-        <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="true" fetch="select">
+        <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="legajo_usuario" not-null="true" />
             </key>
             <one-to-many class="clases.Historialclasificacion" />
         </set>
-        <set name="empleados" table="empleado" inverse="true" lazy="true" fetch="select">
+        <set name="empleados" table="empleado" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="legajousuario" />
             </key>
             <one-to-many class="clases.Empleado" />
         </set>
-        <set name="historialtickets" table="historialticket" inverse="true" lazy="true" fetch="select">
+        <set name="historialtickets" table="historialticket" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="legajousuario" not-null="true" />
             </key>
             <one-to-many class="clases.Historialticket" />
         </set>
-        <set name="historialintervencions" table="historialintervencion" inverse="true" lazy="true" fetch="select">
+        <set name="historialintervencions" table="historialintervencion" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="legajousuario" not-null="true" />
             </key>
