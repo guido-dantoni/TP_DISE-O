@@ -134,11 +134,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxClasificacion.setToolTipText("");
-        jComboBoxClasificacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxClasificacionActionPerformed(evt);
-            }
-        });
         getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 480, 30));
 
         jTextFieldFechaApertura.setEditable(false);
@@ -159,11 +154,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jButtonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonAceptarMouseClicked(evt);
-            }
-        });
-        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarActionPerformed(evt);
             }
         });
         jButtonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -239,10 +229,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBoxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxClasificacionActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
       
@@ -381,10 +367,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                      }
         
     }//GEN-LAST:event_jTextAreaDescripcionFocusGained
-
-    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-       
-    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
         // TODO add your handling code here:

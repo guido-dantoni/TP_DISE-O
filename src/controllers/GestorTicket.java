@@ -1,6 +1,7 @@
 
 package controllers;
 
+import Dao.ClasificacionDao;
 import Dao.TicketDao;
 import clases.Clasificacion;
 import clases.Empleado;
@@ -187,14 +188,38 @@ public class GestorTicket {
 
     }
 
-    public void buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual, List<TicketDTO> ticketsFiltrados) {
+    public List<TicketDTO> buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
         TicketDao ticketDao = new TicketDao();
-        List<Ticket> tickets= ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
+        List<Ticket> tickets = ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
         
-        System.out.println(tickets.size());    
-        System.out.println(tickets.get(0).getNroTicket());
-        System.out.println(tickets.get(1).getEmpleado().getLegajoEmpleado());
+             
+        List<TicketDTO> ticketsFiltrados = new ArrayList<TicketDTO>();
+        
+        ClasificacionDao cl = new ClasificacionDao();
+        Clasificacion clasificacion;
+        
+        for (int i=0; i < tickets.size(); i++){
+            
+            TicketDTO ticket = new TicketDTO();
+            
+            ticket.setNroTicket(tickets.get(i).getNroTicket() );
+            ticket.setNroLegajoempleado(tickets.get(i).getEmpleado().getLegajoEmpleado() );
+            ticket.setFechaapertura(tickets.get(i).getFecahapertura() );
+            ticket.setEstadoactual(tickets.get(i).getEstadoactual() );
+            ticket.setHoraapertura(tickets.get(i).getHoraapertura() );
+            
+            clasificacion = cl.getClasificacion(tickets.get(i).getClasificacion().getCodigo());
+            
+            ticket.setClasificacionactual(clasificacion.getNombreclasificacion());
+            ticket.setOperador("Creo que no habiamos hecho esto todavia");
+            ticket.setFechaultimocambioestado(tickets.get(i).getFechaultimoestado() );
+            ticket.setGrupoactual("todavia no lo hicimos a este");
+                               
+            ticketsFiltrados.add(ticket);
+        }
+       
+        return ticketsFiltrados;
     }
     
 }

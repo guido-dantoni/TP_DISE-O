@@ -15,6 +15,9 @@ import java.awt.Event;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +25,8 @@ import java.util.List;
 import javafx.scene.control.DatePicker;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import org.jdesktop.swingx.JXMonthView;
 
 /**
@@ -30,13 +35,14 @@ import org.jdesktop.swingx.JXMonthView;
  */
 public class Caso_de_uso_02 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaBuscarCU02
-     */
+    private int indice;
+    private  List<TicketDTO> ticketsFiltrados = new ArrayList<>();
+    
     public Caso_de_uso_02() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        cerrar();
         
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
         GestorGrupoResolucion gestorGrupo = new GestorGrupoResolucion();
@@ -141,12 +147,21 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jLabel1Uno.setBackground(new java.awt.Color(191, 185, 185));
         jLabel1Uno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1Uno.setForeground(new java.awt.Color(51, 153, 255));
-        jLabel1Uno.setText("1");
-        getContentPane().add(jLabel1Uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, -1, -1));
+        getContentPane().add(jLabel1Uno, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 300, 10, 20));
 
         jButtonAnterior.setBackground(new java.awt.Color(191, 185, 185));
         jButtonAnterior.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonAnterior.setText("Anterior");
+        jButtonAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnteriorActionPerformed(evt);
+            }
+        });
+        jButtonAnterior.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAnteriorKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, -1, -1));
 
         jLabelDE.setBackground(new java.awt.Color(191, 185, 185));
@@ -158,13 +173,17 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jButtonSiguiente.setBackground(new java.awt.Color(191, 185, 185));
         jButtonSiguiente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonSiguiente.setText("Siguiente");
+        jButtonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSiguienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
 
         jLabelC.setBackground(new java.awt.Color(191, 185, 185));
         jLabelC.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelC.setForeground(new java.awt.Color(51, 153, 255));
-        jLabelC.setText("C");
-        getContentPane().add(jLabelC, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 20, -1));
+        getContentPane().add(jLabelC, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 20, 20));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 1025, 10));
 
         jLabelNroTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -283,11 +302,26 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButtonConfReporteActionPerformed(evt);
             }
         });
+        jButtonConfReporte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonConfReporteKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonConfReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 580, 190, 40));
 
         jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonCancelarMouseClicked(evt);
+            }
+        });
+        jButtonCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonCancelarKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 580, 170, 40));
 
         jLabelInfoDeCadaTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -299,9 +333,14 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jButtonVerDetalle.setBackground(new java.awt.Color(191, 185, 185));
         jButtonVerDetalle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonVerDetalle.setText("Ver detalle");
-        jButtonVerDetalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVerDetalleActionPerformed(evt);
+        jButtonVerDetalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonVerDetalleMouseClicked(evt);
+            }
+        });
+        jButtonVerDetalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonVerDetalleKeyPressed(evt);
             }
         });
         getContentPane().add(jButtonVerDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 580, 170, 40));
@@ -424,11 +463,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 120, 40));
 
         jTextFieldNroLegajo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
-        jTextFieldNroLegajo2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldNroLegajo2FocusGained(evt);
-            }
-        });
         getContentPane().add(jTextFieldNroLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 635));
 
         pack();
@@ -440,11 +474,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonConfReporteActionPerformed
-
-    private void jButtonVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetalleActionPerformed
-        // TODO add your handling code here:
-     
-    }//GEN-LAST:event_jButtonVerDetalleActionPerformed
 
     private void jButton1BuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1BuscarKeyPressed
                 
@@ -510,10 +539,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
             jComboBox1ClasificacionActual.showPopup();        
     }//GEN-LAST:event_jComboBox1ClasificacionActualFocusGained
 
-    private void jTextFieldNroLegajo2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo2FocusGained
-                    
-    }//GEN-LAST:event_jTextFieldNroLegajo2FocusGained
-
     private void jComboBox1EstadoActualFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualFocusGained
         jComboBox1EstadoActual.showPopup();
     }//GEN-LAST:event_jComboBox1EstadoActualFocusGained
@@ -551,12 +576,78 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     
     
         GestorTicket gestorTicket = new GestorTicket();
-        List<TicketDTO> ticketsFiltrados = new ArrayList<>();
+       
         
-        gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual, ticketsFiltrados); 
-                 
-    
+       ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
+       
+        if(ticketsFiltrados.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
+        } else {
+            
+             jButtonSiguiente.requestFocus();
+             indice = 0;
+             jButtonVerDetalle.setEnabled(true);
+             jButtonConfReporte.setEnabled(true);
+             
+             
+             
+             cargarCampos( indice );
+             
+             
+             
+            
+        }
+        
     }//GEN-LAST:event_jButton1BuscarActionPerformed
+
+    private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
+        
+        jButtonSiguiente.setEnabled(false);
+        indice++;
+        cargarCampos(indice);
+    }//GEN-LAST:event_jButtonSiguienteActionPerformed
+
+    private void jButtonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnteriorActionPerformed
+        
+        jButtonAnterior.setEnabled(false);
+        indice--;    
+        cargarCampos(indice);
+    }//GEN-LAST:event_jButtonAnteriorActionPerformed
+
+    private void jButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCancelarMouseClicked
+        salir();
+    }//GEN-LAST:event_jButtonCancelarMouseClicked
+
+    private void jButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCancelarKeyPressed
+          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonCancelar.doClick();
+        }  
+    }//GEN-LAST:event_jButtonCancelarKeyPressed
+
+    private void jButtonVerDetalleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonVerDetalleKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+               jButtonVerDetalle.doClick();
+        }
+       }//GEN-LAST:event_jButtonVerDetalleKeyPressed
+
+    private void jButtonVerDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVerDetalleMouseClicked
+        
+        VerDetalleTicket v = new VerDetalleTicket();
+        this.setVisible(false);
+        v.setVisible(true);
+    }//GEN-LAST:event_jButtonVerDetalleMouseClicked
+
+    private void jButtonAnteriorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAnteriorKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonAnterior.doClick();
+        } 
+    }//GEN-LAST:event_jButtonAnteriorKeyPressed
+
+    private void jButtonConfReporteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConfReporteKeyPressed
+          if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonConfReporte.doClick();
+        }        
+    }//GEN-LAST:event_jButtonConfReporteKeyPressed
 
     /**
      * @param args the command line arguments
@@ -644,5 +735,65 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFechaApertura;
     // End of variables declaration//GEN-END:variables
 
- 
+    private void cargarCampos(int i) {
+        
+       if(i==0){
+           jButtonAnterior.setEnabled(false);
+           jButtonSiguiente.requestFocus();
+       }else{
+           jButtonAnterior.setEnabled(true);
+       }
+       
+        if(i==ticketsFiltrados.size()-1){
+            jButtonSiguiente.setEnabled(false);
+            jButtonAnterior.requestFocus();
+        }else{
+             jButtonSiguiente.setEnabled(true);
+        }
+        
+        
+        jLabel1Uno.setText(String.valueOf(i+1));
+        jLabelC.setText(String.valueOf((ticketsFiltrados.size())));
+        
+               
+        jTextFieldNroTicket2.setText(String.valueOf(ticketsFiltrados.get(i).getNroTicket()));
+        jTextFieldLegajo2.setText(String.valueOf(ticketsFiltrados.get(i).getNroLegajoempleado()));
+        
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat h = new SimpleDateFormat ("HH:mm:ss");
+        
+        jTextFieldFechaApertura.setText(f.format(ticketsFiltrados.get(i).getFechaapertura()));
+        jTextFieldHoraApertura.setText(h.format(ticketsFiltrados.get(i).getHoraapertura()));
+        jTextFieldFechaUltimoCambioEstado.setText(f.format(ticketsFiltrados.get(i).getFechaultimocambioestado()));
+        jTextFieldOperadorQueAbrio.setText(ticketsFiltrados.get(i).getOperador());
+        jTextFieldEstadoActual.setText(ticketsFiltrados.get(i).getEstadoactual());
+        jTextFieldClasificacionActual.setText(ticketsFiltrados.get(i).getClasificacionactual());
+        jTextFieldGpoResolucionAsignado.setText(ticketsFiltrados.get(i).getGrupoactual());
+    }
+
+    
+    public void cerrar(){
+        
+        try{
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                @Override
+                    public void windowClosing(WindowEvent e){
+                    salir();
+                }
+               
+            });
+        
+        }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
+    public void salir(){
+            
+            this.setVisible(false);
+            PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
+            pantallaMesaAyuda.setVisible(true);
+        
+    }
+   
 }

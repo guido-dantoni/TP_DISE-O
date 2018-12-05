@@ -242,7 +242,7 @@ public class TicketDao {
     //nosotros pudimos retornar una lista (es el codigo que esta comentado casi al final del metodo)
     //pero no podiamos acceder a los atributos, como que la lista tenia que ser casteada, otro problema que nos tiraba era una 
     //NULL POINTER EXCEPTION que no sabemos de que es
-    public List getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
+    public List<Ticket> getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
         try {    
             
@@ -261,7 +261,7 @@ public class TicketDao {
                 ticketCriteria.add(Restrictions.eq("fecahapertura", fechaApertura));
             }
 
-              if(estadoActual.equals("Todos")){
+              if(!estadoActual.equals("Todos")){
                 ticketCriteria.add(Restrictions.eq("estadoactual", estadoActual));
             }
               
@@ -280,6 +280,12 @@ public class TicketDao {
             if(!clasificacionActual.equals("Todas")){
                                
                 ticketCriteria.createCriteria("clasificacion").add(Restrictions.eq("nombreclasificacion", clasificacionActual));
+            }
+            
+            if(!ultimoGrupo.equals("Todos")){
+            
+                ticketCriteria.createCriteria("interventions", "i").setFetchMode("i.gruporesolucion", FetchMode.JOIN)
+                .addOrder(Order.desc("fechafin")).setFirstResult(1).setProjection(Projections.groupProperty("nroTicket"));
             }
             
             result = ticketCriteria.list();

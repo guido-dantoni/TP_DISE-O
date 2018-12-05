@@ -18,7 +18,7 @@ import java.util.Date;
        private String clasificacionactual;
        private String operador;
        private Date fechaultimocambioestado;
-      //private String grupoactual;
+       private String grupoactual;
 
     public TicketDTO(){  
     }
@@ -86,7 +86,7 @@ import java.util.Date;
     public void setFechaultimocambioestado(Date fechaultimocambioestado) {
         this.fechaultimocambioestado = fechaultimocambioestado;
     }
-/*
+
     public String getGrupoactual() {
         return grupoactual;
     }
@@ -94,5 +94,5 @@ import java.util.Date;
     public void setGrupoactual(String grupoactual) {
         this.grupoactual = grupoactual;
     }
-*/
+
 }

@@ -39,6 +39,19 @@ public class ClasificacionDao {
          return c;
      }
      
+     public Clasificacion getClasificacion(Integer codigo){
+         
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         Clasificacion cl = (Clasificacion) session.get(Clasificacion.class, codigo);
+         
+         tx.commit();
+         session.close();
+         return cl;
+     }
+     
      
        public Clasificacion getClasificacion(String nombreClasificacion) {
            
