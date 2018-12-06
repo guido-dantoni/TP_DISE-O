@@ -41,6 +41,7 @@ public class GestorEmpleado {
 //         return nom;
 //    }
 
+    //#######################################################################################################3
     Usuario obtenerEmpleadoUsuario(int legajousuario) {
         
         UsuarioDao usuario = new UsuarioDao();

@@ -356,6 +356,8 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 
                 
                 //busco el nombre del operador que tenga el legajo usuario de historiales.get(i)
+                //###############################################################################################################
+                //##############################################################################################################
                 int j=0;
                 Boolean encontrado=false;
                 

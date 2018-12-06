@@ -203,14 +203,14 @@ public class GestorTicket {
        
         GestorEmpleado gestorEmpleado = new GestorEmpleado();
         Usuario u = new Usuario();
-           
+//        #################################################################################################################   
         
         for (int i=0; i < tickets.size(); i++){
             
             TicketDTO ticket = new TicketDTO();
             clasificacion = cl.getClasificacion(tickets.get(i).getClasificacion().getCodigo());
             u=gestorEmpleado.obtenerEmpleadoUsuario(tickets.get(i).getLegajousuario());
-            List<Empleado> list = new ArrayList<Empleado>(u.getEmpleados());
+            List<Empleado> list = new ArrayList<>(u.getEmpleados());
             
             ticket.setNroTicket(tickets.get(i).getNroTicket() );
             ticket.setNroLegajoempleado(tickets.get(i).getEmpleado().getLegajoEmpleado() );
@@ -218,10 +218,10 @@ public class GestorTicket {
             ticket.setEstadoactual(tickets.get(i).getEstadoactual() );
             ticket.setHoraapertura(tickets.get(i).getHoraapertura() );
             
-           // e = ge.BuscarEmpleadoAbrioTicket(tickets.get(i).getNroTicket());
+           // ####################################################################################
             ticket.setOperador(list.get(0).getNombre()+ " " + list.get(0).getApellido());
             ticket.setClasificacionactual(clasificacion.getNombreclasificacion());
-           // ticket.setOperador(e);
+           // ################################################################################################
             ticket.setFechaultimocambioestado(tickets.get(i).getFechaultimoestado() );
             ticket.setGrupoactual("Comunicaciones");
                                

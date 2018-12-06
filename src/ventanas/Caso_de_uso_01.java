@@ -359,6 +359,9 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                          
                                                   
                      }else{
+                         
+                        //#################################################################################################
+                        //·##################################################################################################
                          nombreApellido= gestorEmpleado.obtenerNombre(numeroLegajo);
                          jTextFieldNombreApellido.setText(nombreApellido);
                          jLabelMsjErrorNombre.setText("");

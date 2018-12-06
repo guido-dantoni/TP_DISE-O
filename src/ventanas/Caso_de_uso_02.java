@@ -582,7 +582,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     
         GestorTicket gestorTicket = new GestorTicket();
        
-        
+        //################################################################################################################################333
        ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
        
         if(ticketsFiltrados.isEmpty()){
