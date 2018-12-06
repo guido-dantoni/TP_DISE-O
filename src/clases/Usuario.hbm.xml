@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04/12/2018 15:54:46 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05/12/2018 15:48:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="clases.Usuario" table="usuario" schema="public" optimistic-lock="version">
         <id name="legajoUsuario" type="int">
@@ -11,7 +11,7 @@
         <property name="tipo" type="string">
             <column name="tipo" length="100" not-null="true" />
         </property>
-        <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="false" fetch="select">
+        <set name="historialclasificacions" table="historialclasificacion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="legajo_usuario" not-null="true" />
             </key>
@@ -23,13 +23,13 @@
             </key>
             <one-to-many class="clases.Empleado" />
         </set>
-        <set name="historialtickets" table="historialticket" inverse="true" lazy="false" fetch="select">
+        <set name="historialtickets" table="historialticket" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="legajousuario" not-null="true" />
             </key>
             <one-to-many class="clases.Historialticket" />
         </set>
-        <set name="historialintervencions" table="historialintervencion" inverse="true" lazy="false" fetch="select">
+        <set name="historialintervencions" table="historialintervencion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="legajousuario" not-null="true" />
             </key>

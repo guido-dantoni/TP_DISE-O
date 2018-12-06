@@ -338,6 +338,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButtonVerDetalleMouseClicked(evt);
             }
         });
+        jButtonVerDetalle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerDetalleActionPerformed(evt);
+            }
+        });
         jButtonVerDetalle.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jButtonVerDetalleKeyPressed(evt);
@@ -635,6 +640,8 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         VerDetalleTicket v = new VerDetalleTicket();
         this.setVisible(false);
         v.setVisible(true);
+        v.cargarCampos(ticketsFiltrados.get(indice));
+        
     }//GEN-LAST:event_jButtonVerDetalleMouseClicked
 
     private void jButtonAnteriorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAnteriorKeyPressed
@@ -648,6 +655,10 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButtonConfReporte.doClick();
         }        
     }//GEN-LAST:event_jButtonConfReporteKeyPressed
+
+    private void jButtonVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetalleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonVerDetalleActionPerformed
 
     /**
      * @param args the command line arguments

@@ -2,7 +2,9 @@
 package controllers;
 
 import Dao.EmpleadoDao;
+import Dao.UsuarioDao;
 import clases.Empleado;
+import clases.Usuario;
 
 /**
  *
@@ -37,5 +39,14 @@ public class GestorEmpleado {
 //         nom = eDao.getEmpleadoAbrioTicket(nroTicket).get(0).toString();
 //         return nom;
 //    }
+
+    Usuario obtenerEmpleadoUsuario(int legajousuario) {
+        
+        UsuarioDao usuario = new UsuarioDao();
+        
+        return usuario.getUsuario(legajousuario);
+        
+    }
+    
      
 }

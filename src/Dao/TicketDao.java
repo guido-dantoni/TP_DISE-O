@@ -284,10 +284,14 @@ public class TicketDao {
             
             if(!ultimoGrupo.equals("Todos")){
             
-                ticketCriteria.createCriteria("interventions", "i").setFetchMode("i.gruporesolucion", FetchMode.JOIN)
-                .addOrder(Order.desc("fechafin")).setFirstResult(1).setProjection(Projections.groupProperty("nroTicket"));
+                ticketCriteria.createAlias("intervencions", "i")
+                              .createAlias("i.gruporesolucion", "gr")
+                              .createAlias("i.historialintervencions", "ht"); //SEGUIR
+                
+//                ticketCriteria.createCriteria("interventions", "i").setFetchMode("i.gruporesolucion", FetchMode.JOIN)
+//                .addOrder(Order.desc("fechafin")).setFirstResult(1).setProjection(Projections.groupProperty("nroTicket"));
             }
-            
+            //docs.jboss.com
             result = ticketCriteria.list();
             
 //            for (Iterator iter = result.iterator(); iter.hasNext();) {
@@ -313,6 +317,29 @@ public class TicketDao {
         
         return null;
    }
+    
+        public List<Historialticket> getHistorialesTicket(Integer nroTicket) {
+        
+        List<Historialticket> historiales = null ;   
+        
+          try {    
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         Criteria cr = session.createCriteria(Historialticket.class).add(Restrictions.eq("nroticket", nroTicket));
+         historiales = cr.list();
+         
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+        System.out.println(e);
+        }
+          
+        return historiales; 
+        
+    }
         
 }
        

@@ -73,6 +73,7 @@ public class GestorTicket {
         ticket.setClasificacion(clasificacion);
         ticket.setDescripcion(descripcion);
         ticket.setFechaultimoestado(fechaApertura);
+        ticket.setLegajousuario(this.userLogueado.getLegajoUsuario());
         
         //seteo los valores de historialClasificacion
         Historialticket historialTicket= new Historialticket();
@@ -200,13 +201,16 @@ public class GestorTicket {
         ClasificacionDao cl = new ClasificacionDao();
         Clasificacion clasificacion;
        
-        GestorEmpleado ge = new GestorEmpleado();
-      //  Empleado e = new Empleado();
-            String e;
+        GestorEmpleado gestorEmpleado = new GestorEmpleado();
+        Usuario u = new Usuario();
+           
         
         for (int i=0; i < tickets.size(); i++){
             
             TicketDTO ticket = new TicketDTO();
+            clasificacion = cl.getClasificacion(tickets.get(i).getClasificacion().getCodigo());
+            u=gestorEmpleado.obtenerEmpleadoUsuario(tickets.get(i).getLegajousuario());
+            List<Empleado> list = new ArrayList<Empleado>(u.getEmpleados());
             
             ticket.setNroTicket(tickets.get(i).getNroTicket() );
             ticket.setNroLegajoempleado(tickets.get(i).getEmpleado().getLegajoEmpleado() );
@@ -214,10 +218,8 @@ public class GestorTicket {
             ticket.setEstadoactual(tickets.get(i).getEstadoactual() );
             ticket.setHoraapertura(tickets.get(i).getHoraapertura() );
             
-            clasificacion = cl.getClasificacion(tickets.get(i).getClasificacion().getCodigo());
            // e = ge.BuscarEmpleadoAbrioTicket(tickets.get(i).getNroTicket());
-            
-            ticket.setOperador("Guido Dantoni");
+            ticket.setOperador(list.get(0).getNombre()+ " " + list.get(0).getApellido());
             ticket.setClasificacionactual(clasificacion.getNombreclasificacion());
            // ticket.setOperador(e);
             ticket.setFechaultimocambioestado(tickets.get(i).getFechaultimoestado() );
@@ -227,6 +229,12 @@ public class GestorTicket {
         }
        
         return ticketsFiltrados;
+    }
+
+    public List<Historialticket> obtenerHistorialesTicket(int nroTicket) {
+        
+        TicketDao t = new TicketDao();
+        return t.getHistorialesTicket(nroTicket);
     }
     
 }

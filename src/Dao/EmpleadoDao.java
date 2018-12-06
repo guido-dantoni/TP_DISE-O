@@ -43,6 +43,7 @@ public class EmpleadoDao {
          return e;
      }
      
+
 //    public List getEmpleadoAbrioTicket(Integer ticket){
 //         sesionFactory = NewHibernateUtil.getSessionFactory();
 //         session = sesionFactory.openSession();

@@ -25,6 +25,7 @@ public class UsuarioDao {
      private SessionFactory sesion;
      private Session session;
      private Transaction tx;
+     
      public Usuario getUsuario(int legajoUsuario, String tipoDeUsuario) {
         
         
@@ -37,6 +38,19 @@ public class UsuarioDao {
          tx.commit();
          session.close();
          return user;
+     }
+    
+     public Usuario getUsuario(Integer legajoUsuario){
+         
+         sesion = NewHibernateUtil.getSessionFactory();
+         session = sesion.openSession();
+         tx = session.beginTransaction();
+         
+         Usuario u = (Usuario) session.get(Usuario.class, legajoUsuario);
+         
+         tx.commit();
+         session.close();
+         return u;
      }
       
        

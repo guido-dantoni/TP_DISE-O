@@ -1,9 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
+
+import Dao.EmpleadoDao;
+import clases.Empleado;
+import clases.Historialticket;
+import clases.TicketDTO;
+import controllers.GestorEmpleado;
+import controllers.GestorTicket;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -11,12 +17,12 @@ package Ventanas;
  */
 public class VerDetalleTicket extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaVERDETALLETICKET
-     */
-    public VerDetalleTicket() {
+        public VerDetalleTicket() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        
+        
     }
 
     /**
@@ -75,7 +81,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jLabelApellidoyNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelApellidoyNombre.setForeground(new java.awt.Color(255, 255, 255));
         jLabelApellidoyNombre.setText("Apellido y Nombre");
-        getContentPane().add(jLabelApellidoyNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
+        getContentPane().add(jLabelApellidoyNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, -1, -1));
 
         jLabelTelefonoInterno.setBackground(new java.awt.Color(191, 185, 185));
         jLabelTelefonoInterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -87,7 +93,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jLabelTelefonoDirecto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelTelefonoDirecto.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTelefonoDirecto.setText("Teléfono directo");
-        getContentPane().add(jLabelTelefonoDirecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
+        getContentPane().add(jLabelTelefonoDirecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, -1, -1));
 
         jLabelUbicacion.setBackground(new java.awt.Color(191, 185, 185));
         jLabelUbicacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -110,31 +116,47 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextFieldNroLegajo.setEditable(false);
         jTextFieldNroLegajo.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNroLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        getContentPane().add(jTextFieldNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 240, -1));
+        jTextFieldNroLegajo.setFocusable(false);
+        jTextFieldNroLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNroLegajoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 180, -1));
 
         jTextFieldTelefonoInterno.setEditable(false);
         jTextFieldTelefonoInterno.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTelefonoInterno.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        getContentPane().add(jTextFieldTelefonoInterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 240, -1));
+        jTextFieldTelefonoInterno.setFocusable(false);
+        getContentPane().add(jTextFieldTelefonoInterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 180, -1));
 
         jTextFieldUbicacion.setEditable(false);
         jTextFieldUbicacion.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldUbicacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldUbicacion.setFocusable(false);
         getContentPane().add(jTextFieldUbicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 780, -1));
 
         jTextFieldApeYNombre.setEditable(false);
         jTextFieldApeYNombre.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldApeYNombre.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        getContentPane().add(jTextFieldApeYNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, 330, -1));
+        jTextFieldApeYNombre.setFocusable(false);
+        getContentPane().add(jTextFieldApeYNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 380, -1));
 
         jTextFieldTelefonoDirecto.setEditable(false);
         jTextFieldTelefonoDirecto.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTelefonoDirecto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        getContentPane().add(jTextFieldTelefonoDirecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 330, -1));
+        jTextFieldTelefonoDirecto.setFocusable(false);
+        jTextFieldTelefonoDirecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTelefonoDirectoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldTelefonoDirecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 220, -1));
 
         jTextFieldDescrpDelCargo.setEditable(false);
         jTextFieldDescrpDelCargo.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldDescrpDelCargo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldDescrpDelCargo.setFocusable(false);
         getContentPane().add(jTextFieldDescrpDelCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 330, -1));
 
         jLabelObservaciones.setBackground(new java.awt.Color(191, 185, 185));
@@ -180,6 +202,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextField1NroTicketPorPantalla.setEditable(false);
         jTextField1NroTicketPorPantalla.setBackground(new java.awt.Color(191, 185, 185));
         jTextField1NroTicketPorPantalla.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField1NroTicketPorPantalla.setFocusable(false);
         getContentPane().add(jTextField1NroTicketPorPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 240, -1));
 
         jTable1.setBackground(new java.awt.Color(191, 185, 185));
@@ -236,6 +259,14 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         // TODO add your handling code here:
       
     }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    private void jTextFieldNroLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNroLegajoActionPerformed
+
+    private void jTextFieldTelefonoDirectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoDirectoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTelefonoDirectoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,4 +331,25 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTelefonoInterno;
     private javax.swing.JTextField jTextFieldUbicacion;
     // End of variables declaration//GEN-END:variables
+
+    void cargarCampos(TicketDTO ticketDTO) {
+            
+            GestorEmpleado gestorEmpleado = new GestorEmpleado();
+            GestorTicket gestorTicket = new GestorTicket();
+            Empleado empleado = new Empleado();
+            List<Historialticket> historiales = new ArrayList<Historialticket>();
+            
+            empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
+            historiales = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
+            
+                       
+            jTextField1NroTicketPorPantalla.setText(String.valueOf(ticketDTO.getNroTicket()));
+            jTextFieldNroLegajo.setText(String.valueOf(empleado.getLegajoEmpleado()));
+            jTextFieldApeYNombre.setText(empleado.getNombre() + " " + empleado.getApellido());
+            jTextFieldTelefonoInterno.setText(String.valueOf(empleado.getTelefonointerno()));
+            jTextFieldTelefonoDirecto.setText(String.valueOf(empleado.getTelefonodirecto()));
+            jTextFieldDescrpDelCargo.setText(empleado.getDescripcioncargo());
+            jTextFieldUbicacion.setText(empleado.getUbicacion());
+            
+        }
 }

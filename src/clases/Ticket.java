@@ -1,5 +1,5 @@
 package clases;
-// Generated 04/12/2018 15:54:45 by Hibernate Tools 4.3.1
+// Generated 05/12/2018 15:48:18 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,6 +20,7 @@ public class Ticket  implements java.io.Serializable {
      private Date horaapertura;
      private String descripcion;
      private Date fechaultimoestado;
+     private int legajousuario;
      private Set historialclasificacions = new HashSet(0);
      private Set historialtickets = new HashSet(0);
      private Set intervencions = new HashSet(0);
@@ -28,15 +29,16 @@ public class Ticket  implements java.io.Serializable {
     }
 
 	
-    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura) {
+    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura, int legajousuario) {
         this.nroTicket = nroTicket;
         this.clasificacion = clasificacion;
         this.empleado = empleado;
         this.fecahapertura = fecahapertura;
         this.estadoactual = estadoactual;
         this.horaapertura = horaapertura;
+        this.legajousuario = legajousuario;
     }
-    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Date fechaultimoestado, Set historialclasificacions, Set historialtickets, Set intervencions) {
+    public Ticket(int nroTicket, Clasificacion clasificacion, Empleado empleado, Date fecahapertura, String estadoactual, Date horaapertura, String descripcion, Date fechaultimoestado, int legajousuario, Set historialclasificacions, Set historialtickets, Set intervencions) {
        this.nroTicket = nroTicket;
        this.clasificacion = clasificacion;
        this.empleado = empleado;
@@ -45,6 +47,7 @@ public class Ticket  implements java.io.Serializable {
        this.horaapertura = horaapertura;
        this.descripcion = descripcion;
        this.fechaultimoestado = fechaultimoestado;
+       this.legajousuario = legajousuario;
        this.historialclasificacions = historialclasificacions;
        this.historialtickets = historialtickets;
        this.intervencions = intervencions;
@@ -105,6 +108,13 @@ public class Ticket  implements java.io.Serializable {
     
     public void setFechaultimoestado(Date fechaultimoestado) {
         this.fechaultimoestado = fechaultimoestado;
+    }
+    public int getLegajousuario() {
+        return this.legajousuario;
+    }
+    
+    public void setLegajousuario(int legajousuario) {
+        this.legajousuario = legajousuario;
     }
     public Set getHistorialclasificacions() {
         return this.historialclasificacions;
