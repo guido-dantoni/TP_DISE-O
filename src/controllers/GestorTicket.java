@@ -233,8 +233,10 @@ public class GestorTicket {
 
     public List<Historialticket> obtenerHistorialesTicket(int nroTicket) {
         
-        TicketDao t = new TicketDao();
-        return t.getHistorialesTicket(nroTicket);
+        TicketDao ticketDao = new TicketDao();
+        Ticket ticket = new Ticket();
+        ticket = ticketDao.getTicket(nroTicket);
+        return ticketDao.getHistorialesTicket(ticket);
     }
     
 }

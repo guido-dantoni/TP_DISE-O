@@ -9,7 +9,9 @@ import controllers.GestorEmpleado;
 import controllers.GestorTicket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +23,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+       
         
         
     }
@@ -206,24 +209,10 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         getContentPane().add(jTextField1NroTicketPorPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 240, -1));
 
         jTable1.setBackground(new java.awt.Color(191, 185, 185));
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha cambio de estado", "Hora cambio de estado", "Operador interventor", "Grupo resolución", "Clasificación del ticket", "Estado"
@@ -272,11 +261,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+   
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -337,12 +322,17 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             GestorEmpleado gestorEmpleado = new GestorEmpleado();
             GestorTicket gestorTicket = new GestorTicket();
             Empleado empleado = new Empleado();
-            List<Historialticket> historiales = new ArrayList<Historialticket>();
+            List<Historialticket> historiales = new ArrayList<>();
+            List<Empleado> listaEmpleados = new ArrayList<>();
+            String operador = null;
+            
+            DefaultTableModel modelo =  (DefaultTableModel) jTable1.getModel();
             
             empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
             historiales = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
-            
-                       
+            listaEmpleados = gestorEmpleado.obtenerEmpleados();
+                 
+            //aca cargo los campoes del empleado
             jTextField1NroTicketPorPantalla.setText(String.valueOf(ticketDTO.getNroTicket()));
             jTextFieldNroLegajo.setText(String.valueOf(empleado.getLegajoEmpleado()));
             jTextFieldApeYNombre.setText(empleado.getNombre() + " " + empleado.getApellido());
@@ -350,6 +340,48 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             jTextFieldTelefonoDirecto.setText(String.valueOf(empleado.getTelefonodirecto()));
             jTextFieldDescrpDelCargo.setText(empleado.getDescripcioncargo());
             jTextFieldUbicacion.setText(empleado.getUbicacion());
+            
+            
+            for(int i=0; i<historiales.size(); i++){
+                
+                modelo.addRow(new Object[6]); // agrega una fila
+                
+                //Cargo todas las columnas menos la de operador
+                jTable1.setValueAt(historiales.get(i).getFechafin(), i, 0);
+                jTable1.setValueAt(historiales.get(i).getHorafin(), i, 1);
+                
+                jTable1.setValueAt(null, i, 3);
+                jTable1.setValueAt(null, i, 4);
+                jTable1.setValueAt(historiales.get(i).getEstado(), i, 5);
+                
+                
+                //busco el nombre del operador que tenga el legajo usuario de historiales.get(i)
+                int j=0;
+                Boolean encontrado=false;
+                
+                while(!encontrado && j<listaEmpleados.size()){
+                    
+                    if(historiales.get(i).getUsuario().getLegajoUsuario() == listaEmpleados.get(j).getUsuario().getLegajoUsuario()){
+                        operador =  (listaEmpleados.get(j).getNombre() + " " + listaEmpleados.get(j).getApellido());
+                        encontrado = true;
+                    }
+                    j++;
+                }
+                //String obs = historiales.get(jTable1.getSelectedRow()).getObservaciones();
+                
+                jTable1.setValueAt(operador, i, 2);
+                
+            }
+            
+            jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+               
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                     int row = jTable1.rowAtPoint(evt.getPoint());
+                         jTextArea1.setText(String.valueOf(jTable1.getSelectedRow()));
+                         
+                }
+            });
             
         }
 }

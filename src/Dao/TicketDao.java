@@ -318,7 +318,7 @@ public class TicketDao {
         return null;
    }
     
-        public List<Historialticket> getHistorialesTicket(Integer nroTicket) {
+        public List<Historialticket> getHistorialesTicket(Ticket t) {
         
         List<Historialticket> historiales = null ;   
         
@@ -327,7 +327,7 @@ public class TicketDao {
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Historialticket.class).add(Restrictions.eq("nroticket", nroTicket));
+         Criteria cr = session.createCriteria(Historialticket.class).add(Restrictions.eq("ticket", t));
          historiales = cr.list();
          
          tx.commit();

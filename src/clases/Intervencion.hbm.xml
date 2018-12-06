@@ -20,7 +20,7 @@
         <property name="estadoactual" type="string">
             <column name="estadoactual" length="15" not-null="true" />
         </property>
-        <set name="historialintervencions" table="historialintervencion" inverse="true" lazy="true" fetch="select">
+        <set name="historialintervencions" table="historialintervencion" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="idintervencion" not-null="true" />
             </key>

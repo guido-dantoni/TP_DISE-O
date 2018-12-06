@@ -43,6 +43,21 @@ public class EmpleadoDao {
          return e;
      }
      
+     public List<Empleado> getEmpleados(){
+         
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         Criteria cr =session.createCriteria(Empleado.class);
+         List<Empleado> e = cr.list();
+         
+         
+         tx.commit();
+         session.close();
+         return e;
+     }
+     
 
 //    public List getEmpleadoAbrioTicket(Integer ticket){
 //         sesionFactory = NewHibernateUtil.getSessionFactory();

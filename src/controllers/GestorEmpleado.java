@@ -5,6 +5,7 @@ import Dao.EmpleadoDao;
 import Dao.UsuarioDao;
 import clases.Empleado;
 import clases.Usuario;
+import java.util.List;
 
 /**
  *
@@ -46,6 +47,13 @@ public class GestorEmpleado {
         
         return usuario.getUsuario(legajousuario);
         
+    }
+
+    public List<Empleado> obtenerEmpleados() {
+            
+        EmpleadoDao e = new EmpleadoDao();
+        
+        return e.getEmpleados();
     }
     
      

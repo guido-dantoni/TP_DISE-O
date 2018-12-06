@@ -435,10 +435,10 @@
               <Color blue="b9" green="b9" red="bf" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="12" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="15">
+              <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="Fecha cambio de estado" type="java.lang.Object"/>
                 <Column editable="false" title="Hora cambio de estado" type="java.lang.Object"/>
                 <Column editable="false" title="Operador interventor" type="java.lang.Object"/>
