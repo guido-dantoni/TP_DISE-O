@@ -31,9 +31,7 @@ import org.hibernate.criterion.Subqueries;
  */
 public class TicketDao {
 
-    public static void buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
      private SessionFactory sesionFactory;
      private Session session;
@@ -327,7 +325,8 @@ public class TicketDao {
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Historialticket.class).add(Restrictions.eq("ticket", t));
+         Criteria cr = session.createCriteria(Historialticket.class).add(Restrictions.eq("ticket", t))
+                              .addOrder(Order.desc("fechafin"));
          historiales = cr.list();
          
          tx.commit();
@@ -338,6 +337,29 @@ public class TicketDao {
         }
           
         return historiales; 
+        
+    }
+
+    public List<Historialclasificacion> getHistorialesClasificacion(Ticket t) {
+                     
+        List<Historialclasificacion> historiales = null ;   
+        
+          try {    
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         Criteria cr = session.createCriteria(Historialclasificacion.class).add(Restrictions.eq("ticket", t));
+         historiales = cr.list();
+         
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+        System.out.println(e);
+        }
+          
+        return historiales;   
         
     }
         

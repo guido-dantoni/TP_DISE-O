@@ -1,5 +1,5 @@
 package clases;
-// Generated 05/12/2018 15:48:18 by Hibernate Tools 4.3.1
+// Generated 06/12/2018 15:40:09 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,7 +14,6 @@ public class Intervencion  implements java.io.Serializable {
      private int idIntervencion;
      private Gruporesolucion gruporesolucion;
      private Ticket ticket;
-     private String observacion;
      private String estadoactual;
      private Set historialintervencions = new HashSet(0);
 
@@ -22,18 +21,16 @@ public class Intervencion  implements java.io.Serializable {
     }
 
 	
-    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String observacion, String estadoactual) {
+    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String estadoactual) {
         this.idIntervencion = idIntervencion;
         this.gruporesolucion = gruporesolucion;
         this.ticket = ticket;
-        this.observacion = observacion;
         this.estadoactual = estadoactual;
     }
-    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String observacion, String estadoactual, Set historialintervencions) {
+    public Intervencion(int idIntervencion, Gruporesolucion gruporesolucion, Ticket ticket, String estadoactual, Set historialintervencions) {
        this.idIntervencion = idIntervencion;
        this.gruporesolucion = gruporesolucion;
        this.ticket = ticket;
-       this.observacion = observacion;
        this.estadoactual = estadoactual;
        this.historialintervencions = historialintervencions;
     }
@@ -58,13 +55,6 @@ public class Intervencion  implements java.io.Serializable {
     
     public void setTicket(Ticket ticket) {
         this.ticket = ticket;
-    }
-    public String getObservacion() {
-        return this.observacion;
-    }
-    
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
     }
     public String getEstadoactual() {
         return this.estadoactual;

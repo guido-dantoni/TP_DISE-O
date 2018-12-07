@@ -49,7 +49,7 @@ public class EmpleadoDao {
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
          
-         Criteria cr =session.createCriteria(Empleado.class);
+         Criteria cr =session.createCriteria(Empleado.class).add(Restrictions.isNotNull("usuario"));
          List<Empleado> e = cr.list();
          
          

@@ -333,11 +333,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jButtonVerDetalle.setBackground(new java.awt.Color(191, 185, 185));
         jButtonVerDetalle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonVerDetalle.setText("Ver detalle");
-        jButtonVerDetalle.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonVerDetalleMouseClicked(evt);
-            }
-        });
         jButtonVerDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerDetalleActionPerformed(evt);
@@ -433,13 +428,24 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox1EstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 260, 30));
 
-        jComboBox1UltimoGpoResolucion.setBackground(new java.awt.Color(245, 245, 245));
+        jComboBox1UltimoGpoResolucion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBox1UltimoGpoResolucion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBox1UltimoGpoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        jComboBox1UltimoGpoResolucion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBox1UltimoGpoResolucionFocusGained(evt);
+            }
+        });
         getContentPane().add(jComboBox1UltimoGpoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 500, 30));
 
         jXDatePickerFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
+        jXDatePickerFechaApertura.setToolTipText("");
         jXDatePickerFechaApertura.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jXDatePickerFechaApertura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXDatePickerFechaAperturaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jXDatePickerFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 160, 30));
 
         jXDatePickerFechaAcualizacion.setBackground(new java.awt.Color(191, 185, 185));
@@ -635,15 +641,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         }
        }//GEN-LAST:event_jButtonVerDetalleKeyPressed
 
-    private void jButtonVerDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonVerDetalleMouseClicked
-        
-        VerDetalleTicket v = new VerDetalleTicket();
-        this.setVisible(false);
-        v.setVisible(true);
-        v.cargarCampos(ticketsFiltrados.get(indice));
-        
-    }//GEN-LAST:event_jButtonVerDetalleMouseClicked
-
     private void jButtonAnteriorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAnteriorKeyPressed
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
                 jButtonAnterior.doClick();
@@ -657,8 +654,19 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConfReporteKeyPressed
 
     private void jButtonVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerDetalleActionPerformed
-        // TODO add your handling code here:
+        VerDetalleTicket v = new VerDetalleTicket();
+        this.setVisible(false);
+        v.setVisible(true);
+        v.cargarCampos(ticketsFiltrados.get(indice));
     }//GEN-LAST:event_jButtonVerDetalleActionPerformed
+
+    private void jComboBox1UltimoGpoResolucionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1UltimoGpoResolucionFocusGained
+                jComboBox1UltimoGpoResolucion.showPopup();
+    }//GEN-LAST:event_jComboBox1UltimoGpoResolucionFocusGained
+
+    private void jXDatePickerFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAperturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jXDatePickerFechaAperturaActionPerformed
 
     /**
      * @param args the command line arguments

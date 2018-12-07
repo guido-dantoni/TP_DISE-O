@@ -1,5 +1,5 @@
 package clases;
-// Generated 05/12/2018 15:48:18 by Hibernate Tools 4.3.1
+// Generated 06/12/2018 15:40:09 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,6 +14,7 @@ public class Gruporesolucion  implements java.io.Serializable {
      private int codigoGrupoResolucion;
      private String nombregrupo;
      private Set intervencions = new HashSet(0);
+     private Set empleados = new HashSet(0);
      private Set clasificacions = new HashSet(0);
 
     public Gruporesolucion() {
@@ -24,10 +25,11 @@ public class Gruporesolucion  implements java.io.Serializable {
         this.codigoGrupoResolucion = codigoGrupoResolucion;
         this.nombregrupo = nombregrupo;
     }
-    public Gruporesolucion(int codigoGrupoResolucion, String nombregrupo, Set intervencions, Set clasificacions) {
+    public Gruporesolucion(int codigoGrupoResolucion, String nombregrupo, Set intervencions, Set empleados, Set clasificacions) {
        this.codigoGrupoResolucion = codigoGrupoResolucion;
        this.nombregrupo = nombregrupo;
        this.intervencions = intervencions;
+       this.empleados = empleados;
        this.clasificacions = clasificacions;
     }
    
@@ -51,6 +53,13 @@ public class Gruporesolucion  implements java.io.Serializable {
     
     public void setIntervencions(Set intervencions) {
         this.intervencions = intervencions;
+    }
+    public Set getEmpleados() {
+        return this.empleados;
+    }
+    
+    public void setEmpleados(Set empleados) {
+        this.empleados = empleados;
     }
     public Set getClasificacions() {
         return this.clasificacions;

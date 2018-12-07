@@ -6,6 +6,7 @@ import Dao.UsuarioDao;
 import clases.Empleado;
 import clases.Usuario;
 import java.util.List;
+import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
@@ -54,6 +55,12 @@ public class GestorEmpleado {
             
         EmpleadoDao e = new EmpleadoDao();
         
+
+        List<Empleado> listaEmp = e.getEmpleados();
+        for (int i = 0; i < listaEmp.size() ; i++) {
+            listaEmp.get(i).getUsuario();
+        }
+                
         return e.getEmpleados();
     }
     

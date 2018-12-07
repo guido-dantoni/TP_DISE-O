@@ -3,6 +3,7 @@ package Ventanas;
 
 import Dao.EmpleadoDao;
 import clases.Empleado;
+import clases.Historialclasificacion;
 import clases.Historialticket;
 import clases.TicketDTO;
 import controllers.GestorEmpleado;
@@ -228,15 +229,11 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 950, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 950, 140));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 630));
@@ -322,15 +319,18 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             GestorEmpleado gestorEmpleado = new GestorEmpleado();
             GestorTicket gestorTicket = new GestorTicket();
             Empleado empleado = new Empleado();
-            List<Historialticket> historiales = new ArrayList<>();
+            List<Historialticket> historialesT = new ArrayList<>();
             List<Empleado> listaEmpleados = new ArrayList<>();
             String operador = null;
+            List<Historialclasificacion> historialesC = new ArrayList<>();
             
             DefaultTableModel modelo =  (DefaultTableModel) jTable1.getModel();
             
             empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
-            historiales = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
+            historialesT = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
             listaEmpleados = gestorEmpleado.obtenerEmpleados();
+            historialesC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
+            System.out.println(historialesC.get(0).getClasificacion().getNombreclasificacion());
                  
             //aca cargo los campoes del empleado
             jTextField1NroTicketPorPantalla.setText(String.valueOf(ticketDTO.getNroTicket()));
@@ -342,34 +342,34 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             jTextFieldUbicacion.setText(empleado.getUbicacion());
             
             
-            for(int i=0; i<historiales.size(); i++){
+            for(int i=0; i<historialesT.size(); i++){
                 
                 modelo.addRow(new Object[6]); // agrega una fila
                 
                 //Cargo todas las columnas menos la de operador
-                jTable1.setValueAt(historiales.get(i).getFechafin(), i, 0);
-                jTable1.setValueAt(historiales.get(i).getHorafin(), i, 1);
+                jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
+                jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
                 
                 jTable1.setValueAt(null, i, 3);
-                jTable1.setValueAt(null, i, 4);
-                jTable1.setValueAt(historiales.get(i).getEstado(), i, 5);
+                jTable1.setValueAt(historialesC.get(0).getClasificacion().getNombreclasificacion(), i, 4);
+                System.out.println(historialesC.size()); 
+//                jTable1.setValueAt(null, i, 4);
+                jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
                 
                 
                 //busco el nombre del operador que tenga el legajo usuario de historiales.get(i)
-                //###############################################################################################################
-                //##############################################################################################################
+                                
                 int j=0;
                 Boolean encontrado=false;
-                
+                            
                 while(!encontrado && j<listaEmpleados.size()){
                     
-                    if(historiales.get(i).getUsuario().getLegajoUsuario() == listaEmpleados.get(j).getUsuario().getLegajoUsuario()){
+                    if(historialesT.get(i).getUsuario().getLegajoUsuario() == listaEmpleados.get(j).getUsuario().getLegajoUsuario()){
                         operador =  (listaEmpleados.get(j).getNombre() + " " + listaEmpleados.get(j).getApellido());
                         encontrado = true;
                     }
                     j++;
                 }
-                //String obs = historiales.get(jTable1.getSelectedRow()).getObservaciones();
                 
                 jTable1.setValueAt(operador, i, 2);
                 

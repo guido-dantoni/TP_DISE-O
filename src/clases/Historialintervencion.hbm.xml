@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05/12/2018 15:48:20 by Hibernate Tools 4.3.1 -->
+<!-- Generated 06/12/2018 15:40:11 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="clases.Historialintervencion" table="historialintervencion" schema="public" optimistic-lock="version">
         <id name="idHistorialIntervencion" type="int">
@@ -21,13 +21,16 @@
             <column name="fechainicio" length="13" not-null="true" />
         </property>
         <property name="fechafin" type="date">
-            <column name="fechafin" length="13" not-null="true" />
+            <column name="fechafin" length="13" />
         </property>
         <property name="horainicio" type="time">
             <column name="horainicio" length="15" not-null="true" />
         </property>
         <property name="horafin" type="time">
-            <column name="horafin" length="15" not-null="true" />
+            <column name="horafin" length="15" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="observaciones" length="500" />
         </property>
     </class>
 </hibernate-mapping>

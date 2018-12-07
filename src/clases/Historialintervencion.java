@@ -1,5 +1,5 @@
 package clases;
-// Generated 05/12/2018 15:48:18 by Hibernate Tools 4.3.1
+// Generated 06/12/2018 15:40:09 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,11 +18,21 @@ public class Historialintervencion  implements java.io.Serializable {
      private Date fechafin;
      private Date horainicio;
      private Date horafin;
+     private String observaciones;
 
     public Historialintervencion() {
     }
 
-    public Historialintervencion(int idHistorialIntervencion, Intervencion intervencion, Usuario usuario, String estado, Date fechainicio, Date fechafin, Date horainicio, Date horafin) {
+	
+    public Historialintervencion(int idHistorialIntervencion, Intervencion intervencion, Usuario usuario, String estado, Date fechainicio, Date horainicio) {
+        this.idHistorialIntervencion = idHistorialIntervencion;
+        this.intervencion = intervencion;
+        this.usuario = usuario;
+        this.estado = estado;
+        this.fechainicio = fechainicio;
+        this.horainicio = horainicio;
+    }
+    public Historialintervencion(int idHistorialIntervencion, Intervencion intervencion, Usuario usuario, String estado, Date fechainicio, Date fechafin, Date horainicio, Date horafin, String observaciones) {
        this.idHistorialIntervencion = idHistorialIntervencion;
        this.intervencion = intervencion;
        this.usuario = usuario;
@@ -31,6 +41,7 @@ public class Historialintervencion  implements java.io.Serializable {
        this.fechafin = fechafin;
        this.horainicio = horainicio;
        this.horafin = horafin;
+       this.observaciones = observaciones;
     }
    
     public int getIdHistorialIntervencion() {
@@ -88,6 +99,13 @@ public class Historialintervencion  implements java.io.Serializable {
     
     public void setHorafin(Date horafin) {
         this.horafin = horafin;
+    }
+    public String getObservaciones() {
+        return this.observaciones;
+    }
+    
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
 
