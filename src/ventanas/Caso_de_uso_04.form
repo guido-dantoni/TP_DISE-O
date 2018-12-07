@@ -150,7 +150,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="16" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Estado(Default)"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
@@ -161,27 +161,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b9" green="b9" red="bf" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="16" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Abierto Derivado"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="250" y="270" width="230" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="jComboBoxEstado">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="b9" green="b9" red="bf" type="rgb"/>
@@ -190,25 +170,41 @@
           <Font name="Tahoma" size="16" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="15">
-            <StringItem index="0" value="Cambios de configuraci&#xf3;n de SO"/>
-            <StringItem index="1" value="Problemas en el funcionamiento del SO"/>
-            <StringItem index="2" value="Mal funcionamiento de HW"/>
-            <StringItem index="3" value="Problemas en la autenticaci&#xf3;n en los distintos sistemas"/>
-            <StringItem index="4" value="Problemas de acceso a la red"/>
-            <StringItem index="5" value="Solicitud de usuarios de red"/>
-            <StringItem index="6" value="Solicitud de usuarios para sistemas inform&#xe1;ticos"/>
-            <StringItem index="7" value="Modificaci&#xf3;n en los perfiles de usuarios"/>
-            <StringItem index="8" value="Solicitud de cambio de contrase&#xf1;as"/>
-            <StringItem index="9" value="Problemas en los sistemas"/>
-            <StringItem index="10" value="Problemas con el correo electr&#xf3;nico"/>
-            <StringItem index="11" value="Solicitud de cuentas de correo electr&#xf3;nico"/>
-            <StringItem index="12" value="Solicitud de nuevos puestos de trabajo"/>
-            <StringItem index="13" value="Solicitud soporte en el uso de App"/>
-            <StringItem index="14" value="Otros"/>
+          <StringArray count="4">
+            <StringItem index="0" value="Abierto en mesa de ayuda"/>
+            <StringItem index="1" value="Abierto derivado"/>
+            <StringItem index="2" value="Solucionado a la espera de OK"/>
+            <StringItem index="3" value="Cerrado"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jComboBoxEstadoFocusGained"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="250" y="270" width="330" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxClasificacion">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="b9" green="b9" red="bf" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="16" style="0"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jComboBoxClasificacionFocusGained"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -218,7 +214,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox2">
+    <Component class="javax.swing.JComboBox" name="jComboBoxGrupoResolucion">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="b9" green="b9" red="bf" type="rgb"/>
@@ -227,19 +223,8 @@
           <Font name="Tahoma" size="16" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="Mesa de ayuda"/>
-            <StringItem index="1" value="Unidades de soporte"/>
-            <StringItem index="2" value="Servicio t&#xe9;cnico"/>
-            <StringItem index="3" value="Administrador de Base de Datos"/>
-            <StringItem index="4" value="Administrador de SUSE Linux"/>
-            <StringItem index="5" value="Administrador Proxy y correo electr&#xf3;nico"/>
-            <StringItem index="6" value="Administrador DEBIAN"/>
-            <StringItem index="7" value="Redes LAN"/>
-            <StringItem index="8" value="Comunicaciones"/>
-            <StringItem index="9" value="Desarrollo de sistema Comercial"/>
-            <StringItem index="10" value="Desarrollo de sistemas RRHH"/>
-            <StringItem index="11" value="Desarrollo de sistemas de reclamo"/>
+          <StringArray count="1">
+            <StringItem index="0" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -264,7 +249,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="jTextAreaObservacion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f5" green="f5" red="f5" type="rgb"/>
@@ -290,7 +275,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea2">
+        <Component class="javax.swing.JTextArea" name="jTextAreaDescripcion">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -298,6 +283,7 @@
             </Property>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -330,6 +316,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1CerrarActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jButton1CerrarKeyPressed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -365,6 +352,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="16" style="0"/>
         </Property>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

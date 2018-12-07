@@ -317,6 +317,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButtonCancelarMouseClicked(evt);
             }
         });
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
         jButtonCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jButtonCancelarKeyPressed(evt);
@@ -419,6 +424,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jComboBox1EstadoActual.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBox1EstadoActualFocusGained(evt);
+            }
+        });
+        jComboBox1EstadoActual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1EstadoActualActionPerformed(evt);
             }
         });
         jComboBox1EstadoActual.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -667,6 +677,14 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private void jXDatePickerFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAperturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jXDatePickerFechaAperturaActionPerformed
+
+    private void jComboBox1EstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1EstadoActualActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments

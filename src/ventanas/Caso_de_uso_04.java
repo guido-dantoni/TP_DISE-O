@@ -1,9 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -11,12 +13,15 @@ package Ventanas;
  */
 public class Caso_de_uso_04 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CasoDeUso04
-     */
+
     public Caso_de_uso_04() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        cerrar();
+        
+        jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
+        jTextAreaObservacion.setLineWrap(true); // evita expansion en ancho del textArea
     }
 
     /**
@@ -35,13 +40,13 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jLabelObservacion = new javax.swing.JLabel();
         jLabelDescripcion = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxEstado = new javax.swing.JComboBox<>();
+        jComboBoxClasificacion = new javax.swing.JComboBox<>();
+        jComboBoxGrupoResolucion = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaObservacion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextAreaDescripcion = new javax.swing.JTextArea();
         jButton1Confirmar = new javax.swing.JButton();
         jButton1Cerrar = new javax.swing.JButton();
         jLabel1NroTicket = new javax.swing.JLabel();
@@ -92,7 +97,7 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(191, 185, 185));
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField1.setText("Estado(Default)");
+        jTextField1.setFocusable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -100,40 +105,44 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 240, 30));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(191, 185, 185));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField2.setText("Abierto Derivado");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+        jComboBoxEstado.setBackground(new java.awt.Color(191, 185, 185));
+        jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto en mesa de ayuda", "Abierto derivado", "Solucionado a la espera de OK", "Cerrado" }));
+        jComboBoxEstado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxEstadoFocusGained(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 230, 30));
+        getContentPane().add(jComboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 330, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(191, 185, 185));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cambios de configuración de SO", "Problemas en el funcionamiento del SO", "Mal funcionamiento de HW", "Problemas en la autenticación en los distintos sistemas", "Problemas de acceso a la red", "Solicitud de usuarios de red", "Solicitud de usuarios para sistemas informáticos", "Modificación en los perfiles de usuarios", "Solicitud de cambio de contraseñas", "Problemas en los sistemas", "Problemas con el correo electrónico", "Solicitud de cuentas de correo electrónico", "Solicitud de nuevos puestos de trabajo", "Solicitud soporte en el uso de App", "Otros" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 560, 30));
+        jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
+        jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBoxClasificacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxClasificacionFocusGained(evt);
+            }
+        });
+        getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 560, 30));
 
-        jComboBox2.setBackground(new java.awt.Color(191, 185, 185));
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mesa de ayuda", "Unidades de soporte", "Servicio técnico", "Administrador de Base de Datos", "Administrador de SUSE Linux", "Administrador Proxy y correo electrónico", "Administrador DEBIAN", "Redes LAN", "Comunicaciones", "Desarrollo de sistema Comercial", "Desarrollo de sistemas RRHH", "Desarrollo de sistemas de reclamo" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 560, 30));
+        jComboBoxGrupoResolucion.setBackground(new java.awt.Color(191, 185, 185));
+        jComboBoxGrupoResolucion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBoxGrupoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        getContentPane().add(jComboBoxGrupoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 560, 30));
 
-        jTextArea1.setBackground(new java.awt.Color(245, 245, 245));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaObservacion.setBackground(new java.awt.Color(245, 245, 245));
+        jTextAreaObservacion.setColumns(20);
+        jTextAreaObservacion.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaObservacion.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaObservacion);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 720, 120));
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(191, 185, 185));
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTextAreaDescripcion.setEditable(false);
+        jTextAreaDescripcion.setBackground(new java.awt.Color(191, 185, 185));
+        jTextAreaDescripcion.setColumns(20);
+        jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.setFocusable(false);
+        jScrollPane2.setViewportView(jTextAreaDescripcion);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 720, 120));
 
@@ -150,6 +159,11 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
                 jButton1CerrarActionPerformed(evt);
             }
         });
+        jButton1Cerrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1CerrarKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 120, 40));
 
         jLabel1NroTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -161,6 +175,7 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jTextField3NroTicketPorPantalla.setEditable(false);
         jTextField3NroTicketPorPantalla.setBackground(new java.awt.Color(191, 185, 185));
         jTextField3NroTicketPorPantalla.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField3NroTicketPorPantalla.setFocusable(false);
         getContentPane().add(jTextField3NroTicketPorPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 240, 30));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
@@ -169,18 +184,28 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CerrarActionPerformed
-        // TODO add your handling code here:
+                cerrar();
      
     }//GEN-LAST:event_jButton1CerrarActionPerformed
+
+    private void jComboBoxEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxEstadoFocusGained
+        jComboBoxEstado.showPopup();
+    }//GEN-LAST:event_jComboBoxEstadoFocusGained
+
+    private void jComboBoxClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionFocusGained
+                    jComboBoxClasificacion.showPopup();
+    }//GEN-LAST:event_jComboBoxClasificacionFocusGained
+
+    private void jButton1CerrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1CerrarKeyPressed
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButton1Cerrar.doClick();
+        }  
+    }//GEN-LAST:event_jButton1CerrarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -221,8 +246,9 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1Cerrar;
     private javax.swing.JButton jButton1Confirmar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxClasificacion;
+    private javax.swing.JComboBox<String> jComboBoxEstado;
+    private javax.swing.JComboBox<String> jComboBoxGrupoResolucion;
     private javax.swing.JLabel jLabel1NroTicket;
     private javax.swing.JLabel jLabelClasificacionTicket;
     private javax.swing.JLabel jLabelDescripcion;
@@ -233,10 +259,35 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelObservacion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextAreaDescripcion;
+    private javax.swing.JTextArea jTextAreaObservacion;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3NroTicketPorPantalla;
     // End of variables declaration//GEN-END:variables
+
+public void cerrar(){
+        
+        try{
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                @Override
+                    public void windowClosing(WindowEvent e){
+                    salir();
+                }
+               
+            });
+        
+        }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
+    public void salir(){
+            
+            this.setVisible(false);
+            PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
+            pantallaMesaAyuda.setVisible(true);
+        
+    }
+
+
 }

@@ -196,7 +196,7 @@ public class GestorTicket {
         List<Ticket> tickets = ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
         
              
-        List<TicketDTO> ticketsFiltrados = new ArrayList<TicketDTO>();
+        List<TicketDTO> ticketsFiltrados = new ArrayList<>();
         
         ClasificacionDao cl = new ClasificacionDao();
         Clasificacion clasificacion;
