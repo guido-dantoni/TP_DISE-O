@@ -225,7 +225,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         getContentPane().add(jLabelMsjErrorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 190, 20));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 1025, 635));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1025, 635));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -353,7 +353,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 jTable1.setValueAt(null, i, 3);
                 jTable1.setValueAt(historialesC.get(0).getClasificacion().getNombreclasificacion(), i, 4);
                 System.out.println(historialesC.size()); 
-//                jTable1.setValueAt(null, i, 4);
+//              jTable1.setValueAt(null, i, 4);
                 jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
                 
                 
@@ -377,6 +377,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             
             jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
                
+                
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                      int row = jTable1.rowAtPoint(evt.getPoint());
