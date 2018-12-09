@@ -386,7 +386,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             
             GestorEmpleado gestorEmpleado = new GestorEmpleado();
             GestorTicket gestorTicket = new GestorTicket();
-          //  this.ticket= gestorTicket.obtenerTicket(ticketDTO.getNroTicket());
+         
             Empleado empleado = new Empleado();
             List<Historialticket> historialesT = new ArrayList<>();
             List<Empleado> listaEmpleados = new ArrayList<>();

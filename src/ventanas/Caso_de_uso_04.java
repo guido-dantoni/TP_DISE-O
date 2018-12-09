@@ -1,12 +1,15 @@
 
 package Ventanas;
 
+import clases.Clasificacion;
 import clases.Ticket;
 import clases.TicketDTO;
 import controllers.GestorClasificacion;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 
@@ -17,6 +20,8 @@ import javax.swing.WindowConstants;
 public class Caso_de_uso_04 extends javax.swing.JFrame {
 
     private VerDetalleTicket ver_detalle_ticket;
+     
+    
     public Caso_de_uso_04() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -302,11 +307,13 @@ public void cerrar(){
     private void cargarCampos(Ticket ticket) {
         
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
-        List<Clasificacion> clasificaciones = new ArrayList<>();
+        List<String> clasificaciones = new ArrayList<>();
+        clasificaciones=gestorClasificacion.obtenerNombresClasificaciones();
         
         jTextField3NroTicketPorPantalla.setText(String.valueOf(ticket.getNroTicket()));
         jTextFieldEstado.setText(ticket.getEstadoactual());
         jTextFieldDescripcion.setText(ticket.getDescripcion());
+        jComboBoxClasificacion.addItem(ticket.getClasificacion().getNombreclasificacion());
     }
 
 
