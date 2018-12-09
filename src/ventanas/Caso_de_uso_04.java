@@ -1,16 +1,25 @@
 
 package Ventanas;
 
+import Dao.GrupoResolucionDao;
 import clases.Clasificacion;
+import clases.Gruporesolucion;
+import clases.Historialclasificacion;
+import clases.Historialticket;
 import clases.Ticket;
 import clases.TicketDTO;
 import controllers.GestorClasificacion;
+import controllers.GestorGrupoResolucion;
+import controllers.GestorTicket;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.input.KeyCode;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -28,8 +37,8 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         cerrar();
         
-        jButton1Cerrar.requestFocus();
-        jComboBoxGrupoResolucion.setEnabled(false);
+        jButton1Cancelar.requestFocus();
+        //jComboBoxGrupoResolucion.setEnabled(false);
         jTextFieldDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
         jTextAreaObservacion.setLineWrap(true); // evita expansion en ancho del textArea
         
@@ -51,15 +60,15 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jLabelObservacion = new javax.swing.JLabel();
         jLabelDescripcion = new javax.swing.JLabel();
         jTextFieldEstado = new javax.swing.JTextField();
-        jComboBoxEstado = new javax.swing.JComboBox<>();
         jComboBoxClasificacion = new javax.swing.JComboBox<>();
         jComboBoxGrupoResolucion = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaObservacion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextFieldDescripcion = new javax.swing.JTextArea();
         jButton1Confirmar = new javax.swing.JButton();
-        jButton1Cerrar = new javax.swing.JButton();
+        jButton1Cancelar = new javax.swing.JButton();
         jLabel1NroTicket = new javax.swing.JLabel();
         jTextField3NroTicketPorPantalla = new javax.swing.JTextField();
         jLabelFondo = new javax.swing.JLabel();
@@ -116,16 +125,6 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 240, 30));
 
-        jComboBoxEstado.setBackground(new java.awt.Color(191, 185, 185));
-        jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierto en mesa de ayuda", "Abierto derivado", "Solucionado a la espera de OK", "Cerrado" }));
-        jComboBoxEstado.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jComboBoxEstadoFocusGained(evt);
-            }
-        });
-        getContentPane().add(jComboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 330, -1));
-
         jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxClasificacion.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -133,12 +132,29 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
                 jComboBoxClasificacionFocusGained(evt);
             }
         });
+        jComboBoxClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxClasificacionActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 560, 30));
 
         jComboBoxGrupoResolucion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxGrupoResolucion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxGrupoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jComboBoxGrupoResolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxGrupoResolucionActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBoxGrupoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 560, 30));
+
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(191, 185, 185));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField1.setText("Abierto derivado");
+        jTextField1.setFocusable(false);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 220, 30));
 
         jTextAreaObservacion.setBackground(new java.awt.Color(245, 245, 245));
         jTextAreaObservacion.setColumns(20);
@@ -162,20 +178,25 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jButton1Confirmar.setText("Confirmar");
         getContentPane().add(jButton1Confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 590, 120, 40));
 
-        jButton1Cerrar.setBackground(new java.awt.Color(191, 185, 185));
-        jButton1Cerrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1Cerrar.setText("Cancelar");
-        jButton1Cerrar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1Cancelar.setBackground(new java.awt.Color(191, 185, 185));
+        jButton1Cancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1Cancelar.setText("Cancelar");
+        jButton1Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1CancelarMouseClicked(evt);
+            }
+        });
+        jButton1Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1CerrarActionPerformed(evt);
+                jButton1CancelarActionPerformed(evt);
             }
         });
-        jButton1Cerrar.addKeyListener(new java.awt.event.KeyAdapter() {
+        jButton1Cancelar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton1CerrarKeyPressed(evt);
+                jButton1CancelarKeyPressed(evt);
             }
         });
-        getContentPane().add(jButton1Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 120, 40));
+        getContentPane().add(jButton1Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 590, 120, 40));
 
         jLabel1NroTicket.setBackground(new java.awt.Color(191, 185, 185));
         jLabel1NroTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -199,24 +220,45 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEstadoActionPerformed
 
-    private void jButton1CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CerrarActionPerformed
-                cerrar();
-     
-    }//GEN-LAST:event_jButton1CerrarActionPerformed
-
     private void jComboBoxClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionFocusGained
                     jComboBoxClasificacion.showPopup();
     }//GEN-LAST:event_jComboBoxClasificacionFocusGained
 
-    private void jButton1CerrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1CerrarKeyPressed
-         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            jButton1Cerrar.doClick();
-        }  
-    }//GEN-LAST:event_jButton1CerrarKeyPressed
+    private void jButton1CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1CancelarMouseClicked
 
-    private void jComboBoxEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxEstadoFocusGained
-        jComboBoxEstado.showPopup();
-    }//GEN-LAST:event_jComboBoxEstadoFocusGained
+        salir();        
+    }//GEN-LAST:event_jButton1CancelarMouseClicked
+
+    private void jButton1CancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1CancelarKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButton1Cancelar.doClick();
+        } 
+    }//GEN-LAST:event_jButton1CancelarKeyPressed
+
+    private void jButton1CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CancelarActionPerformed
+        salir();
+    }//GEN-LAST:event_jButton1CancelarActionPerformed
+
+    private void jComboBoxGrupoResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGrupoResolucionActionPerformed
+       
+    }//GEN-LAST:event_jComboBoxGrupoResolucionActionPerformed
+
+    private void jComboBoxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionActionPerformed
+        String cl = jComboBoxClasificacion.getSelectedItem().toString();
+        GestorGrupoResolucion gestorGrupo = new GestorGrupoResolucion();
+        GestorClasificacion gestorClasificacion = new GestorClasificacion();
+        List<Clasificacion> clasificaciones = new ArrayList<>();
+        clasificaciones = gestorClasificacion.obtenerClasificaciones();
+        List<Gruporesolucion> grupos = new ArrayList<>();
+        grupos = gestorGrupo.obtenerGrupos();
+        DefaultComboBoxModel comboGrupo= new DefaultComboBoxModel();
+        //##############################################################################################################
+        System.out.println(grupos.get(0).getClasificacions().size());
+        System.out.println(clasificaciones.get(0).getGruporesolucions());
+        /*for(int i=0; i<grupos.size(); i++){
+            if(grupos.get(i).getClasificacions())
+        }*/
+    }//GEN-LAST:event_jComboBoxClasificacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,10 +297,9 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1Cerrar;
+    private javax.swing.JButton jButton1Cancelar;
     private javax.swing.JButton jButton1Confirmar;
     private javax.swing.JComboBox<String> jComboBoxClasificacion;
-    private javax.swing.JComboBox<String> jComboBoxEstado;
     private javax.swing.JComboBox<String> jComboBoxGrupoResolucion;
     private javax.swing.JLabel jLabel1NroTicket;
     private javax.swing.JLabel jLabelClasificacionTicket;
@@ -271,6 +312,7 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAreaObservacion;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3NroTicketPorPantalla;
     private javax.swing.JTextArea jTextFieldDescripcion;
     private javax.swing.JTextField jTextFieldEstado;
@@ -294,9 +336,13 @@ public void cerrar(){
     }
     public void salir(){
             
+        int valor=JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir? Se perderán los cambios realizados","Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+        if(valor==JOptionPane.YES_OPTION){
+                       
             this.setVisible(false);
             ver_detalle_ticket.setVisible(true);
-        
+        }
     }
 
     void derivarTicket(Ticket ticket, VerDetalleTicket detalle) {
@@ -307,13 +353,30 @@ public void cerrar(){
     private void cargarCampos(Ticket ticket) {
         
         GestorClasificacion gestorClasificacion = new GestorClasificacion();
+        GestorTicket gestorTicket = new GestorTicket();
         List<String> clasificaciones = new ArrayList<>();
+        Historialticket historialTicket = gestorTicket.obtenerHistorialTicket(ticket, ticket.getEstadoactual());
         clasificaciones=gestorClasificacion.obtenerNombresClasificaciones();
+        DefaultComboBoxModel comboClasificacion= new DefaultComboBoxModel();
         
+        
+        
+        comboClasificacion.addElement(ticket.getClasificacion().getNombreclasificacion());
+        for(int i=0; i<clasificaciones.size(); i++){
+            if(!clasificaciones.get(i).equals(ticket.getClasificacion().getNombreclasificacion())){
+                    comboClasificacion.addElement(clasificaciones.get(i));
+            }
+            
+        }
+        
+        jComboBoxClasificacion.setModel(comboClasificacion);
+                
         jTextField3NroTicketPorPantalla.setText(String.valueOf(ticket.getNroTicket()));
         jTextFieldEstado.setText(ticket.getEstadoactual());
         jTextFieldDescripcion.setText(ticket.getDescripcion());
-        jComboBoxClasificacion.addItem(ticket.getClasificacion().getNombreclasificacion());
+        
+        
+        
     }
 
 

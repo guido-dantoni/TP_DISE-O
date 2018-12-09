@@ -41,5 +41,11 @@ public class GestorClasificacion {
         
          return c;
     }
+
+    public List<Clasificacion> obtenerClasificaciones() {
+        ClasificacionDao c = new ClasificacionDao();
+        
+        return c.getClasificacion();
+    }
     
 }

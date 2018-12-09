@@ -30,5 +30,10 @@ public class GestorGrupoResolucion {
         lista.sort((o1, o2) -> o1.compareTo(o2)); // ordena alfabeticamente la lista ascendentemente
         return lista;
     }
+
+    public List<Gruporesolucion> obtenerGrupos() {
+            GrupoResolucionDao gr = new GrupoResolucionDao();
+            return gr.getGrupoResolucion();
+    }
     
 }
