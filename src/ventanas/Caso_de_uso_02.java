@@ -484,7 +484,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 120, 40));
 
         jTextFieldNroLegajo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
-        getContentPane().add(jTextFieldNroLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 635));
+        getContentPane().add(jTextFieldNroLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1040, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -667,7 +667,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         VerDetalleTicket v = new VerDetalleTicket();
         this.setVisible(false);
         v.setVisible(true);
-        v.cargarCampos(ticketsFiltrados.get(indice));
+        v.verDetalles(ticketsFiltrados.get(indice), this);
     }//GEN-LAST:event_jButtonVerDetalleActionPerformed
 
     private void jComboBox1UltimoGpoResolucionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBox1UltimoGpoResolucionFocusGained

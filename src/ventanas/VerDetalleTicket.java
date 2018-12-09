@@ -5,9 +5,11 @@ import Dao.EmpleadoDao;
 import clases.Empleado;
 import clases.Historialclasificacion;
 import clases.Historialticket;
+import clases.Ticket;
 import clases.TicketDTO;
 import controllers.GestorEmpleado;
 import controllers.GestorTicket;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -20,6 +22,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VerDetalleTicket extends javax.swing.JFrame {
 
+        private Ticket ticket;
+        private List<Historialticket> historialesTickets = new ArrayList<>();
+        private Caso_de_uso_02 casoUso2;
+                
         public VerDetalleTicket() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -54,15 +60,15 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextFieldDescrpDelCargo = new javax.swing.JTextField();
         jLabelObservaciones = new javax.swing.JLabel();
         jScrollPaneObservaciones = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButtonCerrar = new javax.swing.JButton();
+        jTextAreaObservacion = new javax.swing.JTextArea();
+        jButtonVolver = new javax.swing.JButton();
         jButton1CerrarTicket = new javax.swing.JButton();
         jButton1DerivarTicket = new javax.swing.JButton();
         jLabel2NroTicket = new javax.swing.JLabel();
         jTextField1NroTicketPorPantalla = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabelFondo = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle del ticket");
@@ -169,23 +175,28 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jLabelObservaciones.setText("Observaciones");
         getContentPane().add(jLabelObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(191, 185, 185));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPaneObservaciones.setViewportView(jTextArea1);
+        jTextAreaObservacion.setEditable(false);
+        jTextAreaObservacion.setBackground(new java.awt.Color(191, 185, 185));
+        jTextAreaObservacion.setColumns(20);
+        jTextAreaObservacion.setRows(5);
+        jScrollPaneObservaciones.setViewportView(jTextAreaObservacion);
 
         getContentPane().add(jScrollPaneObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 800, 100));
 
-        jButtonCerrar.setBackground(new java.awt.Color(191, 185, 185));
-        jButtonCerrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonCerrar.setText("Cerrar");
-        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolver.setBackground(new java.awt.Color(191, 185, 185));
+        jButtonVolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCerrarActionPerformed(evt);
+                jButtonVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 570, 120, 40));
+        jButtonVolver.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonVolverKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 570, 120, 40));
 
         jButton1CerrarTicket.setBackground(new java.awt.Color(191, 185, 185));
         jButton1CerrarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -195,6 +206,16 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jButton1DerivarTicket.setBackground(new java.awt.Color(191, 185, 185));
         jButton1DerivarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1DerivarTicket.setText("Derivar ticket ");
+        jButton1DerivarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1DerivarTicketActionPerformed(evt);
+            }
+        });
+        jButton1DerivarTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1DerivarTicketKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1DerivarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 570, 120, 40));
 
         jLabel2NroTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -227,6 +248,16 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
@@ -235,16 +266,17 @@ public class VerDetalleTicket extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 950, 140));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 630));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 630));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        // TODO add your handling code here:
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+        this.setVisible(false);
+        casoUso2.setVisible(true);
       
-    }//GEN-LAST:event_jButtonCerrarActionPerformed
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
     private void jTextFieldNroLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajoActionPerformed
         // TODO add your handling code here:
@@ -253,6 +285,41 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     private void jTextFieldTelefonoDirectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoDirectoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelefonoDirectoActionPerformed
+
+    private void jButton1DerivarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1DerivarTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButton1DerivarTicket.doClick();
+        } 
+    }//GEN-LAST:event_jButton1DerivarTicketKeyPressed
+
+    private void jButton1DerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DerivarTicketActionPerformed
+        Caso_de_uso_04 cu = new Caso_de_uso_04();
+        this.setVisible(false);
+        cu.setVisible(true);
+        cu.derivarTicket(ticket, this);
+        
+    }//GEN-LAST:event_jButton1DerivarTicketActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         int row = jTable1.getSelectedRow();
+                 
+         if(row >= 0){   
+                jTextAreaObservacion.setText(historialesTickets.get(row).getObservaciones());
+         }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+      
+       if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jButton1CerrarTicket.requestFocus();
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void jButtonVolverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonVolverKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonVolver.doClick();
+        }
+    }//GEN-LAST:event_jButtonVolverKeyPressed
 
     /**
      * @param args the command line arguments
@@ -287,13 +354,13 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1CerrarTicket;
     private javax.swing.JButton jButton1DerivarTicket;
-    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel2NroTicket;
     private javax.swing.JLabel jLabelApellidoyNombre;
     private javax.swing.JLabel jLabelDescripcionDelCargo;
-    private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelInformacionDelUsuarioQueReclamo;
     private javax.swing.JLabel jLabelInformacionHistoricoReclamo;
     private javax.swing.JLabel jLabelNroLegajo;
@@ -304,7 +371,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneObservaciones;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaObservacion;
     private javax.swing.JTextField jTextField1NroTicketPorPantalla;
     private javax.swing.JTextField jTextFieldApeYNombre;
     private javax.swing.JTextField jTextFieldDescrpDelCargo;
@@ -316,8 +383,10 @@ public class VerDetalleTicket extends javax.swing.JFrame {
 
     void cargarCampos(TicketDTO ticketDTO) {
             
+            
             GestorEmpleado gestorEmpleado = new GestorEmpleado();
             GestorTicket gestorTicket = new GestorTicket();
+          //  this.ticket= gestorTicket.obtenerTicket(ticketDTO.getNroTicket());
             Empleado empleado = new Empleado();
             List<Historialticket> historialesT = new ArrayList<>();
             List<Empleado> listaEmpleados = new ArrayList<>();
@@ -328,9 +397,10 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             
             empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
             historialesT = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
+            this.historialesTickets = historialesT;
             listaEmpleados = gestorEmpleado.obtenerEmpleados();
             historialesC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
-            System.out.println(historialesC.get(0).getClasificacion().getNombreclasificacion());
+            
                  
             //aca cargo los campoes del empleado
             jTextField1NroTicketPorPantalla.setText(String.valueOf(ticketDTO.getNroTicket()));
@@ -350,10 +420,8 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
                 jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
                 
-                jTable1.setValueAt(null, i, 3);
-                jTable1.setValueAt(historialesC.get(0).getClasificacion().getNombreclasificacion(), i, 4);
-                System.out.println(historialesC.size()); 
-//              jTable1.setValueAt(null, i, 4);
+                jTable1.setValueAt("Comunicaciones", i, 3);
+                jTable1.setValueAt(historialesC.get(0).getClasificacion().getNombreclasificacion(), i, 4);               
                 jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
                 
                 
@@ -375,7 +443,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 
             }
             
-            jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            /*jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
                
                 
                 @Override
@@ -385,6 +453,11 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                          
                 }
             });
-            
+         */   
         }
+
+    void verDetalles(TicketDTO ticketDto, Caso_de_uso_02 Cu2) {
+        this.casoUso2 = Cu2;
+        this.cargarCampos(ticketDto);
+    }
 }

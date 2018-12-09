@@ -246,5 +246,11 @@ public class GestorTicket {
         ticket = ticketDao.getTicket(nroTicket);
         return ticketDao.getHistorialesClasificacion(ticket);
     }
+/*
+    public Ticket obtenerTicket(int nroTicket) {
+            
+    }*/
+    
+    
     
 }
