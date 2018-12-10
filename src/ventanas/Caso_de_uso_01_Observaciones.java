@@ -129,11 +129,19 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDerivarTicketActionPerformed
+         String observacion = jTextAreaObservaciones.getText();
+        //verifico que me cargue las observaciones
         
-       Ventanas.Caso_de_uso_04 cu4 = new Ventanas.Caso_de_uso_04();
-       this.setVisible(false);
-       cu4.setVisible(true);
-       cu4.derivarTicket(ticket, this, jTextAreaObservaciones.getText());
+        if(observacion.isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "El campo observaciones no puede ser nulo");
+            
+        }else{
+                Ventanas.Caso_de_uso_04 cu4 = new Ventanas.Caso_de_uso_04();
+                this.setVisible(false);
+                cu4.setVisible(true);
+                cu4.derivarTicket(ticket, this, jTextAreaObservaciones.getText());
+        }
     }//GEN-LAST:event_jButtonDerivarTicketActionPerformed
 
     private void jTextFieldTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketActionPerformed

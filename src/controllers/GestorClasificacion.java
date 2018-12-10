@@ -4,10 +4,9 @@ package controllers;
 import Dao.ClasificacionDao;
 import java.util.List;
 import clases.Clasificacion;
+import clases.Historialclasificacion;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.hibernate.Criteria;
-import org.hibernate.mapping.Collection;
+
 
 /**
  *

@@ -5,8 +5,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import clases.Clasificacion;
+import clases.Historialclasificacion;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -69,4 +71,5 @@ public class ClasificacionDao {
          return c;
            
     }
+
 }

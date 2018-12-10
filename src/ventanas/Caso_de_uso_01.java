@@ -92,6 +92,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLegajoActionPerformed(evt);
+            }
+        });
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyTyped(evt);
@@ -245,18 +250,20 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
        //me consume las letras y si el numero tiene mas de 6 carateres
        jTextFieldNombreApellido.setText("");
-       char legajo=evt.getKeyChar();     
+       char legajo=evt.getKeyChar(); 
        
-       if(legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>6){
+      //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado (metodo focus gained abajo)
+       if(legajo == KeyEvent.VK_ENTER){
+         
+                jTextAreaDescripcion.requestFocus();                                     
+       }
+       
+       
+       if((legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>6) && legajo != KeyEvent.VK_ENTER){
            evt.consume();
            Toolkit.getDefaultToolkit().beep();
        }
        
-       //si presiona enter o tab busco en la bd con el legajo el nombre de dicho empleado
-       if(legajo == KeyEvent.VK_ENTER){
-         
-                jTextAreaDescripcion.requestFocus();                                     
-       }    
     }//GEN-LAST:event_jTextFieldLegajoKeyTyped
 
     private void jTextAreaDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyTyped
@@ -354,9 +361,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                          
                                                   
                      }else{
-                         
-                        //#################################################################################################
-                        //·##################################################################################################
+                    
                          nombreApellido= gestorEmpleado.obtenerNombre(numeroLegajo);
                          jTextFieldNombreApellido.setText(nombreApellido);
                          jLabelMsjErrorNombre.setText("");
@@ -365,6 +370,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                      }
         
     }//GEN-LAST:event_jTextAreaDescripcionFocusGained
+
+    private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLegajoActionPerformed
 
     
     /**

@@ -98,6 +98,7 @@ public class GestorTicket {
         HashSet<Historialticket> hashHistorialTicket = new HashSet<>();
         HashSet<Historialclasificacion> hashClasificaciones = new HashSet<>();
         hashClasificaciones.add(historialClasificacion);
+        hashHistorialTicket.add(historialTicket);
         
         
         ticket.setHistorialtickets(hashHistorialTicket );
@@ -297,8 +298,9 @@ public class GestorTicket {
                 ticketDao.updateHistorialTicket(historialTicket);
                 ticketDao.updateHistorialClasificacion(historialClasificacion);
                 
-            // HASTA ACA HACEMOS UN UPDATE DE LOS HISTORIALES VIEJOS (QUE TIENE ESTADO EN ABIERTO_MESA_AYUDA )    
+            // ↑↑↑ HASTA ACA HACEMOS UN UPDATE DE LOS HISTORIALES VIEJOS (QUE TIENE ESTADO EN ABIERTO_MESA_AYUDA ) ↑↑↑↑↑↑↑↑    
            
+            // ACA EMPEZAMOS A CREAR LOS NUEVOS HISTORIALES Y ACTUALIZAR EL TICKET ↓↓↓↓↓↓
                 GestorSesion gestorSesion = new GestorSesion();
                 Usuario usuarioLogueado = new Usuario();
         
@@ -313,19 +315,19 @@ public class GestorTicket {
                 Gruporesolucion grupoResolucion = new Gruporesolucion();
         
                 grupoResolucion = gestorGrupoResolucion.obtenerUnGrupo(grupo);
-        
-       
-       
-        
+                
                 ticket.setEstadoactual(Enum_EstadoTicket.ABIERTO_DERIVADO.toString());
                 ticket.setFechaultimoestado(fechaActual);
                 ticket.setClasificacion(clasificacion);
         
                 Historialticket ht = new Historialticket();
+                
+                ht.setTicket(ticket);
                 ht.setHorainicio(fechaActual);
                 ht.setFechainicio(fechaActual);
                 ht.setUsuario(usuarioLogueado);
                 ht.setEstado(Enum_EstadoTicket.ABIERTO_DERIVADO.toString());
+                
         
                 
                 Historialclasificacion hc = new Historialclasificacion();
@@ -337,9 +339,11 @@ public class GestorTicket {
                 
                 ticketDao.updateTicket(ticket);
                 ticketDao.insertHistorialTicket(ht);
-                ticketDao.insertClasificacion(hc);
+                ticketDao.insertHistorialClasificacion(hc);
                 
-                
+                GestorIntervencion gestorIntervencion = new GestorIntervencion();
+               
+                gestorIntervencion.tieneIntervencion(ticket, grupoResolucion, usuarioLogueado, observacionDerivacion);
                 
             
         }

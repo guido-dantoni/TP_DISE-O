@@ -38,15 +38,17 @@ public class GrupoResolucionDao {
             
             Gruporesolucion g = new Gruporesolucion();
         try {    
-             sesionFactory = NewHibernateUtil.getSessionFactory();
-             session = sesionFactory.openSession();
-             tx = session.beginTransaction();
+                sesionFactory = NewHibernateUtil.getSessionFactory();
+                session = sesionFactory.openSession();
+                tx = session.beginTransaction();
          
-            Criteria cr = session.createCriteria(Gruporesolucion.class);
-            cr.add(Restrictions.eq("nombregrupo", grupo));
+                Criteria cr = session.createCriteria(Gruporesolucion.class);
+                cr.add(Restrictions.eq("nombregrupo", grupo));
+            
+                g = (Gruporesolucion) cr.uniqueResult();
                
-            tx.commit();
-            session.close();
+                tx.commit();
+                session.close();
 
         } catch (HibernateException e) {
             System.out.println(e);

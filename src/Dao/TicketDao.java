@@ -362,11 +362,22 @@ public class TicketDao {
         return historiales;   
         
     }
+        public void insertHistorialClasificacion(Historialclasificacion hc) {
+          try {    
+                     sesionFactory = NewHibernateUtil.getSessionFactory();
+                     session = sesionFactory.openSession();
+                     tx = session.beginTransaction();
+             
+                    //insert into HistorialClasificion hc;
+                    session.save(hc);
+                          
+                    tx.commit();
+                    session.close();
 
-    public void insertClasificacion(Historialclasificacion hc) {
-        tw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         } catch (HibernateException e) {
+                    System.out.println(e);
+            }  
     }
-        
 }
        
     

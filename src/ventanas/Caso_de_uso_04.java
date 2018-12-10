@@ -1,14 +1,12 @@
 
 package Ventanas;
 
-import Dao.GrupoResolucionDao;
+
 import clases.Clasificacion;
 import clases.Gruporesolucion;
-import clases.Historialclasificacion;
+
 import clases.Historialticket;
 import clases.Ticket;
-import clases.TicketDTO;
-import controllers.Enum_EstadoTicket;
 import controllers.GestorClasificacion;
 import controllers.GestorGrupoResolucion;
 import controllers.GestorTicket;
@@ -16,15 +14,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javafx.scene.input.KeyCode;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import org.jdesktop.swingx.decorator.EnabledHighlighter;
 
 /**
  *
@@ -229,7 +224,11 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1CancelarKeyPressed
 
     private void jButton1CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CancelarActionPerformed
-        salir();
+        if(ver_detalle_ticket != null){
+                salirDetalle();
+          }else{
+                salirCU2();
+            }
     }//GEN-LAST:event_jButton1CancelarActionPerformed
 
     private void jComboBoxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionActionPerformed
@@ -325,7 +324,11 @@ public void cerrar(){
             addWindowListener(new WindowAdapter() {
                 @Override
                     public void windowClosing(WindowEvent e){
-                    salir();
+                    if(ver_detalle_ticket != null){
+                        salirDetalle();
+                    }else{
+                        salirCU2();
+                    }
                 }
                
             });
@@ -334,7 +337,17 @@ public void cerrar(){
                 e.printStackTrace();
                 }
     }
-    public void salir(){
+    public void salirDetalle(){
+            
+        int valor=JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir? Se perderán los cambios realizados","Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        
+        if(valor==JOptionPane.YES_OPTION){
+                       
+            this.setVisible(false);
+            ver_detalle_ticket.setVisible(true);
+        }
+    }
+     public void salirCU2(){
             
         int valor=JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir? Se perderán los cambios realizados","Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
         
