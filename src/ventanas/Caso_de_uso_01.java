@@ -323,7 +323,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                    
             Caso_de_uso_01_Observaciones  cu1 = new Caso_de_uso_01_Observaciones();
             cu1.setVisible(true);
-            cu1.cargarObservaciones(ticket.getNroTicket());
+            cu1.cargarObservaciones(ticket);
             this.setVisible(false);
         
       }  

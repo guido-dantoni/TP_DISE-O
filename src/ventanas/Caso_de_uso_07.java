@@ -12,11 +12,11 @@ import javax.swing.ImageIcon;
  *
  * @author Usuario
  */
-public class Caso_de_uso_7 extends javax.swing.JFrame {
+public class Caso_de_uso_07 extends javax.swing.JFrame {
      /**
      * Creates new form caso_de_uso_7
      */
-    public Caso_de_uso_7() {
+    public Caso_de_uso_07() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
@@ -228,19 +228,19 @@ public class Caso_de_uso_7 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_07.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_07.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_07.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Caso_de_uso_7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Caso_de_uso_07.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
          /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Caso_de_uso_7().setVisible(true);
+                new Caso_de_uso_07().setVisible(true);
             }
         });
     }

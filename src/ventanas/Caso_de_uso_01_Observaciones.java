@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
 
-    private static int nroTicket; //Este nroTicket lo usamos en el metodo cerrarTicket()
+    private static Ticket ticket; //Este Ticket lo usamos en el metodo cerrarTicket()
     
    
     public Caso_de_uso_01_Observaciones() {
@@ -130,8 +130,10 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
 
     private void jButtonDerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDerivarTicketActionPerformed
         
-        // CARTEL DEL BOTON DERIVAR; NO EN ESTA ETAPA
-        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
+       Ventanas.Caso_de_uso_04 cu4 = new Ventanas.Caso_de_uso_04();
+       this.setVisible(false);
+       cu4.setVisible(true);
+       cu4.derivarTicket(ticket, this);
     }//GEN-LAST:event_jButtonDerivarTicketActionPerformed
 
     private void jTextFieldTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketActionPerformed
@@ -163,9 +165,9 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         }else{
             
             GestorTicket gestorTicket = new GestorTicket();
-            gestorTicket.cerrarTicket(observacion, nroTicket);
+            gestorTicket.cerrarTicket(observacion, ticket.getNroTicket());
             
-            JOptionPane.showMessageDialog(null, "EL ticket: " +  nroTicket+ " se cerró correctamente");
+            JOptionPane.showMessageDialog(null, "EL ticket: " +  ticket.getNroTicket()+ " se cerró correctamente");
             this.setVisible(false);          
             Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
             pantallaMesaAyuda.setVisible(true);
@@ -239,11 +241,11 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTicket;
     // End of variables declaration//GEN-END:variables
 
-    public void cargarObservaciones(int nroTicket){
+    public void cargarObservaciones(Ticket t){
         //this.setVisible(true);
         
-        jTextFieldTicket.setText(String.valueOf(nroTicket));
-        this.nroTicket = nroTicket;
+        jTextFieldTicket.setText(String.valueOf(t.getNroTicket()));
+        ticket = t;
     }
 
 }

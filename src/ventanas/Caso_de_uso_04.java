@@ -33,6 +33,8 @@ import org.jdesktop.swingx.decorator.EnabledHighlighter;
 public class Caso_de_uso_04 extends javax.swing.JFrame {
 
     private VerDetalleTicket ver_detalle_ticket;
+    private ventanas.Caso_de_uso_01_Observaciones cu1_O;
+    
     private Ticket ticket;
     
     public Caso_de_uso_04() {
@@ -345,6 +347,12 @@ public void cerrar(){
     public void derivarTicket(Ticket ticket, VerDetalleTicket detalle) {
         ver_detalle_ticket = detalle;
         this.ticket = ticket;
+        this.cargarCampos(ticket);
+    }
+    
+    public void derivarTicket(Ticket t, ventanas.Caso_de_uso_01_Observaciones v) {
+        cu1_O = v;
+        this.ticket = t;
         this.cargarCampos(ticket);
     }
 
