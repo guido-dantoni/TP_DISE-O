@@ -156,6 +156,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                 jButtonAceptarMouseClicked(evt);
             }
         });
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
         jButtonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jButtonAceptarKeyPressed(evt);
@@ -374,6 +379,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLegajoActionPerformed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     
     /**

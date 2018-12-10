@@ -8,6 +8,7 @@ import clases.Historialclasificacion;
 import clases.Historialticket;
 import clases.Ticket;
 import clases.TicketDTO;
+import controllers.Enum_EstadoTicket;
 import controllers.GestorClasificacion;
 import controllers.GestorGrupoResolucion;
 import controllers.GestorTicket;
@@ -15,12 +16,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javafx.scene.input.KeyCode;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import org.jdesktop.swingx.decorator.EnabledHighlighter;
 
 /**
  *
@@ -29,7 +33,7 @@ import javax.swing.WindowConstants;
 public class Caso_de_uso_04 extends javax.swing.JFrame {
 
     private VerDetalleTicket ver_detalle_ticket;
-     
+    private Ticket ticket;
     
     public Caso_de_uso_04() {
         initComponents();
@@ -118,11 +122,6 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jTextFieldEstado.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldEstado.setFocusable(false);
-        jTextFieldEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEstadoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 240, 30));
 
         jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
@@ -142,11 +141,6 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jComboBoxGrupoResolucion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxGrupoResolucion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxGrupoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        jComboBoxGrupoResolucion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxGrupoResolucionActionPerformed(evt);
-            }
-        });
         getContentPane().add(jComboBoxGrupoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 560, 30));
 
         jTextField1.setEditable(false);
@@ -176,16 +170,21 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jButton1Confirmar.setBackground(new java.awt.Color(191, 185, 185));
         jButton1Confirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1Confirmar.setText("Confirmar");
+        jButton1Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ConfirmarActionPerformed(evt);
+            }
+        });
+        jButton1Confirmar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1ConfirmarKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1Confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 590, 120, 40));
 
         jButton1Cancelar.setBackground(new java.awt.Color(191, 185, 185));
         jButton1Cancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1Cancelar.setText("Cancelar");
-        jButton1Cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1CancelarMouseClicked(evt);
-            }
-        });
         jButton1Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1CancelarActionPerformed(evt);
@@ -216,18 +215,9 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEstadoActionPerformed
-
     private void jComboBoxClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionFocusGained
                     jComboBoxClasificacion.showPopup();
     }//GEN-LAST:event_jComboBoxClasificacionFocusGained
-
-    private void jButton1CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1CancelarMouseClicked
-
-        salir();        
-    }//GEN-LAST:event_jButton1CancelarMouseClicked
 
     private void jButton1CancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1CancelarKeyPressed
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -239,26 +229,33 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         salir();
     }//GEN-LAST:event_jButton1CancelarActionPerformed
 
-    private void jComboBoxGrupoResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGrupoResolucionActionPerformed
-       
-    }//GEN-LAST:event_jComboBoxGrupoResolucionActionPerformed
-
     private void jComboBoxClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionActionPerformed
-        String cl = jComboBoxClasificacion.getSelectedItem().toString();
-        GestorGrupoResolucion gestorGrupo = new GestorGrupoResolucion();
-        GestorClasificacion gestorClasificacion = new GestorClasificacion();
-        List<Clasificacion> clasificaciones = new ArrayList<>();
-        clasificaciones = gestorClasificacion.obtenerClasificaciones();
-        List<Gruporesolucion> grupos = new ArrayList<>();
-        grupos = gestorGrupo.obtenerGrupos();
-        DefaultComboBoxModel comboGrupo= new DefaultComboBoxModel();
-        //##############################################################################################################
-        System.out.println(grupos.get(0).getClasificacions().size());
-        System.out.println(clasificaciones.get(0).getGruporesolucions());
-        /*for(int i=0; i<grupos.size(); i++){
-            if(grupos.get(i).getClasificacions())
-        }*/
+        cargarComboGrupo(jComboBoxClasificacion.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxClasificacionActionPerformed
+
+    private void jButton1ConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1ConfirmarKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButton1Confirmar.doClick();
+        } 
+    }//GEN-LAST:event_jButton1ConfirmarKeyPressed
+
+    private void jButton1ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ConfirmarActionPerformed
+       if(jTextAreaObservacion.getText().isEmpty()){
+          
+           JOptionPane.showMessageDialog(null, "El campo de observacion no puede estar vacío");
+       }else{
+            GestorTicket gt = new GestorTicket();
+            String nuevoEstado = Enum_EstadoTicket.ABIERTO_DERIVADO.toString(),
+                   observacion = jTextAreaObservacion.getText(),
+                   nuevaClasificacion = jComboBoxClasificacion.getSelectedItem().toString(),
+                   grupoResolucion = jComboBoxGrupoResolucion.getSelectedItem().toString();
+            
+                              
+            gt.derivarTicket(ticket, nuevoEstado, observacion, nuevaClasificacion, nuevoEstado);
+       }
+                
+        
+    }//GEN-LAST:event_jButton1ConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,8 +342,9 @@ public void cerrar(){
         }
     }
 
-    void derivarTicket(Ticket ticket, VerDetalleTicket detalle) {
-        ver_detalle_ticket = detalle;    
+    public void derivarTicket(Ticket ticket, VerDetalleTicket detalle) {
+        ver_detalle_ticket = detalle;
+        this.ticket = ticket;
         this.cargarCampos(ticket);
     }
 
@@ -369,15 +367,38 @@ public void cerrar(){
             
         }
         
-        jComboBoxClasificacion.setModel(comboClasificacion);
-                
+        jComboBoxClasificacion.setModel(comboClasificacion);       
         jTextField3NroTicketPorPantalla.setText(String.valueOf(ticket.getNroTicket()));
         jTextFieldEstado.setText(ticket.getEstadoactual());
         jTextFieldDescripcion.setText(ticket.getDescripcion());
-        
+        cargarComboGrupo(jComboBoxClasificacion.getSelectedItem().toString());
         
         
     }
 
-
+    private void cargarComboGrupo(String clasificacionDelCombo){
+                
+        GestorGrupoResolucion gestorGrupo = new GestorGrupoResolucion();
+        GestorClasificacion gestorClasificacion = new GestorClasificacion();
+        List<Clasificacion> clasificaciones = new ArrayList<>();       
+        List<Gruporesolucion> grupos = new ArrayList<>();
+        DefaultComboBoxModel comboGrupo= new DefaultComboBoxModel();
+         
+        int i=0;
+        
+        clasificaciones = gestorClasificacion.obtenerClasificaciones();
+        grupos = gestorGrupo.obtenerGrupos();
+        
+        while(!clasificaciones.get(i).getNombreclasificacion().equals(clasificacionDelCombo) && i<clasificaciones.size() ){
+                i++;               
+            }
+        //casteo el set de grupoResolucions a arrayList
+        Set clasificacionParaElGrupo = (Set) clasificaciones.get(i).getGruporesolucions();
+        List<Gruporesolucion> list = new ArrayList<>(clasificacionParaElGrupo);
+        
+        for(int j=0; j<list.size(); j++){
+            comboGrupo.addElement(list.get(j).getNombregrupo());
+        }
+       jComboBoxGrupoResolucion.setModel(comboGrupo);
+    }
 }
