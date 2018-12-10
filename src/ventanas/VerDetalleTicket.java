@@ -296,7 +296,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         Caso_de_uso_04 cu = new Caso_de_uso_04();
         this.setVisible(false);
         cu.setVisible(true);
-        cu.derivarTicket(ticket, this);
+        cu.derivarTicket(ticket, this, jTextAreaObservacion.getText());
         
     }//GEN-LAST:event_jButton1DerivarTicketActionPerformed
 

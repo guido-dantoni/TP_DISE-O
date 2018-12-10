@@ -92,11 +92,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLegajoActionPerformed(evt);
-            }
-        });
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyTyped(evt);
@@ -154,11 +149,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jButtonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonAceptarMouseClicked(evt);
-            }
-        });
-        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAceptarActionPerformed(evt);
             }
         });
         jButtonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -277,7 +267,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                 Toolkit.getDefaultToolkit().beep(); //ruidito beep
                 evt.consume();
             }
-            
+                        
             if(evt.getKeyCode() == KeyEvent.VK_TAB){
                 jComboBoxClasificacion.requestFocus();
             }  
@@ -375,14 +365,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
                      }
         
     }//GEN-LAST:event_jTextAreaDescripcionFocusGained
-
-    private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLegajoActionPerformed
-
-    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     
     /**

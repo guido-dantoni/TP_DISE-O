@@ -362,6 +362,10 @@ public class TicketDao {
         return historiales;   
         
     }
+
+    public void insertClasificacion(Historialclasificacion hc) {
+        tw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
 }
        

@@ -21,7 +21,7 @@ public class GestorClasificacion {
         List<String> lista = new ArrayList();
         List<Clasificacion> clasificaciones;
         ClasificacionDao clasificacionDao= new ClasificacionDao();
-        clasificaciones = clasificacionDao.getClasificacion();
+        clasificaciones = clasificacionDao.getClasificaciones();
         
         for(int i=0; i<clasificaciones.size();i++){
             
@@ -45,7 +45,7 @@ public class GestorClasificacion {
     public List<Clasificacion> obtenerClasificaciones() {
         ClasificacionDao c = new ClasificacionDao();
         
-        return c.getClasificacion();
+        return c.getClasificaciones();
     }
     
 }

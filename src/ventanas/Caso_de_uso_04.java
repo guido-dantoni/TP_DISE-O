@@ -34,6 +34,7 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
 
     private VerDetalleTicket ver_detalle_ticket;
     private ventanas.Caso_de_uso_01_Observaciones cu1_O;
+    private String primeraObservacion;
     
     private Ticket ticket;
     
@@ -247,13 +248,13 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "El campo de observacion no puede estar vacío");
        }else{
             GestorTicket gt = new GestorTicket();
-            String nuevoEstado = Enum_EstadoTicket.ABIERTO_DERIVADO.toString(),
-                   observacion = jTextAreaObservacion.getText(),
+            
+            String observacionDerivacion = jTextAreaObservacion.getText(),
                    nuevaClasificacion = jComboBoxClasificacion.getSelectedItem().toString(),
                    grupoResolucion = jComboBoxGrupoResolucion.getSelectedItem().toString();
             
                               
-            gt.derivarTicket(ticket, nuevoEstado, observacion, nuevaClasificacion, nuevoEstado);
+            gt.derivarTicket(ticket, observacionDerivacion, nuevaClasificacion, grupoResolucion, primeraObservacion);
        }
                 
         
@@ -344,15 +345,17 @@ public void cerrar(){
         }
     }
 
-    public void derivarTicket(Ticket ticket, VerDetalleTicket detalle) {
+    public void derivarTicket(Ticket ticket, VerDetalleTicket detalle, String obs) {
         ver_detalle_ticket = detalle;
         this.ticket = ticket;
+        this.primeraObservacion = obs;
         this.cargarCampos(ticket);
     }
     
-    public void derivarTicket(Ticket t, ventanas.Caso_de_uso_01_Observaciones v) {
+    public void derivarTicket(Ticket t, ventanas.Caso_de_uso_01_Observaciones v, String obs) {
         cu1_O = v;
         this.ticket = t;
+        this.primeraObservacion=obs;
         this.cargarCampos(ticket);
     }
 

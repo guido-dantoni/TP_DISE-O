@@ -133,7 +133,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
        Ventanas.Caso_de_uso_04 cu4 = new Ventanas.Caso_de_uso_04();
        this.setVisible(false);
        cu4.setVisible(true);
-       cu4.derivarTicket(ticket, this);
+       cu4.derivarTicket(ticket, this, jTextAreaObservaciones.getText());
     }//GEN-LAST:event_jButtonDerivarTicketActionPerformed
 
     private void jTextFieldTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTicketActionPerformed

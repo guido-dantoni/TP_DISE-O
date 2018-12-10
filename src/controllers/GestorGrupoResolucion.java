@@ -20,7 +20,7 @@ public class GestorGrupoResolucion {
         List<String> lista = new ArrayList();
         List<Gruporesolucion> grupoResolucion;
         GrupoResolucionDao grupoResolucionDao= new GrupoResolucionDao();
-        grupoResolucion = grupoResolucionDao.getGrupoResolucion();
+        grupoResolucion = grupoResolucionDao.getGruposResolucion();
         
         for(int i=0; i<grupoResolucion.size();i++){
             
@@ -33,7 +33,13 @@ public class GestorGrupoResolucion {
 
     public List<Gruporesolucion> obtenerGrupos() {
             GrupoResolucionDao gr = new GrupoResolucionDao();
-            return gr.getGrupoResolucion();
+            return gr.getGruposResolucion();
+    }
+
+    Gruporesolucion obtenerUnGrupo(String grupo) {
+            GrupoResolucionDao g = new GrupoResolucionDao();
+            
+            return g.getUnGrupo(grupo);
     }
     
 }

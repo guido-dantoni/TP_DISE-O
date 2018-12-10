@@ -6,6 +6,7 @@ import Dao.EmpleadoDao;
 import Dao.TicketDao;
 import clases.Clasificacion;
 import clases.Empleado;
+import clases.Gruporesolucion;
 import clases.Historialclasificacion;
 import clases.Historialticket;
 import clases.Ticket;
@@ -259,5 +260,92 @@ public class GestorTicket {
            
            return t.getHistorialTicket(ticket, estadoactual);
         }
+
+    
+    public void derivarTicket(Ticket ticket, String observacionDerivacion, String nuevaClasificacion, String grupo, String primeraObservacion) {
+                    
+      
+         //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
+        //Ver maquina de estadoTicket
+        TicketDao ticketDao = new TicketDao();
+        if( ticket.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
+                ticket.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) ){
+            
+             GestorFecha gestorF = new GestorFecha();
+             Date fechaActual = new Date();
+             fechaActual = gestorF.obtenerFecha();
+            
+                Historialticket historialTicket = new Historialticket();
+                //Actualizamos los valores del historial de ticket recupreado para hacer un update
+              
+                historialTicket = ticketDao.getHistorialTicket(ticket, ticket.getEstadoactual());
+                
+                             
+                historialTicket.setFechafin(fechaActual);
+                historialTicket.setHorafin(fechaActual);
+                historialTicket.setObservaciones(primeraObservacion);
+                
+                //Actualizamos los valores del historial de clasificacion
+                Historialclasificacion historialClasificacion = new Historialclasificacion();
+                
+                               
+                historialClasificacion = ticketDao.getHistorialClasificacion(ticket, ticket.getClasificacion().getCodigo());
+                
+                historialClasificacion.setFechafin(fechaActual);
+                historialClasificacion.setHorafin(fechaActual);
+              
+                ticketDao.updateHistorialTicket(historialTicket);
+                ticketDao.updateHistorialClasificacion(historialClasificacion);
+                
+            // HASTA ACA HACEMOS UN UPDATE DE LOS HISTORIALES VIEJOS (QUE TIENE ESTADO EN ABIERTO_MESA_AYUDA )    
+           
+                GestorSesion gestorSesion = new GestorSesion();
+                Usuario usuarioLogueado = new Usuario();
+        
+                usuarioLogueado = gestorSesion.getUsuarioLogueado();
+        
+                GestorClasificacion gestorClasificacion = new GestorClasificacion();
+                Clasificacion clasificacion = new Clasificacion();
+        
+                clasificacion =  gestorClasificacion.obtenerClasificacion(nuevaClasificacion);
+            
+                GestorGrupoResolucion gestorGrupoResolucion = new GestorGrupoResolucion();
+                Gruporesolucion grupoResolucion = new Gruporesolucion();
+        
+                grupoResolucion = gestorGrupoResolucion.obtenerUnGrupo(grupo);
+        
+       
+       
+        
+                ticket.setEstadoactual(Enum_EstadoTicket.ABIERTO_DERIVADO.toString());
+                ticket.setFechaultimoestado(fechaActual);
+                ticket.setClasificacion(clasificacion);
+        
+                Historialticket ht = new Historialticket();
+                ht.setHorainicio(fechaActual);
+                ht.setFechainicio(fechaActual);
+                ht.setUsuario(usuarioLogueado);
+                ht.setEstado(Enum_EstadoTicket.ABIERTO_DERIVADO.toString());
+        
+                
+                Historialclasificacion hc = new Historialclasificacion();
+                hc.setTicket(ticket);
+                hc.setClasificacion(clasificacion);
+                hc.setUsuario(usuarioLogueado);
+                hc.setFechainicio(fechaActual);
+                hc.setHorainicio(fechaActual);
+                
+                ticketDao.updateTicket(ticket);
+                ticketDao.insertHistorialTicket(ht);
+                ticketDao.insertClasificacion(hc);
+                
+                
+                
+            
+        }
+        
+        
+        
+    }
     
 }
