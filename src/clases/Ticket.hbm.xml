@@ -44,7 +44,7 @@
             </key>
             <one-to-many class="clases.Historialticket" />
         </set>
-        <set name="intervencions" table="intervencion" inverse="true" lazy="true" fetch="select">
+        <set name="intervencions" table="intervencion" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="nroticket" not-null="true" />
             </key>

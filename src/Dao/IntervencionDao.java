@@ -4,7 +4,10 @@ package Dao;
 import clases.Gruporesolucion;
 import clases.Historialintervencion;
 import clases.Intervencion;
+import clases.IntervencionDTO;
 import clases.Ticket;
+import java.util.Date;
+import java.util.List;
 import org.apache.derby.vti.Restriction;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -76,6 +79,61 @@ public class IntervencionDao {
                    System.out.println(e);
                }  
         }
+
+    public List<Intervencion> getIntervencionesFiltradas(Integer nroTicket, Integer nroLegajoEmpleado, String estadoIntervencion, Date fechaDesde, Date fechaHasta) {
+        
+        try {    
+            
+            List result;
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+            
+            Criteria cr = session.createCriteria(Intervencion.class, "i")
+                                 .createAlias("gruporesolucion", "gr")
+                                 .createAlias("historialintervencions", "hi")
+                                 .createAlias("ticket", "t")
+                                 .createAlias("t.empleado", "e");
+            
+            if(nroTicket!=null){
+                cr.add(Restrictions.eq("t.nroTicket", nroTicket));
+            }
+
+             if(fechaDesde!=null){
+                cr.add(Restrictions.eq("hi.fechainicio", fechaDesde));
+            }
+
+              if(!estadoIntervencion.equals("Todos")){
+                cr.add(Restrictions.eq("estadoactual", estadoIntervencion));
+            }
+              
+              
+            if(nroLegajoEmpleado!=null){
+                
+                cr.add(Restrictions.eq("e.legajoEmpleado", nroLegajoEmpleado));  
+            }
+            
+            if(fechaHasta!=null){
+                   
+                    cr.add(Restrictions.eq("fechafin" ,fechaHasta));
+             
+            }
+               
+                 
+            result = cr.list();
+             System.out.println(result.get(0).getClass());
+            
+            tx.commit();
+            session.close();
+            
+            return result;
+            
+    } catch (HibernateException e) {
+            System.out.println(e);
+        }
+        
+        return null;
+    }
      
 }
 

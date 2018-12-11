@@ -244,7 +244,7 @@ public class TicketDao {
         
         try {    
             
-                List result;
+            List result;
             sesionFactory = NewHibernateUtil.getSessionFactory();
             session = sesionFactory.openSession();
             tx = session.beginTransaction();

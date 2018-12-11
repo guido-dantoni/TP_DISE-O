@@ -254,6 +254,11 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
             
                               
             gt.derivarTicket(ticket, observacionDerivacion, nuevaClasificacion, grupoResolucion, primeraObservacion);
+           
+            JOptionPane.showMessageDialog(null, "EL ticket: " +  ticket.getNroTicket()+ " se derivó correctamente");
+            this.setVisible(false);          
+            Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
+            pantallaMesaAyuda.setVisible(true);
        }
                 
         
@@ -354,7 +359,7 @@ public void cerrar(){
         if(valor==JOptionPane.YES_OPTION){
                        
             this.setVisible(false);
-            ver_detalle_ticket.setVisible(true);
+            cu1_O.setVisible(true);
         }
     }
 

@@ -5,10 +5,13 @@ import Dao.IntervencionDao;
 import clases.Gruporesolucion;
 import clases.Historialintervencion;
 import clases.Intervencion;
+import clases.IntervencionDTO;
 import clases.Ticket;
 import clases.Usuario;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  *
@@ -79,5 +82,16 @@ public class GestorIntervencion {
         }
         return b;
     }
+
+    public List<IntervencionDTO> buscarIntervencionesCriterios(Integer nroTicket, Integer nroLegajoEmpleado, String estadoIntervencion, Date fechaDesde, Date fechaHasta) {
+                    
+                List<IntervencionDTO> intervencionesFiltradas = new ArrayList<>();
+                IntervencionDao intervencionDao = new IntervencionDao();
+               
+                List<Intervencion> l = intervencionDao.getIntervencionesFiltradas(nroTicket,nroLegajoEmpleado,estadoIntervencion,fechaDesde,fechaHasta);
+                System.out.println(l.get(0).getGruporesolucion().getNombregrupo());
+                return null;    
+    }
+
     
 }

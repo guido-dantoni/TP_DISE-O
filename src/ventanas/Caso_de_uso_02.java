@@ -515,15 +515,15 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
 
     private void jTextFieldNroLegajo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyTyped
         //no me deja ingresar letras ni numeros con mas de 6 caracteres
-        char ticket=evt.getKeyChar();       
+        char legajo=evt.getKeyChar();       
        
-       if(ticket<'0' || ticket>'9' || jTextFieldNroLegajo1.getText().length()>6){
+       if(legajo<'0' || legajo>'9' || jTextFieldNroLegajo1.getText().length()>6){
            evt.consume();
            Toolkit.getDefaultToolkit().beep();//ruido beep
        }
        
        //si presiona enter busca lo tickets
-       if(ticket == KeyEvent.VK_ENTER){
+       if(legajo == KeyEvent.VK_ENTER){
                 
                 jButton1Buscar.requestFocus();
                 jButton1Buscar.doClick();
@@ -570,17 +570,23 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
             nroLegajoEmpleado = Integer.parseInt(jTextFieldNroLegajo1.getText());
         }
         
-        if(jComboBox1EstadoActual.getSelectedItem().toString().equals("Abierto en mesa de ayuda")){
-            estadoActual = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
-            }else if (jComboBox1EstadoActual.getSelectedItem().toString().equals("Abierto derivado")){
+        switch (jComboBox1EstadoActual.getSelectedItem().toString()) {
+            case "Abierto en mesa de ayuda":
+                estadoActual = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
+                break;
+            case "Abierto derivado":
                 estadoActual = Enum_EstadoTicket.ABIERTO_DERIVADO.toString();
-                 }else if(jComboBox1EstadoActual.getSelectedItem().toString().equals("solucionado a la espera de OK")){
-                    estadoActual = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
-                        }else if(jComboBox1EstadoActual.getSelectedItem().toString().equals("Cerrado")){
-                            estadoActual = Enum_EstadoTicket.CERRADO.toString();
-                                }else {
-                                        estadoActual = "Todos";
-                                 }
+                break;
+            case "solucionado a la espera de OK":
+                estadoActual = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
+                break;
+            case "Cerrado":
+                estadoActual = Enum_EstadoTicket.CERRADO.toString();
+                break;
+            default:
+                estadoActual = "Todos";
+                break;
+        }
         
         fechaApertura = jXDatePickerFechaApertura.getDate();
         fechaUltimoCambioEstado = jXDatePickerFechaAcualizacion.getDate();

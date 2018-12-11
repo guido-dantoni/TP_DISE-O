@@ -11,7 +11,7 @@
         <property name="nombregrupo" type="string">
             <column name="nombregrupo" length="100" not-null="true" />
         </property>
-        <set name="intervencions" table="intervencion" inverse="true" lazy="true" fetch="select">
+        <set name="intervencions" table="intervencion" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="codigogruporesolucion" not-null="true" />
             </key>
