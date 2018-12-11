@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
 
 import clases.TicketDTO;
@@ -11,23 +7,19 @@ import controllers.GestorClasificacion;
 import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
 import controllers.GestorTicket;
-import java.awt.Event;
+
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javafx.scene.control.DatePicker;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import org.jdesktop.swingx.JXMonthView;
 
 /**
  *
@@ -79,7 +71,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
        jXDatePickerFechaApertura.getMonthView().setUpperBound(gestorfecha.obtenerFecha());
        jXDatePickerFechaAcualizacion.getMonthView().setUpperBound(gestorfecha.obtenerFecha());
        
-       //apago los botones, cuando haga click o enter en busscar, los prendo
+       //apago los botones, cuando haga click o enter en buscar, los prendo
        jButtonAnterior.setEnabled(false);
        jButtonSiguiente.setEnabled(false);
        jButtonVerDetalle.setEnabled(false);
@@ -426,11 +418,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jComboBox1EstadoActualFocusGained(evt);
             }
         });
-        jComboBox1EstadoActual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1EstadoActualActionPerformed(evt);
-            }
-        });
         jComboBox1EstadoActual.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jComboBox1EstadoActualKeyPressed(evt);
@@ -451,15 +438,20 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jXDatePickerFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
         jXDatePickerFechaApertura.setToolTipText("");
         jXDatePickerFechaApertura.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jXDatePickerFechaApertura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jXDatePickerFechaAperturaActionPerformed(evt);
+        jXDatePickerFechaApertura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jXDatePickerFechaAperturaKeyPressed(evt);
             }
         });
         getContentPane().add(jXDatePickerFechaApertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 160, 30));
 
         jXDatePickerFechaAcualizacion.setBackground(new java.awt.Color(191, 185, 185));
         jXDatePickerFechaAcualizacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jXDatePickerFechaAcualizacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jXDatePickerFechaAcualizacionKeyPressed(evt);
+            }
+        });
         getContentPane().add(jXDatePickerFechaAcualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, 160, 30));
 
         jLabel1InfoDeLosTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -598,8 +590,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     
         GestorTicket gestorTicket = new GestorTicket();
        
-        //################################################################################################################################333
-       ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
+        ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
        
         if(ticketsFiltrados.isEmpty()){
             JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
@@ -674,17 +665,21 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jComboBox1UltimoGpoResolucion.showPopup();
     }//GEN-LAST:event_jComboBox1UltimoGpoResolucionFocusGained
 
-    private void jXDatePickerFechaAperturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAperturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jXDatePickerFechaAperturaActionPerformed
-
-    private void jComboBox1EstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1EstadoActualActionPerformed
-
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        salir();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jXDatePickerFechaAperturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAperturaKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonAnterior.doClick();
+        } 
+    }//GEN-LAST:event_jXDatePickerFechaAperturaKeyPressed
+
+    private void jXDatePickerFechaAcualizacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAcualizacionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonAnterior.doClick();
+        } 
+    }//GEN-LAST:event_jXDatePickerFechaAcualizacionKeyPressed
 
     /**
      * @param args the command line arguments

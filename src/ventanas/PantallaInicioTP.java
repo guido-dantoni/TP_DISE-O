@@ -142,15 +142,13 @@ public class PantallaInicioTP extends javax.swing.JFrame {
     }//GEN-LAST:event_JButtonMesaDeAyudaActionPerformed
 
     private void JButtonGrupoDeResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonGrupoDeResolucionActionPerformed
-       
-        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
+            Login log = new Login();
+            log.setTipoUsuario("Grupo de Resolucion");
         
     }//GEN-LAST:event_JButtonGrupoDeResolucionActionPerformed
 
     private void JButtonGerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonGerenciaActionPerformed
-       
-         JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");
-        
+            JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo.");  
     }//GEN-LAST:event_JButtonGerenciaActionPerformed
 
     private void JButtonMesaDeAyudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JButtonMesaDeAyudaKeyPressed

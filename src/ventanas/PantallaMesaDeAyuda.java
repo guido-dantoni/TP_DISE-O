@@ -152,8 +152,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        // TODO add your handling code here:
-         confirmarSalida();
+            confirmarSalida();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarTicketActionPerformed

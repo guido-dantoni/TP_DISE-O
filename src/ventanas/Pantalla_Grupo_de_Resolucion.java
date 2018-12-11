@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ventanas;
 
-import java.awt.Color;
+import controllers.GestorSesion;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -14,13 +15,12 @@ import javax.swing.ImageIcon;
  */
 public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Pantalla_Grupo_de_Resolucion
-     */
+
     public Pantalla_Grupo_de_Resolucion() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        cerrar();
     }
 
     /**
@@ -33,43 +33,90 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonConsultarIntervencion = new javax.swing.JButton();
+        jButtonRegistarClasificacion = new javax.swing.JButton();
+        jButtonBuscarClasificacion = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelLogo = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1025, 635));
-        setPreferredSize(new java.awt.Dimension(1025, 635));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton1.setText("Consultar intervenciones asignadas");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+        jButtonConsultarIntervencion.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonConsultarIntervencion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonConsultarIntervencion.setText("Consultar intervenciones asignadas");
+        jButtonConsultarIntervencion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonConsultarIntervencionFocusGained(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonConsultarIntervencionFocusLost(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 280, 60));
+        jButtonConsultarIntervencion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarIntervencionActionPerformed(evt);
+            }
+        });
+        jButtonConsultarIntervencion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonConsultarIntervencionKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButtonConsultarIntervencion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 280, 60));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton2.setText("Registrar clasificacion de tickets");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 280, 60));
+        jButtonRegistarClasificacion.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonRegistarClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonRegistarClasificacion.setText("Registrar clasificacion de tickets");
+        jButtonRegistarClasificacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonRegistarClasificacionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonRegistarClasificacionFocusLost(evt);
+            }
+        });
+        jButtonRegistarClasificacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonRegistarClasificacionKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButtonRegistarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 280, 60));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jButton3.setText("Buscar clasificacion de tickets");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 280, 60));
+        jButtonBuscarClasificacion.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonBuscarClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonBuscarClasificacion.setText("Buscar clasificacion de tickets");
+        jButtonBuscarClasificacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonBuscarClasificacionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonBuscarClasificacionFocusLost(evt);
+            }
+        });
+        getContentPane().add(jButtonBuscarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 280, 60));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton4.setText("Salir");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 560, 80, 30));
+        jButtonSalir.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonSalir.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jButtonSalirFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jButtonSalirFocusLost(evt);
+            }
+        });
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 605, 120, 40));
 
         jLabelTitulo.setBackground(new java.awt.Color(204, 204, 204));
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -79,23 +126,70 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
         jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logofondo_GrupoResolucion.png"))); // NOI18N
         jLabelLogo.setToolTipText("");
-        getContentPane().add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 360, 400));
+        getContentPane().add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 190, 360, 400));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo-grupoResolucion.jpg"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, -1, -1));
+        jLabelFondo.setMaximumSize(new java.awt.Dimension(350, 388));
+        jLabelFondo.setMinimumSize(new java.awt.Dimension(350, 388));
+        jLabelFondo.setPreferredSize(new java.awt.Dimension(350, 388));
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
-        // TODO add your handling code here:
-        jButton1.setBackground(Color.RED);
-    }//GEN-LAST:event_jButton1MouseExited
+    private void jButtonConsultarIntervencionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConsultarIntervencionKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonConsultarIntervencion.doClick();
+        }
+    }//GEN-LAST:event_jButtonConsultarIntervencionKeyPressed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
-        // TODO add your handling code here:
-        jButton1.setBackground(Color.yellow);
-    }//GEN-LAST:event_jButton1MouseEntered
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        confirmarSalida();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonRegistarClasificacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonRegistarClasificacionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonRegistarClasificacion.doClick();
+        }
+    }//GEN-LAST:event_jButtonRegistarClasificacionKeyPressed
+
+    private void jButtonConsultarIntervencionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarIntervencionActionPerformed
+        Caso_de_uso_07 c = new Caso_de_uso_07();
+        this.setVisible(false);
+        c.setVisible(true);
+    }//GEN-LAST:event_jButtonConsultarIntervencionActionPerformed
+
+    private void jButtonConsultarIntervencionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonConsultarIntervencionFocusGained
+        jButtonConsultarIntervencion.setBackground(new java.awt.Color(0,153,153));
+    }//GEN-LAST:event_jButtonConsultarIntervencionFocusGained
+
+    private void jButtonRegistarClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonRegistarClasificacionFocusGained
+        jButtonRegistarClasificacion.setBackground(new java.awt.Color(0,153,153));
+    }//GEN-LAST:event_jButtonRegistarClasificacionFocusGained
+
+    private void jButtonBuscarClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonBuscarClasificacionFocusGained
+                jButtonBuscarClasificacion.setBackground(new java.awt.Color(0,153,153));
+    }//GEN-LAST:event_jButtonBuscarClasificacionFocusGained
+
+    private void jButtonSalirFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonSalirFocusGained
+            jButtonSalir.setBackground(new java.awt.Color(0,153,153));
+    }//GEN-LAST:event_jButtonSalirFocusGained
+
+    private void jButtonConsultarIntervencionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonConsultarIntervencionFocusLost
+        jButtonConsultarIntervencion.setBackground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jButtonConsultarIntervencionFocusLost
+
+    private void jButtonRegistarClasificacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonRegistarClasificacionFocusLost
+         jButtonRegistarClasificacion.setBackground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jButtonRegistarClasificacionFocusLost
+
+    private void jButtonBuscarClasificacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonBuscarClasificacionFocusLost
+         jButtonBuscarClasificacion.setBackground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jButtonBuscarClasificacionFocusLost
+
+    private void jButtonSalirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonSalirFocusLost
+         jButtonSalir.setBackground(new java.awt.Color(153,153,153));
+    }//GEN-LAST:event_jButtonSalirFocusLost
 
     /**
      * @param args the command line arguments
@@ -134,12 +228,42 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonBuscarClasificacion;
+    private javax.swing.JButton jButtonConsultarIntervencion;
+    private javax.swing.JButton jButtonRegistarClasificacion;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
+
+public void cerrar(){
+        
+        try{
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e){
+                    confirmarSalida();
+                }
+               
+            });
+        
+        }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
+    public void confirmarSalida(){
+        int valor=JOptionPane.showConfirmDialog(this, "¿Seguro que deseas salir? Se cerrará la sesion actual","Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        if(valor==JOptionPane.YES_OPTION){
+            GestorSesion gestorSesion=new GestorSesion();
+            gestorSesion.setUsuarioLogueado(null);
+            
+            this.setVisible(false);
+        }
+    }
+
+
+
+
 }

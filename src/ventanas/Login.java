@@ -2,7 +2,6 @@
 package Ventanas;
 
 import controllers.GestorSesion;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -101,16 +100,21 @@ public class Login extends javax.swing.JFrame {
         GestorSesion gestorSesion = new GestorSesion();
         existeUsuario = gestorSesion.validarUsuario(legajoUsuario, tipoDeUsuario);
       
-        if(existeUsuario){
+        if(tipoDeUsuario.equals("Mesa de Ayuda") && existeUsuario){
            
             this.setVisible(false);
             PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
             pantallaMesaAyuda.setVisible(true);
             
-        }else{
-            
-            JOptionPane.showMessageDialog(null, "No existe este usuario como Mesa de Ayuda");
-        }
+            }else if(tipoDeUsuario.equals("Grupo de Resolucion") && existeUsuario){
+                        
+                            this.setVisible(false);
+                            ventanas.Pantalla_Grupo_de_Resolucion pantallaGrupo = new ventanas.Pantalla_Grupo_de_Resolucion();
+                            pantallaGrupo.setVisible(true);
+                    
+                    }else{
+                            JOptionPane.showMessageDialog(null, "No existe este usuario como " + tipoDeUsuario);
+                         }
        
         
         

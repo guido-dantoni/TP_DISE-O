@@ -18,11 +18,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ClasificacionDao {
     
-    /*
-     private int codigo;
-     private String descripcion;
-     private String nombreclasificacion;
-     */
+ 
      private SessionFactory sesionFactory;
      private Session session;
      private Transaction tx;

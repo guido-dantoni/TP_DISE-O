@@ -179,6 +179,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextAreaObservacion.setBackground(new java.awt.Color(191, 185, 185));
         jTextAreaObservacion.setColumns(20);
         jTextAreaObservacion.setRows(5);
+        jTextAreaObservacion.setFocusable(false);
         jScrollPaneObservaciones.setViewportView(jTextAreaObservacion);
 
         getContentPane().add(jScrollPaneObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 800, 100));
