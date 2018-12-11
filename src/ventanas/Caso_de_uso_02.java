@@ -380,6 +380,9 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jTextField1NroTicket.setBackground(new java.awt.Color(245, 245, 245));
         jTextField1NroTicket.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextField1NroTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1NroTicketKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1NroTicketKeyTyped(evt);
             }
@@ -389,6 +392,9 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jTextFieldNroLegajo1.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldNroLegajo1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldNroLegajo1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNroLegajo1KeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNroLegajo1KeyTyped(evt);
             }
@@ -504,13 +510,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
            evt.consume();
            Toolkit.getDefaultToolkit().beep();//ruido beep
        }
-       
-       //si presiona enter busca lo tickets
-       if(ticket == KeyEvent.VK_ENTER){
-                
-                jButton1Buscar.requestFocus();
-                jButton1Buscar.doClick();
-       } 
+        
     }//GEN-LAST:event_jTextField1NroTicketKeyTyped
 
     private void jTextFieldNroLegajo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyTyped
@@ -522,12 +522,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
            Toolkit.getDefaultToolkit().beep();//ruido beep
        }
        
-       //si presiona enter busca lo tickets
-       if(legajo == KeyEvent.VK_ENTER){
-                
-                jButton1Buscar.requestFocus();
-                jButton1Buscar.doClick();
-       } 
     }//GEN-LAST:event_jTextFieldNroLegajo1KeyTyped
 
     private void jComboBox1ClasificacionActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1ClasificacionActualKeyPressed
@@ -599,6 +593,12 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
        
         if(ticketsFiltrados.isEmpty()){
+                    jButtonAnterior.setEnabled(false);
+                    jButtonSiguiente.setEnabled(false);
+                    jButtonVerDetalle.setEnabled(false);
+                    jButtonConfReporte.setEnabled(false);
+                    //MODIFICARLOS TEXTFIELD,SETEARLOS DE NUEVO EN NULO y LABELS
+                    
             JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
         } else {
             
@@ -686,6 +686,18 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButtonAnterior.doClick();
         } 
     }//GEN-LAST:event_jXDatePickerFechaAcualizacionKeyPressed
+
+    private void jTextField1NroTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1NroTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonAnterior.doClick();
+        } 
+    }//GEN-LAST:event_jTextField1NroTicketKeyPressed
+
+    private void jTextFieldNroLegajo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonAnterior.doClick();
+        }         
+    }//GEN-LAST:event_jTextFieldNroLegajo1KeyPressed
 
     /**
      * @param args the command line arguments

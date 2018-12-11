@@ -115,7 +115,7 @@ public class IntervencionDao {
             
             if(fechaHasta!=null){
                    
-                    cr.add(Restrictions.eq("fechafin" ,fechaHasta));
+                    cr.add(Restrictions.eq("hi.fechafin" ,fechaHasta));
              
             }
                

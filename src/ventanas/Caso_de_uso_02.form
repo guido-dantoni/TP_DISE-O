@@ -654,6 +654,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1NroTicketKeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField1NroTicketKeyTyped"/>
       </Events>
       <Constraints>
@@ -672,6 +673,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNroLegajo1KeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNroLegajo1KeyTyped"/>
       </Events>
       <Constraints>

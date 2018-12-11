@@ -92,21 +92,26 @@ public class GestorIntervencion {
                 
                 for(int i=0; i<l.size(); i++){
                     
-                    intervencionesFiltradas.get(i).setNroTicket(l.get(i).getTicket().getNroTicket());
-                    intervencionesFiltradas.get(i).setLegajoEmpleado(l.get(i).getTicket().getEmpleado().getLegajoEmpleado());
-                    intervencionesFiltradas.get(i).setClasificacionActualTicket(l.get(i).getTicket().getClasificacion().getNombreclasificacion());
-                    intervencionesFiltradas.get(i).setEstadoActualTicket(l.get(i).getTicket().getEstadoactual());
-                    intervencionesFiltradas.get(i).setFechaApertura(l.get(i).getTicket().getFecahapertura());
-                    intervencionesFiltradas.get(i).setGrupoResoulucion(l.get(i).getGruporesolucion().getNombregrupo());
+                    IntervencionDTO intervencionDto = new IntervencionDTO();
+                    
+                    intervencionDto.setNroTicket(l.get(i).getTicket().getNroTicket());
+                    intervencionDto.setLegajoEmpleado(l.get(i).getTicket().getEmpleado().getLegajoEmpleado());
+                    intervencionDto.setClasificacionActualTicket(l.get(i).getTicket().getClasificacion().getNombreclasificacion());
+                    intervencionDto.setEstadoActualTicket(l.get(i).getTicket().getEstadoactual());
+                    intervencionDto.setFechaApertura(l.get(i).getTicket().getFecahapertura());
+                    intervencionDto.setGrupoResoulucion(l.get(i).getGruporesolucion().getNombregrupo());
+                    intervencionDto.setEstadoIntervencion(l.get(i).getEstadoactual());
                     
                     //casteo el historialintervencion de la intervencion.get(i) a Arraylist
                      List<Historialintervencion> hi = new ArrayList<>(l.get(i).getHistorialintervencions());
                       
                      //obtengo la primer fechaInicio porque es la mas chica --> es la fecha de apertura
-                    intervencionesFiltradas.get(i).setFechaAsiganacionIntervencion(hi.get(0).getFechainicio());
+                    intervencionDto.setFechaAsiganacionIntervencion(hi.get(0).getFechainicio());
                    //obtengo la observacion del ultimo elemento del historilIntervencion de la intervencion.get(i)
                    //ya que es la ultima observacion cargada
-                    intervencionesFiltradas.get(i).setObservacionIntervencion(hi.get(hi.size()-1).getObservaciones());
+                    intervencionDto.setObservacionIntervencion(hi.get(hi.size()-1).getObservaciones());
+                    
+                    intervencionesFiltradas.add(intervencionDto);
                 }
                 
                 return intervencionesFiltradas;    
