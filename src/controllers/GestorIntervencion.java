@@ -94,6 +94,7 @@ public class GestorIntervencion {
                     
                     IntervencionDTO intervencionDto = new IntervencionDTO();
                     
+                    intervencionDto.setIdIntervencion(l.get(i).getIdIntervencion());
                     intervencionDto.setNroTicket(l.get(i).getTicket().getNroTicket());
                     intervencionDto.setLegajoEmpleado(l.get(i).getTicket().getEmpleado().getLegajoEmpleado());
                     intervencionDto.setClasificacionActualTicket(l.get(i).getTicket().getClasificacion().getNombreclasificacion());
@@ -115,6 +116,12 @@ public class GestorIntervencion {
                 }
                 
                 return intervencionesFiltradas;    
+    }
+
+    public Intervencion obtenerIntervencion(int idInt) {
+            IntervencionDao i = new IntervencionDao();
+            return i.getIntervencion(idInt);
+            
     }
 
     

@@ -1,16 +1,23 @@
 
 package ventanas;
- import javax.swing.ImageIcon;
+import clases.Intervencion;
+import controllers.GestorIntervencion;
+import javax.swing.ImageIcon;
+
  /**
  *
  * @author Guido D'Antoni guidodantoni2335@gmail.com
  */
 public class Caso_de_uso_08 extends javax.swing.JFrame {
 
+    private Intervencion intervecion;
+    private Caso_de_uso_07 cu7;
+    
     public Caso_de_uso_08() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -26,10 +33,10 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jTextFieldNroTicket = new javax.swing.JTextField();
         jTextFieldEstadoActual = new javax.swing.JTextField();
         jScrollPaneDescripcion = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaDescripcion = new javax.swing.JTextArea();
         jComboBoxNuevoEstadp = new javax.swing.JComboBox<>();
         jScrollPaneObservacion = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextAreaObservacion = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -48,61 +55,62 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         jLabelEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelEstadoActual.setText("Estado Actual: ");
-        getContentPane().add(jLabelEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(jLabelEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         jLabelDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelDescripcion.setText("Descripción: ");
-        getContentPane().add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        getContentPane().add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         jLabelNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNuevoEstado.setText("Nuevo estado: ");
-        getContentPane().add(jLabelNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 100, -1, -1));
+        getContentPane().add(jLabelNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
         jLabelClasificacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelClasificacion.setText("Clasificacion: ");
-        getContentPane().add(jLabelClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, 30));
+        getContentPane().add(jLabelClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, 30));
 
         jLabelObservacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelObservacion.setText("Observacion: ");
-        getContentPane().add(jLabelObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, -1, -1));
+        getContentPane().add(jLabelObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         jTextFieldNroTicket.setEditable(false);
         jTextFieldNroTicket.setBackground(new java.awt.Color(227, 227, 227));
         jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldNroTicket.setFocusable(false);
         getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 170, 30));
 
         jTextFieldEstadoActual.setEditable(false);
         jTextFieldEstadoActual.setBackground(new java.awt.Color(227, 227, 227));
+        jTextFieldEstadoActual.setFocusable(false);
         jTextFieldEstadoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEstadoActualActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 270, 30));
+        getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 270, 30));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(227, 227, 227));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPaneDescripcion.setViewportView(jTextArea1);
+        jTextAreaDescripcion.setEditable(false);
+        jTextAreaDescripcion.setBackground(new java.awt.Color(227, 227, 227));
+        jTextAreaDescripcion.setColumns(20);
+        jTextAreaDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.setFocusable(false);
+        jScrollPaneDescripcion.setViewportView(jTextAreaDescripcion);
 
-        getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 350, 270));
+        getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 850, 120));
 
         jComboBoxNuevoEstadp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxNuevoEstadp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar...", "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxNuevoEstadp, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 290, 30));
+        getContentPane().add(jComboBoxNuevoEstadp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, 290, 30));
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea2.setRows(5);
-        jScrollPaneObservacion.setViewportView(jTextArea2);
+        jTextAreaObservacion.setColumns(20);
+        jTextAreaObservacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaObservacion.setRows(5);
+        jScrollPaneObservacion.setViewportView(jTextAreaObservacion);
 
-        getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, 320, 330));
+        getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 850, 140));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 660, 30));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 660, 30));
 
         jButtonAceptar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonAceptar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -180,9 +188,22 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JScrollPane jScrollPaneDescripcion;
     private javax.swing.JScrollPane jScrollPaneObservacion;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextAreaDescripcion;
+    private javax.swing.JTextArea jTextAreaObservacion;
     private javax.swing.JTextField jTextFieldEstadoActual;
     private javax.swing.JTextField jTextFieldNroTicket;
     // End of variables declaration//GEN-END:variables
+
+    void modificarEstado(int idInt, Caso_de_uso_07 c) {
+            this.cu7=c;
+            GestorIntervencion gestorIntervencion = new GestorIntervencion();
+            this.intervecion = gestorIntervencion.obtenerIntervencion(idInt);
+            this.cargarCampos();
+    }
+
+    private void cargarCampos() {
+        
+        jTextFieldNroTicket.setText(String.valueOf(intervecion.getTicket().getNroTicket()));
+        jTextAreaDescripcion.setText(intervecion.getTicket().getDescripcion());
+  }
 }

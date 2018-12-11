@@ -13,6 +13,9 @@ import java.util.Date;
  */
 public class IntervencionDTO {
     
+    private int idIntervencion;
+
+
     private int nroTicket;
     private int legajoEmpleado;
     private String clasificacionActualTicket;
@@ -101,4 +104,11 @@ public class IntervencionDTO {
         this.observacionIntervencion = observacionIntervencion;
     }
     
+    public int getIdIntervencion() {
+        return idIntervencion;
+    }
+
+    public void setIdIntervencion(int idIntervencion) {
+        this.idIntervencion = idIntervencion;
+    }
 }

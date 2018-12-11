@@ -2,10 +2,10 @@
 package ventanas;
 import clases.IntervencionDTO;
 import controllers.Enum_EstadoIntervencion;
-import controllers.Enum_EstadoTicket;
+
 import controllers.GestorFecha;
 import controllers.GestorIntervencion;
-import controllers.GestorSesion;
+
  import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -26,6 +26,8 @@ import javax.swing.table.DefaultTableModel;
 public class Caso_de_uso_07 extends javax.swing.JFrame {
        private final JButton btnHasta;
        private final JButton btnDesde;
+       private List<IntervencionDTO> intervencionesFiltradas = new ArrayList<>();
+       private int row;
        
     public Caso_de_uso_07() {
         
@@ -75,7 +77,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabelObservaciones = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaObservacion = new javax.swing.JTextArea();
         jButtonModificarEstado = new javax.swing.JButton();
         jButtonModificarComentarios = new javax.swing.JButton();
         jLabelLogoFondo = new javax.swing.JLabel();
@@ -84,7 +86,6 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultar intervenciones asignadas");
-        setPreferredSize(new java.awt.Dimension(1150, 640));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -221,6 +222,11 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jTableTabla.setFocusable(false);
         jTableTabla.setGridColor(new java.awt.Color(102, 102, 102));
         jTableTabla.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        jTableTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableTablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableTabla);
         if (jTableTabla.getColumnModel().getColumnCount() > 0) {
             jTableTabla.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -239,24 +245,44 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jLabelObservaciones.setText("Observaciones:");
         getContentPane().add(jLabelObservaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, 40));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(191, 185, 185));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextArea1.setFocusable(false);
-        jScrollPane2.setViewportView(jTextArea1);
+        jTextAreaObservacion.setEditable(false);
+        jTextAreaObservacion.setBackground(new java.awt.Color(191, 185, 185));
+        jTextAreaObservacion.setColumns(20);
+        jTextAreaObservacion.setRows(5);
+        jTextAreaObservacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextAreaObservacion.setFocusable(false);
+        jScrollPane2.setViewportView(jTextAreaObservacion);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 396, 850, 140));
 
         jButtonModificarEstado.setBackground(new java.awt.Color(204, 204, 204));
         jButtonModificarEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarEstado.setText("Modificar estado");
+        jButtonModificarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarEstadoActionPerformed(evt);
+            }
+        });
+        jButtonModificarEstado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonModificarEstadoKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonModificarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 570, 170, 40));
 
         jButtonModificarComentarios.setBackground(new java.awt.Color(204, 204, 204));
         jButtonModificarComentarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonModificarComentarios.setText("Modificar comentarios");
+        jButtonModificarComentarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarComentariosActionPerformed(evt);
+            }
+        });
+        jButtonModificarComentarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonModificarComentariosKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonModificarComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 570, 170, 40));
 
         jLabelLogoFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logofondo_GrupoResolucion.png"))); // NOI18N
@@ -338,7 +364,6 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         String estadoIntervencion;
         Date fechaDesde, fechaHasta;
         GestorIntervencion gestorIntervencion = new GestorIntervencion();
-        List<IntervencionDTO> intervencionesFiltradas = new ArrayList<>();
         
         if(!jTextFieldNroTicket.getText().isEmpty()){
             nroTicket = Integer.parseInt(jTextFieldNroTicket.getText());
@@ -369,16 +394,18 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
            fechaDesde = jXDatePickerFechaDesde.getDate(); 
            fechaHasta = jXDatePickerFechaHasta.getDate();
            
-           intervencionesFiltradas = gestorIntervencion.buscarIntervencionesCriterios(nroTicket,nroLegajoEmpleado,estadoIntervencion,fechaDesde,fechaHasta);
+           this.intervencionesFiltradas = gestorIntervencion.buscarIntervencionesCriterios(nroTicket,nroLegajoEmpleado,estadoIntervencion,fechaDesde,fechaHasta);
            
            if(intervencionesFiltradas.isEmpty()){
                        jButtonModificarComentarios.setEnabled(false);
                        jButtonModificarEstado.setEnabled(false);
                        jTableTabla.setFocusable(false);
-                       
+                       //AGREGAR EL VACIADO DE LA TABLA
                        
                JOptionPane.showMessageDialog(null, "No existen intervenciones que cumplan con los criterios de busqueda seleccionados");
            }else{
+               
+               //AGREGAR EL VACIADO DE LA TABLA
                jTableTabla.setFocusable(true);
                jTableTabla.requestFocus();
                jButtonModificarComentarios.setEnabled(true);
@@ -435,6 +462,38 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
             jButtonBuscar.doClick();
         }
     }//GEN-LAST:event_jTextFieldLegajoKeyPressed
+
+    private void jTableTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTablaMouseClicked
+         row = jTableTabla.getSelectedRow();
+                 
+        if(row >= 0){   
+                jTextAreaObservacion.setText(intervencionesFiltradas.get(row).getObservacionIntervencion());
+         }
+    }//GEN-LAST:event_jTableTablaMouseClicked
+
+    private void jButtonModificarComentariosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonModificarComentariosKeyPressed
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonModificarComentarios.doClick();
+            }
+    }//GEN-LAST:event_jButtonModificarComentariosKeyPressed
+
+    private void jButtonModificarComentariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarComentariosActionPerformed
+        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo");
+    }//GEN-LAST:event_jButtonModificarComentariosActionPerformed
+
+    private void jButtonModificarEstadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonModificarEstadoKeyPressed
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                jButtonModificarEstado.doClick();
+            }
+    }//GEN-LAST:event_jButtonModificarEstadoKeyPressed
+
+    private void jButtonModificarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstadoActionPerformed
+       
+        Caso_de_uso_08 c = new Caso_de_uso_08();
+        this.setVisible(false);
+        c.setVisible(true);
+        c.modificarEstado(intervencionesFiltradas.get(row).getIdIntervencion(), this);
+    }//GEN-LAST:event_jButtonModificarEstadoActionPerformed
      /**
      * @param args the command line arguments
      */
@@ -487,7 +546,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableTabla;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaObservacion;
     private javax.swing.JTextField jTextFieldLegajo;
     private javax.swing.JTextField jTextFieldNroTicket;
     private org.jdesktop.swingx.JXDatePicker jXDatePickerFechaDesde;

@@ -4,11 +4,9 @@ package Dao;
 import clases.Gruporesolucion;
 import clases.Historialintervencion;
 import clases.Intervencion;
-import clases.IntervencionDTO;
 import clases.Ticket;
 import java.util.Date;
 import java.util.List;
-import org.apache.derby.vti.Restriction;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -133,6 +131,30 @@ public class IntervencionDao {
         
         return null;
     }
+
+    public Intervencion getIntervencion(int idInt) {
+         
+        Intervencion i = new Intervencion();
+        try {    
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+        
+             Criteria cr = session.createCriteria(Intervencion.class, "i")
+                                  .createAlias("ticket", "t")
+                                  .add(Restrictions.eq("idIntervencion", idInt));
+             
+             i = (Intervencion) cr.uniqueResult();
+            
+            tx.commit();
+            session.close();
+
+        } catch (HibernateException e) {
+                System.out.println(e);
+            }  
+            
+            return i;
+        }
      
 }
 
