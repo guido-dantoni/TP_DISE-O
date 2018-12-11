@@ -121,8 +121,7 @@ public class IntervencionDao {
                
                  
             result = cr.list();
-             System.out.println(result.get(0).getClass());
-            
+                        
             tx.commit();
             session.close();
             

@@ -89,8 +89,27 @@ public class GestorIntervencion {
                 IntervencionDao intervencionDao = new IntervencionDao();
                
                 List<Intervencion> l = intervencionDao.getIntervencionesFiltradas(nroTicket,nroLegajoEmpleado,estadoIntervencion,fechaDesde,fechaHasta);
-                System.out.println(l.get(0).getGruporesolucion().getNombregrupo());
-                return null;    
+                
+                for(int i=0; i<l.size(); i++){
+                    
+                    intervencionesFiltradas.get(i).setNroTicket(l.get(i).getTicket().getNroTicket());
+                    intervencionesFiltradas.get(i).setLegajoEmpleado(l.get(i).getTicket().getEmpleado().getLegajoEmpleado());
+                    intervencionesFiltradas.get(i).setClasificacionActualTicket(l.get(i).getTicket().getClasificacion().getNombreclasificacion());
+                    intervencionesFiltradas.get(i).setEstadoActualTicket(l.get(i).getTicket().getEstadoactual());
+                    intervencionesFiltradas.get(i).setFechaApertura(l.get(i).getTicket().getFecahapertura());
+                    intervencionesFiltradas.get(i).setGrupoResoulucion(l.get(i).getGruporesolucion().getNombregrupo());
+                    
+                    //casteo el historialintervencion de la intervencion.get(i) a Arraylist
+                     List<Historialintervencion> hi = new ArrayList<>(l.get(i).getHistorialintervencions());
+                      
+                     //obtengo la primer fechaInicio porque es la mas chica --> es la fecha de apertura
+                    intervencionesFiltradas.get(i).setFechaAsiganacionIntervencion(hi.get(0).getFechainicio());
+                   //obtengo la observacion del ultimo elemento del historilIntervencion de la intervencion.get(i)
+                   //ya que es la ultima observacion cargada
+                    intervencionesFiltradas.get(i).setObservacionIntervencion(hi.get(hi.size()-1).getObservaciones());
+                }
+                
+                return intervencionesFiltradas;    
     }
 
     
