@@ -1,7 +1,12 @@
 
 package ventanas;
 import clases.Intervencion;
+import controllers.Enum_EstadoIntervencion;
+import controllers.GestorClasificacion;
 import controllers.GestorIntervencion;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
  /**
@@ -37,7 +42,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jComboBoxNuevoEstadp = new javax.swing.JComboBox<>();
         jScrollPaneObservacion = new javax.swing.JScrollPane();
         jTextAreaObservacion = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxClasificacion = new javax.swing.JComboBox<>();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
@@ -51,66 +56,68 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         jLabelNroTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNroTicket.setText("Nro. Ticket:");
-        getContentPane().add(jLabelNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        getContentPane().add(jLabelNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabelEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelEstadoActual.setText("Estado Actual: ");
-        getContentPane().add(jLabelEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+        getContentPane().add(jLabelEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
 
         jLabelDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelDescripcion.setText("Descripción: ");
-        getContentPane().add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(jLabelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabelNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNuevoEstado.setText("Nuevo estado: ");
-        getContentPane().add(jLabelNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
+        getContentPane().add(jLabelNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabelClasificacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelClasificacion.setText("Clasificacion: ");
-        getContentPane().add(jLabelClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, 30));
+        getContentPane().add(jLabelClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 30));
 
         jLabelObservacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelObservacion.setText("Observacion: ");
-        getContentPane().add(jLabelObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        getContentPane().add(jLabelObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
 
         jTextFieldNroTicket.setEditable(false);
-        jTextFieldNroTicket.setBackground(new java.awt.Color(227, 227, 227));
+        jTextFieldNroTicket.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldNroTicket.setFocusable(false);
-        getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 170, 30));
+        getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 170, 30));
 
         jTextFieldEstadoActual.setEditable(false);
-        jTextFieldEstadoActual.setBackground(new java.awt.Color(227, 227, 227));
+        jTextFieldEstadoActual.setBackground(new java.awt.Color(191, 185, 185));
+        jTextFieldEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextFieldEstadoActual.setFocusable(false);
         jTextFieldEstadoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEstadoActualActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 270, 30));
+        getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 270, 30));
 
         jTextAreaDescripcion.setEditable(false);
-        jTextAreaDescripcion.setBackground(new java.awt.Color(227, 227, 227));
+        jTextAreaDescripcion.setBackground(new java.awt.Color(191, 185, 185));
         jTextAreaDescripcion.setColumns(20);
         jTextAreaDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaDescripcion.setRows(5);
         jTextAreaDescripcion.setFocusable(false);
         jScrollPaneDescripcion.setViewportView(jTextAreaDescripcion);
 
-        getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 850, 120));
+        getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 850, 120));
 
         jComboBoxNuevoEstadp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jComboBoxNuevoEstadp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 530, 290, 30));
+        getContentPane().add(jComboBoxNuevoEstadp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 290, 30));
 
         jTextAreaObservacion.setColumns(20);
         jTextAreaObservacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaObservacion.setRows(5);
+        jTextAreaObservacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPaneObservacion.setViewportView(jTextAreaObservacion);
 
-        getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 850, 140));
+        getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 850, 180));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 660, 30));
+        jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 660, 30));
 
         jButtonAceptar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonAceptar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -126,7 +133,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("MS PGothic", 0, 48)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(45, 93, 165));
         jLabelTitulo.setText("La llamita");
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 200, 50));
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 200, 50));
 
         jLabelLogoFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logofondo_GrupoResolucion.png"))); // NOI18N
         getContentPane().add(jLabelLogoFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 350, 400));
@@ -175,7 +182,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxClasificacion;
     private javax.swing.JComboBox<String> jComboBoxNuevoEstadp;
     private javax.swing.JLabel jLabelClasificacion;
     private javax.swing.JLabel jLabelDescripcion;
@@ -203,7 +210,34 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
     private void cargarCampos() {
         
+         String estadoActual = intervecion.getEstadoactual();
+         GestorClasificacion gestorClasificacion = new GestorClasificacion();
+         List<String> clasificaciones = new ArrayList();
+         clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
+         DefaultComboBoxModel comboClasificacion= new DefaultComboBoxModel();
+         
+         
         jTextFieldNroTicket.setText(String.valueOf(intervecion.getTicket().getNroTicket()));
         jTextAreaDescripcion.setText(intervecion.getTicket().getDescripcion());
+       
+        if(estadoActual.equals(Enum_EstadoIntervencion.ASIGNADA.toString())){
+            jTextFieldEstadoActual.setText("Asignada");
+            }else if(estadoActual.equals(Enum_EstadoIntervencion.CERRADA.toString())){
+                 jTextFieldEstadoActual.setText("Cerrada");
+                }else if(estadoActual.equals(Enum_EstadoIntervencion.EN_ESPERA.toString())){
+                     jTextFieldEstadoActual.setText("En espera");
+                    }else{
+                         jTextFieldEstadoActual.setText("Trabajando");
+                }    
+        
+        comboClasificacion.addElement(intervecion.getTicket().getClasificacion().getNombreclasificacion());
+        for(int i=0; i<clasificaciones.size(); i++){
+            if(!clasificaciones.get(i).equals(intervecion.getTicket().getClasificacion().getNombreclasificacion())){
+                    comboClasificacion.addElement(clasificaciones.get(i));
+            }
+            
+        }
+        jComboBoxClasificacion.setModel(comboClasificacion);
+        jTextAreaObservacion.setText(intervecion.get);
   }
 }
