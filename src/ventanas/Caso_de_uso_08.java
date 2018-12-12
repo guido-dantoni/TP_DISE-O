@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
  /**
  *
@@ -112,6 +113,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 850, 120));
 
         jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cerrada", "En espera", "Mal asignada", "Solucionada parcialmente", " " }));
         getContentPane().add(jComboBoxNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 290, 30));
 
         jTextAreaObservacion.setColumns(20);
@@ -133,6 +135,11 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jButtonAceptar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonAceptar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonAceptar.setText("Actualizar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 570, 120, 40));
 
         jButtonCancelar.setBackground(new java.awt.Color(204, 204, 204));
@@ -163,6 +170,22 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
             jButtonAceptar.requestFocus();
         } 
     }//GEN-LAST:event_jTextAreaObservacionKeyPressed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        
+        if(jTextAreaObservacion.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo observaciones no puede estar vacío");
+        } else {
+            
+            String nuevoEstado = jComboBoxNuevoEstado.getSelectedItem().toString();
+            GestorIntervencion gestorIntervencion = new GestorIntervencion();
+            gestorIntervencion.registrarNuevoEstado(intervecion, nuevoEstado);
+            
+            
+        }
+        
+        
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
      /**
      * @param args the command line arguments
      */
@@ -232,15 +255,14 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
          List<String> clasificaciones = new ArrayList();
          clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
          GestorIntervencion gestorIntervencion = new GestorIntervencion();
-         List<String> estadosPosibles = gestorIntervencion.obtenerPosiblesEstadosIntervencion(intervecion.getEstadoactual());
-         
+                 
          DefaultComboBoxModel comboClasificacion = new DefaultComboBoxModel();
-         DefaultComboBoxModel combonuevoEstado = new DefaultComboBoxModel();
          
         jTextFieldNroTicket.setText(String.valueOf(intervecion.getTicket().getNroTicket()));
         jTextAreaDescripcion.setText(intervecion.getTicket().getDescripcion());
-       
-        if(estadoActual.equals(Enum_EstadoIntervencion.ASIGNADA.toString())){
+        jTextFieldEstadoActual.setText("Trabajando");
+        
+       /* if(estadoActual.equals(Enum_EstadoIntervencion.ASIGNADA.toString())){
             jTextFieldEstadoActual.setText("Asignada");
             }else if(estadoActual.equals(Enum_EstadoIntervencion.CERRADA.toString())){
                  jTextFieldEstadoActual.setText("Cerrada");
@@ -248,21 +270,19 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
                      jTextFieldEstadoActual.setText("En espera");
                     }else{
                          jTextFieldEstadoActual.setText("Trabajando");
-                }    
-        
+                }   
+        */
+       
         comboClasificacion.addElement(intervecion.getTicket().getClasificacion().getNombreclasificacion());
         for(int i=0; i<clasificaciones.size(); i++){
             if(!clasificaciones.get(i).equals(intervecion.getTicket().getClasificacion().getNombreclasificacion())){
                     comboClasificacion.addElement(clasificaciones.get(i));
             }
         }
-        
-         for(int i=0; i<estadosPosibles.size();i++){
-            combonuevoEstado.addElement(estadosPosibles.get(i));
-         }
+     
          
         jComboBoxClasificacion.setModel(comboClasificacion);
-        jComboBoxNuevoEstado.setModel(combonuevoEstado);
+
         
   }
 }

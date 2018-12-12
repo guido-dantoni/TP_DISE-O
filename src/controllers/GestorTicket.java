@@ -3,12 +3,14 @@ package controllers;
 
 import Dao.ClasificacionDao;
 import Dao.EmpleadoDao;
+import Dao.IntervencionDao;
 import Dao.TicketDao;
 import clases.Clasificacion;
 import clases.Empleado;
 import clases.Gruporesolucion;
 import clases.Historialclasificacion;
 import clases.Historialticket;
+import clases.Intervencion;
 import clases.Ticket;
 import clases.TicketDTO;
 import clases.Usuario;
@@ -132,12 +134,20 @@ public class GestorTicket {
         GestorFecha gestorFecha = new GestorFecha();
         Date fechaCierre = new Date();     
         fechaCierre = gestorFecha.obtenerFecha();
-               
+        
+       
+        GestorIntervencion gestorIntervencion = new GestorIntervencion();
+        Boolean tienePendientes = gestorIntervencion.tieneIntervencionesPendientes(ticketParaCerrar);
+                     
+                
         //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
         //Ver maquina de estadoTicket
         if( ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
-                ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) )
-          {
+            ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) )
+            
+            //vemos que la intervencion este cerrada y que no tiene pendientes
+            { if(!tienePendientes){
+                
                 Historialticket historialTicket = new Historialticket();
                 //Actualizamos los valores del historial de ticket recupreado para hacer un update
               
@@ -183,7 +193,10 @@ public class GestorTicket {
                 
                 ticketDao.insertHistorialTicket(historialTicket2);
                 
-                
+                }else{
+                    JOptionPane.showMessageDialog(null, "Imposibilidad para cerrar éste Ticket, tiene intervenciones pendientes");
+
+          }    
                 
           }
         else {

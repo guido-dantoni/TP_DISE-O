@@ -124,23 +124,61 @@ public class GestorIntervencion {
             
     }
     
-    public List<String> obtenerPosiblesEstadosIntervencion(String estadoactual) {
-            List<String> estados = new ArrayList<>();
-            System.out.println(estadoactual);
-            switch (estadoactual) {
-               case "ASIGNADA":
-                   estados.add("Trabajando");
-                   break;
-               case "EN_ESPERA":
-                   estados.add("Asignada");
-                   break;
-               default:
-                   estados.add("Cerrada");
-                   estados.add("En espera");
-                   break;
 
-                }
-            return estados;
-    }     
+    public void registrarNuevoEstado(Intervencion i, String nuevoEstado) {
     
+        GestorSesion gestorSesion = new GestorSesion();
+        Usuario u = new Usuario();
+        GestorFecha gestorF = new GestorFecha();
+        Date fechaActual = gestorF.obtenerFecha();
+                
+        u = gestorSesion.getUsuarioLogueado();
+        
+        IntervencionDao intervencionDao = new IntervencionDao();
+              
+        Historialintervencion historialIntervencion = new Historialintervencion();
+        historialIntervencion =  intervencionDao.getHistorial(i);
+        
+        historialIntervencion.setFechafin(fechaActual);
+        historialIntervencion.setHorafin(fechaActual);
+        
+        intervencionDao.updateHistorialIntervencion(historialIntervencion);
+        
+        Historialintervencion hi = new Historialintervencion();
+        hi.setHorainicio(fechaActual);
+        hi.setUsuario(u);
+        hi.setFechainicio(fechaActual);
+        hi.setEstado(nuevoEstado);
+        hi.setIntervencion(i); //Faltaria setear horaFin y fechaFin dependiendo del nuevoestado de la i
+                      
+        HashSet<Historialintervencion> hashHistorialIntervenciones = new HashSet<>();
+        hashHistorialIntervenciones.add(hi);
+                
+        i.setHistorialintervencions(hashHistorialIntervenciones);
+        
+        i.setEstadoactual(nuevoEstado);
+        
+        intervencionDao.updateIntervecnion(i);
+ 
+        intervencionDao.insertHistorialIntervencion(hi);
+        
+        
+    }
+
+    public Boolean tieneIntervencionesPendientes(Ticket ticket) {
+        
+        Boolean tiene=false;
+        IntervencionDao intervencionDao = new IntervencionDao();
+        List<Intervencion> intervenciones = new ArrayList<>();
+        intervenciones = intervencionDao.getIntervenciones(ticket);
+        
+        for(int i=0; i<intervenciones.size(); i++){
+            if(!intervenciones.get(i).getEstadoactual().equals(Enum_EstadoIntervencion.CERRADA.toString())){
+                tiene = true;
+                break;
+            }
+        }
+        return tiene;
+    }
+   
 }

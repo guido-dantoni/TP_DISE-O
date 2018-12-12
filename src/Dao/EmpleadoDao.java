@@ -96,4 +96,21 @@ public class EmpleadoDao {
 //         session.close();
 //         return result;
 //     }
+
+    public Empleado getEmpleadoLogueado(Usuario user) {
+         
+        sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         Criteria cr = session.createCriteria(Empleado.class, "e")
+                              .createAlias("gruporesolucion", "gr")
+                              .add(Restrictions.eq("usuario", user));
+ 
+         Empleado e = (Empleado) cr.uniqueResult();
+         
+         tx.commit();
+         session.close();
+         return e;
+    }
 }

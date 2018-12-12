@@ -2,6 +2,7 @@
 package Dao;
 
 import clases.Gruporesolucion;
+import clases.Usuario;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;

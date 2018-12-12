@@ -155,6 +155,96 @@ public class IntervencionDao {
             
             return i;
         }
+
+    public Historialintervencion getHistorial(Intervencion i) {
+    
+            Historialintervencion hi = new Historialintervencion();
+        
+             try {    
+                 sesionFactory = NewHibernateUtil.getSessionFactory();
+                 session = sesionFactory.openSession();
+                 tx = session.beginTransaction();
+        
+                 Criteria cr = session.createCriteria(Historialintervencion.class);
+                    cr.add(Restrictions.eq("intervencion", i)).add(Restrictions.eq("estado", i.getEstadoactual()))
+                    .add(Restrictions.isNull("fechafin")).add(Restrictions.isNull("horafin"));
+                 
+                hi = (Historialintervencion) cr.uniqueResult();
+             
+            
+                tx.commit();
+                session.close();
+
+           } catch (HibernateException e) {
+                        System.out.println(e);
+           }  
+      return hi;
+    
+    }
+
+    public void updateHistorialIntervencion(Historialintervencion historialIntervencion) {
+   
+         try {    
+                 sesionFactory = NewHibernateUtil.getSessionFactory();
+                 session = sesionFactory.openSession();
+                 tx = session.beginTransaction();
+        
+                 
+                 session.merge(historialIntervencion);
+             
+            
+                tx.commit();
+                session.close();
+
+           } catch (HibernateException e) {
+                        System.out.println(e);
+           }  
+    
+    }
+
+    public void insertHistorialIntervencion(Historialintervencion hi) {
+    
+            try {    
+                 sesionFactory = NewHibernateUtil.getSessionFactory();
+                 session = sesionFactory.openSession();
+                 tx = session.beginTransaction();
+        
+                 
+                 session.save(hi);
+             
+            
+                tx.commit();
+                session.close();
+
+           } catch (HibernateException e) {
+                        System.out.println(e);
+           }
+    
+    
+    }
+
+    public List<Intervencion> getIntervenciones(Ticket ticket) {
+                    
+        List<Intervencion> lista = null;
+        try {    
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+        
+             Criteria cr = session.createCriteria(Intervencion.class, "i")
+                                  .add(Restrictions.eq("ticket", ticket));
+             
+             lista = cr.list();
+            
+            tx.commit();
+            session.close();
+
+        } catch (HibernateException e) {
+                System.out.println(e);
+            }  
+            
+            return lista;
+    }
      
 }
 

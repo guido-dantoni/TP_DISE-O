@@ -1,10 +1,14 @@
 
 package ventanas;
+import Dao.GrupoResolucionDao;
 import clases.IntervencionDTO;
+import clases.Usuario;
 import controllers.Enum_EstadoIntervencion;
 
 import controllers.GestorFecha;
+import controllers.GestorGrupoResolucion;
 import controllers.GestorIntervencion;
+import controllers.GestorSesion;
 
  import java.awt.Color;
 import java.awt.Toolkit;
@@ -28,6 +32,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
        private final JButton btnDesde;
        private List<IntervencionDTO> intervencionesFiltradas = new ArrayList<>();
        private int row;
+       private String grupoLogueado;
        
     public Caso_de_uso_07() {
         
@@ -53,7 +58,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jXDatePickerFechaHasta.getMonthView().setUpperBound(fechaActual);
         jXDatePickerFechaDesde.getMonthView().setUpperBound(fechaActual);
         
-        
+        setGrupoLogueado();
 
     }
 
@@ -100,10 +105,10 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jTextFieldNroTicketKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, 30));
+        getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 210, 30));
 
         jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asiganada", "Cerrada", "En espera", "Trabajando", "Todos" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asiganada", "Cerrada", "En espera", "Mal asignada", "Trabajando", "Solucionada parcialmente", "Todos" }));
         jComboBoxEstado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBoxEstadoFocusGained(evt);
@@ -404,11 +409,17 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                case "Cerrada":
                    estadoIntervencion = Enum_EstadoIntervencion.CERRADA.toString();
                    break;
-               default:
+               case "Mal asiganda":
+                   estadoIntervencion = Enum_EstadoIntervencion.MAL_ASIGNADA.toString();
+                   break;
+               case "Solucionada parcialmente":
+                    estadoIntervencion = Enum_EstadoIntervencion.SOLUCIONADA_PARCIALMENTE.toString();       
+                    break;
+                default:
                    estadoIntervencion = "Todos";
                    break;
-
            }
+           
            fechaDesde = jXDatePickerFechaDesde.getDate(); 
            fechaHasta = jXDatePickerFechaHasta.getDate();
            
@@ -506,9 +517,10 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonModificarEstadoKeyPressed
 
     private void jButtonModificarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstadoActionPerformed
-       if(intervencionesFiltradas.get(row).getEstadoIntervencion().equals(Enum_EstadoIntervencion.CERRADA.toString())){
+       if(!intervencionesFiltradas.get(row).getEstadoIntervencion().equals(Enum_EstadoIntervencion.ASIGNADA.toString()) ||
+               !intervencionesFiltradas.get(row).getGrupoResoulucion().equals(grupoLogueado)){
            
-           JOptionPane.showMessageDialog(null, "El estado de esta intervencion no se puede modificar porque ya se encuentra cerrada");
+           JOptionPane.showMessageDialog(null, "El estado de esta intervencion no se puede modificar porque no está asignada a " + grupoLogueado);
                    
        }else{
            
@@ -614,6 +626,12 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
             Pantalla_Grupo_de_Resolucion a = new Pantalla_Grupo_de_Resolucion();
             this.setVisible(false);
             a.setVisible(true);
+    }
+
+    private void setGrupoLogueado() {
+
+        GestorGrupoResolucion gestorGrupo = new GestorGrupoResolucion();
+        this.grupoLogueado = gestorGrupo.obtenerGrupoLogueado();
     }
     
     

@@ -2,9 +2,12 @@
 package controllers;
 
 import Dao.ClasificacionDao;
+import Dao.EmpleadoDao;
 import Dao.GrupoResolucionDao;
 import clases.Clasificacion;
+import clases.Empleado;
 import clases.Gruporesolucion;
+import clases.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,17 @@ public class GestorGrupoResolucion {
             GrupoResolucionDao g = new GrupoResolucionDao();
             
             return g.getUnGrupo(grupo);
+    }
+
+    public String obtenerGrupoLogueado() {
+        GestorSesion gestorSesion = new GestorSesion();
+        Usuario usuarioLogueado = gestorSesion.getUsuarioLogueado();
+        EmpleadoDao empleadoDao = new EmpleadoDao();
+        Empleado emp = new Empleado();
+        
+        emp = empleadoDao.getEmpleadoLogueado(usuarioLogueado);
+        
+        return emp.getGruporesolucion().getNombregrupo();
     }
     
 }
