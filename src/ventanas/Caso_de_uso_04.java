@@ -152,6 +152,11 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jTextAreaObservacion.setColumns(20);
         jTextAreaObservacion.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         jTextAreaObservacion.setRows(5);
+        jTextAreaObservacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaObservacionKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextAreaObservacion);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 720, 120));
@@ -263,6 +268,12 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
                 
         
     }//GEN-LAST:event_jButton1ConfirmarActionPerformed
+
+    private void jTextAreaObservacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaObservacionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jButton1Confirmar.requestFocus();
+        } 
+    }//GEN-LAST:event_jTextAreaObservacionKeyPressed
 
     /**
      * @param args the command line arguments

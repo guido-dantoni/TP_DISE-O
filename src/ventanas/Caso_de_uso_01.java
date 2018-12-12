@@ -92,11 +92,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLegajoActionPerformed(evt);
-            }
-        });
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyTyped(evt);
@@ -123,6 +118,9 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
             }
         });
         jTextAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaDescripcionKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextAreaDescripcionKeyTyped(evt);
             }
@@ -134,6 +132,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jComboBoxClasificacion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxClasificacion.setToolTipText("");
+        jComboBoxClasificacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxClasificacionFocusGained(evt);
+            }
+        });
         getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 480, 30));
 
         jTextFieldFechaApertura.setEditable(false);
@@ -151,9 +154,9 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         jButtonAceptar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonAceptar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButtonAceptar.setLabel("Aceptar");
-        jButtonAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonAceptarMouseClicked(evt);
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
             }
         });
         jButtonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -280,55 +283,6 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
             }  
     }//GEN-LAST:event_jTextAreaDescripcionKeyTyped
 
-    private void jButtonAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAceptarMouseClicked
-       
-        
-        GestorFecha gestorFecha = new GestorFecha();
-         
-        Date fecha = gestorFecha.obtenerFecha();   
-        
-        String nombreClasificacion;       
-             
-        if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
-        
-            JOptionPane.showMessageDialog(null, "Los campos legajo y descripcion no puden ser nulos");
-        }else if(empleado==null){
-            JOptionPane.showMessageDialog(null, "El legajo es inexistente");
-        }else{
-        
-     //el SimpleDateFormat me returna el string de un Date, dentro de los parentesis le digo como retornamelo
-     //Ej: "dd/MM/YYYY"
-       
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
-        SimpleDateFormat h = new SimpleDateFormat ("HH:mm:ss");
-        
-        jTextFieldFechaApertura.setText(f.format(fecha));
-        jTextFieldHora.setText(h.format(fecha));
-           
-        nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
-        Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
-        String descripcion = jTextAreaDescripcion.getText();
-        
-        GestorTicket gestorTicket = new GestorTicket();
-        gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
-        
-        Ticket ticket = gestorTicket.obtenerNroUltimoTiket();
-        
-        jTextFieldTicketDefecto.setText( String.valueOf((ticket.getNroTicket())) );
-        JOptionPane.showMessageDialog(null, ("Se creo exitosamente el ticket con NroTicket: " + ticket.getNroTicket()));
-        
-                   
-            Caso_de_uso_01_Observaciones  cu1 = new Caso_de_uso_01_Observaciones();
-            cu1.setVisible(true);
-            cu1.cargarObservaciones(ticket);
-            this.setVisible(false);
-        
-      }  
-        
-       
-        
-    }//GEN-LAST:event_jButtonAceptarMouseClicked
-
     private void jButtonAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAceptarKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             jButtonAceptar.doClick();
@@ -371,9 +325,60 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextAreaDescripcionFocusGained
 
-    private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLegajoActionPerformed
+    private void jTextAreaDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaDescripcionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jComboBoxClasificacion.requestFocus();
+        } 
+    }//GEN-LAST:event_jTextAreaDescripcionKeyPressed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+      
+        GestorFecha gestorFecha = new GestorFecha();
+         
+        Date fecha = gestorFecha.obtenerFecha();   
+        
+        String nombreClasificacion;       
+             
+        if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
+        
+            JOptionPane.showMessageDialog(null, "Los campos legajo y descripcion no puden ser nulos");
+        }else if(empleado==null){
+            JOptionPane.showMessageDialog(null, "El legajo es inexistente");
+        }else{
+        
+     //el SimpleDateFormat me returna el string de un Date, dentro de los parentesis le digo como retornamelo
+     //Ej: "dd/MM/YYYY"
+       
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat h = new SimpleDateFormat ("HH:mm:ss");
+        
+        jTextFieldFechaApertura.setText(f.format(fecha));
+        jTextFieldHora.setText(h.format(fecha));
+           
+        nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
+        Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+        String descripcion = jTextAreaDescripcion.getText();
+        
+        GestorTicket gestorTicket = new GestorTicket();
+        gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
+        
+        Ticket ticket = gestorTicket.obtenerNroUltimoTiket();
+        
+        jTextFieldTicketDefecto.setText( String.valueOf((ticket.getNroTicket())) );
+        JOptionPane.showMessageDialog(null, ("Se creo exitosamente el ticket con NroTicket: " + ticket.getNroTicket()));
+        
+                   
+            Caso_de_uso_01_Observaciones  cu1 = new Caso_de_uso_01_Observaciones();
+            cu1.setVisible(true);
+            cu1.cargarObservaciones(ticket);
+            this.setVisible(false);
+        
+      }          
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jComboBoxClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionFocusGained
+        jComboBoxClasificacion.showPopup();
+    }//GEN-LAST:event_jComboBoxClasificacionFocusGained
 
     
     /**

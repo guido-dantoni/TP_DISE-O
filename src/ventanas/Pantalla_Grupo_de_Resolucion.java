@@ -67,7 +67,7 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
                 jButtonConsultarIntervencionKeyPressed(evt);
             }
         });
-        getContentPane().add(jButtonConsultarIntervencion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 280, 60));
+        getContentPane().add(jButtonConsultarIntervencion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 310, 60));
 
         jButtonRegistarClasificacion.setBackground(new java.awt.Color(153, 153, 153));
         jButtonRegistarClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -85,7 +85,7 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
                 jButtonRegistarClasificacionKeyPressed(evt);
             }
         });
-        getContentPane().add(jButtonRegistarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 280, 60));
+        getContentPane().add(jButtonRegistarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 310, 60));
 
         jButtonBuscarClasificacion.setBackground(new java.awt.Color(153, 153, 153));
         jButtonBuscarClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -98,7 +98,7 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
                 jButtonBuscarClasificacionFocusLost(evt);
             }
         });
-        getContentPane().add(jButtonBuscarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 280, 60));
+        getContentPane().add(jButtonBuscarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 310, 60));
 
         jButtonSalir.setBackground(new java.awt.Color(153, 153, 153));
         jButtonSalir.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N

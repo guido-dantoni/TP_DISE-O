@@ -593,13 +593,10 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
        
         if(ticketsFiltrados.isEmpty()){
-                    jButtonAnterior.setEnabled(false);
-                    jButtonSiguiente.setEnabled(false);
-                    jButtonVerDetalle.setEnabled(false);
-                    jButtonConfReporte.setEnabled(false);
-                    //MODIFICARLOS TEXTFIELD,SETEARLOS DE NUEVO EN NULO y LABELS
+
+                this.vaciarCampos();
                     
-            JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
+                 JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
         } else {
             
              jButtonSiguiente.requestFocus();
@@ -844,6 +841,27 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
             PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
             pantallaMesaAyuda.setVisible(true);
         
+    }
+    
+    public void vaciarCampos(){
+        //vacio labels
+        jLabel1Uno.setText("");
+        jLabelC.setText("");
+   //vacio todos los textfield
+        jTextFieldNroTicket2.setText("");
+        jTextFieldLegajo2.setText("");
+        jTextFieldFechaApertura.setText("");
+        jTextFieldHoraApertura.setText("");
+        jTextFieldFechaUltimoCambioEstado.setText("");
+        jTextFieldOperadorQueAbrio.setText("");
+        jTextFieldEstadoActual.setText("");
+        jTextFieldClasificacionActual.setText("");
+        jTextFieldGpoResolucionAsignado.setText("");
+        //apago los botones
+        jButtonAnterior.setEnabled(false);
+        jButtonSiguiente.setEnabled(false);
+        jButtonVerDetalle.setEnabled(false);
+        jButtonConfReporte.setEnabled(false);
     }
    
 }

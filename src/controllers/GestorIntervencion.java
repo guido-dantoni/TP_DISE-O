@@ -123,6 +123,24 @@ public class GestorIntervencion {
             return i.getIntervencion(idInt);
             
     }
+    
+    public List<String> obtenerPosiblesEstadosIntervencion(String estadoactual) {
+            List<String> estados = new ArrayList<>();
+            System.out.println(estadoactual);
+            switch (estadoactual) {
+               case "ASIGNADA":
+                   estados.add("Trabajando");
+                   break;
+               case "EN_ESPERA":
+                   estados.add("Asignada");
+                   break;
+               default:
+                   estados.add("Cerrada");
+                   estados.add("En espera");
+                   break;
 
+                }
+            return estados;
+    }     
     
 }

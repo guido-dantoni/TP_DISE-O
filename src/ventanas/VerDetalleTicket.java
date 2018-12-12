@@ -1,7 +1,7 @@
 
 package Ventanas;
 
-import Dao.EmpleadoDao;
+
 import clases.Empleado;
 import clases.Historialclasificacion;
 import clases.Historialticket;
@@ -12,7 +12,6 @@ import controllers.GestorTicket;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
@@ -202,6 +201,16 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jButton1CerrarTicket.setBackground(new java.awt.Color(191, 185, 185));
         jButton1CerrarTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1CerrarTicket.setText("Cerrar ticket");
+        jButton1CerrarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1CerrarTicketActionPerformed(evt);
+            }
+        });
+        jButton1CerrarTicket.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1CerrarTicketKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButton1CerrarTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 570, 120, 40));
 
         jButton1DerivarTicket.setBackground(new java.awt.Color(191, 185, 185));
@@ -321,6 +330,16 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             jButtonVolver.doClick();
         }
     }//GEN-LAST:event_jButtonVolverKeyPressed
+
+    private void jButton1CerrarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1CerrarTicketKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButton1CerrarTicket.doClick();
+        }
+    }//GEN-LAST:event_jButton1CerrarTicketKeyPressed
+
+    private void jButton1CerrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CerrarTicketActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1CerrarTicketActionPerformed
 
     /**
      * @param args the command line arguments

@@ -41,7 +41,8 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jButtonModificarComentarios.setEnabled(false);
         jButtonModificarEstado.setEnabled(false);
         
-       
+        jTextAreaObservacion.setLineWrap(true); // evita expansion en ancho del textArea
+        
         //creo los botones de los datePicker
         this.btnHasta = (JButton) jXDatePickerFechaHasta.getComponent(1);
         this.btnDesde = (JButton) jXDatePickerFechaDesde.getComponent(1);
@@ -89,7 +90,8 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldNroTicket.setBorder(null);
         jTextFieldNroTicket.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldNroTicketKeyPressed(evt);
@@ -98,13 +100,18 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jTextFieldNroTicketKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 200, 30));
+        getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, 30));
 
-        jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asiganada", "En espera", "Trabajando" }));
+        jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asiganada", "Cerrada", "En espera", "Trabajando", "Todos" }));
         jComboBoxEstado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBoxEstadoFocusGained(evt);
+            }
+        });
+        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoActionPerformed(evt);
             }
         });
         jComboBoxEstado.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -112,9 +119,10 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jComboBoxEstadoKeyPressed(evt);
             }
         });
-        getContentPane().add(jComboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 230, 30));
+        getContentPane().add(jComboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 230, 30));
 
-        jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldLegajo.setBorder(null);
         jTextFieldLegajo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldLegajoKeyPressed(evt);
@@ -123,7 +131,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jTextFieldLegajoKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextFieldLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 90, 200, 30));
+        getContentPane().add(jTextFieldLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 90, 200, 30));
 
         jXDatePickerFechaDesde.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jXDatePickerFechaDesde.addActionListener(new java.awt.event.ActionListener() {
@@ -149,11 +157,11 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jXDatePickerFechaHastaKeyPressed(evt);
             }
         });
-        getContentPane().add(jXDatePickerFechaHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 140, 30));
+        getContentPane().add(jXDatePickerFechaHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 140, 30));
 
         jLabelEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelEstado.setText("Estado:");
-        getContentPane().add(jLabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 70, -1));
+        getContentPane().add(jLabelEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 70, -1));
 
         jLabelFeschaDesde.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFeschaDesde.setText("Fecha Desde: ");
@@ -161,7 +169,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
 
         jLabelFechaHasta.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFechaHasta.setText("Fecha Hasta:");
-        getContentPane().add(jLabelFechaHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
+        getContentPane().add(jLabelFechaHasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         jLabelNroTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNroTicket.setText("Nro. Ticket:");
@@ -169,10 +177,10 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
 
         jLabelNroLegajo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelNroLegajo.setText("Nro. Legajo:");
-        getContentPane().add(jLabelNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 90, -1, -1));
+        getContentPane().add(jLabelNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, -1, -1));
 
         jButtonBuscar.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonBuscar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,10 +229,16 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         });
         jTableTabla.setFocusable(false);
         jTableTabla.setGridColor(new java.awt.Color(102, 102, 102));
-        jTableTabla.setSelectionBackground(new java.awt.Color(0, 204, 204));
+        jTableTabla.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        jTableTabla.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jTableTabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableTablaMouseClicked(evt);
+            }
+        });
+        jTableTabla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableTablaKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTableTabla);
@@ -236,7 +250,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
             jTableTabla.getColumnModel().getColumn(7).setPreferredWidth(60);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1140, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1130, 170));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 1150, 10));
@@ -360,6 +374,10 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarKeyPressed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+       //vacio la tabla para una nueva busqueda si es que tiene algo
+       DefaultTableModel model = (DefaultTableModel) jTableTabla.getModel();
+       model.setRowCount(0);
+        
         Integer nroTicket=null, nroLegajoEmpleado=null;
         String estadoIntervencion;
         Date fechaDesde, fechaHasta;
@@ -488,12 +506,34 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonModificarEstadoKeyPressed
 
     private void jButtonModificarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstadoActionPerformed
-       
-        Caso_de_uso_08 c = new Caso_de_uso_08();
-        this.setVisible(false);
-        c.setVisible(true);
-        c.modificarEstado(intervencionesFiltradas.get(row).getIdIntervencion(), this);
+       if(intervencionesFiltradas.get(row).getEstadoIntervencion().equals(Enum_EstadoIntervencion.CERRADA.toString())){
+           
+           JOptionPane.showMessageDialog(null, "El estado de esta intervencion no se puede modificar porque ya se encuentra cerrada");
+                   
+       }else{
+           
+            Caso_de_uso_08 c = new Caso_de_uso_08();
+            this.setVisible(false);
+            c.setVisible(true);
+            c.modificarEstado(intervencionesFiltradas.get(row).getIdIntervencion(), this);
+       }
     }//GEN-LAST:event_jButtonModificarEstadoActionPerformed
+
+    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEstadoActionPerformed
+
+    private void jTableTablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableTablaKeyPressed
+           row = jTableTabla.getSelectedRow();
+                 
+           if(row >= 0 && (evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN)){   
+                jTextAreaObservacion.setText(intervencionesFiltradas.get(row).getObservacionIntervencion());
+             }
+           
+            if(evt.getKeyCode() == KeyEvent.VK_TAB){
+                jButtonModificarEstado.requestFocus();
+            }
+    }//GEN-LAST:event_jTableTablaKeyPressed
      /**
      * @param args the command line arguments
      */

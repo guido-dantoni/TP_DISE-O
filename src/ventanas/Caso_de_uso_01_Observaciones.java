@@ -113,6 +113,9 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         jTextAreaObservaciones.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         jTextAreaObservaciones.setRows(5);
         jTextAreaObservaciones.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaObservacionesKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextAreaObservacionesKeyTyped(evt);
             }
@@ -194,6 +197,12 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
             jButtonDerivarTicket.doClick();
         }       
     }//GEN-LAST:event_jButtonDerivarTicketKeyPressed
+
+    private void jTextAreaObservacionesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaObservacionesKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jButtonCerrarTicket.requestFocus();
+        }     
+    }//GEN-LAST:event_jTextAreaObservacionesKeyPressed
 
     /**
      * @param args the command line arguments

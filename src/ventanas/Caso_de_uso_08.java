@@ -4,6 +4,7 @@ import clases.Intervencion;
 import controllers.Enum_EstadoIntervencion;
 import controllers.GestorClasificacion;
 import controllers.GestorIntervencion;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -23,6 +24,8 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         
+        jTextAreaObservacion.setLineWrap(true); // evita expansion en ancho del textArea
+        jTextAreaDescripcion.setLineWrap(true); // evita expansion en ancho del textArea
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +42,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jTextFieldEstadoActual = new javax.swing.JTextField();
         jScrollPaneDescripcion = new javax.swing.JScrollPane();
         jTextAreaDescripcion = new javax.swing.JTextArea();
-        jComboBoxNuevoEstadp = new javax.swing.JComboBox<>();
+        jComboBoxNuevoEstado = new javax.swing.JComboBox<>();
         jScrollPaneObservacion = new javax.swing.JScrollPane();
         jTextAreaObservacion = new javax.swing.JTextArea();
         jComboBoxClasificacion = new javax.swing.JComboBox<>();
@@ -81,12 +84,14 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jTextFieldNroTicket.setEditable(false);
         jTextFieldNroTicket.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldNroTicket.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextFieldNroTicket.setFocusable(false);
         getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 170, 30));
 
         jTextFieldEstadoActual.setEditable(false);
         jTextFieldEstadoActual.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldEstadoActual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextFieldEstadoActual.setFocusable(false);
         jTextFieldEstadoActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,18 +105,24 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jTextAreaDescripcion.setColumns(20);
         jTextAreaDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaDescripcion.setRows(5);
+        jTextAreaDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextAreaDescripcion.setFocusable(false);
         jScrollPaneDescripcion.setViewportView(jTextAreaDescripcion);
 
         getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 850, 120));
 
-        jComboBoxNuevoEstadp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jComboBoxNuevoEstadp, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 290, 30));
+        jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(jComboBoxNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 290, 30));
 
         jTextAreaObservacion.setColumns(20);
         jTextAreaObservacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextAreaObservacion.setRows(5);
         jTextAreaObservacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextAreaObservacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextAreaObservacionKeyPressed(evt);
+            }
+        });
         jScrollPaneObservacion.setViewportView(jTextAreaObservacion);
 
         getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 850, 180));
@@ -146,6 +157,12 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
      private void jTextFieldEstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEstadoActualActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEstadoActualActionPerformed
+
+    private void jTextAreaObservacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaObservacionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jButtonAceptar.requestFocus();
+        } 
+    }//GEN-LAST:event_jTextAreaObservacionKeyPressed
      /**
      * @param args the command line arguments
      */
@@ -183,7 +200,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox<String> jComboBoxClasificacion;
-    private javax.swing.JComboBox<String> jComboBoxNuevoEstadp;
+    private javax.swing.JComboBox<String> jComboBoxNuevoEstado;
     private javax.swing.JLabel jLabelClasificacion;
     private javax.swing.JLabel jLabelDescripcion;
     private javax.swing.JLabel jLabelEstadoActual;
@@ -214,8 +231,11 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
          GestorClasificacion gestorClasificacion = new GestorClasificacion();
          List<String> clasificaciones = new ArrayList();
          clasificaciones = gestorClasificacion.obtenerNombresClasificaciones();
-         DefaultComboBoxModel comboClasificacion= new DefaultComboBoxModel();
+         GestorIntervencion gestorIntervencion = new GestorIntervencion();
+         List<String> estadosPosibles = gestorIntervencion.obtenerPosiblesEstadosIntervencion(intervecion.getEstadoactual());
          
+         DefaultComboBoxModel comboClasificacion = new DefaultComboBoxModel();
+         DefaultComboBoxModel combonuevoEstado = new DefaultComboBoxModel();
          
         jTextFieldNroTicket.setText(String.valueOf(intervecion.getTicket().getNroTicket()));
         jTextAreaDescripcion.setText(intervecion.getTicket().getDescripcion());
@@ -235,9 +255,14 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
             if(!clasificaciones.get(i).equals(intervecion.getTicket().getClasificacion().getNombreclasificacion())){
                     comboClasificacion.addElement(clasificaciones.get(i));
             }
-            
         }
+        
+         for(int i=0; i<estadosPosibles.size();i++){
+            combonuevoEstado.addElement(estadosPosibles.get(i));
+         }
+         
         jComboBoxClasificacion.setModel(comboClasificacion);
-        jTextAreaObservacion.setText(intervecion.get);
+        jComboBoxNuevoEstado.setModel(combonuevoEstado);
+        
   }
 }
