@@ -79,6 +79,7 @@ public class Caso_de_uso_21 extends javax.swing.JFrame {
         jTextFieldFechaCambioEstado2 = new javax.swing.JTextField();
         jTextFieldEltimoGPO2 = new javax.swing.JTextField();
         jTextFieldUltimaObservacion = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jLabelFiltrosUtilizados = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -354,7 +355,7 @@ public class Caso_de_uso_21 extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        getContentPane().add(jScrollPaneOrdenOrdenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 220, 130));
+        getContentPane().add(jScrollPaneOrdenOrdenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 220, 130));
 
         jLabelInformacionDelUsuario.setBackground(new java.awt.Color(191, 185, 185));
         jLabelInformacionDelUsuario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -457,6 +458,10 @@ public class Caso_de_uso_21 extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldUltimaObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 590, 410, 40));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton2.setText("<>");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 70, 40));
 
         jLabelFiltrosUtilizados.setBackground(new java.awt.Color(191, 185, 185));
         jLabelFiltrosUtilizados.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -581,6 +586,7 @@ public class Caso_de_uso_21 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAnterior;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonCancelar;

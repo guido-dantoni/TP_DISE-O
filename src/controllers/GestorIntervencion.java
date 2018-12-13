@@ -1,13 +1,9 @@
 
 package controllers;
 
-import Dao.ClasificacionDao;
 import Dao.IntervencionDao;
-import Dao.TicketDao;
-import clases.Clasificacion;
 import clases.Gruporesolucion;
 import clases.Historialintervencion;
-import clases.Historialticket;
 import clases.Intervencion;
 import clases.IntervencionDTO;
 import clases.Ticket;
@@ -93,7 +89,7 @@ public class GestorIntervencion {
                 IntervencionDao intervencionDao = new IntervencionDao();
                
                 List<Intervencion> l = intervencionDao.getIntervencionesFiltradas(nroTicket,nroLegajoEmpleado,estadoIntervencion,fechaDesde,fechaHasta);
-                System.out.println(l.size());
+                
                 
                 for(int i=0; i<l.size(); i++){
                     

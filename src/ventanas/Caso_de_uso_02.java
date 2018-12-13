@@ -304,11 +304,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
-        jButtonCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonCancelarMouseClicked(evt);
-            }
-        });
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
@@ -632,10 +627,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         indice--;    
         cargarCampos(indice);
     }//GEN-LAST:event_jButtonAnteriorActionPerformed
-
-    private void jButtonCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCancelarMouseClicked
-        salir();
-    }//GEN-LAST:event_jButtonCancelarMouseClicked
 
     private void jButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCancelarKeyPressed
           if(evt.getKeyCode() == KeyEvent.VK_ENTER){

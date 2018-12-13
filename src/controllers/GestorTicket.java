@@ -278,8 +278,9 @@ public class GestorTicket {
         }
 
     
-    public void derivarTicket(Ticket ticket, String observacionDerivacion, String nuevaClasificacion, String grupo, String primeraObservacion) {
-                    
+    public Boolean derivarTicket(Ticket ticket, String observacionDerivacion, String nuevaClasificacion, String grupo, String primeraObservacion) {
+              
+        Boolean b = false;
       
          //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
         //Ver maquina de estadoTicket
@@ -360,10 +361,11 @@ public class GestorTicket {
                
                 gestorIntervencion.tieneIntervencion(ticket, grupoResolucion, usuarioLogueado, observacionDerivacion);
                 
+                b=true;
             
-        }
+            }
         
-        
+        return b;
         
     }
 

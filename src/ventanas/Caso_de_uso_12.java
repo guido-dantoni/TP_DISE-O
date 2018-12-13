@@ -52,6 +52,7 @@ public class Caso_de_uso_12 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabelLogoFondo = new javax.swing.JLabel();
         jButtonAsignar = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar clasificacion de ticket");
@@ -172,14 +173,17 @@ public class Caso_de_uso_12 extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton2.setText("<>");
-        jButton2.setActionCommand("<>");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 70, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 70, 40));
 
         jLabelLogoFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logofondo_GrupoResolucion.png"))); // NOI18N
         getContentPane().add(jLabelLogoFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 400));
 
         jButtonAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo-grupoResolucion.jpg"))); // NOI18N
         getContentPane().add(jButtonAsignar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 640));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton3.setText("<>");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 350, 70, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,6 +234,7 @@ public class Caso_de_uso_12 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jButtonAsignar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonConfirmar;

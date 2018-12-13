@@ -56,6 +56,7 @@ public class Caso_de_uso_22 extends javax.swing.JFrame {
         jLabelUltimoGrupoResol = new javax.swing.JLabel();
         jLabelNroLegajo = new javax.swing.JLabel();
         jButtonImprimir = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jScrollPaneFiltrosUtilizados = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -242,6 +243,10 @@ public class Caso_de_uso_22 extends javax.swing.JFrame {
         jButtonImprimir.setText("Imprimir");
         getContentPane().add(jButtonImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 640, 120, 40));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton2.setText("<>");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 70, 40));
+
         jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
@@ -323,7 +328,7 @@ public class Caso_de_uso_22 extends javax.swing.JFrame {
             jTable3.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        getContentPane().add(jScrollPaneNuevoOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 240, 130));
+        getContentPane().add(jScrollPaneNuevoOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 240, 130));
 
         jLabelInfoDelEstado.setBackground(new java.awt.Color(191, 185, 185));
         jLabelInfoDelEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -421,6 +426,7 @@ public class Caso_de_uso_22 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1Anterior;
     private javax.swing.JButton jButton1Siguiente;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonImprimir;

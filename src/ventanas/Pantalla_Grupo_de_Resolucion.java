@@ -80,6 +80,11 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
                 jButtonRegistarClasificacionFocusLost(evt);
             }
         });
+        jButtonRegistarClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistarClasificacionActionPerformed(evt);
+            }
+        });
         jButtonRegistarClasificacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jButtonRegistarClasificacionKeyPressed(evt);
@@ -96,6 +101,11 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jButtonBuscarClasificacionFocusLost(evt);
+            }
+        });
+        jButtonBuscarClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarClasificacionActionPerformed(evt);
             }
         });
         getContentPane().add(jButtonBuscarClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, 310, 60));
@@ -190,6 +200,14 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
     private void jButtonSalirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jButtonSalirFocusLost
          jButtonSalir.setBackground(new java.awt.Color(153,153,153));
     }//GEN-LAST:event_jButtonSalirFocusLost
+
+    private void jButtonRegistarClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistarClasificacionActionPerformed
+       JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo");
+    }//GEN-LAST:event_jButtonRegistarClasificacionActionPerformed
+
+    private void jButtonBuscarClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarClasificacionActionPerformed
+        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo");
+    }//GEN-LAST:event_jButtonBuscarClasificacionActionPerformed
 
     /**
      * @param args the command line arguments

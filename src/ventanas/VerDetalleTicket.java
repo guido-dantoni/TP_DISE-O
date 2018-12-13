@@ -341,13 +341,13 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1CerrarTicketKeyPressed
 
     private void jButton1CerrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CerrarTicketActionPerformed
-       // JOptionPane.showMessageDialog(null, "Caso de uso 3, para ver funcionamiento descomentar");
-            
+        JOptionPane.showMessageDialog(null, "Caso de uso 3, para ver funcionamiento descomentar");
+    /*        
         Caso_de_uso_03 cu3 = new Caso_de_uso_03();
         this.setVisible(false);
         cu3.cargarCampos(ticket,this);
-        this.setVisible(true, this);
-       
+        cu3.setVisible(true);
+    */   
     }//GEN-LAST:event_jButton1CerrarTicketActionPerformed
 
     /**
@@ -458,7 +458,6 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                                
                 jTable1.setValueAt(intervencion.get(0).getGruporesolucion().getNombregrupo(), i, 3);
                
-                //***********************************************************************************
                 jTable1.setValueAt(listaHC.get(k).getClasificacion().getNombreclasificacion(), i, 4); 
                  k++;
                 
@@ -482,26 +481,12 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 jTable1.setValueAt(operador, i, 2);
                 
             }
-            
-            /*jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-               
-                
-                @Override
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                     int row = jTable1.rowAtPoint(evt.getPoint());
-                         jTextArea1.setText(String.valueOf(jTable1.getSelectedRow()));
-                         
-                }
-            });
-         */   
+ 
         }
 
     void verDetalles(TicketDTO ticketDto, Caso_de_uso_02 Cu2) {
         this.casoUso2 = Cu2;
         this.cargarCampos(ticketDto);
     }
-
-    private void setVisible(boolean b, VerDetalleTicket aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

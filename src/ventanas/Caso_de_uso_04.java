@@ -259,13 +259,17 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
                    grupoResolucion = jComboBoxGrupoResolucion.getSelectedItem().toString();
             
                               
-            gt.derivarTicket(ticket, observacionDerivacion, nuevaClasificacion, grupoResolucion, primeraObservacion);
-           
-            JOptionPane.showMessageDialog(null, "EL ticket: " +  ticket.getNroTicket()+ " se derivó correctamente");
-            this.setVisible(false);          
-            Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
-            pantallaMesaAyuda.setVisible(true);
-       }
+            if(gt.derivarTicket(ticket, observacionDerivacion, nuevaClasificacion, grupoResolucion, primeraObservacion)){
+            
+                    JOptionPane.showMessageDialog(null, "EL ticket: " +  ticket.getNroTicket()+ " se derivó correctamente");
+                    this.setVisible(false);          
+                    Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
+                    pantallaMesaAyuda.setVisible(true);
+                    
+            }else{
+                JOptionPane.showMessageDialog(null, "No se puede derivar el ticket");
+            }
+     }
                 
         
     }//GEN-LAST:event_jButton1ConfirmarActionPerformed

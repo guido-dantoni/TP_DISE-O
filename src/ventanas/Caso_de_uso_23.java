@@ -59,6 +59,7 @@ public class Caso_de_uso_23 extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jButtonImprimir = new javax.swing.JButton();
         jButtonCerrar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -274,6 +275,10 @@ public class Caso_de_uso_23 extends javax.swing.JFrame {
         jButtonCerrar.setText("Cerrar");
         getContentPane().add(jButtonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 650, 120, 40));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jButton2.setText("<>");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, 70, 40));
+
         jTable1.setBackground(new java.awt.Color(191, 185, 185));
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -332,7 +337,7 @@ public class Caso_de_uso_23 extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 250, 100));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 250, 100));
 
         jTable3.setBackground(new java.awt.Color(191, 185, 185));
         jTable3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -483,6 +488,7 @@ public class Caso_de_uso_23 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1Anterior;
     private javax.swing.JButton jButton1Siguiente;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAnterior;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonImprimir;

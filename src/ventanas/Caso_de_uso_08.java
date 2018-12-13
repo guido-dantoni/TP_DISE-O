@@ -117,6 +117,11 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cerrada", "En espera", "Mal asignada", "Solucionada parcialmente", " " }));
+        jComboBoxNuevoEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxNuevoEstadoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBoxNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 290, 30));
 
         jTextAreaObservacion.setColumns(20);
@@ -191,8 +196,25 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         } else {
             
             String nuevaClasificacion = jComboBoxClasificacion.getSelectedItem().toString();
-            String nuevoEstado = jComboBoxNuevoEstado.getSelectedItem().toString();
+            String nuevoEstado;
             GestorIntervencion gestorIntervencion = new GestorIntervencion();
+            
+                       switch (jComboBoxNuevoEstado.getSelectedItem().toString()) {
+               case "En espera":
+                   nuevoEstado = Enum_EstadoIntervencion.EN_ESPERA.toString();
+                   break;
+               case "Cerrada":
+                   nuevoEstado = Enum_EstadoIntervencion.CERRADA.toString();
+                   break;
+               case "Mal asignada":
+                   nuevoEstado = Enum_EstadoIntervencion.MAL_ASIGNADA.toString();
+                   break;
+               default :
+                    nuevoEstado = Enum_EstadoIntervencion.SOLUCIONADA_PARCIALMENTE.toString();       
+                    break;
+
+           }
+            
             gestorIntervencion.registrarNuevoEstado(intervecion, nuevoEstado, nuevaClasificacion);
             
             JOptionPane.showMessageDialog(null, "El estado se modifico correctamente");
@@ -212,6 +234,10 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
             jButtonAceptar.doClick();
         } 
     }//GEN-LAST:event_jButtonAceptarKeyPressed
+
+    private void jComboBoxNuevoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNuevoEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxNuevoEstadoActionPerformed
      /**
      * @param args the command line arguments
      */

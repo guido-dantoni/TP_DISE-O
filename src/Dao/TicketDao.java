@@ -284,7 +284,8 @@ public class TicketDao {
                                              .createAlias("i.gruporesolucion", "gr")
                                              .createAlias("i.historialintervencions", "hi")
                                              .createAlias("empleado", "e")
-                                             .createAlias("clasificacion", "c");
+                                             .createAlias("clasificacion", "c")
+                                             .add(Restrictions.isNull("hi.fechafin"));
                                              
                                              
             

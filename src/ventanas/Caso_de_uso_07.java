@@ -410,7 +410,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                case "Cerrada":
                    estadoIntervencion = Enum_EstadoIntervencion.CERRADA.toString();
                    break;
-               case "Mal asiganda":
+               case "Mal asignada":
                    estadoIntervencion = Enum_EstadoIntervencion.MAL_ASIGNADA.toString();
                    break;
                case "Solucionada parcialmente":
@@ -420,7 +420,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                    estadoIntervencion = "Todos";
                    break;
            }
-           
+          
            fechaDesde = jXDatePickerFechaDesde.getDate(); 
            fechaHasta = jXDatePickerFechaHasta.getDate();
            
@@ -528,6 +528,8 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
             Caso_de_uso_08 c = new Caso_de_uso_08();
             this.setVisible(false);
             c.setVisible(true);
+            jButtonModificarEstado.setEnabled(false);
+            jButtonModificarComentarios.setEnabled(false);
             c.modificarEstado(intervencionesFiltradas.get(row).getIdIntervencion(), this);
        }
     }//GEN-LAST:event_jButtonModificarEstadoActionPerformed

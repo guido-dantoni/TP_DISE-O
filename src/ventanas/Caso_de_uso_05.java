@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ventanas;
+
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +65,16 @@ public class Caso_de_uso_05 extends javax.swing.JFrame {
         jButtonImprimir.setBackground(new java.awt.Color(191, 185, 185));
         jButtonImprimir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonImprimir.setText("Imprimir");
+        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImprimirActionPerformed(evt);
+            }
+        });
+        jButtonImprimir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonImprimirKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 520, 120, 40));
 
         jButtonCancelar.setBackground(new java.awt.Color(191, 185, 185));
@@ -74,6 +83,11 @@ public class Caso_de_uso_05 extends javax.swing.JFrame {
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
+            }
+        });
+        jButtonCancelar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonCancelarKeyPressed(evt);
             }
         });
         getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 520, 120, 40));
@@ -85,11 +99,27 @@ public class Caso_de_uso_05 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+       
         Caso_de_uso_02 a = new Caso_de_uso_02();
         a.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
+        JOptionPane.showMessageDialog(null, "Funcionalidad en desarrollo");
+    }//GEN-LAST:event_jButtonImprimirActionPerformed
+
+    private void jButtonCancelarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonCancelarKeyPressed
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonCancelar.doClick();
+        } 
+    }//GEN-LAST:event_jButtonCancelarKeyPressed
+
+    private void jButtonImprimirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonImprimirKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonImprimir.doClick();
+        } 
+    }//GEN-LAST:event_jButtonImprimirKeyPressed
 
     /**
      * @param args the command line arguments

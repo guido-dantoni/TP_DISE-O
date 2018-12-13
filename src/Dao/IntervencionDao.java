@@ -91,7 +91,8 @@ public class IntervencionDao {
                                  .createAlias("gruporesolucion", "gr")
                                  .createAlias("historialintervencions", "hi")
                                  .createAlias("ticket", "t")
-                                 .createAlias("t.empleado", "e");
+                                 .createAlias("t.empleado", "e")
+                                 .add(Restrictions.isNull("hi.fechafin"));
             
             if(nroTicket!=null){
                 cr.add(Restrictions.eq("t.nroTicket", nroTicket));
@@ -100,11 +101,9 @@ public class IntervencionDao {
              if(fechaDesde!=null){
                 cr.add(Restrictions.eq("hi.fechainicio", fechaDesde));
             }
-                System.out.println(estadoIntervencion);
-              if(!estadoIntervencion.equals("Todos")){
-                  
-                  System.out.println("Entro");
-                cr.add(Restrictions.eq("i.estadoactual", estadoIntervencion));
+            
+             if(!estadoIntervencion.equals("Todos")){
+                 cr.add(Restrictions.eq("i.estadoactual", estadoIntervencion));
             }
               
               
