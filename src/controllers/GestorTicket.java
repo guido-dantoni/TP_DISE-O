@@ -397,10 +397,10 @@ public class GestorTicket {
         //actualizamos viejo historialTicket
         Historialticket ht = new Historialticket();
         
-        ht = ticketDao.getHistorialTicket(viejoTicket, estado);
+        ht = ticketDao.getHistorialTicket(viejoTicket);
         
         String observacion = ht.getObservaciones(); //aca recupero la observacion  del viejo historial para setearsela al nuevo
-        
+       
         ht.setFechafin(fechaActual);
         ht.setHorafin(fechaActual);
         ticketDao.updateHistorialTicket(ht);

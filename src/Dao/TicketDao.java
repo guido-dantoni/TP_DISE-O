@@ -218,6 +218,33 @@ public class TicketDao {
           
         return historialClasificacion; 
     }
+    
+        public Historialticket getHistorialTicket(Ticket ticket) {
+        
+        Historialticket historialticket = new Historialticket();   
+        
+          try {    
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         //select * from historialTicket ht where (ht.nroticket=nroTicket AND  ht.horaFin='null' AND ht.fechaFin='null')
+         Criteria cr = session.createCriteria(Historialticket.class);
+         cr.add(Restrictions.eq("ticket", ticket)).add(Restrictions.isNull("fechafin"))
+                                                  .add(Restrictions.isNull("horafin"));
+       
+         historialticket = (Historialticket) cr.uniqueResult();
+                          
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+        System.out.println(e);
+        }
+          
+        return historialticket; 
+        
+    }
 
     public void updateHistorialClasificacion(Historialclasificacion historialClasificacion) {
                 

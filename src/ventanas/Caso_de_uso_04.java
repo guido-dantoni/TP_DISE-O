@@ -150,7 +150,7 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
 
         jTextAreaObservacion.setBackground(new java.awt.Color(245, 245, 245));
         jTextAreaObservacion.setColumns(20);
-        jTextAreaObservacion.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaObservacion.setFont(new java.awt.Font("Monospaced", 0, 16)); // NOI18N
         jTextAreaObservacion.setRows(5);
         jTextAreaObservacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -164,6 +164,7 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
         jTextFieldDescripcion.setEditable(false);
         jTextFieldDescripcion.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldDescripcion.setColumns(20);
+        jTextFieldDescripcion.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextFieldDescripcion.setRows(5);
         jTextFieldDescripcion.setFocusable(false);
         jScrollPane2.setViewportView(jTextFieldDescripcion);

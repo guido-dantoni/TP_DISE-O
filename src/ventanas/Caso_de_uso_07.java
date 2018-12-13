@@ -267,6 +267,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jTextAreaObservacion.setEditable(false);
         jTextAreaObservacion.setBackground(new java.awt.Color(191, 185, 185));
         jTextAreaObservacion.setColumns(20);
+        jTextAreaObservacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextAreaObservacion.setRows(5);
         jTextAreaObservacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextAreaObservacion.setFocusable(false);
