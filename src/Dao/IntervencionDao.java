@@ -26,18 +26,22 @@ public class IntervencionDao {
 
     public Intervencion getIntervencion(Ticket t, Gruporesolucion grupoR) {
 
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+        Intervencion i = new Intervencion();
+        try{
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
          
-          Criteria cr = session.createCriteria(Intervencion.class);
-          cr.add(Restrictions.eq("ticket", t)).add(Restrictions.eq("gruporesolucion", grupoR));
-          Intervencion i = (Intervencion) cr.uniqueResult();
+            Criteria cr = session.createCriteria(Intervencion.class);
+            cr.add(Restrictions.eq("ticket", t)).add(Restrictions.eq("gruporesolucion", grupoR));
+            i = (Intervencion) cr.uniqueResult();
          
-         tx.commit();
-         session.close();
+            tx.commit();
+            session.close();
          
-         
+        }catch (HibernateException e) {
+                 System.out.println(e);
+        }
          return i;
     }
 

@@ -1,8 +1,6 @@
 
 package Dao;
 
-import clases.Clasificacion;
-import clases.Empleado;
 import clases.Historialticket;
 import clases.Ticket;
 import java.util.List;
@@ -13,20 +11,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import clases.Historialclasificacion;
 import clases.Historialintervencion;
-import clases.TicketDTO;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import org.hibernate.FetchMode;
-import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.Subqueries;
 /**
  *
  * @author Guido D'Antoni guidodantoni2335@gmail.com

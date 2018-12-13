@@ -5,11 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import clases.Clasificacion;
-import clases.Historialclasificacion;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -38,15 +36,21 @@ public class ClasificacionDao {
      }
      
      public Clasificacion getClasificacion(Integer codigo){
+        
+         Clasificacion cl = new Clasificacion();
+         try{
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
          
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+             cl = (Clasificacion) session.get(Clasificacion.class, codigo);
          
-         Clasificacion cl = (Clasificacion) session.get(Clasificacion.class, codigo);
+            tx.commit();
+            session.close();
          
-         tx.commit();
-         session.close();
+        }catch (HibernateException e) {
+                 System.out.println(e);
+        }
          return cl;
      }
      
@@ -54,16 +58,21 @@ public class ClasificacionDao {
        public Clasificacion getClasificacion(String nombreClasificacion) {
            
          Clasificacion c= new Clasificacion();
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+        try{ 
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Clasificacion.class);
-         cr.add(Restrictions.eq("nombreclasificacion", nombreClasificacion));
+            Criteria cr = session.createCriteria(Clasificacion.class);
+            cr.add(Restrictions.eq("nombreclasificacion", nombreClasificacion));
                  
-         c= (Clasificacion) cr.uniqueResult();
-         tx.commit();
-         session.close();
+            c= (Clasificacion) cr.uniqueResult();
+            tx.commit();
+            session.close();
+         
+        }catch (HibernateException e) {
+                 System.out.println(e);
+        }
          return c;
            
     }

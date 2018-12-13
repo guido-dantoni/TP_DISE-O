@@ -114,11 +114,6 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jComboBoxEstadoFocusGained(evt);
             }
         });
-        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxEstadoActionPerformed(evt);
-            }
-        });
         jComboBoxEstado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jComboBoxEstadoKeyPressed(evt);
@@ -533,10 +528,6 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
             c.modificarEstado(intervencionesFiltradas.get(row).getIdIntervencion(), this);
        }
     }//GEN-LAST:event_jButtonModificarEstadoActionPerformed
-
-    private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxEstadoActionPerformed
 
     private void jTableTablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableTablaKeyPressed
            row = jTableTabla.getSelectedRow();

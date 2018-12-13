@@ -2,7 +2,6 @@
 package Dao;
 
 import clases.Gruporesolucion;
-import clases.Usuario;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -22,17 +21,24 @@ public class GrupoResolucionDao {
      private Transaction tx;
     
     public List<Gruporesolucion> getGruposResolucion() {
+        
+                  List<Gruporesolucion> g = null;
 
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+        try {       
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Gruporesolucion.class);
-         List<Gruporesolucion> g = cr.list();
+            Criteria cr = session.createCriteria(Gruporesolucion.class);
+            g = cr.list();
          
-         tx.commit();
-         session.close();
-         return g;
+            tx.commit();
+            session.close();
+           
+       } catch (HibernateException e) {
+                 System.out.println(e);
+            }
+            return g;
     }
 
     public Gruporesolucion getUnGrupo(String grupo) {
@@ -54,7 +60,7 @@ public class GrupoResolucionDao {
         } catch (HibernateException e) {
             System.out.println(e);
             }
-       
+
         return g;
     }
     

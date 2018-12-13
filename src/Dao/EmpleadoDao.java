@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Dao;
 
 import clases.Empleado;
-import clases.Historialticket;
-import clases.Ticket;
 import clases.Usuario;
 import java.util.List;
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -31,30 +23,43 @@ public class EmpleadoDao {
      private Transaction tx;
      
      public Empleado getEmpleado(Integer legajo){
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
          
-         Empleado e= (Empleado) session.get(Empleado.class, legajo);
+         Empleado e = null;
+        try{ 
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+         
+            e= (Empleado) session.get(Empleado.class, legajo);
          
          
-         tx.commit();
-         session.close();
+            tx.commit();
+            session.close();
+       
+        }catch (HibernateException ex) {
+                 System.out.println(ex);
+            }
+         
          return e;
      }
      
      public List<Empleado> getEmpleados(){
+        
+         List<Empleado> e = null;
+        try{ 
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
          
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+            Criteria cr =session.createCriteria(Empleado.class).add(Restrictions.isNotNull("usuario"));
+            e = cr.list();
          
-         Criteria cr =session.createCriteria(Empleado.class).add(Restrictions.isNotNull("usuario"));
-         List<Empleado> e = cr.list();
-         
-         
-         tx.commit();
-         session.close();
+            tx.commit();
+            session.close();
+                    
+       }catch (HibernateException ex) {
+                 System.out.println(ex);
+            }
          return e;
      }
      
@@ -98,19 +103,26 @@ public class EmpleadoDao {
 //     }
 
     public Empleado getEmpleadoLogueado(Usuario user) {
+       
+        Empleado e = null;
+        
+       try{ 
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
          
-        sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
-         
-         Criteria cr = session.createCriteria(Empleado.class, "e")
+            Criteria cr = session.createCriteria(Empleado.class, "e")
                               .createAlias("gruporesolucion", "gr")
                               .add(Restrictions.eq("usuario", user));
  
-         Empleado e = (Empleado) cr.uniqueResult();
+            e = (Empleado) cr.uniqueResult();
          
-         tx.commit();
-         session.close();
+            tx.commit();
+            session.close();
+         
+        } catch (HibernateException ex) {
+                 System.out.println(ex);
+            }
          return e;
     }
 }
