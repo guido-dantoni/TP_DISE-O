@@ -138,9 +138,10 @@ public class GestorTicket {
         //Ver maquina de estadoTicket
         if( ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
             ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) )
-            
+        {
             //vemos que la intervencion este cerrada y que no tiene pendientes
-            { if(!tienePendientes){
+            
+                if(!tienePendientes){
                 
                 Historialticket historialTicket = new Historialticket();
                 //Actualizamos los valores del historial de ticket recupreado para hacer un update
@@ -186,14 +187,18 @@ public class GestorTicket {
                 
                 
                 ticketDao.insertHistorialTicket(historialTicket2);
+                                 
+                JOptionPane.showMessageDialog(null, "EL ticket: " +  ticketParaCerrar.getNroTicket()+ " se cerró correctamente");
+                Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
+                pantallaMesaAyuda.setVisible(true);
                 
                 }else{
                     JOptionPane.showMessageDialog(null, "Imposibilidad para cerrar éste Ticket, tiene intervenciones pendientes");
 
-          }    
+                    }    
                 
-          }
-        else {
+          
+            }else {
             JOptionPane.showMessageDialog(null, "Imposibilidad para cerrar éste Ticket, se encuentra en estado: " + ticketParaCerrar.getEstadoactual());
         }
 

@@ -100,9 +100,11 @@ public class IntervencionDao {
              if(fechaDesde!=null){
                 cr.add(Restrictions.eq("hi.fechainicio", fechaDesde));
             }
-
+                System.out.println(estadoIntervencion);
               if(!estadoIntervencion.equals("Todos")){
-                cr.add(Restrictions.eq("estadoactual", estadoIntervencion));
+                  
+                  System.out.println("Entro");
+                cr.add(Restrictions.eq("i.estadoactual", estadoIntervencion));
             }
               
               

@@ -24,6 +24,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Subqueries;
 /**
@@ -285,6 +286,7 @@ public class TicketDao {
                                              .createAlias("empleado", "e")
                                              .createAlias("clasificacion", "c");
                                              
+                                             
             
             if(nroTicket!=null){
                 ticketCriteria.add(Restrictions.eq("t.nroTicket", nroTicket));
@@ -338,7 +340,7 @@ public class TicketDao {
         return result;
    }
     
-        public List<Historialticket> getHistorialesTicket(Ticket t) {
+        public List<Historialticket> getHistorialesTicket(Ticket ti) {
         
         List<Historialticket> historiales = null ;   
         
@@ -347,7 +349,11 @@ public class TicketDao {
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Historialticket.class).add(Restrictions.eq("ticket", t))
+         Criteria cr = session.createCriteria(Historialticket.class)
+                              .createAlias("ticket", "t")
+                              .createAlias("t.intervencions", "i")
+                              .add(Restrictions.eq("ticket", ti))
+                              .add(Restrictions.isNotNull("fechafin"))
                               .addOrder(Order.desc("fechafin"));
          historiales = cr.list();
          
@@ -373,15 +379,21 @@ public class TicketDao {
          
         DetachedCriteria maxFfin = DetachedCriteria.forClass(Historialintervencion.class)
                                                    .setProjection( Projections.max("fechafin")) ;
-         
+//        
+//        Criteria fecha = session.createCriteria(Historialintervencion.class)
+//                                                   .add( Restrictions.eq("fechafin", maxFfin)); 
+//        
+//        Date fechaMaxima= (Date) fecha.uniqueResult();
+//                
          Criteria cr = session.createCriteria(Historialclasificacion.class)
                               .createAlias("ticket", "t")
                               .createAlias("t.intervencions", "i")
                               .createAlias("i.gruporesolucion", "gr")
                               .createAlias("i.historialintervencions", "hi")
+                              .createAlias("t.historialtickets", "ht")
                               .add(Restrictions.eq("ticket", t))
                               .add(Restrictions.or(Restrictions.isNull("hi.fechafin"),
-                                                   Restrictions.eq("fechafin",(maxFfin))));
+                                                   Property.forName("fechafin").eq (maxFfin)));
          
          historiales = cr.list();
          

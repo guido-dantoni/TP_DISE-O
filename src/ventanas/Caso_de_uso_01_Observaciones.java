@@ -178,10 +178,9 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
             GestorTicket gestorTicket = new GestorTicket();
             gestorTicket.cerrarTicket(observacion, ticket.getNroTicket());
             
-            JOptionPane.showMessageDialog(null, "EL ticket: " +  ticket.getNroTicket()+ " se cerró correctamente");
+           
             this.setVisible(false);          
-            Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
-            pantallaMesaAyuda.setVisible(true);
+
         }
          
     }//GEN-LAST:event_jButtonCerrarTicketActionPerformed

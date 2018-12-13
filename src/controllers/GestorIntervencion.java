@@ -93,6 +93,7 @@ public class GestorIntervencion {
                 IntervencionDao intervencionDao = new IntervencionDao();
                
                 List<Intervencion> l = intervencionDao.getIntervencionesFiltradas(nroTicket,nroLegajoEmpleado,estadoIntervencion,fechaDesde,fechaHasta);
+                System.out.println(l.size());
                 
                 for(int i=0; i<l.size(); i++){
                     

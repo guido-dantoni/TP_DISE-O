@@ -1,12 +1,18 @@
 
 package Ventanas;
 
+import clases.Ticket;
+import controllers.GestorTicket;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marcos
  */
 public class Caso_de_uso_03 extends javax.swing.JFrame {
 
+    private VerDetalleTicket verDetalle;
 
     public Caso_de_uso_03() {
         initComponents();
@@ -24,10 +30,10 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
         jScrollPaneObservaciones = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButtonConfirmar = new javax.swing.JButton();
-        jButtonCerrar = new javax.swing.JButton();
+        jButtonVolverr = new javax.swing.JButton();
         jLabel1NroTicket = new javax.swing.JLabel();
         jTextField1NroTicketPorPantalla = new javax.swing.JTextField();
-        jButtonVolver = new javax.swing.JLabel();
+        Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cerrar ticket");
@@ -68,17 +74,32 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
         jButtonConfirmar.setBackground(new java.awt.Color(191, 185, 185));
         jButtonConfirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConfirmar.setText("Confirmar");
-        getContentPane().add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 530, 120, 40));
-
-        jButtonCerrar.setBackground(new java.awt.Color(191, 185, 185));
-        jButtonCerrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonCerrar.setText("Volver");
-        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCerrarActionPerformed(evt);
+                jButtonConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 120, 40));
+        jButtonConfirmar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonConfirmarKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 530, 120, 40));
+
+        jButtonVolverr.setBackground(new java.awt.Color(191, 185, 185));
+        jButtonVolverr.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonVolverr.setText("Volver");
+        jButtonVolverr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVolverrActionPerformed(evt);
+            }
+        });
+        jButtonVolverr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonVolverrKeyPressed(evt);
+            }
+        });
+        getContentPane().add(jButtonVolverr, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 120, 40));
 
         jLabel1NroTicket.setBackground(new java.awt.Color(191, 185, 185));
         jLabel1NroTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -91,8 +112,8 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
         jTextField1NroTicketPorPantalla.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         getContentPane().add(jTextField1NroTicketPorPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 230, 40));
 
-        jButtonVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
-        getContentPane().add(jButtonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1025, 635));
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1025, 635));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -101,10 +122,37 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextEstadoTicketActionPerformed
 
-    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
-        // TODO add your handling code here:
+    private void jButtonVolverrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverrActionPerformed
+        this.setVisible(false);
+        this.verDetalle.setVisible(true);
        
-    }//GEN-LAST:event_jButtonCerrarActionPerformed
+    }//GEN-LAST:event_jButtonVolverrActionPerformed
+
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        if(jTextArea1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo de observaciones no puede estar vacio");
+        }else{
+            String observacion = jTextArea1.getText();
+            int nroTicket = Integer.parseInt(jTextField1NroTicketPorPantalla.getText());
+                      
+            GestorTicket gestorTicket = new GestorTicket();
+            gestorTicket.cerrarTicket(observacion,nroTicket);
+            
+        }
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jButtonConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConfirmarKeyPressed
+                                                          
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonConfirmar.doClick();
+        }
+    }//GEN-LAST:event_jButtonConfirmarKeyPressed
+
+    private void jButtonVolverrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonVolverrKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jButtonVolverr.doClick();
+        }
+    }//GEN-LAST:event_jButtonVolverrKeyPressed
 
     /**
      * @param args the command line arguments
@@ -143,9 +191,9 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCerrar;
+    private javax.swing.JLabel Fondo;
     private javax.swing.JButton jButtonConfirmar;
-    private javax.swing.JLabel jButtonVolver;
+    private javax.swing.JButton jButtonVolverr;
     private javax.swing.JLabel jLabel1NroTicket;
     private javax.swing.JLabel jLabelEstadoTicket;
     private javax.swing.JLabel jLabelObservaciones;
@@ -154,4 +202,9 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextEstadoTicket;
     private javax.swing.JTextField jTextField1NroTicketPorPantalla;
     // End of variables declaration//GEN-END:variables
+
+    void cargarCampos(Ticket ticket, VerDetalleTicket v) {
+        jTextField1NroTicketPorPantalla.setText(String.valueOf(ticket.getNroTicket()));
+        this.verDetalle = v;
+        }
 }

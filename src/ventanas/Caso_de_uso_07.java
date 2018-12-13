@@ -108,7 +108,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 210, 30));
 
         jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asiganada", "Cerrada", "En espera", "Mal asignada", "Trabajando", "Solucionada parcialmente", "Todos" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asignada", "Cerrada", "En espera", "Mal asignada", "Trabajando", "Solucionada parcialmente", "Todos" }));
         jComboBoxEstado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBoxEstadoFocusGained(evt);
@@ -312,7 +312,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("MS PGothic", 0, 48)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(45, 93, 165));
         jLabelTitulo.setText("La llamita");
-        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 200, 50));
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 200, 50));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo-grupoResolucion.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 650));

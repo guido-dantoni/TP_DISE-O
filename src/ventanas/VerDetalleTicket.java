@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -340,7 +341,13 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1CerrarTicketKeyPressed
 
     private void jButton1CerrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1CerrarTicketActionPerformed
-        // TODO add your handling code here:
+       // JOptionPane.showMessageDialog(null, "Caso de uso 3, para ver funcionamiento descomentar");
+            
+        Caso_de_uso_03 cu3 = new Caso_de_uso_03();
+        this.setVisible(false);
+        cu3.cargarCampos(ticket,this);
+        this.setVisible(true, this);
+       
     }//GEN-LAST:event_jButton1CerrarTicketActionPerformed
 
     /**
@@ -421,7 +428,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             historialesT = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
             this.historialesTickets = historialesT;
             listaEmpleados = gestorEmpleado.obtenerEmpleados();
-            historialesC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
+            //historialesC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
             
                  
             //aca cargo los campoes del empleado
@@ -432,19 +439,29 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             jTextFieldTelefonoDirecto.setText(String.valueOf(empleado.getTelefonodirecto()));
             jTextFieldDescrpDelCargo.setText(empleado.getDescripcioncargo());
             jTextFieldUbicacion.setText(empleado.getUbicacion());
-            
+            int k=0;
+            List<Historialclasificacion> listaHC = new ArrayList<>();
+            listaHC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
             
             for(int i=0; i<historialesT.size(); i++){
                 
                 modelo.addRow(new Object[6]); // agrega una fila
                 
-                List<Intervencion> intervencion = new ArrayList<>(historialesT.get(i).getTicket().getIntervencions()); //Esto me tra siempre una lista de un solo elemento
+                List<Intervencion> intervencion = new ArrayList<>(historialesT.get(i).getTicket().getIntervencions()); //Esto me trae siempre una lista de un solo elemento
+                if(k==listaHC.size()-1){
+                    k=0;
+                    listaHC = new ArrayList<>(historialesT.get(1).getTicket().getHistorialclasificacions());
+                }
                 //Cargo todas las columnas menos la de operador
                 jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
                 jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
-                
+                               
                 jTable1.setValueAt(intervencion.get(0).getGruporesolucion().getNombregrupo(), i, 3);
-                jTable1.setValueAt(historialesC.get(0).getClasificacion().getNombreclasificacion(), i, 4);               
+               
+                //***********************************************************************************
+                jTable1.setValueAt(listaHC.get(k).getClasificacion().getNombreclasificacion(), i, 4); 
+                 k++;
+                
                 jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
                 
                 
@@ -482,5 +499,9 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     void verDetalles(TicketDTO ticketDto, Caso_de_uso_02 Cu2) {
         this.casoUso2 = Cu2;
         this.cargarCampos(ticketDto);
+    }
+
+    private void setVisible(boolean b, VerDetalleTicket aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
