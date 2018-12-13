@@ -134,12 +134,12 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
                 jComboBoxClasificacionActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 560, 30));
+        getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 660, 30));
 
         jComboBoxGrupoResolucion.setBackground(new java.awt.Color(191, 185, 185));
         jComboBoxGrupoResolucion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxGrupoResolucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        getContentPane().add(jComboBoxGrupoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 560, 30));
+        getContentPane().add(jComboBoxGrupoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 660, 30));
 
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(191, 185, 185));

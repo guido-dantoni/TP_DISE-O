@@ -200,7 +200,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         getContentPane().add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 150, 120, 40));
 
         jButtonCancelar.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,7 +212,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jButtonCancelarKeyPressed(evt);
             }
         });
-        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 570, 170, 40));
+        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 570, 190, 40));
 
         jTableTabla.setBackground(new java.awt.Color(191, 185, 185));
         jTableTabla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -275,7 +275,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 396, 850, 140));
 
         jButtonModificarEstado.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonModificarEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonModificarEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButtonModificarEstado.setText("Modificar estado");
         jButtonModificarEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,10 +287,10 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jButtonModificarEstadoKeyPressed(evt);
             }
         });
-        getContentPane().add(jButtonModificarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 570, 170, 40));
+        getContentPane().add(jButtonModificarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 570, 190, 40));
 
         jButtonModificarComentarios.setBackground(new java.awt.Color(204, 204, 204));
-        jButtonModificarComentarios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonModificarComentarios.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButtonModificarComentarios.setText("Modificar comentarios");
         jButtonModificarComentarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,7 +302,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jButtonModificarComentariosKeyPressed(evt);
             }
         });
-        getContentPane().add(jButtonModificarComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 570, 170, 40));
+        getContentPane().add(jButtonModificarComentarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 570, 200, 40));
 
         jLabelLogoFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logofondo_GrupoResolucion.png"))); // NOI18N
         getContentPane().add(jLabelLogoFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 350, 400));

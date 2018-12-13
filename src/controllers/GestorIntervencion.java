@@ -1,9 +1,13 @@
 
 package controllers;
 
+import Dao.ClasificacionDao;
 import Dao.IntervencionDao;
+import Dao.TicketDao;
+import clases.Clasificacion;
 import clases.Gruporesolucion;
 import clases.Historialintervencion;
+import clases.Historialticket;
 import clases.Intervencion;
 import clases.IntervencionDTO;
 import clases.Ticket;
@@ -125,7 +129,7 @@ public class GestorIntervencion {
     }
     
 
-    public void registrarNuevoEstado(Intervencion i, String nuevoEstado) {
+    public void registrarNuevoEstado(Intervencion i, String nuevoEstado, String nuevaClasificacion) {
     
         GestorSesion gestorSesion = new GestorSesion();
         Usuario u = new Usuario();
@@ -159,9 +163,10 @@ public class GestorIntervencion {
         i.setEstadoactual(nuevoEstado);
         
         intervencionDao.updateIntervecnion(i);
- 
         intervencionDao.insertHistorialIntervencion(hi);
         
+        GestorTicket gestorTicket = new GestorTicket();
+        gestorTicket.actualizarEstadoTicket(i, nuevoEstado, nuevaClasificacion);
         
     }
 
@@ -180,5 +185,6 @@ public class GestorIntervencion {
         }
         return tiene;
     }
-   
+
+  
 }

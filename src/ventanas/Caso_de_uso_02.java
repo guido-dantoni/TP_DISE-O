@@ -424,6 +424,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jComboBox1EstadoActualFocusGained(evt);
             }
         });
+        jComboBox1EstadoActual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1EstadoActualActionPerformed(evt);
+            }
+        });
         jComboBox1EstadoActual.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jComboBox1EstadoActualKeyPressed(evt);
@@ -479,7 +484,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButton1BuscarKeyPressed(evt);
             }
         });
-        getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 230, 120, 40));
+        getContentPane().add(jButton1Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 120, 40));
 
         jTextFieldNroLegajo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoCU1 (2).jpg"))); // NOI18N
         getContentPane().add(jTextFieldNroLegajo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 1040, 650));
@@ -571,7 +576,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
             case "Abierto derivado":
                 estadoActual = Enum_EstadoTicket.ABIERTO_DERIVADO.toString();
                 break;
-            case "solucionado a la espera de OK":
+            case "Solucionado a la espera de OK":
                 estadoActual = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
                 break;
             case "Cerrado":
@@ -581,12 +586,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 estadoActual = "Todos";
                 break;
         }
-        
+       
         fechaApertura = jXDatePickerFechaApertura.getDate();
         fechaUltimoCambioEstado = jXDatePickerFechaAcualizacion.getDate();
         ultimoGrupo = jComboBox1UltimoGpoResolucion.getSelectedItem().toString();
         clasificacionActual = jComboBox1ClasificacionActual.getSelectedItem().toString();
-    
     
         GestorTicket gestorTicket = new GestorTicket();
        
@@ -695,6 +699,10 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jButtonAnterior.doClick();
         }         
     }//GEN-LAST:event_jTextFieldNroLegajo1KeyPressed
+
+    private void jComboBox1EstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1EstadoActualActionPerformed
 
     /**
      * @param args the command line arguments

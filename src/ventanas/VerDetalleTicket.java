@@ -5,6 +5,7 @@ package Ventanas;
 import clases.Empleado;
 import clases.Historialclasificacion;
 import clases.Historialticket;
+import clases.Intervencion;
 import clases.Ticket;
 import clases.TicketDTO;
 import controllers.GestorEmpleado;
@@ -177,6 +178,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextAreaObservacion.setEditable(false);
         jTextAreaObservacion.setBackground(new java.awt.Color(191, 185, 185));
         jTextAreaObservacion.setColumns(20);
+        jTextAreaObservacion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextAreaObservacion.setRows(5);
         jTextAreaObservacion.setFocusable(false);
         jScrollPaneObservaciones.setViewportView(jTextAreaObservacion);
@@ -436,11 +438,12 @@ public class VerDetalleTicket extends javax.swing.JFrame {
                 
                 modelo.addRow(new Object[6]); // agrega una fila
                 
+                List<Intervencion> intervencion = new ArrayList<>(historialesT.get(i).getTicket().getIntervencions()); //Esto me tra siempre una lista de un solo elemento
                 //Cargo todas las columnas menos la de operador
                 jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
                 jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
                 
-                jTable1.setValueAt("Comunicaciones", i, 3);
+                jTable1.setValueAt(intervencion.get(0).getGruporesolucion().getNombregrupo(), i, 3);
                 jTable1.setValueAt(historialesC.get(0).getClasificacion().getNombreclasificacion(), i, 4);               
                 jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
                 

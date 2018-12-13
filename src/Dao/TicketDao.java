@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import clases.Historialclasificacion;
+import clases.Historialintervencion;
 import clases.TicketDTO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -242,78 +243,72 @@ public class TicketDao {
     //NULL POINTER EXCEPTION que no sabemos de que es
     public List<Ticket> getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
+        List result = null;
         try {    
             
-            List result;
+            
             sesionFactory = NewHibernateUtil.getSessionFactory();
             session = sesionFactory.openSession();
             tx = session.beginTransaction();
             
-            Criteria ticketCriteria = session.createCriteria(Ticket.class, "t");
+            Criteria ticketCriteria = session.createCriteria(Ticket.class, "t")
+                                             .createAlias("intervencions", "i")
+                                             .createAlias("i.gruporesolucion", "gr")
+                                             .createAlias("i.historialintervencions", "hi")
+                                             .createAlias("empleado", "e")
+                                             .createAlias("clasificacion", "c");
+                                             
             
             if(nroTicket!=null){
-                ticketCriteria.add(Restrictions.eq("nroTicket", nroTicket));
+                ticketCriteria.add(Restrictions.eq("t.nroTicket", nroTicket));
             }
 
              if(fechaApertura!=null){
-                ticketCriteria.add(Restrictions.eq("fecahapertura", fechaApertura));
+                ticketCriteria.add(Restrictions.eq("t.fecahapertura", fechaApertura));
             }
-
-              if(!estadoActual.equals("Todos")){
-                ticketCriteria.add(Restrictions.eq("estadoactual", estadoActual));
+               
+             if(!estadoActual.equals("Todos")){
+                   ticketCriteria.add(Restrictions.eq("t.estadoactual", estadoActual));
             }
               
               
             if(nroLegajoEmpleado!=null){
                 
-                ticketCriteria.createCriteria("empleado").add(Restrictions.eq("legajoEmpleado", nroLegajoEmpleado));  
+                ticketCriteria.add(Restrictions.eq("e.legajoEmpleado", nroLegajoEmpleado));  
             }
             
             if(fechaUltimoCambioEstado!=null){
                    
-                    ticketCriteria.add(Restrictions.eq("fechaultimoestado" ,fechaUltimoCambioEstado));
+                    ticketCriteria.add(Restrictions.eq("t.fechaultimoestado" ,fechaUltimoCambioEstado));
              
             }
             
             if(!clasificacionActual.equals("Todas")){
                                
-                ticketCriteria.createCriteria("clasificacion").add(Restrictions.eq("nombreclasificacion", clasificacionActual));
+                ticketCriteria.add(Restrictions.eq("c.nombreclasificacion", clasificacionActual));
             }
             
             if(!ultimoGrupo.equals("Todos")){
             
-                ticketCriteria.createAlias("intervencions", "i")
-                              .createAlias("i.gruporesolucion", "gr")
-                              .createAlias("i.historialintervencions", "ht"); //SEGUIR
+                DetachedCriteria maxFfin = DetachedCriteria.forClass(Historialintervencion.class)
+                                            .setProjection( Projections.max("fechafin")) ;
                 
-//                ticketCriteria.createCriteria("interventions", "i").setFetchMode("i.gruporesolucion", FetchMode.JOIN)
-//                .addOrder(Order.desc("fechafin")).setFirstResult(1).setProjection(Projections.groupProperty("nroTicket"));
-            }
-            //docs.jboss.com
+                ticketCriteria.add(Restrictions.eq("gr.nombregrupo", ultimoGrupo))
+                                                .add(Restrictions.or(Restrictions.isNull("hi.fechafin"),
+                                                   Restrictions.eq("fechafin",(maxFfin)))); //SEGUIR
+                
+         }
+            
             result = ticketCriteria.list();
-            
-//            for (Iterator iter = result.iterator(); iter.hasNext();) {
-//                Ticket ti = (Ticket) iter.next();
-//                Hibernate.initialize(ti.getHistorialtickets());
-//            
-//                for (Iterator iter2 = ti.getHistorialtickets().iterator(); iter2.hasNext();) {
-//                    Historialticket Hti = (Historialticket) iter2.next();
-//                    Hibernate.initialize(Hti.getTicket());
-//                }
-//            }
-            
- //         List result = session.createSQLQuery("Select t.nro_ticket, t.estadoactual, ")
-            
+     
             tx.commit();
             session.close();
-            
-            return result;
             
     } catch (HibernateException e) {
             System.out.println(e);
         }
         
-        return null;
+        return result;
    }
     
         public List<Historialticket> getHistorialesTicket(Ticket t) {
@@ -349,7 +344,18 @@ public class TicketDao {
          session = sesionFactory.openSession();
          tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Historialclasificacion.class).add(Restrictions.eq("ticket", t));
+        DetachedCriteria maxFfin = DetachedCriteria.forClass(Historialintervencion.class)
+                                                   .setProjection( Projections.max("fechafin")) ;
+         
+         Criteria cr = session.createCriteria(Historialclasificacion.class)
+                              .createAlias("ticket", "t")
+                              .createAlias("t.intervencions", "i")
+                              .createAlias("i.gruporesolucion", "gr")
+                              .createAlias("i.historialintervencions", "hi")
+                              .add(Restrictions.eq("ticket", t))
+                              .add(Restrictions.or(Restrictions.isNull("hi.fechafin"),
+                                                   Restrictions.eq("fechafin",(maxFfin))));
+         
          historiales = cr.list();
          
          tx.commit();

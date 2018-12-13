@@ -5,11 +5,14 @@ import controllers.Enum_EstadoIntervencion;
 import controllers.GestorClasificacion;
 import controllers.GestorIntervencion;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
  /**
  *
@@ -84,14 +87,14 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         jTextFieldNroTicket.setEditable(false);
         jTextFieldNroTicket.setBackground(new java.awt.Color(191, 185, 185));
-        jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldNroTicket.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldNroTicket.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextFieldNroTicket.setFocusable(false);
         getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 170, 30));
 
         jTextFieldEstadoActual.setEditable(false);
         jTextFieldEstadoActual.setBackground(new java.awt.Color(191, 185, 185));
-        jTextFieldEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldEstadoActual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextFieldEstadoActual.setFocusable(false);
         jTextFieldEstadoActual.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +107,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jTextAreaDescripcion.setEditable(false);
         jTextAreaDescripcion.setBackground(new java.awt.Color(191, 185, 185));
         jTextAreaDescripcion.setColumns(20);
-        jTextAreaDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextAreaDescripcion.setRows(5);
         jTextAreaDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextAreaDescripcion.setFocusable(false);
@@ -112,7 +115,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 850, 120));
 
-        jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBoxNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cerrada", "En espera", "Mal asignada", "Solucionada parcialmente", " " }));
         getContentPane().add(jComboBoxNuevoEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 290, 30));
 
@@ -129,7 +132,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 850, 180));
 
-        jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 660, 30));
 
         jButtonAceptar.setBackground(new java.awt.Color(204, 204, 204));
@@ -140,11 +143,21 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
                 jButtonAceptarActionPerformed(evt);
             }
         });
+        jButtonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButtonAceptarKeyPressed(evt);
+            }
+        });
         getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 570, 120, 40));
 
         jButtonCancelar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonCancelar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 570, 120, 40));
 
         jLabelTitulo.setBackground(new java.awt.Color(191, 185, 185));
@@ -177,15 +190,28 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El campo observaciones no puede estar vacío");
         } else {
             
+            String nuevaClasificacion = jComboBoxClasificacion.getSelectedItem().toString();
             String nuevoEstado = jComboBoxNuevoEstado.getSelectedItem().toString();
             GestorIntervencion gestorIntervencion = new GestorIntervencion();
-            gestorIntervencion.registrarNuevoEstado(intervecion, nuevoEstado);
+            gestorIntervencion.registrarNuevoEstado(intervecion, nuevoEstado, nuevaClasificacion);
             
-            
+            JOptionPane.showMessageDialog(null, "El estado se modifico correctamente");
+            this.setVisible(false);
+            cu7.setVisible(true);
         }
         
         
     }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        confirmarSalida();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonAceptarKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_TAB){
+            jButtonAceptar.doClick();
+        } 
+    }//GEN-LAST:event_jButtonAceptarKeyPressed
      /**
      * @param args the command line arguments
      */
@@ -279,10 +305,36 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
                     comboClasificacion.addElement(clasificaciones.get(i));
             }
         }
-     
-         
-        jComboBoxClasificacion.setModel(comboClasificacion);
-
+              
+        jComboBoxClasificacion.setModel(comboClasificacion);    
+    }
+    
+    
+     public void cerrar(){
         
-  }
+        try{
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e){
+                    confirmarSalida();
+                }
+               
+            });
+        
+        }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
+    public void confirmarSalida(){
+
+     int opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea cancelar el cambio de estado de la intervencion?", "Advertencia",JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+       
+       if(opcion==JOptionPane.YES_OPTION){
+          
+            this.setVisible(false);
+            cu7.setVisible(true);
+                
+       }
+    }
 }
