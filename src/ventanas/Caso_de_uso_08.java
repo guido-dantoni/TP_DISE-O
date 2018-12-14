@@ -116,7 +116,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 850, 120));
 
         jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBoxNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cerrada", "En espera", "Mal asignada", "Solucionada parcialmente", " " }));
+        jComboBoxNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cerrada", "En espera", "Mal asignada", "Solucionada parcialmente" }));
         jComboBoxNuevoEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNuevoEstadoActionPerformed(evt);

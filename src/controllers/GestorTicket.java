@@ -293,7 +293,7 @@ public class GestorTicket {
              fechaActual = gestorF.obtenerFecha();
             
                 Historialticket historialTicket = new Historialticket();
-                //Actualizamos los valores del historial de ticket recupreado para hacer un update
+                //Actualizamos los valores del historial de ticket recuperados para hacer un update
               
                 historialTicket = ticketDao.getHistorialTicket(ticket, ticket.getEstadoactual());
                 

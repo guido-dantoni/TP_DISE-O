@@ -2,6 +2,7 @@
 package Ventanas;
 
 import controllers.GestorSesion;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -113,6 +114,7 @@ public class Login extends javax.swing.JFrame {
                             pantallaGrupo.setVisible(true);
                     
                     }else{
+                           Toolkit.getDefaultToolkit().beep();
                             JOptionPane.showMessageDialog(null, "No existe este usuario como " + tipoDeUsuario);
                          }
        
@@ -127,11 +129,13 @@ public class Login extends javax.swing.JFrame {
        
        if(legajo<'0' || legajo>'9'){
            
+           Toolkit.getDefaultToolkit().beep();
            evt.consume();
        }
                  
         if(jTextFieldLegajo.getText().length()>=caracteres){ //>= porque parece ser que arranca a contar de 0
             evt.consume();
+            Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(rootPane, "Solo 9 caracteres permitidos");
         }
         

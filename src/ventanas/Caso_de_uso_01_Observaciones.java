@@ -35,6 +35,7 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelFondo = new javax.swing.JLabel();
         jButtonDerivarTicket = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,7 +43,9 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         jTextFieldTicket = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaObservaciones = new javax.swing.JTextArea();
-        jLabelFondo = new javax.swing.JLabel();
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCU1 (2).jpg"))); // NOI18N
+        jLabelFondo.setPreferredSize(new java.awt.Dimension(1025, 635));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle del reclamo");
@@ -123,10 +126,6 @@ public class Caso_de_uso_01_Observaciones extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextAreaObservaciones);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 600, 200));
-
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoCU1 (2).jpg"))); // NOI18N
-        jLabelFondo.setPreferredSize(new java.awt.Dimension(1025, 635));
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1025, 635));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

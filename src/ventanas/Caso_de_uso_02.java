@@ -528,7 +528,6 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
          char ticket=evt.getKeyChar();
             if(ticket == KeyEvent.VK_ENTER ){
                 
-                    jButton1Buscar.requestFocus();
                     jButton1Buscar.doClick();
             }      
     }//GEN-LAST:event_jComboBox1ClasificacionActualKeyPressed
@@ -536,8 +535,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private void jComboBox1EstadoActualKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualKeyPressed
             char ticket=evt.getKeyChar();
                 if(ticket == KeyEvent.VK_ENTER){
-                
-                        jButton1Buscar.requestFocus();
+
                     jButton1Buscar.doClick();
                 }
     }//GEN-LAST:event_jComboBox1EstadoActualKeyPressed
@@ -669,25 +667,25 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
 
     private void jXDatePickerFechaAperturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAperturaKeyPressed
        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                jButtonAnterior.doClick();
+                jButton1Buscar.doClick();
         } 
     }//GEN-LAST:event_jXDatePickerFechaAperturaKeyPressed
 
     private void jXDatePickerFechaAcualizacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXDatePickerFechaAcualizacionKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                jButtonAnterior.doClick();
+                jButton1Buscar.doClick();
         } 
     }//GEN-LAST:event_jXDatePickerFechaAcualizacionKeyPressed
 
     private void jTextField1NroTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1NroTicketKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                jButtonAnterior.doClick();
+                jButton1Buscar.doClick();
         } 
     }//GEN-LAST:event_jTextField1NroTicketKeyPressed
 
     private void jTextFieldNroLegajo1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajo1KeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-                jButtonAnterior.doClick();
+                jButton1Buscar.doClick();
         }         
     }//GEN-LAST:event_jTextFieldNroLegajo1KeyPressed
 

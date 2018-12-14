@@ -6,7 +6,6 @@ import Dao.UsuarioDao;
 import clases.Empleado;
 import clases.Usuario;
 import java.util.List;
-import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
