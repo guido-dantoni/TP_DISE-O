@@ -306,11 +306,17 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1DerivarTicketKeyPressed
 
     private void jButton1DerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DerivarTicketActionPerformed
-        Caso_de_uso_04 cu = new Caso_de_uso_04();
-        this.setVisible(false);
-        cu.setVisible(true);
-        cu.derivarTicket(ticket, this, jTextAreaObservacion.getText());
-        
+       if(ticket.getEstadoactual().equals("CERRADO")){
+           
+           JOptionPane.showMessageDialog(null, "El ticket seleccionado no se puede derivar porque se encuentra cerrado");
+           
+       }else{
+           
+            Caso_de_uso_04 cu = new Caso_de_uso_04();
+            this.setVisible(false);
+            cu.setVisible(true);
+            cu.derivarTicket(ticket, this, jTextAreaObservacion.getText());
+       }
     }//GEN-LAST:event_jButton1DerivarTicketActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -410,35 +416,54 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUbicacion;
     // End of variables declaration//GEN-END:variables
 
-    void cargarCampos(TicketDTO ticketDTO) {
+void cargarCampos(TicketDTO ticketDTO) {
             
             
             GestorEmpleado gestorEmpleado = new GestorEmpleado();
             GestorTicket gestorTicket = new GestorTicket();
             this.ticket= gestorTicket.obtenerTicket(ticketDTO.getNroTicket());
-            Empleado empleado = new Empleado();
+            Empleado empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
             List<Historialticket> historialesT = new ArrayList<>();
-            List<Empleado> listaEmpleados = new ArrayList<>();
-            String operador = null;
-            List<Historialclasificacion> historialesC = new ArrayList<>();
-            
             DefaultTableModel modelo =  (DefaultTableModel) jTable1.getModel();
             
-            empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
-            historialesT = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
-            this.historialesTickets = historialesT;
-            listaEmpleados = gestorEmpleado.obtenerEmpleados();
-            //historialesC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
-            
-                 
-            //aca cargo los campoes del empleado
+             //aca cargo los campoes del empleado
             jTextField1NroTicketPorPantalla.setText(String.valueOf(ticketDTO.getNroTicket()));
             jTextFieldNroLegajo.setText(String.valueOf(empleado.getLegajoEmpleado()));
             jTextFieldApeYNombre.setText(empleado.getNombre() + " " + empleado.getApellido());
             jTextFieldTelefonoInterno.setText(String.valueOf(empleado.getTelefonointerno()));
             jTextFieldTelefonoDirecto.setText(String.valueOf(empleado.getTelefonodirecto()));
             jTextFieldDescrpDelCargo.setText(empleado.getDescripcioncargo());
-            jTextFieldUbicacion.setText(empleado.getUbicacion());
+            jTextFieldUbicacion.setText(empleado.getUbicacion());    
+            
+    if(ticket.getEstadoactual().equals("CERRADO")){
+        
+        
+         historialesT = gestorTicket.obtenerHistorialesTicketCerrados(ticketDTO.getNroTicket());
+         this.historialesTickets = historialesT;
+         List<Empleado> listaEmpleados = new ArrayList<>(historialesT.get(0).getUsuario().getEmpleados());
+        
+       for(int i=0; i<historialesT.size(); i++){
+           
+            modelo.addRow(new Object[6]);//agrega una fila 
+           
+            jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
+            jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
+            jTable1.setValueAt(listaEmpleados.get(0).getNombre() + " " + listaEmpleados.get(0).getApellido(), i, 2); 
+            jTable1.setValueAt("Mesa de ayuda", i, 3); 
+            jTable1.setValueAt(ticket.getClasificacion().getNombreclasificacion(), i, 4);                         
+            jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
+            //*******************************************************************************************
+            }
+        
+    } else{       
+            String operador = null;
+                       
+            historialesT = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
+            this.historialesTickets = historialesT;
+            List<Empleado> listaEmpleados = gestorEmpleado.obtenerEmpleados();
+           
+            
+             
             int k=0;
             List<Historialclasificacion> listaHC = new ArrayList<>();
             listaHC = gestorTicket.obtenerHistorialesClasificacion(ticketDTO.getNroTicket());
@@ -483,10 +508,22 @@ public class VerDetalleTicket extends javax.swing.JFrame {
             }
  
         }
-
-    void verDetalles(TicketDTO ticketDto, Caso_de_uso_02 Cu2) {
+    }
+ 
+void verDetalles(TicketDTO ticketDto, Caso_de_uso_02 Cu2) {
         this.casoUso2 = Cu2;
         this.cargarCampos(ticketDto);
     }
     
+
+
 }
+/*    if(historialesT.size() == 0){
+        
+                jTable1.setValueAt(historialesT.get(0).getFechafin(), 0, 0);
+                jTable1.setValueAt(historialesT.get(0).getHorafin(), 0, 1);
+                jTable1.setValueAt("Mesa de ayuda", 0, 3);
+                jTable1.setValueAt(historialesT.get(0).getTicket().getClasificacion().getNombreclasificacion(), 0, 4);
+                jTable1.setValueAt(historialesT.get(0).getEstado(), 0, 5);
+        
+    }else{ */

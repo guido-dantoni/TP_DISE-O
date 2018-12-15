@@ -167,18 +167,16 @@ public class GestorIntervencion {
         
     }
 
-    public Boolean tieneIntervencionesPendientes(Ticket ticket) {
+    public Boolean existenIntervenciones(Ticket ticket) {
         
         Boolean tiene=false;
         IntervencionDao intervencionDao = new IntervencionDao();
         List<Intervencion> intervenciones = new ArrayList<>();
         intervenciones = intervencionDao.getIntervenciones(ticket);
         
-        for(int i=0; i<intervenciones.size(); i++){
-            if(!intervenciones.get(i).getEstadoactual().equals(Enum_EstadoIntervencion.CERRADA.toString())){
-                tiene = true;
-                break;
-            }
+
+        if(intervenciones.size() > 0){
+            tiene=true;
         }
         return tiene;
     }

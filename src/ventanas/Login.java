@@ -92,34 +92,48 @@ public class Login extends javax.swing.JFrame {
     private void jButtonSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSesionActionPerformed
         //Lo que hago es crear un objeto de tipo iniciaSesion para que muestre esa ventana
         //Y voy a validar usuario y contraseña aca.
-        
-        int legajoUsuario;
-        Boolean existeUsuario;
-        
-        legajoUsuario = Integer.parseInt(jTextFieldLegajo.getText());
-        
-        GestorSesion gestorSesion = new GestorSesion();
-        existeUsuario = gestorSesion.validarUsuario(legajoUsuario, tipoDeUsuario);
-      
-        if(tipoDeUsuario.equals("Mesa de Ayuda") && existeUsuario){
-           
-            this.setVisible(false);
-            PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
-            pantallaMesaAyuda.setVisible(true);
+        if(jTextFieldLegajo.getText().isEmpty()){
             
-            }else if(tipoDeUsuario.equals("Grupo de Resolucion") && existeUsuario){
+            Toolkit.getDefaultToolkit().beep(); 
+            JOptionPane.showMessageDialog(rootPane, "Debe ingresar un legajo de usuario");
+             
+        }else if(jTextFieldLegajo.getText().length()>9){
+            
+            Toolkit.getDefaultToolkit().beep();
+            JOptionPane.showMessageDialog(rootPane, "Solo 9 caracteres permitidos");
+        
+        }else if(esNumerico(jTextFieldLegajo.getText())){
+            
+            int legajoUsuario;
+            Boolean existeUsuario;
+        
+            legajoUsuario = Integer.parseInt(jTextFieldLegajo.getText());
+        
+            GestorSesion gestorSesion = new GestorSesion();
+            existeUsuario = gestorSesion.validarUsuario(legajoUsuario, tipoDeUsuario);
+      
+                if(tipoDeUsuario.equals("Mesa de Ayuda") && existeUsuario){
+           
+                    this.setVisible(false);
+                    PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
+                    pantallaMesaAyuda.setVisible(true);
+            
+                }else if(tipoDeUsuario.equals("Grupo de Resolucion") && existeUsuario){
                         
                             this.setVisible(false);
                             ventanas.Pantalla_Grupo_de_Resolucion pantallaGrupo = new ventanas.Pantalla_Grupo_de_Resolucion();
                             pantallaGrupo.setVisible(true);
                     
                     }else{
-                           Toolkit.getDefaultToolkit().beep();
+                            Toolkit.getDefaultToolkit().beep();
                             JOptionPane.showMessageDialog(null, "No existe este usuario como " + tipoDeUsuario);
                          }
-       
-        
-        
+        }else{
+             
+            Toolkit.getDefaultToolkit().beep(); 
+            JOptionPane.showMessageDialog(rootPane, "Solo se adimiten valores numericos");
+        }
+
     }//GEN-LAST:event_jButtonSesionActionPerformed
 
     private void jTextFieldLegajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLegajoKeyTyped
@@ -129,14 +143,13 @@ public class Login extends javax.swing.JFrame {
        
        if(legajo<'0' || legajo>'9'){
            
-           Toolkit.getDefaultToolkit().beep();
            evt.consume();
        }
                  
         if(jTextFieldLegajo.getText().length()>=caracteres){ //>= porque parece ser que arranca a contar de 0
             evt.consume();
             Toolkit.getDefaultToolkit().beep();
-            JOptionPane.showMessageDialog(rootPane, "Solo 9 caracteres permitidos");
+            
         }
         
         if (legajo==KeyEvent.VK_ENTER){
@@ -202,5 +215,16 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(true);
         this.tipoDeUsuario=tipo;
         
+    }
+    
+    private Boolean esNumerico(String valor){     
+        try{
+            if(valor!= null){
+                    Integer.parseInt(valor);
+            }
+        }catch(NumberFormatException nfe){
+             return false;
+        }
+        return true;
     }
 }

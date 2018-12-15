@@ -129,7 +129,7 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVolverrActionPerformed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
-        if(jTextArea1.getText().isEmpty()){
+        /*if(jTextArea1.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "El campo de observaciones no puede estar vacio");
         }else{
             String observacion = jTextArea1.getText();
@@ -138,7 +138,7 @@ public class Caso_de_uso_03 extends javax.swing.JFrame {
             GestorTicket gestorTicket = new GestorTicket();
             gestorTicket.cerrarTicket(observacion,nroTicket);
             
-        }
+        }*/
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     private void jButtonConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButtonConfirmarKeyPressed

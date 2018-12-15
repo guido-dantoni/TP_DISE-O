@@ -92,6 +92,11 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
         jTextFieldLegajo.setBackground(new java.awt.Color(245, 245, 245));
         jTextFieldLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextFieldLegajo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldLegajoFocusLost(evt);
+            }
+        });
         jTextFieldLegajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldLegajoActionPerformed(evt);
@@ -267,7 +272,8 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
        }
        
        
-       if((legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>6) && legajo != KeyEvent.VK_ENTER){
+       if((legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>=6) && legajo != KeyEvent.VK_ENTER
+               && legajo != KeyEvent.VK_BACK_SPACE){
            evt.consume();
            Toolkit.getDefaultToolkit().beep();
        }
@@ -279,6 +285,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     
           //hasta 500 caracteres en el textArea
             if(jTextAreaDescripcion.getText().length()>=500){
+                
                 Toolkit.getDefaultToolkit().beep(); //ruidito beep
                 evt.consume();
             }
@@ -307,7 +314,7 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
         Integer numeroLegajo;
         
         numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
-                     
+                   
                     String nombreApellido;
                      
                      
@@ -338,47 +345,65 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
       
-        GestorFecha gestorFecha = new GestorFecha();
-         
-        Date fecha = gestorFecha.obtenerFecha();   
+    if(jTextAreaDescripcion.getText().length()>=500){
         
-        String nombreClasificacion;       
-             
-        if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
+            Toolkit.getDefaultToolkit().beep(); //ruidito beep
+            JOptionPane.showMessageDialog(null, "El campo de descripcion no puede contentener mas de 500 caracteres");
         
+    }else if(jTextFieldLegajo.getText().isEmpty() || jTextAreaDescripcion.getText().isEmpty()){
+            
+            Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "Los campos legajo y descripcion no puden ser nulos");
-        }else if(empleado==null){
+                
+    }else if(empleado==null){
+                
+            Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "El legajo es inexistente");
-        }else{
+//                            
+//    }else if(jTextFieldLegajo.getText().length() >= 6){
+//                
+//            Toolkit.getDefaultToolkit().beep();
+//            JOptionPane.showMessageDialog(null, "El campo Nro Legajo no puede superar los 6 caracteres");
+//                   
+//    }else if(esNumerico(jTextFieldLegajo.getText())){
+//                
+//            Toolkit.getDefaultToolkit().beep();
+//            JOptionPane.showMessageDialog(null, "El campo Nro Legajo solo admite numeros");
+                   
+    }else{
         
      //el SimpleDateFormat me returna el string de un Date, dentro de los parentesis le digo como retornamelo
      //Ej: "dd/MM/YYYY"
-       
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
-        SimpleDateFormat h = new SimpleDateFormat ("HH:mm:ss");
+            GestorFecha gestorFecha = new GestorFecha();
+         
+            Date fecha = gestorFecha.obtenerFecha();   
         
-        jTextFieldFechaApertura.setText(f.format(fecha));
-        jTextFieldHora.setText(h.format(fecha));
+            String nombreClasificacion;  
+            
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
+            SimpleDateFormat h = new SimpleDateFormat ("HH:mm:ss");
+        
+            jTextFieldFechaApertura.setText(f.format(fecha));
+            jTextFieldHora.setText(h.format(fecha));
            
-        nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
-        Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
-        String descripcion = jTextAreaDescripcion.getText();
+            nombreClasificacion = (String) jComboBoxClasificacion.getSelectedItem();
+            Integer numeroLegajo=Integer.parseInt(jTextFieldLegajo.getText());
+            String descripcion = jTextAreaDescripcion.getText();
         
-        GestorTicket gestorTicket = new GestorTicket();
-        gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
+            GestorTicket gestorTicket = new GestorTicket();
+       
+            Ticket ticket = gestorTicket.RegistrarTicket(numeroLegajo,nombreClasificacion,descripcion);
         
-        Ticket ticket = gestorTicket.obtenerNroUltimoTiket();
-        
-        jTextFieldTicketDefecto.setText( String.valueOf((ticket.getNroTicket())) );
-        JOptionPane.showMessageDialog(null, ("Se creo exitosamente el ticket con NroTicket: " + ticket.getNroTicket()));
+            jTextFieldTicketDefecto.setText( String.valueOf((ticket.getNroTicket())) );
+            JOptionPane.showMessageDialog(null, ("Se creo exitosamente el ticket con NroTicket: " + ticket.getNroTicket()));
         
                    
             Caso_de_uso_01_Observaciones  cu1 = new Caso_de_uso_01_Observaciones();
             cu1.setVisible(true);
             cu1.cargarObservaciones(ticket);
             this.setVisible(false);
-        
-      }          
+             
+        }          
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jComboBoxClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionFocusGained
@@ -388,6 +413,10 @@ public class Caso_de_uso_01 extends javax.swing.JFrame {
     private void jTextFieldLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLegajoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLegajoActionPerformed
+
+    private void jTextFieldLegajoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLegajoFocusLost
+
+    }//GEN-LAST:event_jTextFieldLegajoFocusLost
 
     
     /**
@@ -476,6 +505,17 @@ public void cerrar(){
             PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
             pantallaMesaAyuda.setVisible(true);
         }
+    }
+    
+    private Boolean esNumerico(String valor){     
+        try{
+            if(valor!= null){
+                    Integer.parseInt(valor);
+            }
+        }catch(NumberFormatException nfe){
+             return false;
+        }
+        return true;
     }
     
 }

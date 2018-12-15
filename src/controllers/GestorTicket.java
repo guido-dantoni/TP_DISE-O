@@ -35,7 +35,7 @@ public class GestorTicket {
         
     }
     
-    public void RegistrarTicket(Integer numeroLegajo, String nombreClasificacion, String descripcion) {
+    public Ticket RegistrarTicket(Integer numeroLegajo, String nombreClasificacion, String descripcion) {
         
         // obtengo la clasificacion cuyo nombre es el que paso como parametro que es el del combobox     
        GestorClasificacion gestorClasificacion = new GestorClasificacion();
@@ -106,6 +106,7 @@ public class GestorTicket {
         TicketDao ticketDao = new TicketDao();
         ticketDao.insertTicket(ticket, historialTicket, historialClasificacion);
         
+       return ticket; 
     }
 
     public Ticket obtenerNroUltimoTiket() {
@@ -119,29 +120,26 @@ public class GestorTicket {
        return ticket ;
     }
 
-    public void cerrarTicket(String observacion, int nroTicket) {
-        
-        Ticket ticketParaCerrar = new Ticket(); 
-        TicketDao ticketDao = new TicketDao();
-        ticketParaCerrar = ticketDao.getTicket(nroTicket);
-              
+    public void cerrarTicket(String observacion, Ticket ticketParaCerrar) {
+                               
         GestorFecha gestorFecha = new GestorFecha();
         Date fechaCierre = new Date();     
         fechaCierre = gestorFecha.obtenerFecha();
         
        
         GestorIntervencion gestorIntervencion = new GestorIntervencion();
-        Boolean tienePendientes = gestorIntervencion.tieneIntervencionesPendientes(ticketParaCerrar);
+        Boolean tieneIntervenciones = gestorIntervencion.existenIntervenciones(ticketParaCerrar);
                      
                 
         //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
         //Ver maquina de estadoTicket
-        if( ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
-            ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) )
+        if( ticketParaCerrar.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()))
         {
             //vemos que la intervencion este cerrada y que no tiene pendientes
             
-                if(!tienePendientes){
+            if(!tieneIntervenciones){
+                    
+                TicketDao ticketDao = new TicketDao();
                 
                 Historialticket historialTicket = new Historialticket();
                 //Actualizamos los valores del historial de ticket recupreado para hacer un update
@@ -196,8 +194,7 @@ public class GestorTicket {
                     JOptionPane.showMessageDialog(null, "Imposibilidad para cerrar éste Ticket, tiene intervenciones pendientes");
 
                     }    
-                
-          
+                         
             }else {
             JOptionPane.showMessageDialog(null, "Imposibilidad para cerrar éste Ticket, se encuentra en estado: " + ticketParaCerrar.getEstadoactual());
         }
@@ -206,9 +203,16 @@ public class GestorTicket {
 
     public List<TicketDTO> buscarCriterios(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
+        
         TicketDao ticketDao = new TicketDao();
+        //TICKETS EN CUALQUIER ESTADO MENOS CERRADOS
         List<Ticket> tickets = ticketDao.getTicketsFiltrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual);
-               
+        
+        //TICKETS CERRAADOS
+        List<Ticket> ticketsCerrados =  new ArrayList<>();        
+        if(!ultimoGrupo.equals("Mesa de ayuda") || !ultimoGrupo.equals("Todos")){//esto es porque no puedo filtrar los grupos en el dao, porque no joineo con intervencion
+            ticketsCerrados = ticketDao.getTicketsCerrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, clasificacionActual); 
+        }
         List<TicketDTO> ticketsFiltrados = new ArrayList<>();
         
        
@@ -244,7 +248,31 @@ public class GestorTicket {
             }
             ticketsFiltrados.add(ticket);
         }
-       
+        //LLENO LOS CAMPOS PARA LOS TICKETS QUE ESTAN CERRADOS
+        if(ticketsCerrados.size()>0){
+            
+        
+            for(int i=0; i<ticketsCerrados.size(); i++){
+                        
+                TicketDTO ticket = new TicketDTO();
+           
+                u=gestorEmpleado.obtenerEmpleadoUsuario(ticketsCerrados.get(i).getLegajousuario());
+                List<Empleado> list = new ArrayList<>(u.getEmpleados());
+            
+                ticket.setNroTicket(ticketsCerrados.get(i).getNroTicket() );
+                ticket.setNroLegajoempleado(ticketsCerrados.get(i).getEmpleado().getLegajoEmpleado() );
+                ticket.setFechaapertura(ticketsCerrados.get(i).getFecahapertura() );
+                ticket.setEstadoactual("CERRADO");
+                ticket.setHoraapertura(ticketsCerrados.get(i).getHoraapertura() );
+            
+                ticket.setOperador(list.get(0).getNombre()+ " " + list.get(0).getApellido());
+                ticket.setClasificacionactual(ticketsCerrados.get(i).getClasificacion().getNombreclasificacion());
+                ticket.setFechaultimocambioestado(ticketsCerrados.get(i).getFechaultimoestado() );
+                ticket.setGrupoactual("Mesa de ayuda");
+                
+                ticketsFiltrados.add(ticket);
+            }
+        }
         return ticketsFiltrados;
     }
 
@@ -459,6 +487,14 @@ public class GestorTicket {
         
 
         
+    }
+
+    public List<Historialticket> obtenerHistorialesTicketCerrados(int nroTicket) {
+                    
+        TicketDao ticketDao = new TicketDao();
+        Ticket ticket = new Ticket();
+        ticket = ticketDao.getTicket(nroTicket);
+        return ticketDao.getHistorialesTicketCerrados(ticket);
     }
     
 }

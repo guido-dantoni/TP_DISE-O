@@ -439,6 +439,11 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
                 jComboBox1UltimoGpoResolucionFocusGained(evt);
             }
         });
+        jComboBox1UltimoGpoResolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1UltimoGpoResolucionActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1UltimoGpoResolucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 500, 30));
 
         jXDatePickerFechaApertura.setBackground(new java.awt.Color(191, 185, 185));
@@ -692,6 +697,10 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     private void jComboBox1EstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1EstadoActualActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1EstadoActualActionPerformed
+
+    private void jComboBox1UltimoGpoResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1UltimoGpoResolucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1UltimoGpoResolucionActionPerformed
 
     /**
      * @param args the command line arguments

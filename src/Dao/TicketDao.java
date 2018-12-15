@@ -254,11 +254,8 @@ public class TicketDao {
             System.out.println(e);
             }
     }
-    //ESTA ES LA FUNCION EN LA QUE TENEMOS PROBLEMAS ACA DEBERIA RECUPERAR UNA LISTA DE TIPO TicketDTO Y RETORNARLA
-    //tenemos problemas con los join, no sabemos si se hacen asi o no
-    //nosotros pudimos retornar una lista (es el codigo que esta comentado casi al final del metodo)
-    //pero no podiamos acceder a los atributos, como que la lista tenia que ser casteada, otro problema que nos tiraba era una 
-    //NULL POINTER EXCEPTION que no sabemos de que es
+
+    
     public List<Ticket> getTicketsFiltrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String ultimoGrupo, String clasificacionActual) {
         
         List result = null;
@@ -268,15 +265,15 @@ public class TicketDao {
             sesionFactory = NewHibernateUtil.getSessionFactory();
             session = sesionFactory.openSession();
             tx = session.beginTransaction();
-            
+                       
             Criteria ticketCriteria = session.createCriteria(Ticket.class, "t")
                                              .createAlias("intervencions", "i")
                                              .createAlias("i.gruporesolucion", "gr")
                                              .createAlias("i.historialintervencions", "hi")
                                              .createAlias("empleado", "e")
                                              .createAlias("clasificacion", "c")
-                                             .add(Restrictions.isNull("hi.fechafin"));
-                                             
+                                             .add(Restrictions.isNull("hi.fechafin"))
+                                             .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
                                              
             
             if(nroTicket!=null){
@@ -309,13 +306,15 @@ public class TicketDao {
             }
             
             if(!ultimoGrupo.equals("Todos")){
-            
-                DetachedCriteria maxFfin = DetachedCriteria.forClass(Historialintervencion.class)
-                                            .setProjection( Projections.max("fechafin")) ;
-                
+
+                DetachedCriteria maxFfin= DetachedCriteria.forClass(Historialintervencion.class )
+                                                      .setProjection( Projections.max("fechafin"));  
+                 
+                Date fechaMaxima =(Date) maxFfin.getExecutableCriteria(session).uniqueResult(); 
+
                 ticketCriteria.add(Restrictions.eq("gr.nombregrupo", ultimoGrupo))
                                                 .add(Restrictions.or(Restrictions.isNull("hi.fechafin"),
-                                                   Restrictions.eq("fechafin",(maxFfin)))); //SEGUIR
+                                                   Restrictions.eq("hi.fechafin",fechaMaxima))); //SEGUIR
                 
          }
             
@@ -370,12 +369,9 @@ public class TicketDao {
          
         DetachedCriteria maxFfin = DetachedCriteria.forClass(Historialintervencion.class)
                                                    .setProjection( Projections.max("fechafin")) ;
-//        
-//        Criteria fecha = session.createCriteria(Historialintervencion.class)
-//                                                   .add( Restrictions.eq("fechafin", maxFfin)); 
-//        
-//        Date fechaMaxima= (Date) fecha.uniqueResult();
-//                
+                                            
+        Date fechaMaxima =(Date) maxFfin.getExecutableCriteria(session).uniqueResult(); 
+                         
          Criteria cr = session.createCriteria(Historialclasificacion.class)
                               .createAlias("ticket", "t")
                               .createAlias("t.intervencions", "i")
@@ -384,7 +380,7 @@ public class TicketDao {
                               .createAlias("t.historialtickets", "ht")
                               .add(Restrictions.eq("ticket", t))
                               .add(Restrictions.or(Restrictions.isNull("hi.fechafin"),
-                                                   Property.forName("fechafin").eq (maxFfin)));
+                                                   Restrictions.eq("hi.fechafin",fechaMaxima)));
          
          historiales = cr.list();
          
@@ -414,6 +410,97 @@ public class TicketDao {
                     System.out.println(e);
             }  
     }
+
+    public List<Ticket> getTicketsCerrados(Integer nroTicket, Integer nroLegajoEmpleado, Date fechaApertura, Date fechaUltimoCambioEstado, String estadoActual, String clasificacionActual) {
+                List<Ticket> result = null;
+        try {    
+            
+            
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+            
+            Criteria ticketCriteria = session.createCriteria(Ticket.class, "t")
+                                             .createAlias("empleado", "e")
+                                             .createAlias("clasificacion", "c")
+                                             .add(Restrictions.eq("t.estadoactual","CERRADO" ))
+                                             .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                                             
+           
+            if(nroTicket!=null){
+                ticketCriteria.add(Restrictions.eq("t.nroTicket", nroTicket));
+            }
+            
+             if(fechaApertura!=null){
+                ticketCriteria.add(Restrictions.eq("t.fecahapertura", fechaApertura));
+            }
+
+             if(!estadoActual.equals("Todos")){
+                 
+                   ticketCriteria.add(Restrictions.eq("t.estadoactual", estadoActual));
+            }
+              
+              
+            if(nroLegajoEmpleado!=null){
+                
+                ticketCriteria.add(Restrictions.eq("e.legajoEmpleado", nroLegajoEmpleado));  
+            }
+            
+            if(fechaUltimoCambioEstado!=null){
+                   
+                    ticketCriteria.add(Restrictions.eq("t.fechaultimoestado" ,fechaUltimoCambioEstado));
+            }
+            
+            if(!clasificacionActual.equals("Todas")){
+                              
+                ticketCriteria.add(Restrictions.eq("c.nombreclasificacion", clasificacionActual));
+            }
+            
+
+             result = ticketCriteria.list();
+
+            tx.commit();
+            session.close();
+            
+    } catch (HibernateException e) {
+            System.out.println(e);
+        }
+        
+        return result;
+   }
+    
+    
+     public List<Historialticket> getHistorialesTicketCerrados(Ticket ti) {
+        
+        List<Historialticket> historiales = null ;   
+        
+          try {    
+         sesionFactory = NewHibernateUtil.getSessionFactory();
+         session = sesionFactory.openSession();
+         tx = session.beginTransaction();
+         
+         Criteria cr = session.createCriteria(Historialticket.class)
+                              .createAlias("ticket", "t")
+                              .createAlias("usuario", "u")
+                              .createAlias("u.empleados", "e")
+                              .add(Restrictions.eq("ticket", ti))
+                              .add(Restrictions.eq("t.estadoactual", "CERRADO"))
+                              .add(Restrictions.isNotNull("fechafin"))
+                              .addOrder(Order.desc("fechafin"));
+         
+         historiales = cr.list();
+         
+         tx.commit();
+         session.close();
+
+    } catch (HibernateException e) {
+        System.out.println(e);
+        }
+          
+        return historiales; 
+        
+    }
+    
 }
        
     
