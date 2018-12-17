@@ -821,7 +821,12 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jTextFieldOperadorQueAbrio.setText(ticketsFiltrados.get(i).getOperador());
         jTextFieldEstadoActual.setText(ticketsFiltrados.get(i).getEstadoactual());
         jTextFieldClasificacionActual.setText(ticketsFiltrados.get(i).getClasificacionactual());
-        jTextFieldGpoResolucionAsignado.setText(ticketsFiltrados.get(i).getGrupoactual());
+        if(ticketsFiltrados.get(i).getEstadoactual().equals("ABIERTO_DERIVADO")){
+            jTextFieldGpoResolucionAsignado.setText(ticketsFiltrados.get(i).getGrupoactual());
+        }else{
+            jTextFieldGpoResolucionAsignado.setText("Mesa de ayuda");
+        }
+        
     }
 
     
