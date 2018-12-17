@@ -330,22 +330,23 @@ public class TicketDao {
         return result;
    }
     
-        public List<Historialticket> getHistorialesTicket(Ticket ti) {
+    public List<Historialticket> getHistorialesTicket(Ticket ti) {
         
         List<Historialticket> historiales = null ;   
         
           try {    
-         sesionFactory = NewHibernateUtil.getSessionFactory();
-         session = sesionFactory.openSession();
-         tx = session.beginTransaction();
+                sesionFactory = NewHibernateUtil.getSessionFactory();
+                session = sesionFactory.openSession();
+                tx = session.beginTransaction();
          
-         Criteria cr = session.createCriteria(Historialticket.class)
+                Criteria cr = session.createCriteria(Historialticket.class)
                               .createAlias("ticket", "t")
                               .createAlias("t.intervencions", "i")
                               .add(Restrictions.eq("ticket", ti))
-                              .add(Restrictions.isNotNull("fechafin"))
+                              //.add(Restrictions.isNotNull("fechafin"))
                               .addOrder(Order.desc("fechafin"));
-         historiales = cr.list();
+        
+                historiales = cr.list();
          
          tx.commit();
          session.close();
@@ -356,7 +357,7 @@ public class TicketDao {
           
         return historiales; 
         
-    }
+}
 
     public List<Historialclasificacion> getHistorialesClasificacion(Ticket t) {
                      

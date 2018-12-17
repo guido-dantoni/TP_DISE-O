@@ -126,7 +126,7 @@ public class GestorIntervencion {
     }
     
 
-    public void registrarNuevoEstado(Intervencion i, String nuevoEstado, String nuevaClasificacion) {
+    public void registrarNuevoEstado(Intervencion i, String nuevoEstadoIntervencion, String nuevaClasificacion, String motivo, String nuevaObservacion) {
     
         GestorSesion gestorSesion = new GestorSesion();
         Usuario u = new Usuario();
@@ -136,7 +136,7 @@ public class GestorIntervencion {
         u = gestorSesion.getUsuarioLogueado();
         
         IntervencionDao intervencionDao = new IntervencionDao();
-              
+         //recupero el ultimo historial y lo actualizo     
         Historialintervencion historialIntervencion = new Historialintervencion();
         historialIntervencion =  intervencionDao.getHistorial(i);
         
@@ -145,26 +145,34 @@ public class GestorIntervencion {
         
         intervencionDao.updateHistorialIntervencion(historialIntervencion);
         
+        //creo historial nuevo y lo guardo
         Historialintervencion hi = new Historialintervencion();
         hi.setHorainicio(fechaActual);
         hi.setUsuario(u);
         hi.setFechainicio(fechaActual);
-        hi.setEstado(nuevoEstado);
-        hi.setIntervencion(i); //Faltaria setear horaFin y fechaFin dependiendo del nuevoestado de la i
+        hi.setEstado(nuevoEstadoIntervencion);
+        hi.setObservaciones(nuevaObservacion);
+        hi.setIntervencion(i); 
+        if(nuevoEstadoIntervencion.equals("CERRADA")){ // si el nuevo estado es cerrado seteo fecha y hora fin
+            
+            hi.setFechafin(fechaActual);
+            hi.setHorafin(fechaActual);
+        }
                       
         HashSet<Historialintervencion> hashHistorialIntervenciones = new HashSet<>();
         hashHistorialIntervenciones.add(hi);
                 
         i.setHistorialintervencions(hashHistorialIntervenciones);
         
-        i.setEstadoactual(nuevoEstado);
+        i.setEstadoactual(nuevoEstadoIntervencion);
         
         intervencionDao.updateIntervecnion(i);
         intervencionDao.insertHistorialIntervencion(hi);
         
-        GestorTicket gestorTicket = new GestorTicket();
-        gestorTicket.actualizarEstadoTicket(i, nuevoEstado, nuevaClasificacion);
-        
+        if(!nuevoEstadoIntervencion.equals("TRABAJANDO")){
+            GestorTicket gestorTicket = new GestorTicket();
+            gestorTicket.actualizarEstadoTicket(i, nuevoEstadoIntervencion, nuevaClasificacion, motivo);
+        }
     }
 
     public Boolean existenIntervenciones(Ticket ticket) {

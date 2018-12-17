@@ -5,6 +5,7 @@ import clases.Gruporesolucion;
 import clases.Historialintervencion;
 import clases.Intervencion;
 import clases.Ticket;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -85,7 +86,7 @@ public class IntervencionDao {
     public List<Intervencion> getIntervencionesFiltradas(Integer nroTicket, Integer nroLegajoEmpleado, String estadoIntervencion, Date fechaDesde, Date fechaHasta) {
         
         try {    
-            
+                       
             List result;
             sesionFactory = NewHibernateUtil.getSessionFactory();
             session = sesionFactory.openSession();
@@ -103,7 +104,7 @@ public class IntervencionDao {
             }
 
              if(fechaDesde!=null){
-                cr.add(Restrictions.eq("hi.fechainicio", fechaDesde));
+                cr.add(Restrictions.ge("hi.fechainicio", fechaDesde));
             }
             
              if(!estadoIntervencion.equals("Todos")){
@@ -118,11 +119,16 @@ public class IntervencionDao {
             
             if(fechaHasta!=null){
                    
-                    cr.add(Restrictions.eq("hi.fechafin" ,fechaHasta));
-             
-            }
-               
+                //NO ANDA NOSE PORQUE; SE QUE CON LOS NULOS SE CAGA PERO SI SE LOS FILTRO TAMPOCO
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(fechaHasta);
+                calendar.add(Calendar.DAY_OF_YEAR, 1);
+                
+                //cr.add(Restrictions.isNotNull("hi.fechafin"));
+                cr.add(Restrictions.le("hi.fechafin" ,calendar.getTime()));
                  
+            }
+                   
             result = cr.list();
                         
             tx.commit();

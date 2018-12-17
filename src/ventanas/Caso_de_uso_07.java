@@ -1,16 +1,11 @@
 
 package ventanas;
-import Dao.GrupoResolucionDao;
 import clases.IntervencionDTO;
-import clases.Usuario;
 import controllers.Enum_EstadoIntervencion;
-
 import controllers.GestorFecha;
 import controllers.GestorGrupoResolucion;
 import controllers.GestorIntervencion;
-import controllers.GestorSesion;
-
- import java.awt.Color;
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -108,7 +103,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         getContentPane().add(jTextFieldNroTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 210, 30));
 
         jComboBoxEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asignada", "Cerrada", "En espera", "Mal asignada", "Trabajando", "Solucionada parcialmente", "Todos" }));
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Asignada", "Cerrada", "En espera", "Trabajando", "Todos" }));
         jComboBoxEstado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jComboBoxEstadoFocusGained(evt);
@@ -405,12 +400,6 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                case "Cerrada":
                    estadoIntervencion = Enum_EstadoIntervencion.CERRADA.toString();
                    break;
-               case "Mal asignada":
-                   estadoIntervencion = Enum_EstadoIntervencion.MAL_ASIGNADA.toString();
-                   break;
-               case "Solucionada parcialmente":
-                    estadoIntervencion = Enum_EstadoIntervencion.SOLUCIONADA_PARCIALMENTE.toString();       
-                    break;
                 default:
                    estadoIntervencion = "Todos";
                    break;
@@ -513,7 +502,9 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonModificarEstadoKeyPressed
 
     private void jButtonModificarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstadoActionPerformed
-       if(!intervencionesFiltradas.get(row).getEstadoIntervencion().equals(Enum_EstadoIntervencion.ASIGNADA.toString()) ||
+                   
+        if((!intervencionesFiltradas.get(row).getEstadoIntervencion().equals(Enum_EstadoIntervencion.ASIGNADA.toString()) &&
+            !intervencionesFiltradas.get(row).getEstadoIntervencion().equals(Enum_EstadoIntervencion.TRABAJANDO.toString())) ||    
                !intervencionesFiltradas.get(row).getGrupoResoulucion().equals(grupoLogueado)){
            
            JOptionPane.showMessageDialog(null, "El estado de esta intervencion no se puede modificar porque no está asignada a " + grupoLogueado);

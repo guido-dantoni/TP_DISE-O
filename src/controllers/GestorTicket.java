@@ -210,7 +210,7 @@ public class GestorTicket {
         
         //TICKETS CERRAADOS
         List<Ticket> ticketsCerrados =  new ArrayList<>();        
-        if(!ultimoGrupo.equals("Mesa de ayuda") || !ultimoGrupo.equals("Todos")){//esto es porque no puedo filtrar los grupos en el dao, porque no joineo con intervencion
+        if(ultimoGrupo.equals("Mesa de ayuda") || ultimoGrupo.equals("Todos")){//esto es porque no puedo filtrar los grupos en el dao, porque no joineo con intervencion
             ticketsCerrados = ticketDao.getTicketsCerrados(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, clasificacionActual); 
         }
         List<TicketDTO> ticketsFiltrados = new ArrayList<>();
@@ -371,6 +371,7 @@ public class GestorTicket {
                 ht.setFechainicio(fechaActual);
                 ht.setUsuario(usuarioLogueado);
                 ht.setEstado(Enum_EstadoTicket.ABIERTO_DERIVADO.toString());
+                ht.setObservaciones(observacionDerivacion);
                 
         
                 
@@ -397,96 +398,93 @@ public class GestorTicket {
         
     }
 
-    public void actualizarEstadoTicket(Intervencion i, String estado, String clasificacion) {
+    public void actualizarEstadoTicket(Intervencion i, String estado, String clasificacion, String motivo) {
 
-        TicketDao ticketDao = new TicketDao();
-        ClasificacionDao clasificacionDao = new ClasificacionDao();
-        Ticket nuevoTicket = new Ticket();
-        Ticket viejoTicket = new Ticket();
-        Clasificacion nuevaClasificacion = new Clasificacion();
-        
-        viejoTicket = i.getTicket();
-        nuevoTicket = i.getTicket();
-        
-        GestorFecha gestorFecha = new GestorFecha();
-        Date fechaActual = gestorFecha.obtenerFecha();
-        String nuevoEstadoTicket;
-        GestorSesion gestorSesion = new GestorSesion();
-        Usuario usuarioLogueado = gestorSesion.getUsuarioLogueado();
-        
-        
-        switch (estado) {
-               case "Cerrada":
-                   nuevoEstadoTicket = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
-                   break;
-                default:
-                   nuevoEstadoTicket = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
-                   break;
-           }
-        
-        
-        nuevaClasificacion = clasificacionDao.getClasificacion(clasificacion);               
-        nuevoTicket.setEstadoactual(nuevoEstadoTicket);
-        ticketDao.updateTicket(nuevoTicket);         
-        
-        //actualizamos viejo historialTicket
-        Historialticket ht = new Historialticket();
-        
-        ht = ticketDao.getHistorialTicket(viejoTicket);
-        
-        String observacion = ht.getObservaciones(); //aca recupero la observacion  del viejo historial para setearsela al nuevo
-       
-        ht.setFechafin(fechaActual);
-        ht.setHorafin(fechaActual);
-        ticketDao.updateHistorialTicket(ht);
-       
-        //nuevo historialTicket        
-        Historialticket historialTicket = new Historialticket();
-        
-        historialTicket.setEstado(nuevoEstadoTicket);
-        historialTicket.setTicket(nuevoTicket);
-        historialTicket.setObservaciones(observacion);
-        historialTicket.setFechainicio(fechaActual);
-        historialTicket.setHorainicio(fechaActual);
-        historialTicket.setUsuario(usuarioLogueado);
-        
-        HashSet<Historialticket> hashHistorialTicket = new HashSet<>();
-        hashHistorialTicket.add(historialTicket);
-        nuevoTicket.setHistorialtickets(hashHistorialTicket );
-        
-        ticketDao.insertHistorialTicket(historialTicket);
-        
-        if(!viejoTicket.getClasificacion().equals(nuevaClasificacion)){
-           
-            //recuperamos el viejo historialClasificacion
-            Historialclasificacion hc = new Historialclasificacion();
+            TicketDao ticketDao = new TicketDao();
+            ClasificacionDao clasificacionDao = new ClasificacionDao();          
             
-            hc = ticketDao.getHistorialClasificacion(viejoTicket, viejoTicket.getClasificacion().getCodigo());
-            
-            hc.setFechafin(fechaActual);
-            hc.setHorafin(fechaActual);
-            ticketDao.updateHistorialClasificacion(hc);
-            
-            //nuevoTicket.setClasificacion(cl);
-            
-            Historialclasificacion historialClasificacion = new Historialclasificacion();
-            
-            historialClasificacion.setFechainicio(fechaActual);
-            historialClasificacion.setHorainicio(fechaActual);
-            historialClasificacion.setClasificacion(nuevaClasificacion);
-            historialClasificacion.setTicket(nuevoTicket);
-            historialClasificacion.setUsuario(usuarioLogueado);
-        
-            HashSet<Historialclasificacion> hashClasificaciones = new HashSet<>();
-            hashClasificaciones.add(historialClasificacion);
-            nuevoTicket.setHistorialclasificacions(hashClasificaciones);
-            
-            ticketDao.insertHistorialClasificacion(historialClasificacion);
-            
-        }
-        
+            Ticket viejoTicket = i.getTicket();
+            Ticket nuevoTicket = i.getTicket();
 
-        
+            GestorFecha gestorFecha = new GestorFecha();
+            Date fechaActual = gestorFecha.obtenerFecha();
+            String nuevoEstadoTicket;
+            GestorSesion gestorSesion = new GestorSesion();
+            Usuario usuarioLogueado = gestorSesion.getUsuarioLogueado();
+
+            if(estado.equals("CERRADA") && motivo.equals("Problema resuelto")){
+                
+                    nuevoEstadoTicket = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
+                }else{
+                    nuevoEstadoTicket = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
+                }
+            
+
+            Clasificacion nuevaClasificacion = clasificacionDao.getClasificacion(clasificacion);               
+            nuevoTicket.setEstadoactual(nuevoEstadoTicket);
+            ticketDao.updateTicket(nuevoTicket);         
+
+            //actualizamos viejo historialTicket
+            Historialticket ht = new Historialticket();
+
+            ht = ticketDao.getHistorialTicket(viejoTicket);
+            
+            String observacion;
+            
+            if(motivo.isEmpty()){
+                observacion= ht.getObservaciones(); //aca recupero la observacion  del viejo historial para setearsela al nuevo
+            }else{
+                observacion = motivo.toUpperCase() + ": \n" + ht.getObservaciones();
+            }    
+            ht.setFechafin(fechaActual);
+            ht.setHorafin(fechaActual);
+            ticketDao.updateHistorialTicket(ht);
+
+            //nuevo historialTicket        
+            Historialticket historialTicket = new Historialticket();
+
+            historialTicket.setEstado(nuevoEstadoTicket);
+            historialTicket.setTicket(nuevoTicket);
+            historialTicket.setObservaciones(observacion);
+            historialTicket.setFechainicio(fechaActual);
+            historialTicket.setHorainicio(fechaActual);
+            historialTicket.setUsuario(usuarioLogueado);
+
+            HashSet<Historialticket> hashHistorialTicket = new HashSet<>();
+            hashHistorialTicket.add(historialTicket);
+            nuevoTicket.setHistorialtickets(hashHistorialTicket );
+
+            ticketDao.insertHistorialTicket(historialTicket);
+
+            if(!viejoTicket.getClasificacion().equals(nuevaClasificacion)){
+
+                //recuperamos el viejo historialClasificacion
+                Historialclasificacion hc = new Historialclasificacion();
+
+                hc = ticketDao.getHistorialClasificacion(viejoTicket, viejoTicket.getClasificacion().getCodigo());
+
+                hc.setFechafin(fechaActual);
+                hc.setHorafin(fechaActual);
+                ticketDao.updateHistorialClasificacion(hc);
+
+                //nuevoTicket.setClasificacion(cl);
+
+                Historialclasificacion historialClasificacion = new Historialclasificacion();
+
+                historialClasificacion.setFechainicio(fechaActual);
+                historialClasificacion.setHorainicio(fechaActual);
+                historialClasificacion.setClasificacion(nuevaClasificacion);
+                historialClasificacion.setTicket(nuevoTicket);
+                historialClasificacion.setUsuario(usuarioLogueado);
+
+                HashSet<Historialclasificacion> hashClasificaciones = new HashSet<>();
+                hashClasificaciones.add(historialClasificacion);
+                nuevoTicket.setHistorialclasificacions(hashClasificaciones);
+
+                ticketDao.insertHistorialClasificacion(historialClasificacion);
+
+            }
+                
     }
 
     public List<Historialticket> obtenerHistorialesTicketCerrados(int nroTicket) {
