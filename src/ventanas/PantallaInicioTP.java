@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,15 +138,18 @@ public class PantallaInicioTP extends javax.swing.JFrame {
 
     
     private void JButtonMesaDeAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonMesaDeAyudaActionPerformed
-               
-       Login log= new Login();
-       log.setTipoUsuario("Mesa de Ayuda");
+
+        this.bloquearControles();
+        Login log= new Login();
+        log.setTipoUsuario("Mesa de Ayuda");
+        log.setPantallaIncio(this);
     }//GEN-LAST:event_JButtonMesaDeAyudaActionPerformed
 
     private void JButtonGrupoDeResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonGrupoDeResolucionActionPerformed
-            Login log = new Login();
-            log.setTipoUsuario("Grupo de Resolucion");
-        
+        this.bloquearControles();  
+        Login log = new Login();
+        log.setTipoUsuario("Grupo de Resolucion");
+        log.setPantallaIncio(this);
     }//GEN-LAST:event_JButtonGrupoDeResolucionActionPerformed
 
     private void JButtonGerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonGerenciaActionPerformed
@@ -246,4 +251,17 @@ public class PantallaInicioTP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo2;
     private javax.swing.JLabel jLabelTituloSecundario;
     // End of variables declaration//GEN-END:variables
+
+    public void bloquearControles() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.JButtonGerencia.setEnabled(false);
+        this.JButtonGrupoDeResolucion.setEnabled(false);
+        this.JButtonMesaDeAyuda.setEnabled(false);
+    }
+    public void desbloquearControles() {
+        this.JButtonGerencia.setEnabled(true);
+        this.JButtonGrupoDeResolucion.setEnabled(true);
+        this.JButtonMesaDeAyuda.setEnabled(true);
+        JButtonMesaDeAyuda.requestFocus();
+    }
 }

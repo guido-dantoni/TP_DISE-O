@@ -1,6 +1,7 @@
 
 package ventanas;
 
+import Ventanas.PantallaInicioTP;
 import controllers.GestorSesion;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -15,6 +16,7 @@ import javax.swing.WindowConstants;
  */
 public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
+     private PantallaInicioTP incioTp;
 
     public Pantalla_Grupo_de_Resolucion() {
         initComponents();
@@ -22,6 +24,7 @@ public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
         cerrar();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -276,9 +279,15 @@ public void cerrar(){
         if(valor==JOptionPane.YES_OPTION){
             GestorSesion gestorSesion=new GestorSesion();
             gestorSesion.setUsuarioLogueado(null);
-            
-            this.setVisible(false);
+            this.incioTp.desbloquearControles();
+            this.dispose();
+            //this.setVisible(false);
         }
+    }
+
+    public void setPantallaInicion(PantallaInicioTP p) {
+            this.incioTp = p;
+            this.incioTp.bloquearControles();
     }
 
 

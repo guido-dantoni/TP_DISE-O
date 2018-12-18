@@ -15,7 +15,7 @@ import java.util.Date;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
+
 import org.hibernate.criterion.Restrictions;
 /**
  *
@@ -164,7 +164,7 @@ public class TicketDao {
        
       }
 
-    public void updateTicket(Ticket ticketParaCerrar) {
+    public void updateTicket(Ticket ticket) {
  
                 
         try {    
@@ -173,7 +173,7 @@ public class TicketDao {
          tx = session.beginTransaction();
         
          //update de historialTicket
-         session.merge(ticketParaCerrar);
+         session.merge(ticket);
                          
          tx.commit();
          session.close();
@@ -344,7 +344,8 @@ public class TicketDao {
                               .createAlias("t.intervencions", "i")
                               .add(Restrictions.eq("ticket", ti))
                               //.add(Restrictions.isNotNull("fechafin"))
-                              .addOrder(Order.desc("fechafin"));
+                              .addOrder(Order.desc("fechafin"))
+                              .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         
                 historiales = cr.list();
          

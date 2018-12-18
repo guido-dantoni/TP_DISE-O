@@ -119,7 +119,7 @@ public class IntervencionDao {
             
             if(fechaHasta!=null){
                    
-                //NO ANDA NOSE PORQUE; SE QUE CON LOS NULOS SE CAGA PERO SI SE LOS FILTRO TAMPOCO
+                //NO ANDA NOSE PORQUE; SE QUE CON LOS NULOS SE CAGA PERO SI SE LOS FILTRO TAMPOCO ANDA
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(fechaHasta);
                 calendar.add(Calendar.DAY_OF_YEAR, 1);

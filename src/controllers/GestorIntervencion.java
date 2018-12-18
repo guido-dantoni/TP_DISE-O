@@ -18,7 +18,7 @@ import java.util.List;
  * @author Guido D'Antoni guidodantoni2335@gmail.com
  */
 public class GestorIntervencion {
-
+//********************************************************************************************************************************
     public void tieneIntervencion(Ticket ticket, Gruporesolucion grupoResolucion, Usuario usuario, String observacion) {
         
             Intervencion intervencion = new Intervencion();
@@ -28,23 +28,35 @@ public class GestorIntervencion {
              GestorFecha gestorF = new GestorFecha();
              Date fechaActual = new Date();
              fechaActual = gestorF.obtenerFecha();
-             Boolean resultado = verificarEstadoIntervencion(intervencion);  
+             Boolean resultado = verificarEstadoIntervencionEnEspera(intervencion);  
             
             if(resultado){
+                //recupero la intervencion vieja y la actualizo
+                Historialintervencion hi = new Historialintervencion();
+                hi = intervencionDao.getHistorial(intervencion);
                 
-                intervencion.setEstadoactual(Enum_EstadoIntervencion.ASIGNADA.toString());
+                hi.setFechafin(fechaActual);
+                hi.setHorafin(fechaActual);
+                
+                intervencionDao.updateHistorialIntervencion(hi);
+                
+                //creo un historial nuevo y actualizo el estado de la intervencion
                 Historialintervencion historialIntervencion = new Historialintervencion();
+                                
+                intervencion.setEstadoactual(Enum_EstadoIntervencion.ASIGNADA.toString());
                 
                 historialIntervencion.setIntervencion(intervencion);
                 historialIntervencion.setEstado(Enum_EstadoIntervencion.ASIGNADA.toString());
                 historialIntervencion.setUsuario(usuario);
+                historialIntervencion.setHorainicio(fechaActual);
                 historialIntervencion.setFechainicio(fechaActual);
-                historialIntervencion.setHorafin(fechaActual);
                 historialIntervencion.setObservaciones(observacion);
               
                 intervencion.getHistorialintervencions().add(historialIntervencion);
-               
+                
                 intervencionDao.updateIntervecnion(intervencion);
+                intervencionDao.insertHistorialIntervencion(historialIntervencion);
+                
             }else{
                
                 Intervencion nuevaIntervencion = new Intervencion();
@@ -73,8 +85,8 @@ public class GestorIntervencion {
                 
             }
         }
-    
-    private Boolean verificarEstadoIntervencion(Intervencion i){
+  //********************************************************************************************************************************  
+    private Boolean verificarEstadoIntervencionEnEspera(Intervencion i){
         
         Boolean b=false;
         if(i != null && i.getEstadoactual().equals(Enum_EstadoIntervencion.EN_ESPERA.toString()) ){
@@ -82,7 +94,7 @@ public class GestorIntervencion {
         }
         return b;
     }
-
+//********************************************************************************************************************************
     public List<IntervencionDTO> buscarIntervencionesCriterios(Integer nroTicket, Integer nroLegajoEmpleado, String estadoIntervencion, Date fechaDesde, Date fechaHasta) {
                     
                 List<IntervencionDTO> intervencionesFiltradas = new ArrayList<>();
@@ -118,14 +130,14 @@ public class GestorIntervencion {
                 
                 return intervencionesFiltradas;    
     }
-
+//********************************************************************************************************************************
     public Intervencion obtenerIntervencion(int idInt) {
             IntervencionDao i = new IntervencionDao();
             return i.getIntervencion(idInt);
             
     }
     
-
+//********************************************************************************************************************************
     public void registrarNuevoEstado(Intervencion i, String nuevoEstadoIntervencion, String nuevaClasificacion, String motivo, String nuevaObservacion) {
     
         GestorSesion gestorSesion = new GestorSesion();
@@ -135,11 +147,13 @@ public class GestorIntervencion {
                 
         u = gestorSesion.getUsuarioLogueado();
         
+        
         IntervencionDao intervencionDao = new IntervencionDao();
          //recupero el ultimo historial y lo actualizo     
         Historialintervencion historialIntervencion = new Historialintervencion();
         historialIntervencion =  intervencionDao.getHistorial(i);
         
+        System.out.println(historialIntervencion);
         historialIntervencion.setFechafin(fechaActual);
         historialIntervencion.setHorafin(fechaActual);
         
@@ -152,12 +166,8 @@ public class GestorIntervencion {
         hi.setFechainicio(fechaActual);
         hi.setEstado(nuevoEstadoIntervencion);
         hi.setObservaciones(nuevaObservacion);
-        hi.setIntervencion(i); 
-        if(nuevoEstadoIntervencion.equals("CERRADA")){ // si el nuevo estado es cerrado seteo fecha y hora fin
-            
-            hi.setFechafin(fechaActual);
-            hi.setHorafin(fechaActual);
-        }
+        hi.setIntervencion(i); //En CU3 si el nuevo estod de intervencion es cerrada y se cierra el ticket, hay que setear la fechafin y horafin del ultimo historial de esta intervencion
+
                       
         HashSet<Historialintervencion> hashHistorialIntervenciones = new HashSet<>();
         hashHistorialIntervenciones.add(hi);
@@ -171,10 +181,10 @@ public class GestorIntervencion {
         
         if(!nuevoEstadoIntervencion.equals("TRABAJANDO")){
             GestorTicket gestorTicket = new GestorTicket();
-            gestorTicket.actualizarEstadoTicket(i, nuevoEstadoIntervencion, nuevaClasificacion, motivo);
+            gestorTicket.actualizarEstadoTicket(i, nuevoEstadoIntervencion, nuevaClasificacion, motivo, nuevaObservacion);
         }
     }
-
+//********************************************************************************************************************************
     public Boolean existenIntervenciones(Ticket ticket) {
         
         Boolean tiene=false;

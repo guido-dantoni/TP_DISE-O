@@ -7,6 +7,7 @@ import clases.Gruporesolucion;
 
 import clases.Historialticket;
 import clases.Ticket;
+import controllers.Enum_EstadoTicket;
 import controllers.GestorClasificacion;
 import controllers.GestorGrupoResolucion;
 import controllers.GestorTicket;
@@ -251,6 +252,9 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
        if(jTextAreaObservacion.getText().isEmpty()){
           
            JOptionPane.showMessageDialog(null, "El campo de observacion no puede estar vacío");
+       }else if(jTextAreaObservacion.getText().length()>=500){
+           
+                JOptionPane.showMessageDialog(null, "El campo de descripcion no puede contentener mas de 500 caracteres");
        }else{
             GestorTicket gt = new GestorTicket();
             
@@ -258,13 +262,17 @@ public class Caso_de_uso_04 extends javax.swing.JFrame {
                    nuevaClasificacion = jComboBoxClasificacion.getSelectedItem().toString(),
                    grupoResolucion = jComboBoxGrupoResolucion.getSelectedItem().toString();
             
-                              
-            if(gt.derivarTicket(ticket, observacionDerivacion, nuevaClasificacion, grupoResolucion, primeraObservacion)){
+            if( ticket.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
+                ticket.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) ){
+                  
+                gt.derivarTicket(ticket, observacionDerivacion, nuevaClasificacion, grupoResolucion, primeraObservacion);
             
                     JOptionPane.showMessageDialog(null, "EL ticket: " +  ticket.getNroTicket()+ " se derivó correctamente");
                     this.setVisible(false);          
                     Ventanas.PantallaMesaDeAyuda pantallaMesaAyuda = new Ventanas.PantallaMesaDeAyuda();
                     pantallaMesaAyuda.setVisible(true);
+                                  
+
                     
             }else{
                 JOptionPane.showMessageDialog(null, "No se puede derivar el ticket");

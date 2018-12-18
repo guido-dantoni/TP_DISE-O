@@ -511,7 +511,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
        //me consume las letras y si la cadena es > 9
        char ticket=evt.getKeyChar();       
        
-       if(ticket<'0' || ticket>'9' || jTextField1NroTicket.getText().length()>9){
+       if(ticket<'0' || ticket>'9' || jTextField1NroTicket.getText().length()>=9){
            evt.consume();
            Toolkit.getDefaultToolkit().beep();//ruido beep
        }
@@ -522,7 +522,7 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         //no me deja ingresar letras ni numeros con mas de 6 caracteres
         char legajo=evt.getKeyChar();       
        
-       if(legajo<'0' || legajo>'9' || jTextFieldNroLegajo1.getText().length()>6){
+       if(legajo<'0' || legajo>'9' || jTextFieldNroLegajo1.getText().length()>=6){
            evt.consume();
            Toolkit.getDefaultToolkit().beep();//ruido beep
        }
@@ -554,65 +554,71 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1EstadoActualFocusGained
 
     private void jButton1BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1BuscarActionPerformed
-        
-        Integer nroTicket = null ,  nroLegajoEmpleado = null;
-        Date fechaApertura, fechaUltimoCambioEstado;
-        String estadoActual, ultimoGrupo, clasificacionActual;
-      
-        if(!jTextField1NroTicket.getText().isEmpty()){
-            nroTicket = Integer.parseInt(jTextField1NroTicket.getText());
-        }
-        
-        if(!jTextFieldNroLegajo1.getText().isEmpty()){
-            nroLegajoEmpleado = Integer.parseInt(jTextFieldNroLegajo1.getText());
-        }
-        
-        switch (jComboBox1EstadoActual.getSelectedItem().toString()) {
-            case "Abierto en mesa de ayuda":
-                estadoActual = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
-                break;
-            case "Abierto derivado":
-                estadoActual = Enum_EstadoTicket.ABIERTO_DERIVADO.toString();
-                break;
-            case "Solucionado a la espera de OK":
-                estadoActual = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
-                break;
-            case "Cerrado":
-                estadoActual = Enum_EstadoTicket.CERRADO.toString();
-                break;
-            default:
-                estadoActual = "Todos";
-                break;
-        }
-       
-        fechaApertura = jXDatePickerFechaApertura.getDate();
-        fechaUltimoCambioEstado = jXDatePickerFechaAcualizacion.getDate();
-        ultimoGrupo = jComboBox1UltimoGpoResolucion.getSelectedItem().toString();
-        clasificacionActual = jComboBox1ClasificacionActual.getSelectedItem().toString();
-    
-        GestorTicket gestorTicket = new GestorTicket();
-       
-        ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
-       
-        if(ticketsFiltrados.isEmpty()){
+        if(!jTextField1NroTicket.getText().isEmpty() && !esNumerico(jTextField1NroTicket.getText())){
+            
+            JOptionPane.showMessageDialog(null, "El campo Nro. ticket solo permite caracateres numericos entre 0 y 2.147.483.647");
+            
+        }else if(!jTextFieldNroLegajo1.getText().isEmpty() && !esNumerico(jTextFieldNroLegajo1.getText())){
+            
+            JOptionPane.showMessageDialog(null, "El campo Nro. legajo solo permite caracateres numericos entre 0 y 999.999");
+            
+        }else{
+                Integer nroTicket = null ,  nroLegajoEmpleado = null;
+                Date fechaApertura, fechaUltimoCambioEstado;
+                String estadoActual, ultimoGrupo, clasificacionActual;
 
-                this.vaciarCampos();
-                    
-                 JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
-        } else {
-            
-             jButtonSiguiente.requestFocus();
-             indice = 0;
-             jButtonVerDetalle.setEnabled(true);
-             jButtonConfReporte.setEnabled(true);
+                if(!jTextField1NroTicket.getText().isEmpty()){
+                    nroTicket = Integer.parseInt(jTextField1NroTicket.getText());
+                }
+
+                if(!jTextFieldNroLegajo1.getText().isEmpty()){
+                    nroLegajoEmpleado = Integer.parseInt(jTextFieldNroLegajo1.getText());
+                }
+
+                switch (jComboBox1EstadoActual.getSelectedItem().toString()) {
+                    case "Abierto en mesa de ayuda":
+                        estadoActual = Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString();
+                        break;
+                    case "Abierto derivado":
+                        estadoActual = Enum_EstadoTicket.ABIERTO_DERIVADO.toString();
+                        break;
+                    case "Solucionado a la espera de OK":
+                        estadoActual = Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString();
+                        break;
+                    case "Cerrado":
+                        estadoActual = Enum_EstadoTicket.CERRADO.toString();
+                        break;
+                    default:
+                        estadoActual = "Todos";
+                        break;
+                }
+
+                fechaApertura = jXDatePickerFechaApertura.getDate();
+                fechaUltimoCambioEstado = jXDatePickerFechaAcualizacion.getDate();
+                ultimoGrupo = jComboBox1UltimoGpoResolucion.getSelectedItem().toString();
+                clasificacionActual = jComboBox1ClasificacionActual.getSelectedItem().toString();
+
+                GestorTicket gestorTicket = new GestorTicket();
+
+                ticketsFiltrados = gestorTicket.buscarCriterios(nroTicket, nroLegajoEmpleado, fechaApertura, fechaUltimoCambioEstado, estadoActual, ultimoGrupo, clasificacionActual); 
+
+                if(ticketsFiltrados.isEmpty()){
+
+                        this.vaciarCampos();
+
+                         JOptionPane.showMessageDialog(null, "No hay ningun ticket que cumpla con los criterios de busqueda seleccionados");
+                } else {
+
+                     jButtonSiguiente.requestFocus();
+                     indice = 0;
+                     jButtonVerDetalle.setEnabled(true);
+                     jButtonConfReporte.setEnabled(true);
+
+
+
+                     cargarCampos( indice );          
              
-             
-             
-             cargarCampos( indice );
-             
-             
-             
-            
+            }
         }
         
     }//GEN-LAST:event_jButton1BuscarActionPerformed
@@ -874,5 +880,18 @@ public class Caso_de_uso_02 extends javax.swing.JFrame {
         jButtonVerDetalle.setEnabled(false);
         jButtonConfReporte.setEnabled(false);
     }
+    
+    private Boolean esNumerico(String valor){     
+        try{
+            if(valor!= null){
+                    Integer.parseInt(valor);
+            }
+        }catch(NumberFormatException nfe){
+             return false;
+        }
+        return true;
+    }
+    
+    
    
 }

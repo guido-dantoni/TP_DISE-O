@@ -15,13 +15,14 @@ public class Login extends javax.swing.JFrame {
 
   
     private String tipoDeUsuario;
-    
+    private PantallaInicioTP padre;
      
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null); //para que me muestre en el centro de la pantalla los menues
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
     }
+  
 
 
     @SuppressWarnings("unchecked")
@@ -37,6 +38,11 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icono2.png"))); // NOI18N
@@ -115,14 +121,25 @@ public class Login extends javax.swing.JFrame {
                 if(tipoDeUsuario.equals("Mesa de Ayuda") && existeUsuario){
            
                     this.setVisible(false);
+                   // this.dispose();
                     PantallaMesaDeAyuda pantallaMesaAyuda = new PantallaMesaDeAyuda();
+                    
+                    pantallaMesaAyuda.setPantallaInicion(this.padre);
                     pantallaMesaAyuda.setVisible(true);
-            
+                   // pantallaMesaAyuda.setVisible(true);
+                   // pantallaMesaAyuda.setAlwaysOnTop(false);
+                    
+                    
+                    
                 }else if(tipoDeUsuario.equals("Grupo de Resolucion") && existeUsuario){
                         
                             this.setVisible(false);
+                            //this.dispose();
                             ventanas.Pantalla_Grupo_de_Resolucion pantallaGrupo = new ventanas.Pantalla_Grupo_de_Resolucion();
+                            pantallaGrupo.setPantallaInicion(this.padre);
                             pantallaGrupo.setVisible(true);
+                            //pantallaGrupo.setAlwaysOnTop(true);
+                            //pantallaGrupo.setAlwaysOnTop(false);
                     
                     }else{
                             Toolkit.getDefaultToolkit().beep();
@@ -165,6 +182,11 @@ public class Login extends javax.swing.JFrame {
             jButtonSesion.doClick();
         }
     }//GEN-LAST:event_jButtonSesionKeyPressed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.padre.desbloquearControles();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -226,5 +248,10 @@ public class Login extends javax.swing.JFrame {
              return false;
         }
         return true;
+    }
+
+    void setPantallaIncio(PantallaInicioTP p) {
+        this.padre = p;
+                
     }
 }

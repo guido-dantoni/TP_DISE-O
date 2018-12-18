@@ -125,6 +125,11 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 850, 120));
 
         jComboBoxNuevoEstado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBoxNuevoEstado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxNuevoEstadoFocusGained(evt);
+            }
+        });
         jComboBoxNuevoEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxNuevoEstadoActionPerformed(evt);
@@ -146,6 +151,11 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         getContentPane().add(jScrollPaneObservacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 850, 180));
 
         jComboBoxClasificacion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBoxClasificacion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jComboBoxClasificacionFocusGained(evt);
+            }
+        });
         getContentPane().add(jComboBoxClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 660, 30));
 
         jButtonActualizar.setBackground(new java.awt.Color(204, 204, 204));
@@ -207,9 +217,14 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         
         if(jTextAreaObservacion.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "El campo observaciones no puede estar vacío");
-        } else {
+        
+        } else if(jTextAreaObservacion.getText().length()>=500){
             
-            String nuevaObservacion = jTextAreaDescripcion.getText();
+            JOptionPane.showMessageDialog(null, "El campo observaciones no puede contentener mas de 500 caracteres");
+            
+        }else{
+            
+            String nuevaObservacion = jTextAreaObservacion.getText();
             String nuevaClasificacion = jComboBoxClasificacion.getSelectedItem().toString();
             String nuevoEstadoIntervencion;
             GestorIntervencion gestorIntervencion = new GestorIntervencion();
@@ -226,7 +241,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
                     break;
 
            }
-            String motivo="";
+            String motivo = "";
             if(nuevoEstadoIntervencion.equals("CERRADA")){
                 motivo = jComboBoxMotivo.getSelectedItem().toString();
             }
@@ -260,6 +275,20 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
             jComboBoxMotivo.setEnabled(false);
         }
     }//GEN-LAST:event_jComboBoxNuevoEstadoActionPerformed
+
+    private void jComboBoxClasificacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxClasificacionFocusGained
+        jComboBoxClasificacion.showPopup();
+    }//GEN-LAST:event_jComboBoxClasificacionFocusGained
+
+    private void jComboBoxNuevoEstadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jComboBoxNuevoEstadoFocusGained
+        String nuevoEstado = jComboBoxNuevoEstado.getSelectedItem().toString();
+        
+        if(nuevoEstado.equals("Cerrada")){
+            jComboBoxMotivo.setEnabled(true);
+        }else{
+            jComboBoxMotivo.setEnabled(false);
+        }
+    }//GEN-LAST:event_jComboBoxNuevoEstadoFocusGained
      /**
      * @param args the command line arguments
      */
@@ -340,7 +369,7 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
             if(estadoActual.equals("ASIGNADA")){
 
-                comboNuevoEstado.addElement("Trabjando");
+                comboNuevoEstado.addElement("Trabajando");
                 jComboBoxNuevoEstado.setModel(comboNuevoEstado);
                 jComboBoxClasificacion.setEnabled(false);
 

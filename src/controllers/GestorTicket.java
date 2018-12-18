@@ -306,15 +306,13 @@ public class GestorTicket {
         }
 
     
-    public Boolean derivarTicket(Ticket ticket, String observacionDerivacion, String nuevaClasificacion, String grupo, String primeraObservacion) {
+    public void derivarTicket(Ticket ticket, String observacionDerivacion, String nuevaClasificacion, String grupo, String primeraObservacion) {
               
-        Boolean b = false;
-      
+    
          //Recuperamos el historialTicket con esos 2 estados posibles porque son los unicos que pueden pasar a cerrado
         //Ver maquina de estadoTicket
         TicketDao ticketDao = new TicketDao();
-        if( ticket.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
-                ticket.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) ){
+
             
              GestorFecha gestorF = new GestorFecha();
              Date fechaActual = new Date();
@@ -328,7 +326,12 @@ public class GestorTicket {
                              
                 historialTicket.setFechafin(fechaActual);
                 historialTicket.setHorafin(fechaActual);
+                
+                if(primeraObservacion.isEmpty()){
+                    historialTicket.setObservaciones(observacionDerivacion);
+                }else{
                 historialTicket.setObservaciones(primeraObservacion);
+                }
                 
                 //Actualizamos los valores del historial de clasificacion
                 Historialclasificacion historialClasificacion = new Historialclasificacion();
@@ -387,18 +390,13 @@ public class GestorTicket {
                 ticketDao.insertHistorialClasificacion(hc);
                 
                 GestorIntervencion gestorIntervencion = new GestorIntervencion();
-               
-                gestorIntervencion.tieneIntervencion(ticket, grupoResolucion, usuarioLogueado, observacionDerivacion);
                 
-                b=true;
-            
-            }
-        
-        return b;
+                gestorIntervencion.tieneIntervencion(ticket, grupoResolucion, usuarioLogueado, observacionDerivacion);
+                 
         
     }
 
-    public void actualizarEstadoTicket(Intervencion i, String estado, String clasificacion, String motivo) {
+    public void actualizarEstadoTicket(Intervencion i, String estado, String clasificacion, String motivo, String nuevaObservacion) {
 
             TicketDao ticketDao = new TicketDao();
             ClasificacionDao clasificacionDao = new ClasificacionDao();          
@@ -422,6 +420,7 @@ public class GestorTicket {
 
             Clasificacion nuevaClasificacion = clasificacionDao.getClasificacion(clasificacion);               
             nuevoTicket.setEstadoactual(nuevoEstadoTicket);
+            nuevoTicket.setClasificacion(nuevaClasificacion); //la seteo por las dudas, de ultima si es la misma pisa el valor, total es un update
             ticketDao.updateTicket(nuevoTicket);         
 
             //actualizamos viejo historialTicket
@@ -432,9 +431,9 @@ public class GestorTicket {
             String observacion;
             
             if(motivo.isEmpty()){
-                observacion= ht.getObservaciones(); //aca recupero la observacion  del viejo historial para setearsela al nuevo
+                observacion= nuevaObservacion; //aca recupero la observacion  del viejo historial para setearsela al nuevo
             }else{
-                observacion = motivo.toUpperCase() + ": \n" + ht.getObservaciones();
+                observacion = motivo.toUpperCase() + ": \n" + nuevaObservacion;
             }    
             ht.setFechafin(fechaActual);
             ht.setHorafin(fechaActual);

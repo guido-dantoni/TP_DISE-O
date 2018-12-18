@@ -370,9 +370,20 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarKeyPressed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-       //vacio la tabla para una nueva busqueda si es que tiene algo
-       DefaultTableModel model = (DefaultTableModel) jTableTabla.getModel();
-       model.setRowCount(0);
+       
+        if(!jTextFieldNroTicket.getText().isEmpty() && !esNumerico(jTextFieldNroTicket.getText())){
+            
+            JOptionPane.showMessageDialog(null, "El campo Nro. ticket solo permite caracateres numericos entre 0 y 2,147,483,647");
+            
+        }else if(!jTextFieldLegajo.getText().isEmpty() && !esNumerico(jTextFieldLegajo.getText())){
+            
+            JOptionPane.showMessageDialog(null, "El campo Nro. legajo solo permite caracateres numericos entre 0 y 999.999");
+            
+        }else{
+        //vacio la tabla para una nueva busqueda si es que tiene algo
+        DefaultTableModel model = (DefaultTableModel) jTableTabla.getModel();
+        model.setRowCount(0);
+        jTextAreaObservacion.setText("");
         
         Integer nroTicket=null, nroLegajoEmpleado=null;
         String estadoIntervencion;
@@ -440,14 +451,15 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 jTableTabla.setValueAt(intervencionesFiltradas.get(i).getGrupoResoulucion(), i, 6);
                 jTableTabla.setValueAt(intervencionesFiltradas.get(i).getEstadoIntervencion(), i, 7);
                }
-           }                      
+           }    
+        }                      
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jTextFieldNroTicketKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNroTicketKeyTyped
        //me consume las letras y si la cadena es > 9
         char ticket=evt.getKeyChar();
 
-        if(ticket<'0' || ticket>'9' || jTextFieldNroTicket.getText().length()>9){
+        if(ticket<'0' || ticket>'9' || jTextFieldNroTicket.getText().length()>=9){
             evt.consume();
             Toolkit.getDefaultToolkit().beep();//ruido beep
         }
@@ -458,7 +470,7 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
                 //no me deja ingresar letras ni numeros con mas de 6 caracteres
         char legajo=evt.getKeyChar();
 
-        if(legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>6){
+        if(legajo<'0' || legajo>'9' || jTextFieldLegajo.getText().length()>=6){
             evt.consume();
             Toolkit.getDefaultToolkit().beep();//ruido beep
         }
@@ -509,6 +521,9 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
            
            JOptionPane.showMessageDialog(null, "El estado de esta intervencion no se puede modificar porque no está asignada a " + grupoLogueado);
                    
+       }else if(jTextAreaObservacion.getText().length()>=500){
+           
+            JOptionPane.showMessageDialog(null, "El campo de observaciones no puede contener mas de 500 caracteres");
        }else{
            
             Caso_de_uso_08 c = new Caso_de_uso_08();
@@ -619,5 +634,15 @@ public class Caso_de_uso_07 extends javax.swing.JFrame {
         this.grupoLogueado = gestorGrupo.obtenerGrupoLogueado();
     }
     
+    private Boolean esNumerico(String valor){     
+        try{
+            if(valor!= null){
+                    Integer.parseInt(valor);
+            }
+        }catch(NumberFormatException nfe){
+             return false;
+        }
+        return true;
+    }
     
 }
