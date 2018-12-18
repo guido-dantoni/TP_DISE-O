@@ -63,5 +63,7 @@ public class GrupoResolucionDao {
 
         return g;
     }
+
+     
     
 }

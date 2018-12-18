@@ -128,8 +128,7 @@ public class Login extends javax.swing.JFrame {
                     pantallaMesaAyuda.setVisible(true);
                    // pantallaMesaAyuda.setVisible(true);
                    // pantallaMesaAyuda.setAlwaysOnTop(false);
-                    
-                    
+                                  
                     
                 }else if(tipoDeUsuario.equals("Grupo de Resolucion") && existeUsuario){
                         

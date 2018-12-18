@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
  */
 public class PantallaMesaDeAyuda extends javax.swing.JFrame {
 
-     private PantallaInicioTP incioTp;
+     private static PantallaInicioTP inicioTp;
 
     public PantallaMesaDeAyuda() {
         initComponents();
@@ -49,7 +49,8 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
             //System.exit(0);
             //this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             //this.setVisible(false);
-            this.incioTp.desbloquearControles();
+            this.inicioTp.desbloquearControles();
+            System.out.println(inicioTp);
             this.dispose();
         }
     }
@@ -266,7 +267,7 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void setPantallaInicion(PantallaInicioTP p) {
-        this.incioTp = p;
-        this.incioTp.bloquearControles();
+        this.inicioTp = p;
+        this.inicioTp.bloquearControles();
     }
 }

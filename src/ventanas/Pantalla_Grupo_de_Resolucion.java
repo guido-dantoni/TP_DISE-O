@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
  */
 public class Pantalla_Grupo_de_Resolucion extends javax.swing.JFrame {
 
-     private PantallaInicioTP incioTp;
+     private static PantallaInicioTP incioTp;
 
     public Pantalla_Grupo_de_Resolucion() {
         initComponents();

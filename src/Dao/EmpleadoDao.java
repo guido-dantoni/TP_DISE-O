@@ -125,4 +125,26 @@ public class EmpleadoDao {
             }
          return e;
     }
+
+    public List<Empleado> obtenerGruposEmpleados() {
+            
+                 List<Empleado> e = null;
+        try{ 
+            sesionFactory = NewHibernateUtil.getSessionFactory();
+            session = sesionFactory.openSession();
+            tx = session.beginTransaction();
+         
+            Criteria cr =session.createCriteria(Empleado.class)
+                                .createAlias("gruporesolucion", "gr");
+                                        
+            e = cr.list();
+         
+            tx.commit();
+            session.close();
+                    
+       }catch (HibernateException ex) {
+                 System.out.println(ex);
+            }
+         return e;
+    }
 }

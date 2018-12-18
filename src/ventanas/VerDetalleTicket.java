@@ -2,7 +2,8 @@
 package Ventanas;
 
 
-import clases.Empleado;
+import Dao.EmpleadoDao;
+import clases.Empleado;;
 import clases.Historialclasificacion;
 import clases.Historialticket;
 import clases.Intervencion;
@@ -418,13 +419,14 @@ public class VerDetalleTicket extends javax.swing.JFrame {
 
 void cargarCampos(TicketDTO ticketDTO) {
             
-            
+            EmpleadoDao empleadoDao = new EmpleadoDao();
             GestorEmpleado gestorEmpleado = new GestorEmpleado();
             GestorTicket gestorTicket = new GestorTicket();
             this.ticket= gestorTicket.obtenerTicket(ticketDTO.getNroTicket());
             Empleado empleado = gestorEmpleado.obtenerEmpleado(ticketDTO.getNroLegajoempleado());
             List<Historialticket> historialesT = new ArrayList<>();
             DefaultTableModel modelo =  (DefaultTableModel) jTable1.getModel();
+            List<Empleado> listaEmpleadosGrupos = empleadoDao.obtenerGruposEmpleados(); 
             
              //aca cargo los campoes del empleado
             jTextField1NroTicketPorPantalla.setText(String.valueOf(ticketDTO.getNroTicket()));
@@ -449,10 +451,10 @@ void cargarCampos(TicketDTO ticketDTO) {
             jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
             jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
             jTable1.setValueAt(listaEmpleados.get(0).getNombre() + " " + listaEmpleados.get(0).getApellido(), i, 2); 
-            jTable1.setValueAt("Mesa de ayuda", i, 3); 
+            jTable1.setValueAt("Mesa de ayuda", i, 3);
             jTable1.setValueAt(ticket.getClasificacion().getNombreclasificacion(), i, 4);                         
-            jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);
-            //*******************************************************************************************
+            jTable1.setValueAt(historialesT.get(i).getEstado(), i, 5);                  
+
             }
         
     } else{       
@@ -461,8 +463,7 @@ void cargarCampos(TicketDTO ticketDTO) {
             historialesT = gestorTicket.obtenerHistorialesTicket(ticketDTO.getNroTicket());
             this.historialesTickets = historialesT;
             List<Empleado> listaEmpleados = gestorEmpleado.obtenerEmpleados();
-           
-            
+                      
              
             int k=0;
             List<Historialclasificacion> listaHC = new ArrayList<>();
@@ -480,9 +481,6 @@ void cargarCampos(TicketDTO ticketDTO) {
                 //Cargo todas las columnas menos la de operador
                 jTable1.setValueAt(historialesT.get(i).getFechafin(), i, 0);
                 jTable1.setValueAt(historialesT.get(i).getHorafin(), i, 1);
-                               
-                jTable1.setValueAt(intervencion.get(0).getGruporesolucion().getNombregrupo(), i, 3);
-               
                 jTable1.setValueAt(listaHC.get(k).getClasificacion().getNombreclasificacion(), i, 4); 
                  k++;
                 
@@ -500,9 +498,17 @@ void cargarCampos(TicketDTO ticketDTO) {
                         operador =  (listaEmpleados.get(j).getNombre() + " " + listaEmpleados.get(j).getApellido());
                         encontrado = true;
                     }
+                    for(int n=0; n<listaEmpleadosGrupos.size(); n++){
+                        if(listaEmpleadosGrupos.get(n).getLegajoEmpleado() == listaEmpleados.get(j).getLegajoEmpleado()){
+                             jTable1.setValueAt(listaEmpleadosGrupos.get(n).getGruporesolucion().getNombregrupo(), i, 3);
+                             break;
+                        }
+                    }
+                    
                     j++;
                 }
-                
+                   
+  
                 jTable1.setValueAt(operador, i, 2);
                 
             }
