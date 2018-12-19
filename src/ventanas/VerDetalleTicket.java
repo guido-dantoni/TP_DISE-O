@@ -9,6 +9,7 @@ import clases.Historialticket;
 import clases.Intervencion;
 import clases.Ticket;
 import clases.TicketDTO;
+import controllers.Enum_EstadoTicket;
 import controllers.GestorEmpleado;
 import controllers.GestorTicket;
 import java.awt.event.KeyEvent;
@@ -307,16 +308,17 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1DerivarTicketKeyPressed
 
     private void jButton1DerivarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1DerivarTicketActionPerformed
-       if(ticket.getEstadoactual().equals("CERRADO")){
-           
-           JOptionPane.showMessageDialog(null, "El ticket seleccionado no se puede derivar porque se encuentra cerrado");
-           
-       }else{
-           
+          if( ticket.getEstadoactual().equals(Enum_EstadoTicket.ABIERTO_MESA_AYUDA.toString()) ||
+              ticket.getEstadoactual().equals(Enum_EstadoTicket.SOLUCIONADO_ESPERA_OK.toString()) ){
+          
             Caso_de_uso_04 cu = new Caso_de_uso_04();
             this.setVisible(false);
             cu.setVisible(true);
             cu.derivarTicket(ticket, this, jTextAreaObservacion.getText());
+                         
+       }else{
+           JOptionPane.showMessageDialog(null, "El ticket seleccionado no se puede derivar porque se encuentra " + ticket.getEstadoactual());
+
        }
     }//GEN-LAST:event_jButton1DerivarTicketActionPerformed
 

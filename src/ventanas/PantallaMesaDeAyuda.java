@@ -50,7 +50,6 @@ public class PantallaMesaDeAyuda extends javax.swing.JFrame {
             //this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             //this.setVisible(false);
             this.inicioTp.desbloquearControles();
-            System.out.println(inicioTp);
             this.dispose();
         }
     }
