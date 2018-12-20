@@ -1,10 +1,8 @@
 
 package controllers;
 
-import Dao.ClasificacionDao;
 import Dao.EmpleadoDao;
 import Dao.GrupoResolucionDao;
-import clases.Clasificacion;
 import clases.Empleado;
 import clases.Gruporesolucion;
 import clases.Usuario;

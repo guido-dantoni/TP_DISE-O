@@ -101,11 +101,6 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
         jTextFieldEstadoActual.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldEstadoActual.setBorder(null);
         jTextFieldEstadoActual.setFocusable(false);
-        jTextFieldEstadoActual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldEstadoActualActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldEstadoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 270, 30));
 
         jComboBoxMotivo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -203,9 +198,6 @@ public class Caso_de_uso_08 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     private void jTextFieldEstadoActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEstadoActualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEstadoActualActionPerformed
 
     private void jTextAreaObservacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaObservacionKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_TAB){

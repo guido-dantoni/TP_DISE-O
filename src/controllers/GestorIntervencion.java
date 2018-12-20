@@ -153,7 +153,6 @@ public class GestorIntervencion {
         Historialintervencion historialIntervencion = new Historialintervencion();
         historialIntervencion =  intervencionDao.getHistorial(i);
         
-        System.out.println(historialIntervencion);
         historialIntervencion.setFechafin(fechaActual);
         historialIntervencion.setHorafin(fechaActual);
         
