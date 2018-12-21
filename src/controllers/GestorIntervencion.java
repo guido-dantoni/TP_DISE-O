@@ -165,7 +165,7 @@ public class GestorIntervencion {
         hi.setFechainicio(fechaActual);
         hi.setEstado(nuevoEstadoIntervencion);
         hi.setObservaciones(nuevaObservacion);
-        hi.setIntervencion(i); //En CU3 si el nuevo estod de intervencion es cerrada y se cierra el ticket, hay que setear la fechafin y horafin del ultimo historial de esta intervencion
+        hi.setIntervencion(i); //En CU3 si el nuevo estado de intervencion es cerrada y se cierra el ticket, hay que setear la fechafin y horafin del ultimo historial de esta intervencion
 
                       
         HashSet<Historialintervencion> hashHistorialIntervenciones = new HashSet<>();

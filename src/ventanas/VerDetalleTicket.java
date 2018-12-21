@@ -13,10 +13,13 @@ import controllers.Enum_EstadoTicket;
 import controllers.GestorEmpleado;
 import controllers.GestorTicket;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,7 +36,7 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("../imagenes/logo.png")).getImage());
-       
+        cerrar();
         
         
     }
@@ -130,11 +133,6 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextFieldNroLegajo.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldNroLegajo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldNroLegajo.setFocusable(false);
-        jTextFieldNroLegajo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNroLegajoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldNroLegajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 180, -1));
 
         jTextFieldTelefonoInterno.setEditable(false);
@@ -159,11 +157,6 @@ public class VerDetalleTicket extends javax.swing.JFrame {
         jTextFieldTelefonoDirecto.setBackground(new java.awt.Color(191, 185, 185));
         jTextFieldTelefonoDirecto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTextFieldTelefonoDirecto.setFocusable(false);
-        jTextFieldTelefonoDirecto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTelefonoDirectoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldTelefonoDirecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 220, -1));
 
         jTextFieldDescrpDelCargo.setEditable(false);
@@ -288,18 +281,9 @@ public class VerDetalleTicket extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
-        this.setVisible(false);
-        casoUso2.setVisible(true);
+            salir();
       
     }//GEN-LAST:event_jButtonVolverActionPerformed
-
-    private void jTextFieldNroLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNroLegajoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNroLegajoActionPerformed
-
-    private void jTextFieldTelefonoDirectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefonoDirectoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTelefonoDirectoActionPerformed
 
     private void jButton1DerivarTicketKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1DerivarTicketKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -523,15 +507,29 @@ void verDetalles(TicketDTO ticketDto, Caso_de_uso_02 Cu2) {
         this.cargarCampos(ticketDto);
     }
     
-
+    public void cerrar(){
+        
+        try{
+            this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                @Override
+                    public void windowClosing(WindowEvent e){
+                    salir();
+                }
+               
+            });
+        
+        }catch(Exception e){
+                e.printStackTrace();
+                }
+    }
+    
+    public void salir(){
+            
+        this.setVisible(false);
+        casoUso2.setVisible(true);
+            
+       
+    }
 
 }
-/*    if(historialesT.size() == 0){
-        
-                jTable1.setValueAt(historialesT.get(0).getFechafin(), 0, 0);
-                jTable1.setValueAt(historialesT.get(0).getHorafin(), 0, 1);
-                jTable1.setValueAt("Mesa de ayuda", 0, 3);
-                jTable1.setValueAt(historialesT.get(0).getTicket().getClasificacion().getNombreclasificacion(), 0, 4);
-                jTable1.setValueAt(historialesT.get(0).getEstado(), 0, 5);
-        
-    }else{ */
